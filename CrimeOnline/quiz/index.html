@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--mid:#111827;--surface:#1a2233;--card:#1e2d45;
+  --crimson:#c0392b;--crim-lt:#e74c3c;
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--crimson)}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px;z-index:2}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s,background .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}}
+
+/* LANG BAR */
+.lang-bar{position:fixed;top:62px;right:0;background:#0a0e1a;border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:10px;z-index:150;border-radius:0 0 0 5px}
+.lang-bar-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.lang-select{background:var(--surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:5px 26px 5px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+.lang-select option{background:#0a0e1a}
+
+/* WRAPPER */
+.quiz-wrapper{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px 40px}
+
+/* START */
+#screen-start{width:100%;max-width:680px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.start-eyebrow{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.start-title{font-family:var(--font-d);font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.06;letter-spacing:-1px;color:var(--white);margin-bottom:16px}
+.start-subtitle{font-size:16px;font-weight:300;color:var(--slate-lt);line-height:1.75;max-width:500px;margin-bottom:8px}
+.start-desc{font-size:13px;color:var(--slate);line-height:1.7;max-width:480px;margin-bottom:36px}
+.start-stats{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:36px;width:100%}
+.stat-box{flex:1;background:var(--surface);padding:20px 16px;text-align:center}
+.stat-box-num{font-family:var(--font-d);font-size:32px;font-weight:900;color:var(--white);line-height:1}
+.stat-box-num span{color:var(--crimson)}
+.stat-box-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.07em;text-transform:uppercase;margin-top:5px;line-height:1.4}
+.btn-start{background:var(--crimson);color:var(--white);padding:16px 48px;font-size:15px;font-weight:600;border:none;border-radius:3px;cursor:pointer;transition:background .2s,transform .15s;width:100%;max-width:320px}
+.btn-start:hover{background:var(--crim-lt);transform:translateY(-1px)}
+.start-note{margin-top:16px;font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.04em}
+
+/* QUIZ */
+#screen-quiz{width:100%;max-width:680px}
+.hidden{display:none!important}
+.progress-track{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin-bottom:28px}
+.progress-fill{height:100%;background:var(--crimson);border-radius:2px;transition:width .4s ease}
+.question-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.q-counter{font-family:var(--font-m);font-size:12px;color:var(--slate);letter-spacing:.06em}
+.q-counter strong{color:var(--white)}
+.topic-badge{font-family:var(--font-m);font-size:10px;font-weight:500;padding:4px 12px;border-radius:12px;letter-spacing:.04em;text-transform:uppercase}
+.question-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:36px;margin-bottom:20px}
+.question-text{font-family:var(--font-d);font-size:clamp(17px,2.5vw,22px);font-weight:700;color:var(--white);line-height:1.4}
+.options-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.option-btn{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px 18px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;text-align:left;transition:border-color .15s,background .15s;width:100%}
+.option-btn:hover:not(:disabled){border-color:rgba(255,255,255,0.2);background:var(--card)}
+.option-btn:disabled{cursor:default}
+.opt-label{font-family:var(--font-m);font-size:11px;font-weight:700;width:22px;height:22px;border-radius:3px;flex-shrink:0;background:rgba(255,255,255,0.07);color:var(--slate-lt);display:flex;align-items:center;justify-content:center;letter-spacing:.04em;margin-top:1px;transition:background .15s,color .15s}
+.opt-text{font-size:14px;color:var(--offwhite);line-height:1.5}
+.option-btn.correct{border-color:rgba(22,163,74,0.5);background:rgba(22,163,74,0.08)}
+.option-btn.correct .opt-label{background:#16a34a;color:#fff}
+.option-btn.correct .opt-text{color:#4ade80}
+.option-btn.wrong{border-color:rgba(192,57,43,0.5);background:rgba(192,57,43,0.08)}
+.option-btn.wrong .opt-label{background:var(--crimson);color:#fff}
+.option-btn.wrong .opt-text{color:#e89a90}
+.option-btn.dimmed{opacity:.4}
+.explanation-box{background:var(--mid);border:1px solid var(--border);border-left:3px solid var(--slate);border-radius:0 4px 4px 0;padding:20px 24px;margin-bottom:20px}
+.explanation-box.was-correct{border-left-color:#16a34a}
+.explanation-box.was-wrong{border-left-color:var(--crimson)}
+.explanation-verdict{font-family:var(--font-m);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.ev-correct{color:#4ade80}.ev-wrong{color:#e89a90}
+.explanation-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:block;margin-top:12px}
+.explanation-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.btn-next{background:var(--crimson);color:var(--white);padding:13px 28px;font-size:14px;font-weight:600;border:none;border-radius:3px;cursor:pointer;transition:background .2s,transform .15s;width:100%}
+.btn-next:hover{background:var(--crim-lt);transform:translateY(-1px)}
+
+/* RESULTS */
+#screen-results{width:100%;max-width:680px}
+.results-header{text-align:center;margin-bottom:40px}
+.score-ring{width:140px;height:140px;border-radius:50%;border:3px solid var(--crimson);margin:0 auto 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--surface)}
+.score-num{font-family:var(--font-d);font-size:44px;font-weight:900;color:var(--white);line-height:1}
+.score-denom{font-family:var(--font-m);font-size:13px;color:var(--slate);letter-spacing:.04em}
+.score-grade-label{font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--white);margin-bottom:8px}
+.score-grade-desc{font-size:14px;color:var(--slate-lt);max-width:400px;margin:0 auto}
+.topic-breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
+.topic-score-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px 16px;text-align:center;border-top-width:2px;border-top-style:solid}
+.tsc-name{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.tsc-score{font-family:var(--font-d);font-size:24px;font-weight:700}
+.tsc-total{font-size:14px;color:var(--slate);font-family:var(--font-b);font-weight:400}
+.review-section{margin-bottom:32px}
+.review-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;display:block}
+.review-item{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden}
+.review-item-header{padding:14px 18px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:background .15s}
+.review-item-header:hover{background:var(--card)}
+.review-status{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:2px}
+.rs-correct{background:rgba(22,163,74,0.2);color:#4ade80;border:1px solid rgba(22,163,74,0.4)}
+.rs-wrong{background:rgba(192,57,43,0.2);color:#e89a90;border:1px solid rgba(192,57,43,0.4)}
+.review-q-text{font-size:13px;color:var(--offwhite);line-height:1.5;flex:1}
+.review-chevron{color:var(--slate);font-size:12px;flex-shrink:0;margin-top:3px;transition:transform .2s}
+.review-item.open .review-chevron{transform:rotate(180deg)}
+.review-item-body{display:none;padding:0 18px 16px;border-top:1px solid var(--border)}
+.review-item.open .review-item-body{display:block}
+.review-answer-row{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:12px;line-height:1.5}
+.rar-label{font-family:var(--font-m);font-size:10px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;margin-top:1px}
+.rar-label.correct{color:#4ade80}.rar-label.wrong{color:#e89a90}
+.rar-value{color:var(--slate-lt)}
+.review-expl{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--slate);line-height:1.65}
+.results-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-retake{background:var(--crimson);color:var(--white);padding:13px 28px;font-size:14px;font-weight:600;border:none;border-radius:3px;cursor:pointer;transition:background .2s,transform .15s;flex:1}
+.btn-retake:hover{background:var(--crim-lt);transform:translateY(-1px)}
+.btn-topics{color:var(--slate-lt);padding:13px 28px;font-size:14px;font-weight:500;border:1px solid rgba(255,255,255,0.12);background:transparent;border-radius:3px;cursor:pointer;transition:border-color .2s,color .2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;flex:1}
+.btn-topics:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
+
+@media(max-width:480px){.quiz-wrapper{padding:48px 16px 32px}.question-card{padding:24px}.topic-breakdown{grid-template-columns:1fr 1fr}.lang-bar{padding:7px 12px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../prevention.html">Prevention</a></li>
+    <li><a href="../sources.html">Sources</a></li>
+    <li><a href="index.html" class="active">Quiz</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"         onclick="closeMenu()">Home</a>
+  <a href="../index.html#topics"  onclick="closeMenu()">Topics</a>
+  <a href="../prevention.html"    onclick="closeMenu()">Prevention</a>
+  <a href="../sources.html"       onclick="closeMenu()">Sources</a>
+  <a href="index.html" class="mobile-cta" onclick="closeMenu()">Quiz</a>
+</nav>
+
+<div class="lang-bar">
+  <span class="lang-bar-label" id="lbl-lang">Language</span>
+  <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="de">Deutsch</option>
+    <option value="it">Italiano</option>
+  </select>
+</div>
+
+<div class="quiz-wrapper">
+
+  <div id="screen-start">
+    <div class="start-eyebrow">CrimeOnline</div>
+    <h1 class="start-title"  id="txt-title">Internet Crime Knowledge Quiz</h1>
+    <p  class="start-subtitle" id="txt-subtitle"></p>
+    <p  class="start-desc"     id="txt-desc"></p>
+    <div class="start-stats">
+      <div class="stat-box"><div class="stat-box-num">30</div><div class="stat-box-label" id="txt-stat-bank"></div></div>
+      <div class="stat-box"><div class="stat-box-num">1<span>0</span></div><div class="stat-box-label" id="txt-stat-sel"></div></div>
+      <div class="stat-box"><div class="stat-box-num">6</div><div class="stat-box-label" id="txt-stat-top"></div></div>
+    </div>
+    <button class="btn-start" id="btn-start" onclick="startQuiz()">Start Quiz</button>
+    <div class="start-note" id="txt-note"></div>
+  </div>
+
+  <div id="screen-quiz" class="hidden">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="question-meta">
+      <span class="q-counter"  id="q-counter"></span>
+      <span class="topic-badge" id="q-topic"></span>
+    </div>
+    <div class="question-card">
+      <div class="question-text" id="q-text"></div>
+    </div>
+    <div class="options-grid"     id="options-grid"></div>
+    <div class="explanation-box hidden" id="explanation-box">
+      <div class="explanation-verdict" id="expl-verdict"></div>
+      <span class="explanation-label"  id="lbl-expl"></span>
+      <div class="explanation-text"    id="expl-text"></div>
+    </div>
+    <button class="btn-next hidden" id="btn-next" onclick="nextQuestion()"></button>
+  </div>
+
+  <div id="screen-results" class="hidden">
+    <div class="results-header">
+      <div class="score-ring" id="score-ring">
+        <div class="score-num"   id="score-num">0</div>
+        <div class="score-denom" id="score-denom"></div>
+      </div>
+      <div class="score-grade-label" id="grade-label"></div>
+      <div class="score-grade-desc"  id="grade-desc"></div>
+    </div>
+    <div class="topic-breakdown"  id="topic-breakdown"></div>
+    <div class="review-section">
+      <span class="review-label" id="lbl-review"></span>
+      <div id="answer-review"></div>
+    </div>
+    <div class="results-actions">
+      <button class="btn-retake" id="btn-retake" onclick="retakeQuiz()"></button>
+      <a href="../index.html#topics" class="btn-topics" id="btn-topics">Explore Topics</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+/* =====================================================================
+   TOPIC COLOUR — function lookup avoids object-key special-char issues
+===================================================================== */
+function topicHex(t) {
+  var tl = (t || '').toLowerCase();
+  if (tl === 'ncii') return '#c0392b';
+  if (tl === 'drug trade'   || tl === 'drogenhandel' || tl === 'traffico di droga') return '#d97706';
+  if (tl === 'piracy'       || tl === 'piraterie'    || tl === 'pirateria')         return '#2563eb';
+  if (tl === 'hate speech'  || tl === 'hassrede'     || tl === 'incitamento all\'odio') return '#7c3aed';
+  if (tl === 'cyberstalking')                                                         return '#0d9488';
+  if (tl === 'financial crime' || tl === 'finanzkriminalitat' || tl === 'finanzkriminalität' || tl === 'crimine finanziario') return '#16a34a';
+  return '#64748b';
+}
+
+/* =====================================================================
+   LANGUAGE DATA — all strings use single quotes; apostrophes escaped
+===================================================================== */
+var LANGS = {};
+
+/* ---- ENGLISH ------------------------------------------------------- */
+LANGS.en = {
+  ui: {
+    title:      'Internet Crime Knowledge Quiz',
+    subtitle:   'Test your knowledge across all six internet crime topics',
+    desc:       '10 questions are selected at random from a bank of 30. Each question covers a different aspect of internet crime.',
+    stat_bank:  'questions in the bank',
+    stat_sel:   'randomly selected',
+    stat_top:   'crime topics covered',
+    note:       'No time limit \u00b7 Randomised each attempt',
+    btn_start:  'Start Quiz',
+    btn_next:   'Next Question',
+    btn_results:'See Results',
+    btn_retake: 'Retake Quiz',
+    lbl_q:      'Question',
+    lbl_of:     'of',
+    lbl_correct:'Correct',
+    lbl_wrong:  'Incorrect',
+    lbl_expl:   'Explanation',
+    lbl_out_of: 'out of',
+    lbl_review: 'Answer Review',
+    lbl_your:   'Your answer',
+    lbl_right:  'Correct answer',
+    lbl_lang:   'Language',
+    grade_A_lbl:'Excellent',
+    grade_A_desc:'Outstanding knowledge of internet crime across all topics.',
+    grade_B_lbl:'Good',
+    grade_B_desc:'Strong understanding with only minor gaps.',
+    grade_C_lbl:'Satisfactory',
+    grade_C_desc:'A solid foundation. Review the topic reports to fill the gaps.',
+    grade_D_lbl:'Needs Work',
+    grade_D_desc:'Some knowledge but significant gaps remain. The topic reports will help.',
+    grade_F_lbl:'Try Again',
+    grade_F_desc:'Don\'t worry. The topic reports cover everything tested here.'
+  },
+  questions: [
+    {q:'What does NCII stand for?',
+     opts:['Non-Consensual Intimate Image Sharing','Nationally Classified Internet Information','Non-Criminal Identity Infringement','National Centre for Internet Integrity'],
+     c:0,topic:'NCII',
+     expl:'NCII stands for Non-Consensual Intimate Image Sharing: the distribution of sexually explicit or intimate images of a person without their consent. The term "revenge porn" is widely rejected as victim-blaming.'},
+
+    {q:'What percentage of NCII victims are estimated to be female?',
+     opts:['Around 30-40%','Around 50-60%','Around 70-80%','Around 90-100%'],
+     c:2,topic:'NCII',
+     expl:'Multiple independent studies from the US, UK, and Australia estimate that between 70% and 80% of NCII victims are female. Among perpetrators, the vast majority are male.'},
+
+    {q:'What is sextortion?',
+     opts:['Malware that encrypts intimate files and demands payment','Using the threat of releasing intimate images to extort money or compliance','Recording someone without consent in a private space','Phishing specifically targeting dating app users'],
+     c:1,topic:'NCII',
+     expl:'Sextortion occurs when a perpetrator uses the threat of releasing intimate images to extort money, further images, or sexual compliance. Organised criminal networks target teenagers across international borders.'},
+
+    {q:'What technology does StopNCII.org use to block image distribution without victims uploading their images?',
+     opts:['Facial recognition','AI content classification','Hash-matching (digital fingerprinting)','Blockchain verification'],
+     c:2,topic:'NCII',
+     expl:'StopNCII.org uses hash-matching: generating a unique digital fingerprint from an image file. Only the hash is shared with participating platforms, never the image itself, so any re-upload can be automatically blocked.'},
+
+    {q:'Which law first criminalised the creation (not just distribution) of AI deepfake intimate imagery?',
+     opts:['EU Digital Services Act 2024','Australia Online Safety Act 2021','UK Online Safety Act 2023','US SHIELD Act'],
+     c:2,topic:'NCII',
+     expl:'The UK Online Safety Act 2023 was the first legislation to criminalise the creation of deepfake intimate imagery, not just its distribution. It carries a potential custodial sentence in England and Wales.'},
+
+    {q:'In which year did the FBI shut down Silk Road and arrest founder Ross Ulbricht?',
+     opts:['2011','2012','2013','2015'],
+     c:2,topic:'Drug Trade',
+     expl:'Silk Road was shut down in October 2013 and Ulbricht was arrested in a San Francisco library. He was convicted of drug trafficking, money laundering, and conspiracy, and sentenced to life in prison without parole.'},
+
+    {q:'Which cryptocurrency do modern dark web drug markets prefer because its transactions are genuinely untraceable?',
+     opts:['Bitcoin (BTC)','Ethereum (ETH)','Monero (XMR)','Dogecoin (DOGE)'],
+     c:2,topic:'Drug Trade',
+     expl:'Monero uses ring signatures, stealth addresses, and RingCT to hide sender, receiver, and amount. Bitcoin\'s public blockchain is fully transparent and has been used by law enforcement to trace criminal transactions.'},
+
+    {q:'Operation Bayonet (2017) simultaneously dismantled which two dark web markets?',
+     opts:['Silk Road and Hansa Market','AlphaBay and Hansa Market','Hydra and AlphaBay','Silk Road and AlphaBay'],
+     c:1,topic:'Drug Trade',
+     expl:'Operation Bayonet took down AlphaBay and Hansa Market in 2017. Dutch police had secretly run Hansa for a month before its shutdown, harvesting intelligence on users who had fled AlphaBay.'},
+
+    {q:'Which dark web market pioneered dead-drop delivery, sending GPS coordinates to buyers after payment?',
+     opts:['AlphaBay','Silk Road','Hydra Market','Hansa Market'],
+     c:2,topic:'Drug Trade',
+     expl:'Russia\'s Hydra Market pioneered dead-drop delivery. It generated an estimated $1.37 billion in 2020 before being seized by German authorities in 2022.'},
+
+    {q:'According to the DEA, how many counterfeit pills seized in the US contain a potentially lethal dose of fentanyl?',
+     opts:['1 in 10','2 in 10','4 in 10','6 in 10'],
+     c:3,topic:'Drug Trade',
+     expl:'The DEA reports that six in ten counterfeit pills seized in the US contain a potentially lethal dose of fentanyl. They are pressed to look identical to legitimate prescriptions.'},
+
+    {q:'According to cybersecurity research, what percentage of pirated software downloads contain malware?',
+     opts:['Around 10%','Around 25%','Around 58%','Around 80%'],
+     c:2,topic:'Piracy',
+     expl:'Cybereason research (2022) found that approximately 58% of pirated software downloads contain embedded malware. Common payloads include credential stealers, ransomware droppers, and remote access trojans.'},
+
+    {q:'What is the Warez Scene in the context of online piracy?',
+     opts:['A dark web marketplace for pirated content','A network of release groups that crack and distribute pirated content via private FTP servers','A forum where pirates review cracked software','Encrypted BitTorrent networks used by organised pirates'],
+     c:1,topic:'Piracy',
+     expl:'The Scene is a semi-underground network of release groups that crack and distribute pirated content via private FTP servers, often hours before official release. They operate under strict internal rules.'},
+
+    {q:'The Pirate Bay founders were convicted in Sweden in 2009. What were they found guilty of?',
+     opts:['Operating a criminal enterprise','Directly infringing copyright by hosting pirated files','Assisting copyright infringement','Computer hacking and wire fraud'],
+     c:2,topic:'Piracy',
+     expl:'The founders were convicted of assisting copyright infringement, not direct infringement, as they hosted index links rather than the files themselves. They were sentenced to one year in prison each.'},
+
+    {q:'Why is illegal IPTV particularly associated with organised crime?',
+     opts:['It uses VPNs to bypass geographic content restrictions','It sells access to stolen live broadcast streams for profit at scale','It rips and uploads streaming content to torrent sites','It screen-records Netflix and distributes the recordings'],
+     c:1,topic:'Piracy',
+     expl:'Illegal IPTV services sell access to stolen broadcast streams, especially live sports. Operations can generate millions of euros annually, and significant organised crime involvement is documented across Europe.'},
+
+    {q:'What followed the 2012 FBI seizure of Megaupload and arrest of Kim Dotcom?',
+     opts:['A quick conviction and $2 billion fine','A decade-long extradition battle with Dotcom fighting from New Zealand','All charges dropped due to free speech protections','A $500 million civil settlement'],
+     c:1,topic:'Piracy',
+     expl:'Kim Dotcom fought extradition from New Zealand for over a decade. New Zealand courts repeatedly blocked the process. As of 2024, proceedings were still ongoing.'},
+
+    {q:'What did Facebook whistleblower Frances Haugen reveal in her 2021 Senate testimony?',
+     opts:['Facebook had no data on hate speech rates','Facebook knew its algorithms amplified divisive content but rejected changes that reduced engagement','Its AI moderation was removing too much legitimate political speech','Facebook shared user data with foreign governments'],
+     c:1,topic:'Hate Speech',
+     expl:'Haugen revealed internal research showing Facebook knew its algorithms amplified divisive and hateful content, and that changes to reduce this amplification were rejected because they reduced engagement metrics.'},
+
+    {q:'How long did the Christchurch terrorist attack livestream remain on Facebook before removal?',
+     opts:['3 minutes','17 minutes','2 hours','It was never automatically removed'],
+     c:1,topic:'Hate Speech',
+     expl:'The Christchurch livestream remained on Facebook for 17 minutes before removal and was then copied and reposted millions of times. The incident prompted the international Christchurch Call initiative.'},
+
+    {q:'What is the radicalisation pipeline as documented in online extremism research?',
+     opts:['Dark web channels selling extremist content as subscriptions','A gradual process where algorithms move users from mainstream content to increasingly extreme fringe material','Government programmes monitoring extremist communications','Translation services adapting extremist content for different markets'],
+     c:1,topic:'Hate Speech',
+     expl:'Researchers describe the radicalisation pipeline as a gradual journey driven by engagement-optimised algorithms, moving users from mainstream platforms through semi-private communities into fringe extremist networks.'},
+
+    {q:'Germany\'s NetzDG law requires platforms to remove clearly illegal hate speech within what timeframe?',
+     opts:['1 hour','24 hours','7 days','30 days'],
+     c:1,topic:'Hate Speech',
+     expl:'NetzDG requires removal within 24 hours (7 days for complex cases). Fines up to 50 million euros apply for systemic non-compliance. Twitter/X was fined 54 million euros in 2023.'},
+
+    {q:'What is doxxing?',
+     opts:['Installing spyware on a target\'s device','Publicly publishing a target\'s private identifying information to enable or incite harassment','Creating fake social media profiles','Sending coordinated mass messages to intimidate someone'],
+     c:1,topic:'Cyberstalking',
+     expl:'Doxxing is the deliberate publication of private information such as home address, phone number, or family details, with the intent that others will use it to cause harm.'},
+
+    {q:'What is stalkerware?',
+     opts:['Malware spread through dating apps','Legal parental-monitoring software widely used to covertly surveil intimate partners','Spyware sold only on the dark web','Ransomware that threatens to publish private files'],
+     c:1,topic:'Cyberstalking',
+     expl:'Stalkerware are commercial applications marketed as parental tools that covertly transmit location data, call logs, and messages. They operate invisibly and are widely documented as tools of intimate partner abuse.'},
+
+    {q:'What is swatting and why is it particularly dangerous?',
+     opts:['Mass-reporting accounts to trigger platform bans','Sending threatening letters to a target\'s home','Placing false emergency calls to send armed police to a target\'s home, which has resulted in deaths','Flooding a target\'s phone with automated calls'],
+     c:2,topic:'Cyberstalking',
+     expl:'Swatting involves false emergency calls that send armed police to a target\'s home. In 2017, Andrew Finch was killed by police responding to a swatting call made over an online gaming dispute.'},
+
+    {q:'Approximately what percentage of cyberstalking victims knew their perpetrator personally?',
+     opts:['Around 15%','Around 30%','Around 48%','Around 75%'],
+     c:2,topic:'Cyberstalking',
+     expl:'The Cyber Civil Rights Initiative found approximately 48% of cyberstalking victims knew the perpetrator personally. Intimate partners and former partners are the most common category.'},
+
+    {q:'What percentage of all cyberattacks begin with a phishing email?',
+     opts:['Around 40%','Around 65%','Around 91%','Around 99%'],
+     c:2,topic:'Financial Crime',
+     expl:'Research consistently finds approximately 91% of all cyberattacks begin with a phishing email, making it the primary attack vector across ransomware, credential theft, and Business Email Compromise.'},
+
+    {q:'What is pig butchering fraud?',
+     opts:['A ransomware attack targeting food industry supply chains','A long-duration romance and investment fraud that cultivates trust before stealing life savings','A cryptocurrency pump-and-dump scheme','A social engineering technique to extract passwords from employees'],
+     c:1,topic:'Financial Crime',
+     expl:'Pig butchering combines romance fraud with fake cryptocurrency investment platforms. Victims are cultivated over weeks or months before investing increasing sums. Many operations are run using trafficked workers in Southeast Asian compounds.'},
+
+    {q:'What does BEC stand for and what makes it hard to detect?',
+     opts:['Browser Encryption Compromise, which exploits HTTPS vulnerabilities','Business Email Compromise, which impersonates executives to authorise fraudulent wire transfers','Banking Error Correction, exploiting internal bank reconciliation','Bot-Enabled Credential theft using automated bots'],
+     c:1,topic:'Financial Crime',
+     expl:'Business Email Compromise involves impersonating executives via email to instruct finance teams to wire funds to fraudulent accounts. It requires no malware and exploits existing trust relationships, making it very hard to detect.'},
+
+    {q:'US cybercrime losses reported to the FBI IC3 in 2023 reached approximately how much?',
+     opts:['$2.5 billion','$7.3 billion','$12.5 billion','$28 billion'],
+     c:2,topic:'Financial Crime',
+     expl:'The FBI IC3 recorded approximately $12.5 billion in US cybercrime losses in 2023, a record high. This represents only reported losses; actual losses are estimated to be several times higher.'},
+
+    {q:'What is Ransomware-as-a-Service (RaaS)?',
+     opts:['A government service helping ransomware victims recover data','A criminal model where ransomware developers license tools to affiliates in exchange for a revenue share','An insurance product protecting companies against ransomware','A cybersecurity monitoring service'],
+     c:1,topic:'Financial Crime',
+     expl:'RaaS is a criminal model where ransomware groups develop malware and payment infrastructure, then license it to affiliates who conduct attacks for a revenue share of typically 20-30%. This dramatically lowered the technical barrier to entry.'},
+
+    {q:'What is the Budapest Convention on Cybercrime?',
+     opts:['An EU regulation requiring member states to share cybercrime data with Europol','The world\'s first international cybercrime treaty, establishing a framework for cross-border law enforcement cooperation','A UN resolution condemning state-sponsored cyberattacks','A trade agreement limiting export of offensive cyber tools'],
+     c:1,topic:'General',
+     expl:'The Budapest Convention (2001) is the primary international legal framework enabling cross-border cybercrime cooperation, mutual legal assistance, and evidence sharing. Signed by 68 countries, though Russia and China are not signatories.'},
+
+    {q:'What does the EU Digital Services Act primarily regulate, and when did it come into full force?',
+     opts:['Personal data protection for EU citizens, in force 2022','Taxation rules for digital services companies, in force 2023','Platform obligations to assess and mitigate risks from illegal content and algorithmic amplification of harm, in force 2024','Intellectual property rights for EU digital creators, in force 2024'],
+     c:2,topic:'General',
+     expl:'The DSA, in full force from 2024, requires large platforms to conduct annual risk assessments and mitigate systemic risks including illegal content and hate speech. Fines of up to 6% of global turnover apply for non-compliance.'}
+  ]
+};
+
+/* ---- GERMAN ------------------------------------------------------- */
+LANGS.de = {
+  ui: {
+    title:      'Wissensquiz Internetkriminalit\u00e4t',
+    subtitle:   'Testen Sie Ihr Wissen zu allen sechs Themen der Internetkriminalit\u00e4t',
+    desc:       'Es werden 10 Fragen zuf\u00e4llig aus einem Pool von 30 ausgew\u00e4hlt. Jede Frage deckt einen anderen Aspekt der Internetkriminalit\u00e4t ab.',
+    stat_bank:  'Fragen im Pool',
+    stat_sel:   'zuf\u00e4llig ausgew\u00e4hlt',
+    stat_top:   'Themenbereiche',
+    note:       'Kein Zeitlimit \u00b7 Fragen werden bei jedem Versuch neu gew\u00fcrfelt',
+    btn_start:  'Quiz starten',
+    btn_next:   'N\u00e4chste Frage',
+    btn_results:'Ergebnisse anzeigen',
+    btn_retake: 'Quiz wiederholen',
+    lbl_q:      'Frage',
+    lbl_of:     'von',
+    lbl_correct:'Richtig',
+    lbl_wrong:  'Falsch',
+    lbl_expl:   'Erl\u00e4uterung',
+    lbl_out_of: 'von',
+    lbl_review: 'Antwort\u00fcbersicht',
+    lbl_your:   'Ihre Antwort',
+    lbl_right:  'Richtige Antwort',
+    lbl_lang:   'Sprache',
+    grade_A_lbl:'Ausgezeichnet',
+    grade_A_desc:'Hervorragende Kenntnisse der Internetkriminalit\u00e4t in allen Themenbereichen.',
+    grade_B_lbl:'Gut',
+    grade_B_desc:'Solides Verst\u00e4ndnis mit nur geringen Wissensl\u00fccken.',
+    grade_C_lbl:'Befriedigend',
+    grade_C_desc:'Eine gute Grundlage. Lesen Sie die Themenberichte, um die L\u00fccken zu schlie\u00dfen.',
+    grade_D_lbl:'Verbesserungsbedarf',
+    grade_D_desc:'Einige Kenntnisse vorhanden, aber erhebliche L\u00fccken. Die Themenberichte helfen weiter.',
+    grade_F_lbl:'Nochmal versuchen',
+    grade_F_desc:'Kein Problem. Die Themenberichte decken alles ab, was hier gepr\u00fcft wird.'
+  },
+  questions: [
+    {q:'Wof\u00fcr steht die Abk\u00fcrzung NCII?',
+     opts:['Non-Consensual Intimate Image Sharing (Nicht-einvernehmliche Weitergabe intimer Bilder)','Nationally Classified Internet Information','Non-Criminal Identity Infringement','National Centre for Internet Integrity'],
+     c:0,topic:'NCII',
+     expl:'NCII steht f\u00fcr Non-Consensual Intimate Image Sharing: die Verbreitung sexuell expliziter oder intimer Bilder einer Person ohne deren Einwilligung. Der Begriff "Rachepornografie" wird von Experten weitgehend als opferbeschuldigend abgelehnt.'},
+
+    {q:'Wie hoch ist laut unabh\u00e4ngigen Studien der Anteil weiblicher NCII-Opfer?',
+     opts:['Etwa 30-40 %','Etwa 50-60 %','Etwa 70-80 %','Etwa 90-100 %'],
+     c:2,topic:'NCII',
+     expl:'Mehrere Studien aus den USA, dem Vereinigten K\u00f6nigreich und Australien sch\u00e4tzen, dass 70-80 % der NCII-Opfer weiblich sind. Unter den T\u00e4tern ist die gro\u00dfe Mehrheit m\u00e4nnlich.'},
+
+    {q:'Was versteht man unter Sextortion?',
+     opts:['Eine Malware, die intime Dateien verschl\u00fcsselt und L\u00f6segeld fordert','Die Drohung, intime Bilder zu ver\u00f6ffentlichen, um Geld oder Gef\u00fcgigkeit zu erpressen','Das unbefugte Aufnehmen von Personen in privaten R\u00e4umen','Eine Phishing-Form, die Dating-App-Nutzer angreift'],
+     c:1,topic:'NCII',
+     expl:'Sextortion liegt vor, wenn ein T\u00e4ter intime Bilder als Druckmittel nutzt, um Geld, weitere Bilder oder sexuelle Gef\u00fcgigkeit zu erpressen. Organisierte kriminelle Netzwerke nehmen gezielt Jugendliche \u00fcber L\u00e4ndergrenzen hinweg ins Visier.'},
+
+    {q:'Welche Technologie verwendet StopNCII.org, um Bilder zu blockieren, ohne dass die Opfer diese hochladen m\u00fcssen?',
+     opts:['Gesichtserkennung','KI-Inhaltsklassifizierung','Hash-Matching (digitaler Fingerabdruck)','Blockchain-Verifizierung'],
+     c:2,topic:'NCII',
+     expl:'StopNCII.org verwendet Hash-Matching: Es wird ein eindeutiger digitaler Fingerabdruck aus der Bilddatei generiert. Nur dieser Hash wird geteilt, nie das Bild selbst. Sp\u00e4tere Uploads desselben Bildes k\u00f6nnen so automatisch blockiert werden.'},
+
+    {q:'Welches Gesetz kriminalisierte als erstes weltweit die Erstellung von KI-Deepfake-Intimbildern?',
+     opts:['EU Digital Services Act 2024','Australischer Online Safety Act 2021','Britischer Online Safety Act 2023','US SHIELD Act'],
+     c:2,topic:'NCII',
+     expl:'Der britische Online Safety Act 2023 war das erste Gesetz, das die Erstellung von Deepfake-Intimbildern unter Strafe stellt, nicht nur deren Verbreitung. Er gilt in England und Wales.'},
+
+    {q:'In welchem Jahr schloss das FBI Silk Road und verhaftete Gr\u00fcnder Ross Ulbricht?',
+     opts:['2011','2012','2013','2015'],
+     c:2,topic:'Drogenhandel',
+     expl:'Silk Road wurde im Oktober 2013 abgeschaltet. Ross Ulbricht wurde wegen Drogenhandels, Geldw\u00e4sche und Verschw\u00f6rung zu lebenslanger Haft ohne Bew\u00e4hrungsm\u00f6glichkeit verurteilt.'},
+
+    {q:'Welche Kryptow\u00e4hrung bevorzugen Darknet-Drogenmärkte, da ihre Transaktionen wirklich nicht nachverfolgbar sind?',
+     opts:['Bitcoin (BTC)','Ethereum (ETH)','Monero (XMR)','Dogecoin (DOGE)'],
+     c:2,topic:'Drogenhandel',
+     expl:'Monero verwendet Ring-Signaturen, Stealth-Adressen und RingCT, um Transaktionen nicht nachverfolgbar zu machen. Bitcoins \u00f6ffentliche Blockchain ist dagegen vollst\u00e4ndig transparent.'},
+
+    {q:'Welche zwei Darknet-M\u00e4rkte wurden bei der Operation Bayonet (2017) gleichzeitig zerschlagen?',
+     opts:['Silk Road und Hansa Market','AlphaBay und Hansa Market','Hydra und AlphaBay','Silk Road und AlphaBay'],
+     c:1,topic:'Drogenhandel',
+     expl:'Operation Bayonet zerschlug AlphaBay und Hansa Market 2017. Die niederl\u00e4ndische Polizei hatte Hansa einen Monat lang heimlich weiterbetrieben und dabei Informationen \u00fcber fl\u00fcchtende Nutzer gesammelt.'},
+
+    {q:'Welcher Darknet-Markt war Pionier der Dead-Drop-Lieferung?',
+     opts:['AlphaBay','Silk Road','Hydra Market','Hansa Market'],
+     c:2,topic:'Drogenhandel',
+     expl:'Russlands Hydra Market erzielte 2020 sch\u00e4tzungsweise 1,37 Milliarden Dollar Umsatz und war Pionier der Dead-Drop-Lieferung, bevor es 2022 vom deutschen BKA beschlagnahmt wurde.'},
+
+    {q:'Welcher Anteil der in den USA beschlagnahmten gef\u00e4lschten Pillen enth\u00e4lt eine potenziell t\u00f6dliche Dosis Fentanyl?',
+     opts:['1 von 10','2 von 10','4 von 10','6 von 10'],
+     c:3,topic:'Drogenhandel',
+     expl:'Die US-DEA berichtet, dass sechs von zehn beschlagnahmten gef\u00e4lschten Pillen eine potenziell t\u00f6dliche Dosis Fentanyl enthalten.'},
+
+    {q:'Welcher Prozentsatz von Raubkopien-Software-Downloads enth\u00e4lt Malware?',
+     opts:['Etwa 10 %','Etwa 25 %','Etwa 58 %','Etwa 80 %'],
+     c:2,topic:'Piraterie',
+     expl:'Cybereason-Forschung (2022) ergab, dass etwa 58 % der Raubkopien-Downloads Malware enthalten, darunter Credential-Stealer, Ransomware-Dropper und Kryptominer.'},
+
+    {q:'Was ist die Warez-Scene im Kontext der Online-Piraterie?',
+     opts:['Ein Darknet-Marktplatz f\u00fcr Raubkopien','Ein Netzwerk von Release-Gruppen, die Inhalte \u00fcber private FTP-Server verteilen','Ein Forum, in dem Piraten Software bewerten','Verschl\u00fcsselte BitTorrent-Netzwerke organisierter Piraten'],
+     c:1,topic:'Piraterie',
+     expl:'The Scene ist ein halb-unterirdisches Netzwerk von Release-Gruppen, die gecrackten Inhalt \u00fcber private FTP-Server verteilen, oft Stunden vor der offiziellen Ver\u00f6ffentlichung.'},
+
+    {q:'Wessen wurden die Gr\u00fcnder von The Pirate Bay 2009 in Schweden schuldig befunden?',
+     opts:['Betrieb einer kriminellen Organisation','Direkter Urheberrechtsverletzung','Beihilfe zur Urheberrechtsverletzung','Computer-Hacking und Betrug'],
+     c:2,topic:'Piraterie',
+     expl:'Die Gr\u00fcnder wurden wegen Beihilfe zur Urheberrechtsverletzung verurteilt, nicht wegen direkter Verletzung, da sie Index-Links und keine Dateien selbst hosteten.'},
+
+    {q:'Warum ist illegales IPTV besonders mit organisierter Kriminalit\u00e4t verbunden?',
+     opts:['Es nutzt VPNs zur Umgehung geografischer Sperren','Es verkauft Zugang zu gestohlenen Live-\u00dcbertragungen f\u00fcr Gewinn','Es l\u00e4dt Streaming-Inhalte auf Torrent-Seiten hoch','Es zeichnet Netflix auf und teilt die Aufnahmen'],
+     c:1,topic:'Piraterie',
+     expl:'Illegales IPTV verkauft Zugang zu gestohlenen Live-Streams, besonders Sport. Betriebe k\u00f6nnen Millionen Euro j\u00e4hrlich einbringen, mit erheblicher Beteiligung organisierter Kriminalit\u00e4t.'},
+
+    {q:'Was folgte auf die FBI-Razzia bei Megaupload 2012 und die Verhaftung von Kim Dotcom?',
+     opts:['Schnelle Verurteilung und 2-Milliarden-Dollar-Strafe','Ein jahrzehntelanger Auslieferungsstreit aus Neuseeland','Alle Anklagen fallen gelassen','Zivilrechtlicher Vergleich \u00fcber 500 Millionen Dollar'],
+     c:1,topic:'Piraterie',
+     expl:'Kim Dotcom k\u00e4mpfte \u00fcber ein Jahrzehnt gegen die Auslieferung aus Neuseeland. Neuseel\u00e4ndische Gerichte blockierten den Prozess wiederholt.'},
+
+    {q:'Was enthüllte Frances Haugen in ihrer Senatsaussage 2021 \u00fcber Facebook?',
+     opts:['Facebook hatte keine Daten zu Hassredenraten','Facebook wusste von der Verst\u00e4rkung spaltender Inhalte, lehnte aber \u00c4nderungen ab, die das Engagement reduzierten','Die KI-Moderation entfernte zu viel legitime Sprache','Facebook teilte Nutzerdaten mit ausländischen Regierungen'],
+     c:1,topic:'Hassrede',
+     expl:'Haugen enthüllte, dass Facebook wusste, dass Algorithmen spaltende Inhalte verst\u00e4rken, und \u00c4nderungen ablehnte, weil sie die Engagement-Metriken reduzierten.'},
+
+    {q:'Wie lange blieb der Christchurch-Livestream auf Facebook, bevor er entfernt wurde?',
+     opts:['3 Minuten','17 Minuten','2 Stunden','Er wurde nie automatisch entfernt'],
+     c:1,topic:'Hassrede',
+     expl:'Der Livestream blieb 17 Minuten auf Facebook und wurde anschlie\u00dfend millionenfach kopiert. Der Vorfall f\u00fchrte zur Christchurch-Call-Initiative.'},
+
+    {q:'Was ist die Radikalisierungspipeline laut Extremismusforschung?',
+     opts:['Darknet-Kan\u00e4le, die extremistische Inhalte als Abonnement verkaufen','Ein schrittweiser Prozess, bei dem Algorithmen Nutzer zu immer extremerem Material f\u00fchren','Staatliche \u00dcberwachungsprogramme f\u00fcr extremistische Kommunikation','Dienste, die extremistische Inhalte \u00fcbersetzen'],
+     c:1,topic:'Hassrede',
+     expl:'Die Radikalisierungspipeline ist ein schrittweiser Prozess durch Engagement-optimierte Algorithmen, der Nutzer von Mainstream-Plattformen bis in extremistische Rangnetzwerke f\u00fchrt.'},
+
+    {q:'In welchem Zeitraum m\u00fcssen Plattformen laut NetzDG illegale Hassrede entfernen?',
+     opts:['Innerhalb von 1 Stunde','Innerhalb von 24 Stunden','Innerhalb von 7 Tagen','Innerhalb von 30 Tagen'],
+     c:1,topic:'Hassrede',
+     expl:'NetzDG verpflichtet Plattformen zur Entfernung innerhalb von 24 Stunden. Twitter/X wurde 2023 mit 54 Millionen Euro bestraft.'},
+
+    {q:'Was versteht man unter Doxxing?',
+     opts:['Spyware auf einem Ger\u00e4t installieren','Private Identifikationsdaten \u00f6ffentlich ver\u00f6ffentlichen, um Bel\u00e4stigung zu erm\u00f6glichen','Gef\u00e4lschte Social-Media-Profile erstellen','Massen-Nachrichten senden, um jemanden einzusch\u00fcchtern'],
+     c:1,topic:'Cyberstalking',
+     expl:'Beim Doxxing werden private Informationen wie Heimadresse, Arbeitgeber oder Familiendetails ver\u00f6ffentlicht, damit andere Schaden anrichten k\u00f6nnen.'},
+
+    {q:'Was ist Stalkerware?',
+     opts:['Malware, die \u00fcber Dating-Apps verbreitet wird','Legale Software, die als Kindersicherungs-Tool vermarktet wird, aber zur verdeckten Partnerüberwachung genutzt wird','Spyware nur im Darknet','Ransomware, die private Dateien ver\u00f6ffentlicht'],
+     c:1,topic:'Cyberstalking',
+     expl:'Stalkerware sind als Kindersicherungs-Tools vermarktete Anwendungen, die Standort, Anrufe und Nachrichten verdeckt \u00fcbertragen. Sie sind weit dokumentiert als Missbrauchswerkzeug.'},
+
+    {q:'Was ist Swatting und warum ist es gef\u00e4hrlich?',
+     opts:['Konten massen haft melden','Bedrohliche Briefe senden','Falsche Notrufe absetzen, die bewaffnete Polizisten zu jemandem schicken, was zu Todesf\u00e4llen gef\u00fchrt hat','Das Telefon mit automatisierten Anrufen \u00fcberfluten'],
+     c:2,topic:'Cyberstalking',
+     expl:'Beim Swatting werden falsche Notrufe abgesetzt, um bewaffnete Polizisten zu entsenden. 2017 wurde Andrew Finch von der Polizei get\u00f6tet, die auf einen Swatting-Anruf reagierte.'},
+
+    {q:'Welcher Anteil der Cyberstalking-Opfer kannte den T\u00e4ter pers\u00f6nlich?',
+     opts:['Etwa 15 %','Etwa 30 %','Etwa 48 %','Etwa 75 %'],
+     c:2,topic:'Cyberstalking',
+     expl:'Die Cyber Civil Rights Initiative stellte fest, dass etwa 48 % der Opfer den T\u00e4ter pers\u00f6nlich kannten, h\u00e4ufig Intimpartner oder Ex-Partner.'},
+
+    {q:'Welcher Prozentsatz aller Cyberangriffe beginnt mit einer Phishing-E-Mail?',
+     opts:['Etwa 40 %','Etwa 65 %','Etwa 91 %','Etwa 99 %'],
+     c:2,topic:'Finanzkriminalit\u00e4t',
+     expl:'Forschungen zeigen konsistent, dass etwa 91 % aller Cyberangriffe mit einer Phishing-E-Mail beginnen.'},
+
+    {q:'Was ist Pig Butchering?',
+     opts:['Ransomware gegen die Lebensmittelbranche','Ein langfristiger Liebes- und Investitionsbetrug, der Vertrauen aufbaut und dann Erspartes stiehlt','Ein Kryptow\u00e4hrungs-Pump-and-Dump-Schema','Social Engineering zum Passwortentzug'],
+     c:1,topic:'Finanzkriminalit\u00e4t',
+     expl:'Pig Butchering kombiniert Liebesbetrug mit gef\u00e4lschten Kryptoinvestitionsplattformen. Viele Operationen nutzen Menschenhandelsopfer in s\u00fcdostasiatischen Anlagen.'},
+
+    {q:'Was bedeutet BEC und warum ist es schwer zu erkennen?',
+     opts:['Browser Encryption Compromise, das HTTPS-Schwachstellen ausnutzt','Business Email Compromise, das Führungskräfte imitiert, um Überweisungen zu genehmigen','Banking Error Correction, das Bankprozesse ausnutzt','Bot-gesteuerter Credential-Diebstahl'],
+     c:1,topic:'Finanzkriminalit\u00e4t',
+     expl:'Business Email Compromise imitiert F\u00fchrungskr\u00e4fte, um betr\u00fcgerische \u00dcberweisungen zu genehmigen. Es ben\u00f6tigt keine Malware und ist deshalb schwer zu erkennen.'},
+
+    {q:'Auf wie viel beliefen sich die beim FBI IC3 gemeldeten US-Cyberschäden im Jahr 2023?',
+     opts:['2,5 Milliarden Dollar','7,3 Milliarden Dollar','12,5 Milliarden Dollar','28 Milliarden Dollar'],
+     c:2,topic:'Finanzkriminalit\u00e4t',
+     expl:'Das FBI IC3 verzeichnete 2023 US-Cyberschäden von 12,5 Milliarden Dollar, ein Rekordwert.'},
+
+    {q:'Was ist Ransomware-as-a-Service (RaaS)?',
+     opts:['Ein staatlicher Dienst zur Datenwiederherstellung','Ein kriminelles Modell, bei dem Ransomware gegen Umsatzbeteiligung lizenziert wird','Ein Versicherungsprodukt gegen Ransomware','Ein Cybersicherheits-Überwachungsdienst'],
+     c:1,topic:'Finanzkriminalit\u00e4t',
+     expl:'RaaS ist ein Modell, bei dem Ransomware-Gruppen ihr Werkzeug gegen eine Umsatzbeteiligung (typisch 20-30 %) an Affiliates lizenzieren.'},
+
+    {q:'Was ist das Budapester \u00dcbereinkommen \u00fcber Cyberkriminalit\u00e4t?',
+     opts:['Eine EU-Verordnung zur Weitergabe von Cyberdaten an Europol','Der erste internationale Cyberkriminalit\u00e4tsvertrag f\u00fcr grenz\u00fcberschreitende Strafverfolgungskooperation','Eine UN-Resolution gegen staatliche Cyberangriffe','Ein Handelsabkommen \u00fcber Cyber-Tools'],
+     c:1,topic:'Allgemein',
+     expl:'Das Budapester \u00dcbereinkommen (2001) ist der prim\u00e4re internationale Rechtsrahmen f\u00fcr Cyberkriminalit\u00e4tsf\u00e4lle. Russland und China sind keine Unterzeichner.'},
+
+    {q:'Was regelt der EU Digital Services Act und wann trat er in Kraft?',
+     opts:['Datenschutzrechte f\u00fcr EU-B\u00fcrger, seit 2022','Steuerregeln f\u00fcr digitale Dienste, seit 2023','Plattformverpflichtungen zur Risikobewertung bei illegalen Inhalten und algorithmischer Verst\u00e4rkung, seit 2024','Schutz des geistigen Eigentums f\u00fcr EU-Sch\u00f6pfer, seit 2024'],
+     c:2,topic:'Allgemein',
+     expl:'Der DSA verpflichtet gro\u00dfe Plattformen seit 2024 zu j\u00e4hrlichen Risikobewertungen. Bei Nichtkonformit\u00e4t drohen Bu\u00dfgelder bis zu 6 % des Jahresumsatzes.'}
+  ]
+};
+
+/* ---- ITALIAN ------------------------------------------------------- */
+LANGS.it = {
+  ui: {
+    title:      'Quiz sulla Criminalit\u00e0 Informatica',
+    subtitle:   'Metti alla prova le tue conoscenze su tutti e sei i temi della criminalit\u00e0 informatica',
+    desc:       'Verranno selezionate casualmente 10 domande da un banco di 30. Ogni domanda copre un aspetto diverso della criminalit\u00e0 informatica.',
+    stat_bank:  'domande nel banco',
+    stat_sel:   'selezionate casualmente',
+    stat_top:   'argomenti trattati',
+    note:       'Nessun limite di tempo \u00b7 Domande casuali ad ogni tentativo',
+    btn_start:  'Inizia il Quiz',
+    btn_next:   'Prossima Domanda',
+    btn_results:'Mostra Risultati',
+    btn_retake: 'Rifai il Quiz',
+    lbl_q:      'Domanda',
+    lbl_of:     'di',
+    lbl_correct:'Corretto',
+    lbl_wrong:  'Sbagliato',
+    lbl_expl:   'Spiegazione',
+    lbl_out_of: 'su',
+    lbl_review: 'Riepilogo risposte',
+    lbl_your:   'La tua risposta',
+    lbl_right:  'Risposta corretta',
+    lbl_lang:   'Lingua',
+    grade_A_lbl:'Eccellente',
+    grade_A_desc:'Conoscenza eccellente della criminalit\u00e0 informatica in tutti gli argomenti.',
+    grade_B_lbl:'Buono',
+    grade_B_desc:'Buona comprensione con solo alcune lacune minori.',
+    grade_C_lbl:'Sufficiente',
+    grade_C_desc:'Una buona base. Leggi i rapporti tematici per colmare le lacune.',
+    grade_D_lbl:'Da migliorare',
+    grade_D_desc:'Alcune conoscenze ma lacune significative. I rapporti tematici saranno utili.',
+    grade_F_lbl:'Riprova',
+    grade_F_desc:'Non preoccuparti. I rapporti tematici coprono tutto ci\u00f2 che viene testato.'
+  },
+  questions: [
+    {q:'Cosa significa l\'acronimo NCII?',
+     opts:['Non-Consensual Intimate Image Sharing (Condivisione non consensuale di immagini intime)','Nationally Classified Internet Information','Non-Criminal Identity Infringement','National Centre for Internet Integrity'],
+     c:0,topic:'NCII',
+     expl:'NCII sta per Non-Consensual Intimate Image Sharing: la distribuzione di immagini sessualmente esplicite o intime senza consenso. Il termine "revenge porn" \u00e8 ampiamente considerato inadeguato e colpevolizzante.'},
+
+    {q:'Quale percentuale delle vittime di NCII \u00e8 stimata essere di sesso femminile?',
+     opts:['Circa il 30-40%','Circa il 50-60%','Circa il 70-80%','Circa il 90-100%'],
+     c:2,topic:'NCII',
+     expl:'Pi\u00f9 studi stimano che tra il 70% e l\'80% delle vittime di NCII siano donne. Tra i responsabili, la grande maggioranza \u00e8 maschile.'},
+
+    {q:'Cos\'e\' la sextortion?',
+     opts:['Un malware che cifra file intimi e richiede un riscatto','L\'uso della minaccia di divulgare immagini intime per estorcere denaro o obbedienza','La registrazione clandestina di qualcuno in uno spazio privato','Una forma di phishing rivolta agli utenti di app di incontri'],
+     c:1,topic:'NCII',
+     expl:'La sextortion avviene quando un autore usa immagini intime come leva per estorcere denaro o obbedienza. Reti criminali organizzate prendono di mira specificamente adolescenti.'},
+
+    {q:'Quale tecnologia usa StopNCII.org per bloccare le immagini senza che le vittime le carichino?',
+     opts:['Riconoscimento facciale','Classificazione AI dei contenuti','Hash-matching (impronta digitale)','Verifica tramite blockchain'],
+     c:2,topic:'NCII',
+     expl:'StopNCII.org usa l\'hash-matching: genera un\'impronta digitale unica dal file immagine. Solo l\'hash viene condiviso con le piattaforme, mai l\'immagine stessa.'},
+
+    {q:'Quale legge ha criminalizzato per prima al mondo la creazione di deepfake intimi generati dall\'IA?',
+     opts:['EU Digital Services Act 2024','Australian Online Safety Act 2021','UK Online Safety Act 2023','US SHIELD Act'],
+     c:2,topic:'NCII',
+     expl:'L\'UK Online Safety Act 2023 \u00e8 stata la prima legge a criminalizzare la creazione di deepfake intimi, non solo la distribuzione. Si applica in Inghilterra e Galles.'},
+
+    {q:'In quale anno l\'FBI ha chiuso Silk Road e arrestato il fondatore Ross Ulbricht?',
+     opts:['2011','2012','2013','2015'],
+     c:2,topic:'Traffico di Droga',
+     expl:'Silk Road fu chiusa nell\'ottobre 2013. Ross Ulbricht fu condannato all\'ergastolo senza libert\u00e0 condizionale per traffico di droga, riciclaggio e cospirazione.'},
+
+    {q:'Quale criptovaluta preferiscono i mercati dark web moderni perch\u00e9 le sue transazioni sono non tracciabili?',
+     opts:['Bitcoin (BTC)','Ethereum (ETH)','Monero (XMR)','Dogecoin (DOGE)'],
+     c:2,topic:'Traffico di Droga',
+     expl:'Monero usa ring signatures, stealth addresses e RingCT per nascondere mittente, destinatario e importo. La blockchain di Bitcoin \u00e8 invece completamente pubblica.'},
+
+    {q:'L\'Operazione Bayonet (2017) ha smantellato simultaneamente quali due mercati del dark web?',
+     opts:['Silk Road e Hansa Market','AlphaBay e Hansa Market','Hydra e AlphaBay','Silk Road e AlphaBay'],
+     c:1,topic:'Traffico di Droga',
+     expl:'L\'Operazione Bayonet ha smantellato AlphaBay e Hansa Market nel 2017. La polizia olandese aveva gestito Hansa segretamente per un mese raccogliendo dati sugli utenti.'},
+
+    {q:'Quale mercato del dark web ha introdotto la consegna dead drop?',
+     opts:['AlphaBay','Silk Road','Hydra Market','Hansa Market'],
+     c:2,topic:'Traffico di Droga',
+     expl:'Hydra Market russo ha introdotto la consegna dead drop e ha generato circa 1,37 miliardi di dollari nel 2020, prima di essere sequestrato dalla Germania nel 2022.'},
+
+    {q:'Quante pillole contraffatte sequestrate negli USA contengono una dose letale di fentanil?',
+     opts:['1 su 10','2 su 10','4 su 10','6 su 10'],
+     c:3,topic:'Traffico di Droga',
+     expl:'La DEA riporta che sei su dieci pillole contraffatte contengono una dose potenzialmente letale di fentanil.'},
+
+    {q:'Quale percentuale dei download di software pirata contiene malware?',
+     opts:['Circa il 10%','Circa il 25%','Circa il 58%','Circa l\'80%'],
+     c:2,topic:'Pirateria',
+     expl:'La ricerca Cybereason (2022) ha trovato che circa il 58% dei download di software pirata contiene malware incorporato, tra cui credential stealer e ransomware dropper.'},
+
+    {q:'Cos\'e\' la Warez Scene nel contesto della pirateria online?',
+     opts:['Un mercato dark web per contenuti piratati','Una rete di gruppi che distribuiscono contenuti piratati via server FTP privati','Un forum dove i pirati recensiscono software','Reti BitTorrent crittografate di pirati organizzati'],
+     c:1,topic:'Pirateria',
+     expl:'The Scene \u00e8 una rete di gruppi di rilascio che distribuiscono contenuti piratati via FTP privati, spesso ore prima del rilascio ufficiale.'},
+
+    {q:'Di cosa erano colpevoli i fondatori di The Pirate Bay, condannati nel 2009?',
+     opts:['Gestione di un\'organizzazione criminale','Violazione diretta del copyright','Favoreggiamento della violazione del copyright','Hacking e frode informatica'],
+     c:2,topic:'Pirateria',
+     expl:'I fondatori furono condannati per favoreggiamento della violazione del copyright, non violazione diretta, poich\u00e9 ospitavano link indice e non i file stessi.'},
+
+    {q:'Perch\u00e9 l\'IPTV illegale \u00e8 particolarmente associato alla criminalit\u00e0 organizzata?',
+     opts:['Usa VPN per aggirare restrizioni geografiche','Vende accesso a stream broadcast rubati, in particolare sportivi, per profitto','Carica contenuti streaming su siti torrent','Registra Netflix e condivide le registrazioni'],
+     c:1,topic:'Pirateria',
+     expl:'L\'IPTV illegale vende accesso a stream rubati, specialmente sport dal vivo. Le operazioni possono generare milioni di euro annui con ampia partecipazione della criminalit\u00e0 organizzata.'},
+
+    {q:'Cosa \u00e8 seguito al sequestro di Megaupload nel 2012 e all\'arresto di Kim Dotcom?',
+     opts:['Rapida condanna e multa da 2 miliardi di dollari','Una battaglia per l\'estradizione durata un decennio dalla Nuova Zelanda','Tutte le accuse archiviate','Accordo civile da 500 milioni di dollari'],
+     c:1,topic:'Pirateria',
+     expl:'Kim Dotcom ha combattuto l\'estradizione dalla Nuova Zelanda per oltre un decennio. I tribunali neozelandesi l\'hanno bloccata ripetutamente.'},
+
+    {q:'Cosa ha rivelato Frances Haugen nella sua testimonianza al Senato nel 2021 su Facebook?',
+     opts:['Facebook non aveva dati sull\'incitamento all\'odio','Facebook sapeva che gli algoritmi amplificavano contenuti divisivi ma rifiutava modifiche che riducessero il coinvolgimento','La moderazione AI rimuoveva troppo discorso politico legittimo','Facebook condivideva dati degli utenti con governi stranieri'],
+     c:1,topic:'Incitamento all\'Odio',
+     expl:'Haugen ha rivelato che Facebook sapeva degli algoritmi divisivi e rifiutava le modifiche perch\u00e9 riducevano le metriche di coinvolgimento.'},
+
+    {q:'Per quanto tempo lo streaming dell\'attacco di Christchurch \u00e8 rimasto su Facebook prima della rimozione?',
+     opts:['3 minuti','17 minuti','2 ore','Non \u00e8 mai stato rimosso automaticamente'],
+     c:1,topic:'Incitamento all\'Odio',
+     expl:'Lo streaming \u00e8 rimasto su Facebook 17 minuti e poi \u00e8 stato copiato milioni di volte. L\'incidente ha ispirato il Christchurch Call.'},
+
+    {q:'Cos\'e\' il pipeline di radicalizzazione secondo la ricerca sull\'estremismo online?',
+     opts:['Canali dark web che vendono contenuti estremisti','Un processo graduale in cui gli algoritmi portano gli utenti verso materiale sempre pi\u00f9 estremo','Programmi governativi di sorveglianza','Servizi che traducono contenuti estremisti'],
+     c:1,topic:'Incitamento all\'Odio',
+     expl:'Il pipeline di radicalizzazione \u00e8 un percorso graduale guidato da algoritmi che spostano gli utenti dalle piattaforme mainstream verso reti estremiste marginali.'},
+
+    {q:'Il NetzDG tedesco richiede la rimozione dell\'incitamento all\'odio entro quanto tempo?',
+     opts:['Entro 1 ora','Entro 24 ore','Entro 7 giorni','Entro 30 giorni'],
+     c:1,topic:'Incitamento all\'Odio',
+     expl:'Il NetzDG richiede la rimozione entro 24 ore. Twitter/X \u00e8 stata multata di 54 milioni di euro nel 2023 per mancata conformit\u00e0.'},
+
+    {q:'Cos\'e\' il doxxing?',
+     opts:['Installare spyware sul dispositivo di un obiettivo','Pubblicare pubblicamente informazioni private di un obiettivo per consentire molestie','Creare profili falsi sui social media','Inviare messaggi di massa per intimidire qualcuno'],
+     c:1,topic:'Cyberstalking',
+     expl:'Il doxxing consiste nel pubblicare informazioni private come indirizzo, datore di lavoro o familiari, affinch\u00e9 altri possano causare danni.'},
+
+    {q:'Cos\'e\' lo stalkerware?',
+     opts:['Malware diffuso tramite app di incontri','Software legale per il controllo parentale usato per sorvegliare clandestinamente i partner intimi','Spyware solo nel dark web','Ransomware che minaccia di pubblicare file privati'],
+     c:1,topic:'Cyberstalking',
+     expl:'Lo stalkerware sono app commerciali che trasmettono clandestinamente dati di posizione e messaggi. Sono ampiamente documentate come strumenti di abuso da partner.'},
+
+    {q:'Cos\'e\' lo swatting e perch\u00e9 \u00e8 pericoloso?',
+     opts:['Segnalare in massa gli account di un obiettivo','Inviare lettere minacciose a casa','Fare false chiamate di emergenza per mandare poliziotti armati, con morti documentate','Inondare il telefono di un obiettivo con chiamate automatizzate'],
+     c:2,topic:'Cyberstalking',
+     expl:'Lo swatting prevede false chiamate di emergenza per mandare polizia armata a casa di un obiettivo. Nel 2017, Andrew Finch fu ucciso dalla polizia che rispondeva a una chiamata di swatting.'},
+
+    {q:'Quale percentuale delle vittime di cyberstalking conosceva personalmente il responsabile?',
+     opts:['Circa il 15%','Circa il 30%','Circa il 48%','Circa il 75%'],
+     c:2,topic:'Cyberstalking',
+     expl:'Il CCRI ha rilevato che circa il 48% delle vittime conosceva il responsabile, principalmente partner intimi o ex partner.'},
+
+    {q:'Quale percentuale di tutti gli attacchi informatici inizia con una email di phishing?',
+     opts:['Circa il 40%','Circa il 65%','Circa il 91%','Circa il 99%'],
+     c:2,topic:'Crimine Finanziario',
+     expl:'Le ricerche mostrano che circa il 91% di tutti gli attacchi informatici inizia con una email di phishing, rendendolo il vettore pi\u00f9 importante in tutta la criminalit\u00e0 finanziaria online.'},
+
+    {q:'Cos\'e\' il pig butchering?',
+     opts:['Un attacco ransomware al settore alimentare','Una frode sentimentale e di investimento a lungo termine che ruba i risparmi delle vittime','Uno schema pump-and-dump per investitori agricoli','Social engineering per estrarre password'],
+     c:1,topic:'Crimine Finanziario',
+     expl:'Il pig butchering combina frode sentimentale con piattaforme crypto false. Molte operazioni usano vittime della tratta in Sud-Est asiatico.'},
+
+    {q:'Cosa significa BEC e perch\u00e9 \u00e8 difficile da rilevare?',
+     opts:['Browser Encryption Compromise, che sfrutta vulnerabilit\u00e0 HTTPS','Business Email Compromise, che impersona dirigenti per autorizzare bonifici fraudolenti','Banking Error Correction, che sfrutta processi bancari interni','Bot-Enabled Credential theft con bot automatizzati'],
+     c:1,topic:'Crimine Finanziario',
+     expl:'BEC impersona dirigenti via email per far autorizzare bonifici fraudolenti. Non richiede malware e sfrutta relazioni di fiducia esistenti, rendendolo difficile da rilevare.'},
+
+    {q:'Le perdite da criminalit\u00e0 informatica negli USA nel 2023 hanno raggiunto circa quanto?',
+     opts:['2,5 miliardi di dollari','7,3 miliardi di dollari','12,5 miliardi di dollari','28 miliardi di dollari'],
+     c:2,topic:'Crimine Finanziario',
+     expl:'L\'FBI IC3 ha registrato 12,5 miliardi di dollari di perdite nel 2023, un record assoluto.'},
+
+    {q:'Cos\'e\' il Ransomware-as-a-Service (RaaS)?',
+     opts:['Un servizio governativo per recuperare dati cifrati','Un modello criminale in cui il ransomware viene concesso in licenza agli affiliati per una quota dei riscatti','Un prodotto assicurativo contro ransomware','Un servizio di monitoraggio della cybersicurezza'],
+     c:1,topic:'Crimine Finanziario',
+     expl:'RaaS \u00e8 un modello in cui i gruppi ransomware cedono il loro strumento agli affiliati per una quota (tipicamente 20-30%) dei riscatti pagati.'},
+
+    {q:'Cos\'e\' la Convenzione di Budapest sulla criminalit\u00e0 informatica?',
+     opts:['Un regolamento UE per la condivisione di dati con Europol','Il primo trattato internazionale sulla criminalit\u00e0 informatica per la cooperazione transfrontaliera','Una risoluzione ONU contro attacchi informatici statali','Un accordo commerciale sugli strumenti cyber offensivi'],
+     c:1,topic:'Generale',
+     expl:'La Convenzione di Budapest (2001) \u00e8 il principale quadro giuridico internazionale per la cooperazione nei casi di criminalit\u00e0 informatica. Firmata da 68 paesi; Russia e Cina non sono firmatarie.'},
+
+    {q:'Cosa regola il Digital Services Act dell\'UE e quando \u00e8 entrato in vigore?',
+     opts:['Diritti di protezione dei dati per i cittadini UE, dal 2022','Regole fiscali per le aziende digitali nell\'UE, dal 2023','Obblighi per le piattaforme di valutare i rischi da contenuti illegali e amplificazione algoritmica, dal 2024','Protezione della propriet\u00e0 intellettuale per i creatori digitali UE, dal 2024'],
+     c:2,topic:'Generale',
+     expl:'Il DSA, in vigore dal 2024, obbliga le grandi piattaforme a valutare rischi sistemici. Sanzioni fino al 6% del fatturato globale per inadempienza.'}
+  ]
+};
+
+/* =====================================================================
+   ENGINE
+===================================================================== */
+var lang     = 'en';
+var ui       = {};
+var pool     = [];
+var selected = [];
+var current  = 0;
+var score    = 0;
+var answers  = [];
+
+function show(s) {
+  ['start','quiz','results'].forEach(function(id) {
+    var el = document.getElementById('screen-' + id);
+    if (el) el.classList.toggle('hidden', id !== s);
+  });
+}
+
+function g(id) { return document.getElementById(id); }
+function setText(id, val) { var e = g(id); if (e && val !== undefined) e.textContent = val; }
+function T(key) { return ui[key] || key; }
+
+function switchLanguage(l) {
+  lang = l;
+  var data = LANGS[l];
+  if (!data) return;
+  ui   = data.ui;
+  pool = data.questions;
+  document.title = T('title') + ' | CrimeOnline';
+  setText('txt-title',    T('title'));
+  setText('txt-subtitle', T('subtitle'));
+  setText('txt-desc',     T('desc'));
+  setText('txt-stat-bank',T('stat_bank'));
+  setText('txt-stat-sel', T('stat_sel'));
+  setText('txt-stat-top', T('stat_top'));
+  setText('txt-note',     T('note'));
+  setText('btn-start',    T('btn_start'));
+  setText('lbl-lang',     T('lbl_lang'));
+  show('start');
+}
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function startQuiz() {
+  selected = shuffle(pool).slice(0, 10);
+  current = 0; score = 0; answers = [];
+  show('quiz');
+  renderQ();
+}
+
+function renderQ() {
+  var q   = selected[current];
+  var tot = selected.length;
+  g('progress-fill').style.width = (current / tot * 100) + '%';
+  g('q-counter').innerHTML = '<strong>' + T('lbl_q') + ' ' + (current + 1) + '</strong> ' + T('lbl_of') + ' ' + tot;
+  var badge = g('q-topic');
+  var hex   = topicHex(q.topic);
+  badge.textContent   = q.topic;
+  badge.style.background = hex + '22';
+  badge.style.color      = hex;
+  badge.style.border     = '1px solid ' + hex + '55';
+  g('q-text').textContent = q.q;
+  var grid = g('options-grid');
+  grid.innerHTML = '';
+  var labels = ['A','B','C','D'];
+  q.opts.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="opt-label">' + labels[i] + '</span><span class="opt-text">' + opt + '</span>';
+    btn.addEventListener('click', function() { selectAnswer(i); });
+    grid.appendChild(btn);
+  });
+  g('explanation-box').classList.add('hidden');
+  var bn = g('btn-next');
+  bn.classList.add('hidden');
+  bn.textContent = (current === tot - 1) ? T('btn_results') : T('btn_next');
+}
+
+function selectAnswer(chosen) {
+  var q      = selected[current];
+  var correct = q.c;
+  var ok      = chosen === correct;
+  if (ok) score++;
+  answers.push({
+    q: q.q, chosen: chosen, correct: correct, ok: ok,
+    chosenTxt: q.opts[chosen], correctTxt: q.opts[correct],
+    expl: q.expl, topic: q.topic
+  });
+  var btns = document.querySelectorAll('.option-btn');
+  btns.forEach(function(btn, i) {
+    btn.disabled = true;
+    if (i === correct)       btn.classList.add('correct');
+    else if (i === chosen && !ok) btn.classList.add('wrong');
+    else                     btn.classList.add('dimmed');
+  });
+  var box = g('explanation-box');
+  box.classList.remove('hidden','was-correct','was-wrong');
+  box.classList.add(ok ? 'was-correct' : 'was-wrong');
+  var verdict = g('expl-verdict');
+  verdict.textContent = ok ? T('lbl_correct') : T('lbl_wrong');
+  verdict.className   = 'explanation-verdict ' + (ok ? 'ev-correct' : 'ev-wrong');
+  setText('lbl-expl', T('lbl_expl'));
+  g('expl-text').textContent = q.expl;
+  g('btn-next').classList.remove('hidden');
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= selected.length) showResults();
+  else renderQ();
+}
+
+function showResults() {
+  g('progress-fill').style.width = '100%';
+  show('results');
+  var tot = selected.length;
+  setText('score-num',   score);
+  setText('score-denom', T('lbl_out_of') + ' ' + tot);
+  var pct = score / tot;
+  var gk  = pct >= 0.9 ? 'A' : pct >= 0.7 ? 'B' : pct >= 0.5 ? 'C' : pct >= 0.3 ? 'D' : 'F';
+  setText('grade-label', T('grade_' + gk + '_lbl'));
+  setText('grade-desc',  T('grade_' + gk + '_desc'));
+  var ringColours = {A:'#16a34a',B:'#2563eb',C:'#d97706',D:'#d97706',F:'#c0392b'};
+  g('score-ring').style.borderColor = ringColours[gk];
+
+  /* topic breakdown */
+  var topicMap = {};
+  answers.forEach(function(a) {
+    if (!topicMap[a.topic]) topicMap[a.topic] = {ok:0,tot:0};
+    topicMap[a.topic].tot++;
+    if (a.ok) topicMap[a.topic].ok++;
+  });
+  var bd = g('topic-breakdown');
+  bd.innerHTML = '';
+  Object.keys(topicMap).forEach(function(tp) {
+    var d = topicMap[tp];
+    var h = topicHex(tp);
+    var c = document.createElement('div');
+    c.className = 'topic-score-card';
+    c.style.borderTopColor = h;
+    c.innerHTML = '<div class="tsc-name">' + tp + '</div>' +
+                  '<div class="tsc-score" style="color:' + h + '">' + d.ok +
+                  '<span class="tsc-total"> / ' + d.tot + '</span></div>';
+    bd.appendChild(c);
+  });
+
+  /* answer review */
+  setText('lbl-review', T('lbl_review'));
+  var rev = g('answer-review');
+  rev.innerHTML = '';
+  answers.forEach(function(a) {
+    var item = document.createElement('div');
+    item.className = 'review-item';
+    item.innerHTML =
+      '<div class="review-item-header" onclick="this.parentElement.classList.toggle(\'open\')">' +
+        '<div class="review-status ' + (a.ok ? 'rs-correct' : 'rs-wrong') + '">' + (a.ok ? '\u2713' : '\u2717') + '</div>' +
+        '<div class="review-q-text">' + a.q + '</div>' +
+        '<div class="review-chevron">\u25bc</div>' +
+      '</div>' +
+      '<div class="review-item-body">' +
+        (!a.ok ? '<div class="review-answer-row"><span class="rar-label wrong">' + T('lbl_your') + '</span><span class="rar-value">&nbsp;' + a.chosenTxt + '</span></div>' : '') +
+        '<div class="review-answer-row"><span class="rar-label correct">' + T('lbl_right') + '</span><span class="rar-value">&nbsp;' + a.correctTxt + '</span></div>' +
+        '<div class="review-expl">' + a.expl + '</div>' +
+      '</div>';
+    rev.appendChild(item);
+  });
+
+  setText('btn-retake', T('btn_retake'));
+  var bt = g('btn-topics');
+  if (bt) bt.textContent = lang === 'de' ? 'Themen erkunden' : lang === 'it' ? 'Esplora gli argomenti' : 'Explore Topics';
+}
+
+function retakeQuiz() { startQuiz(); }
+
+/* NAV HAMBURGER */
+var hb = document.getElementById('hamburger');
+var nm = document.getElementById('nav-mobile');
+function closeMenu() {
+  hb.classList.remove('open'); nm.classList.remove('open');
+  hb.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+hb.addEventListener('click', function() {
+  var o = nm.classList.toggle('open');
+  hb.classList.toggle('open');
+  hb.setAttribute('aria-expanded', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.addEventListener('click', function(e) {
+  if (!hb.contains(e.target) && !nm.contains(e.target)) closeMenu();
+});
+window.addEventListener('resize', function() { if (window.innerWidth > 860) closeMenu(); });
+
+/* INIT */
+switchLanguage('en');
+</script>
+</body>
+</html>

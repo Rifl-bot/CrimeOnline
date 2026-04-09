@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Hate Speech &amp; Radicalisation | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.14);
+  --purple:#7c3aed;--purple-lt:#8b5cf6;--purple-vivid:#a78bfa;
+  --purple-glow:rgba(124,58,237,0.13);--purple-border:rgba(124,58,237,0.35);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);--border-red:rgba(192,57,43,0.38);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--purple);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+
+/* HERO */
+.topic-hero{position:relative;overflow:hidden;min-height:72vh;display:flex;align-items:flex-end;padding:0 80px 72px}
+.hero-img-slot{position:absolute;inset:0;background:var(--navy-mid);display:flex;align-items:center;justify-content:center}
+.placeholder-label{font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.13);letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(255,255,255,0.09);padding:10px 20px;border-radius:3px;pointer-events:none;user-select:none}
+.hero-overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,1) 0%,rgba(10,14,26,0.7) 40%,rgba(10,14,26,0.25) 100%);pointer-events:none}
+.hero-overlay-purple{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 75% 28%,rgba(124,58,237,0.1),transparent 65%);pointer-events:none}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 120% 80% at 50% 100%,rgba(10,14,26,0.5),transparent);pointer-events:none}
+.topic-hero-content{position:relative;z-index:2;max-width:800px}
+.topic-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--purple-vivid);margin-bottom:22px}
+.topic-num-badge{background:var(--purple);color:var(--white);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700}
+.topic-hero h1{font-family:var(--font-d);font-size:clamp(38px,5.5vw,70px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--white);margin-bottom:22px}
+.topic-hero h1 em{font-style:italic;color:var(--purple-vivid)}
+.hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:660px;margin-bottom:36px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.05em;padding-top:24px;border-top:1px solid var(--border)}
+.hero-meta strong{color:var(--slate-lt);font-weight:500}
+@media(max-width:860px){.topic-hero{padding:80px 24px 52px;min-height:55vh}}
+
+/* STAT STRIP */
+.stat-strip{background:var(--navy-surface);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:28px 32px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:900;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-num .p{color:var(--purple-vivid)}
+.stat-num .r{color:var(--crimson)}
+.stat-lbl{font-size:12px;color:var(--slate);line-height:1.4;max-width:150px}
+.stat-src{display:block;font-size:10px;font-family:var(--font-m);color:rgba(100,116,139,0.55);margin-top:8px;letter-spacing:.04em}
+@media(max-width:720px){.stat-strip{grid-template-columns:1fr 1fr}.stat-cell:nth-child(2){border-right:none}.stat-cell:nth-child(3){border-top:1px solid var(--border)}.stat-cell:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* CONTENT */
+.content-section{padding:80px}
+.bg-mid{background:var(--navy-mid)}
+.section-eyebrow{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-lt);margin-bottom:14px;display:block}
+.section-eyebrow.red{color:var(--crimson)}
+.section-h2{font-family:var(--font-d);font-size:clamp(26px,3vw,42px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.prose{font-size:15px;color:var(--slate-lt);line-height:1.85;max-width:800px;margin-bottom:20px}
+.prose strong{color:var(--white);font-weight:600}
+.section-divider{height:1px;background:linear-gradient(90deg,var(--purple),transparent);margin:0 80px;opacity:.22}
+@media(max-width:860px){.content-section{padding:52px 24px}.section-divider{margin:0 24px}}
+
+/* PULL QUOTE */
+.pull-quote{margin:36px 0;padding:28px 36px;border-left:3px solid var(--purple);background:var(--purple-glow);border-radius:0 4px 4px 0}
+.pull-quote p{font-family:var(--font-d);font-size:20px;font-style:italic;color:var(--white);line-height:1.55;margin-bottom:10px}
+.pull-quote cite{font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+
+/* CALLOUT */
+.callout{margin:28px 0;padding:20px 26px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.callout.purple{border:1px solid var(--purple-border);background:var(--purple-glow)}
+.callout.red{border:1px solid var(--border-red);background:rgba(192,57,43,0.06)}
+.callout-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+.callout-icon.purple{background:var(--purple)}
+.callout-icon.red{background:var(--crimson)}
+.callout-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.callout-text strong{font-weight:600}
+.callout.purple .callout-text strong{color:var(--purple-vivid)}
+.callout.red .callout-text strong{color:#e89a90}
+
+/* PIPELINE — signature element */
+.pipeline-section{background:var(--navy-mid)}
+.pipeline-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-bottom:36px;text-align:center}
+.pipeline-node{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch;width:100%;max-width:860px}
+.node-card{border-radius:4px;padding:28px 30px;position:relative}
+.node-card.s1{background:var(--navy-surface);border:1px solid var(--border)}
+.node-card.s2{background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2)}
+.node-card.s3{background:rgba(124,58,237,0.09);border:1px solid rgba(124,58,237,0.28)}
+.node-card.s4{background:rgba(124,58,237,0.13);border:1px solid rgba(124,58,237,0.35)}
+.node-card.s5{background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.25)}
+.node-step{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-lt);margin-bottom:10px}
+.node-card.s5 .node-step{color:var(--crimson)}
+.node-card h3{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.node-card p{font-size:13px;color:var(--slate-lt);line-height:1.65}
+.node-examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.node-ex{font-family:var(--font-m);font-size:10px;padding:3px 10px;border-radius:2px;letter-spacing:.05em;background:rgba(124,58,237,0.12);color:var(--purple-vivid);border:1px solid rgba(124,58,237,0.2)}
+.node-ex.danger{background:rgba(192,57,43,0.12);color:#e89a90;border-color:rgba(192,57,43,0.2)}
+.node-spacer{display:flex;align-items:center;justify-content:center;position:relative}
+.node-spacer::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(to bottom,rgba(124,58,237,0.3),rgba(124,58,237,0.1))}
+.node-dot{width:10px;height:10px;border-radius:50%;background:var(--purple);border:2px solid var(--navy-mid);box-shadow:0 0 0 4px rgba(124,58,237,0.2);position:relative;z-index:1}
+.nd-5{background:var(--crimson);box-shadow:0 0 0 4px rgba(192,57,43,0.2)}
+.node-empty{}
+.pipeline-arrow{text-align:center;font-size:22px;color:var(--purple-lt);padding:8px 0;display:block}
+.pipeline-arrow.danger{color:var(--crimson)}
+@media(max-width:720px){.pipeline-node{grid-template-columns:1fr}.node-spacer,.node-empty{display:none}.pipeline-node.right .node-card{order:1}}
+
+/* ALGO SECTION */
+.algo-section{background:var(--navy)}
+.algo-split{display:grid;grid-template-columns:1fr 360px;gap:72px;align-items:start;margin-top:48px}
+.algo-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.algo-step:last-child{border-bottom:none}
+.algo-num{width:28px;height:28px;border-radius:50%;background:var(--purple-glow);border:1px solid var(--purple-border);color:var(--purple-vivid);font-family:var(--font-m);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.algo-step h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.algo-step p{font-size:13px;color:var(--slate);line-height:1.65}
+.img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.11);border-radius:5px;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(124,58,237,0.05),transparent);pointer-events:none}
+.slot-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,0.02);position:relative;z-index:1}
+.slot-title-el{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
+.slot-desc-el{font-size:12px;color:rgba(100,116,139,0.45);line-height:1.6;max-width:220px;text-align:center;position:relative;z-index:1}
+.slot-tag-el{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(124,58,237,0.5);border:1px dashed rgba(124,58,237,0.3);padding:4px 12px;border-radius:2px;position:relative;z-index:1}
+@media(max-width:860px){.algo-split{grid-template-columns:1fr}.img-slot{min-height:200px}}
+
+/* PLATFORMS GRID */
+.platforms-section{background:var(--navy-mid)}
+.platforms-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.plat-card{background:var(--navy-mid);padding:30px 28px;transition:background .2s;position:relative;overflow:hidden}
+.plat-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.plat-card:hover{background:var(--navy-surface)}.plat-card:hover::before{transform:scaleX(1)}
+.plat-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.plat-icon{width:36px;height:36px;border-radius:4px;background:var(--purple-glow);border:1px solid var(--purple-border);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--purple-vivid);flex-shrink:0;font-family:var(--font-m)}
+.plat-name{font-size:15px;font-weight:600;color:var(--white)}
+.plat-type{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+.plat-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.plat-badge{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.pb-high{background:rgba(192,57,43,0.18);color:#e89a90}
+.pb-med{background:rgba(217,119,6,0.18);color:#f0c97a}
+.pb-purple{background:rgba(124,58,237,0.18);color:var(--purple-vivid)}
+@media(max-width:640px){.platforms-grid{grid-template-columns:1fr}}
+
+/* VIOLENCE SECTION */
+.violence-section{background:var(--navy)}
+.violence-header{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;margin-bottom:48px}
+.violence-img{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:30px;text-align:center;position:relative;overflow:hidden}
+.violence-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(192,57,43,0.05),transparent);pointer-events:none}
+.slot-desc-sm{font-size:12px;color:rgba(100,116,139,0.45);line-height:1.6;max-width:200px;text-align:center;position:relative;z-index:1}
+.slot-tag-red{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(192,57,43,0.5);border:1px dashed rgba(192,57,43,0.3);padding:4px 12px;border-radius:2px;position:relative;z-index:1}
+.cases-list{display:flex;flex-direction:column;gap:0}
+.case-item{display:grid;grid-template-columns:160px 1fr;gap:40px;padding:36px 0;border-bottom:1px solid var(--border);align-items:start}
+.case-item:last-child{border-bottom:none}
+.case-year{font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--purple-lt);line-height:1}
+.case-location{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.case-tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.ct-red{background:rgba(192,57,43,0.18);color:#e89a90}
+.case-item h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.case-item p{font-size:14px;color:var(--slate-lt);line-height:1.75}
+@media(max-width:720px){.violence-header{grid-template-columns:1fr}.case-item{grid-template-columns:1fr}}
+
+/* DEFINITIONS GRID */
+.definitions-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.def-card{background:var(--navy-mid);padding:30px 26px;transition:background .2s}
+.def-card:hover{background:var(--navy-surface)}
+.def-tag{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:10px}
+.def-card h3{font-family:var(--font-d);font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.def-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.wide-img-slot{width:100%;height:260px;background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:48px 0;position:relative;overflow:hidden}
+.wide-img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(124,58,237,0.04),transparent);pointer-events:none}
+.wide-img-slot::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,rgba(124,58,237,0.03) 0px,rgba(124,58,237,0.03) 1px,transparent 1px,transparent 24px);pointer-events:none}
+@media(max-width:640px){.definitions-grid{grid-template-columns:1fr}}
+
+/* LEGAL */
+.legal-section{background:var(--navy-mid)}
+.legal-items{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.legal-item{display:grid;grid-template-columns:200px 1fr;gap:48px;padding:36px 0;border-bottom:1px solid var(--border);align-items:start}
+.legal-item:last-child{border-bottom:none}
+.legal-flag{font-size:24px;margin-bottom:4px}
+.legal-name{font-size:14px;font-weight:600;color:var(--white)}
+.legal-law{font-family:var(--font-m);font-size:10px;color:var(--purple-lt);letter-spacing:.07em;text-transform:uppercase;margin-top:4px}
+.legal-status{display:inline-block;margin-top:8px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.ls-strong{background:rgba(22,163,74,0.15);color:#6ec97a}
+.ls-partial{background:rgba(217,119,6,0.15);color:#f0c97a}
+.ls-limited{background:rgba(192,57,43,0.15);color:#e89a90}
+.ls-new{background:rgba(124,58,237,0.15);color:var(--purple-vivid)}
+.legal-body h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.legal-body p{font-size:14px;color:var(--slate-lt);line-height:1.75}
+.dbar{margin-bottom:22px}
+.dbar-label{display:flex;justify-content:space-between;font-size:13px;color:var(--slate-lt);margin-bottom:7px}
+.dbar-label span:last-child{font-family:var(--font-m);color:var(--white);font-size:12px}
+.dbar-track{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.dbar-fill{height:100%;border-radius:2px;transform-origin:left;animation:bar-in 1s ease both}
+@keyframes bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fill-purple{background:var(--purple)}
+.fill-red{background:var(--crimson)}
+.fill-slate{background:var(--slate)}
+@media(max-width:720px){.legal-item{grid-template-columns:1fr}}
+
+/* REFS */
+.ref-list{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.ref-item{font-size:13px;color:var(--slate);line-height:1.6;padding:12px 16px;background:rgba(255,255,255,0.02);border-left:2px solid rgba(255,255,255,0.07);border-radius:0 3px 3px 0;font-family:var(--font-m);letter-spacing:.02em;transition:border-color .2s}
+.ref-item:hover{border-color:rgba(124,58,237,0.4);color:var(--slate-lt)}
+
+/* QUIZ STRIP */
+.quiz-strip{background:var(--crimson);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.quiz-strip p{font-size:15px;font-weight:500;color:rgba(255,255,255,0.92)}
+.quiz-strip p span{font-weight:300;opacity:.8;font-size:13px}
+.btn-quiz{background:rgba(255,255,255,0.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background .2s;white-space:nowrap}
+.btn-quiz:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:600px){.quiz-strip{padding:24px}}
+
+/* TOPIC NAV */
+.topic-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.topic-nav-card{background:var(--navy-mid);padding:36px 48px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.topic-nav-card:hover{background:var(--navy-surface)}
+.topic-nav-card.next{text-align:right}
+.tnav-dir{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.tnav-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);line-height:1.2}
+.tnav-sub{font-size:13px;color:var(--slate)}
+@media(max-width:640px){.topic-nav{grid-template-columns:1fr}.topic-nav-card{padding:28px 24px}.topic-nav-card.next{text-align:left}}
+
+/* FOOTER */
+footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:380px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="../prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="../sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="../quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="../index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="../prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="../sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="../quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="../index.html#topics" id="bc-topics">Topics</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Hate Speech &amp; Radicalisation</span>
+</div>
+
+<!-- HERO -->
+<section class="topic-hero">
+  <div class="hero-img-slot">
+    <span class="placeholder-label"><img src="../media/img/hating.png"/></span>
+  </div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-purple"></div>
+  <div class="hero-vignette"></div>
+  <div class="topic-hero-content">
+    <div class="topic-label">
+      <span class="topic-num-badge">04</span>
+      <span id="hero-series-lbl">Internet Crime Series &nbsp;&middot;&nbsp; Full Report</span>
+    </div>
+    <h1 id="hero-h1">Hate Speech<br>&amp; <em>Radicalisation</em></h1>
+    <p class="hero-lead" id="hero-lead">How algorithms designed to maximise engagement became the most effective radicalisation infrastructure in history &mdash; and how a comment section becomes a pipeline to real-world violence.</p>
+    <div class="hero-meta">
+      <span><strong id="meta1-lbl">Severity:</strong>&nbsp;<span id="meta1-val">High</span></span>
+      <span><strong id="meta2-lbl">Mechanism:</strong>&nbsp;<span id="meta2-val">Algorithmic amplification</span></span>
+      <span><strong id="meta3-lbl">Key platforms:</strong>&nbsp;<span id="meta3-val">YouTube &middot; Telegram &middot; 4chan &middot; Twitter/X</span></span>
+      <span><strong id="meta4-lbl">Real-world link:</strong>&nbsp;<span id="meta4-val">Multiple mass-casualty events</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">84<span class="p">%</span></div><div class="stat-lbl" id="stat1-lbl">of young people in the EU have encountered hate speech online</div><span class="stat-src">EU Agency for Fundamental Rights, 2022</span></div>
+  <div class="stat-cell"><div class="stat-num">70<span class="p">%</span></div><div class="stat-lbl" id="stat2-lbl">of far-right extremists who committed attacks were radicalised primarily online</div><span class="stat-src">ICCT, 2022</span></div>
+  <div class="stat-cell"><div class="stat-num">17<span class="r">min</span></div><div class="stat-lbl" id="stat3-lbl">the Christchurch terrorist livestream remained on Facebook before removal</div><span class="stat-src">Royal Commission NZ, 2020</span></div>
+  <div class="stat-cell"><div class="stat-num">&#x20AC;<span class="p">54M</span></div><div class="stat-lbl" id="stat4-lbl">fine issued to Twitter/X under Germany&rsquo;s NetzDG for hate speech non-compliance</div><span class="stat-src">German BNetzA, 2023</span></div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s1-eye">Overview</span>
+  <div class="pull-quote">
+    <p id="pq-text">&ldquo;The algorithm does not care about democracy, or the mental health of its users, or the truth. It cares about engagement. And outrage drives engagement better than anything else.&rdquo;</p>
+    <cite id="pq-cite">Frances Haugen, Facebook whistleblower &mdash; paraphrased from Senate testimony, 2021</cite>
+  </div>
+  <p class="prose" id="s1p1">Online hate speech and digital radicalisation are among the most consequential and least understood harms produced by the internet. Unlike the drug trade or piracy, these are not primarily crimes of commerce &mdash; they are crimes of <strong>ideology and influence</strong>, operating through the same recommendation systems, comment threads, and algorithmic feedback loops that billions of people use every day.</p>
+  <p class="prose" id="s1p2">Hate speech &mdash; content that dehumanises individuals or groups based on characteristics such as race, religion, gender, sexuality, or national origin &mdash; has always existed. The internet did not create it. What the internet did was give it <strong>distribution at zero marginal cost, algorithmic amplification at scale, and anonymity for its producers</strong>. A message that once circulated in a pamphlet reaching hundreds can now reach millions within hours.</p>
+  <p class="prose" id="s1p3">The link between online hate speech and real-world violence is not theoretical. It is documented in court records, post-attack manifestos, and the testimony of survivors and investigators from Christchurch to Pittsburgh, from Buffalo to Halle. Understanding this pipeline is essential to confronting it.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S2: RADICALISATION PIPELINE -->
+<section class="content-section pipeline-section">
+  <span class="section-eyebrow" id="s2-eye">Section 2 &mdash; Signature Feature</span>
+  <h2 class="section-h2" id="s2-h2">The Radicalisation Pipeline:<br>From Mainstream to Extremist</h2>
+  <p class="prose" id="s2-intro">Radicalisation rarely happens overnight. Researchers describe it as a gradual journey &mdash; each step feeling like a small, natural progression from the last. The internet has industrialised this process, making it faster, more scalable, and harder to detect.</p>
+
+  <div style="display:flex;flex-direction:column;align-items:center">
+    <div class="pipeline-label" id="pipeline-lbl">The radicalisation funnel &mdash; mainstream to violence</div>
+
+    <div class="pipeline-node left" style="max-width:860px;width:100%">
+      <div class="node-card s1">
+        <div class="node-step" id="st1-step">Stage 1 &mdash; Entry</div>
+        <h3 id="st1-h3">Mainstream Platform Content</h3>
+        <p id="st1-p">The journey begins with entirely ordinary content consumption &mdash; YouTube videos, Facebook groups, Twitter/X feeds, Reddit threads. A user searches for political commentary, news, comedy, or niche hobbies. Nothing is extreme yet. This is where the algorithm first observes preferences.</p>
+        <div class="node-examples">
+          <span class="node-ex">YouTube</span><span class="node-ex">Facebook</span><span class="node-ex">Twitter/X</span><span class="node-ex">Reddit</span><span class="node-ex">TikTok</span>
+        </div>
+      </div>
+      <div class="node-spacer"><div class="node-dot nd-1"></div></div>
+      <div class="node-empty"></div>
+    </div>
+
+    <div class="pipeline-arrow">&#x2193;</div>
+
+    <div class="pipeline-node right" style="max-width:860px;width:100%">
+      <div class="node-empty"></div>
+      <div class="node-spacer"><div class="node-dot nd-2"></div></div>
+      <div class="node-card s2">
+        <div class="node-step" id="st2-step">Stage 2 &mdash; Algorithmic Drift</div>
+        <h3 id="st2-h3">Edgy, Grievance-Based Content</h3>
+        <p id="st2-p">Recommendation algorithms surface increasingly provocative content &mdash; videos critiquing feminism, immigration, or specific ethnic or religious groups. Content that generates strong emotional reactions (anger, fear, disgust) drives longer watch times, which the algorithm rewards with wider distribution. The user has not yet left the mainstream platform.</p>
+        <div class="node-examples">
+          <span class="node-ex" id="ex2-1">Outrage commentary</span><span class="node-ex" id="ex2-2">Grievance politics</span><span class="node-ex" id="ex2-3">Anti-media narratives</span><span class="node-ex" id="ex2-4">Victimhood framing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-arrow">&#x2193;</div>
+
+    <div class="pipeline-node left" style="max-width:860px;width:100%">
+      <div class="node-card s3">
+        <div class="node-step" id="st3-step">Stage 3 &mdash; Community Formation</div>
+        <h3 id="st3-h3">Semi-Private Groups and Servers</h3>
+        <p id="st3-p">The user is directed &mdash; often explicitly, via links in video descriptions or comments &mdash; to Discord servers, Telegram channels, or private Facebook groups. Here, the norms shift. Rhetoric that would be moderated on mainstream platforms is not only tolerated but celebrated. Community belonging is leveraged to normalise escalating content.</p>
+        <div class="node-examples">
+          <span class="node-ex" id="ex3-1">Discord servers</span><span class="node-ex" id="ex3-2">Telegram channels</span><span class="node-ex" id="ex3-3">Private Facebook groups</span><span class="node-ex">Gab</span>
+        </div>
+      </div>
+      <div class="node-spacer"><div class="node-dot nd-3"></div></div>
+      <div class="node-empty"></div>
+    </div>
+
+    <div class="pipeline-arrow">&#x2193;</div>
+
+    <div class="pipeline-node right" style="max-width:860px;width:100%">
+      <div class="node-empty"></div>
+      <div class="node-spacer"><div class="node-dot nd-4"></div></div>
+      <div class="node-card s4">
+        <div class="node-step" id="st4-step">Stage 4 &mdash; Extremist Networks</div>
+        <h3 id="st4-h3">Fringe Platforms and Dark Web Boards</h3>
+        <p id="st4-p">The final pre-violence stage: imageboards (4chan&rsquo;s /pol/, 8kun), dark web forums, and ultra-fringe social networks where no content moderation exists. Dehumanising language about target groups is normalised. Violence is discussed openly, sometimes celebrated. Manifestos from past attackers are shared approvingly.</p>
+        <div class="node-examples">
+          <span class="node-ex" id="ex4-1">4chan /pol/</span><span class="node-ex">8kun</span><span class="node-ex" id="ex4-2">Dark web forums</span><span class="node-ex" id="ex4-3">Fringe imageboards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-arrow danger">&#x2193;</div>
+
+    <div class="pipeline-node left" style="max-width:860px;width:100%">
+      <div class="node-card s5">
+        <div class="node-step" id="st5-step">Stage 5 &mdash; Real-World Action</div>
+        <h3 id="st5-h3">Violence, Terror, or Coordinated Harassment</h3>
+        <p id="st5-p">In the most extreme cases, online radicalisation translates to real-world violence. Attackers at Christchurch, Pittsburgh, Halle, El Paso, and Buffalo were all deeply embedded in online extremist communities before their attacks. The online environment provided ideology, tactical inspiration, community validation, and in some cases operational planning support.</p>
+        <div class="node-examples">
+          <span class="node-ex danger" id="ex5-1">Mass violence</span><span class="node-ex danger" id="ex5-2">Domestic terrorism</span><span class="node-ex danger" id="ex5-3">Coordinated harassment</span><span class="node-ex danger" id="ex5-4">Swatting / doxxing</span>
+        </div>
+      </div>
+      <div class="node-spacer"><div class="node-dot nd-5"></div></div>
+      <div class="node-empty"></div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: ALGORITHMIC AMPLIFICATION -->
+<section class="content-section algo-section">
+  <span class="section-eyebrow" id="s3-eye">Section 3</span>
+  <h2 class="section-h2" id="s3-h2">How Algorithms Amplify Hate</h2>
+  <p class="prose" id="s3-intro">No engineer at YouTube, Facebook, or Twitter designed their recommendation systems to radicalise users. But engagement-optimised algorithms have an inherent structural bias toward content that triggers strong emotional responses &mdash; and hatred, fear, and outrage are among the strongest emotional triggers available.</p>
+  <div class="algo-split">
+    <div>
+      <div class="algo-step"><div class="algo-num">1</div><div><h4 id="as1-h4">Engagement as the Optimisation Target</h4><p id="as1-p">Recommendation systems are primarily optimised to maximise time spent on platform. Content that generates strong emotional reactions &mdash; including anger, fear, and moral outrage &mdash; demonstrably drives longer engagement than neutral content. This creates a systematic bias toward amplifying emotionally activating material, regardless of its accuracy or social impact.</p></div></div>
+      <div class="algo-step"><div class="algo-num">2</div><div><h4 id="as2-h4">The Rabbit Hole Effect</h4><p id="as2-p">YouTube&rsquo;s recommendation system was specifically studied for what researchers termed the &lsquo;rabbit hole&rsquo; problem. Users who watched moderately political content were systematically recommended progressively more extreme content &mdash; with each recommendation optimised individually but the cumulative effect driving users toward increasingly fringe material.</p></div></div>
+      <div class="algo-step"><div class="algo-num">3</div><div><h4 id="as3-h4">Filter Bubbles and Epistemic Closure</h4><p id="as3-p">Personalisation algorithms create information environments in which users are shown content that confirms existing beliefs. Over time, this narrows the range of perspectives encountered and reinforces existing views &mdash; including extremist ones. Users within filter bubbles may come to believe their views are more widely shared than they actually are.</p></div></div>
+      <div class="algo-step"><div class="algo-num">4</div><div><h4 id="as4-h4">Virality Mechanics and Sharing Incentives</h4><p id="as4-p">Social media platforms design virality mechanics &mdash; likes, shares, retweets &mdash; that incentivise the production and dissemination of emotionally activating content. Hate speech and outrage content consistently outperforms neutral content on these metrics. Facebook&rsquo;s internal research (revealed by Frances Haugen in 2021) found that &lsquo;angry&rsquo; reactions were distributed significantly more widely by the algorithm.</p></div></div>
+      <div class="algo-step"><div class="algo-num">5</div><div><h4 id="as5-h4">Anonymity and Disinhibition</h4><p id="as5-p">Online anonymity removes social constraints that moderate in-person speech. Research on the &lsquo;online disinhibition effect&rsquo; documents that people say things online they would never say in person &mdash; including expressions of hatred, threats, and dehumanising language. Pseudonymous platforms create a perceived consequence-free environment for hate speech production.</p></div></div>
+    </div>
+    <div class="img-slot">
+      <img src="../media/img/hate-sign.png"/>
+    </div>
+  </div>
+</section>
+
+<!-- S4: PLATFORMS -->
+<section class="content-section platforms-section">
+  <span class="section-eyebrow" id="s4-eye">Section 4</span>
+  <h2 class="section-h2" id="s4-h2">Platforms and Their Roles</h2>
+  <p class="prose" id="s4-intro">Every major platform has a distinct relationship with hate speech &mdash; shaped by its technical architecture, moderation policies, ownership, and user demographics.</p>
+  <div class="platforms-grid">
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon">&#x25B6;</div><div><div class="plat-name">YouTube</div><div class="plat-type" id="pt1-type">Video recommendation platform</div></div></div>
+      <p id="pt1-p">YouTube&rsquo;s recommendation engine has been extensively documented as a radicalisation vector. Its watch-time optimisation systematically surfaced increasingly extreme content to users who engaged with politically adjacent material. Following significant regulatory and press pressure from 2019 onward, YouTube made changes to its recommendation algorithm and removed thousands of channels. Researchers debate the effectiveness of these changes.</p>
+      <span class="plat-badge pb-med" id="pt1-badge">Significant reforms &mdash; contested effectiveness</span>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon">&#x2709;</div><div><div class="plat-name">Telegram</div><div class="plat-type" id="pt2-type">Encrypted messaging / broadcast channels</div></div></div>
+      <p id="pt2-p">Telegram has become the primary communication infrastructure for extremist movements globally &mdash; from far-right neo-Nazi networks in Europe to jihadist propaganda channels. Its combination of massive public broadcast channels, end-to-end encrypted private messaging, and minimal content moderation makes it the platform of choice for groups seeking to communicate at scale while evading enforcement. Following Pavel Durov&rsquo;s 2024 arrest in France, the platform announced improved cooperation with law enforcement.</p>
+      <span class="plat-badge pb-high" id="pt2-badge">Critical infrastructure for extremism</span>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon" style="font-size:13px;font-family:var(--font-d);font-style:italic">X</div><div><div class="plat-name">Twitter / X</div><div class="plat-type" id="pt3-type">Public social network</div></div></div>
+      <p id="pt3-p">Twitter&rsquo;s acquisition by Elon Musk in 2022 and the subsequent dismantling of significant portions of its Trust and Safety team has been accompanied by documented increases in hate speech on the platform. Research found measurable spikes in slurs targeting multiple minority groups following the acquisition. The platform was fined &euro;54 million by Germany&rsquo;s Federal Network Agency in 2023 for failure to comply with NetzDG requirements. The EU Digital Services Act has placed Twitter/X under heightened regulatory scrutiny.</p>
+      <span class="plat-badge pb-high" id="pt3-badge">Post-acquisition safety deterioration documented</span>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon" style="font-size:14px;font-weight:700;font-family:var(--font-b)">f</div><div><div class="plat-name">Meta (Facebook &amp; Instagram)</div><div class="plat-type" id="pt4-type">Social network / image platform</div></div></div>
+      <p id="pt4-p">Meta operates the largest content moderation operation in the world &mdash; and is still widely documented as a vehicle for hate speech at scale, particularly in markets with non-English languages where its moderation capabilities are significantly weaker. Internal research leaked by Frances Haugen in 2021 showed the company was aware its algorithms amplified divisive and hateful content, and that algorithmic changes to reduce this amplification were rejected because they reduced overall engagement metrics.</p>
+      <span class="plat-badge pb-med" id="pt4-badge">Largest moderation operation &mdash; uneven globally</span>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon">&#x25C8;</div><div><div class="plat-name">4chan / 8kun</div><div class="plat-type" id="pt5-type">Anonymous imageboard</div></div></div>
+      <p id="pt5-p">4chan&rsquo;s /pol/ (Politically Incorrect) board and its successor 8kun are the internet&rsquo;s most documented incubators of far-right extremism. Anonymous posting, near-zero moderation, and a culture of deliberate transgression have made them the origin point of multiple extremist memes, movements, and ultimately mass-casualty attacks. The Christchurch, El Paso, and Buffalo attackers all had significant presence in these communities and posted or linked their manifestos there.</p>
+      <span class="plat-badge pb-high" id="pt5-badge">Primary incubator of far-right extremism</span>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header"><div class="plat-icon">&#x25C9;</div><div><div class="plat-name" id="pt6-name">Alternative Platforms</div><div class="plat-type" id="pt6-type">Gab &middot; Rumble &middot; Parler &middot; Truth Social</div></div></div>
+      <p id="pt6-p">A constellation of alternative platforms has emerged positioning itself as &lsquo;free speech&rsquo; alternatives to mainstream social networks. These platforms have become gathering points for users removed from mainstream platforms for hate speech violations. While their audiences are smaller, they create ideological echo chambers with minimal content friction and have been associated with coordination of harassment campaigns and, in the case of Gab, the Pittsburgh synagogue shooter&rsquo;s primary online community.</p>
+      <span class="plat-badge pb-purple" id="pt6-badge">Deplatforming destination &mdash; concentrated extremism</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- S5: REAL-WORLD VIOLENCE -->
+<section class="content-section violence-section">
+  <span class="section-eyebrow red" id="s5-eye">Section 5 &mdash; Critical Cases</span>
+  <h2 class="section-h2" id="s5-h2">From Screen to Violence:<br>Documented Cases</h2>
+  <div class="violence-header">
+    <p class="prose" style="max-width:100%" id="s5-intro">The following attacks were carried out by individuals whose online radicalisation is documented in court records, investigative reports, and the perpetrators&rsquo; own words. These are not isolated anomalies &mdash; they represent a documented and recurring pattern in which online extremist communities provide ideology, inspiration, tactical knowledge, and emotional validation to individuals who subsequently commit violence.</p>
+    <div class="violence-img">
+      <img src="../media/img/violance-brick.png"/>
+    </div>
+  </div>
+  <div class="cases-list">
+
+    <div class="case-item">
+      <div><div class="case-year">2019</div><div class="case-location" id="cl1">Christchurch, New Zealand</div><span class="case-tag ct-red" id="ct1">51 killed</span></div>
+      <div><h3 id="ch1">Christchurch Mosque Attacks</h3><p id="cp1">The attacker Brenton Tarrant had been deeply embedded in online far-right communities for years before his attack on two mosques in March 2019. He posted his manifesto on 8chan, live-streamed the attack on Facebook, and linked explicitly to internet memes and online culture throughout his writing. The stream remained on Facebook for 17 minutes before removal and was copied and reposted millions of times despite extensive takedown efforts. The New Zealand Royal Commission found that online radicalisation played a central role. The attack directly prompted the Christchurch Call &mdash; an international initiative to eliminate terrorist and violent extremist content online.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div><div class="case-year">2018</div><div class="case-location" id="cl2">Pittsburgh, USA</div><span class="case-tag ct-red" id="ct2">11 killed</span></div>
+      <div><h3 id="ch2">Tree of Life Synagogue Shooting</h3><p id="cp2">Robert Bowers, who killed eleven worshippers at the Tree of Life synagogue, was an active user of Gab &mdash; the alt-right social network. In the hours before his attack he posted explicitly antisemitic content. Gab had been repeatedly criticised for its minimal content moderation and its positioning as a refuge for users banned from mainstream platforms. The attack led to Gab being temporarily dropped by its hosting provider, payment processor, and domain registrar &mdash; raising significant questions about the role of platform infrastructure providers in moderating online hate.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div><div class="case-year">2022</div><div class="case-location" id="cl3">Buffalo, USA</div><span class="case-tag ct-red" id="ct3">10 killed</span></div>
+      <div><h3 id="ch3">Buffalo Supermarket Shooting</h3><p id="cp3">Payton Gendron, who killed ten Black shoppers at a supermarket in Buffalo, New York, left an extensive manifesto documenting his years of immersion in 4chan&rsquo;s /pol/ board. He described finding and internalising the &lsquo;Great Replacement&rsquo; conspiracy theory through online communities. He live-streamed the attack on Twitch. His manifesto was a near-direct copy of the Christchurch attacker&rsquo;s, demonstrating the &lsquo;inspiration cascade&rsquo; dynamic in which online communities treat past attackers as role models and tactical templates.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div><div class="case-year">2019</div><div class="case-location" id="cl4">El Paso, USA</div><span class="case-tag ct-red" id="ct4">23 killed</span></div>
+      <div><h3 id="ch4">El Paso Walmart Shooting</h3><p id="cp4">Patrick Crusius posted a manifesto on 8chan minutes before his attack on a Walmart in El Paso, Texas, targeting Hispanic shoppers. The manifesto echoed the Great Replacement theory and cited the Christchurch attack as direct inspiration. The 8chan platform &mdash; which had also hosted the Christchurch and Poway synagogue attack manifestos &mdash; was subsequently taken offline by its infrastructure provider Cloudflare. It later returned as 8kun under different infrastructure.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S6: DEFINING HATE SPEECH -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="s6-eye">Section 6</span>
+  <h2 class="section-h2" id="s6-h2">Defining Hate Speech:<br>Why It Is Harder Than It Looks</h2>
+  <p class="prose" id="s6-intro">There is no single universally agreed legal definition of hate speech. The definitional challenge &mdash; distinguishing hate speech from protected expression &mdash; is one of the most contested questions in free speech law, and the answer varies significantly by jurisdiction.</p>
+
+  <div class="wide-img-slot">
+    <img src="../media/img/hate-buble.png"/>
+  </div>
+
+  <div class="definitions-grid">
+    <div class="def-card"><div class="def-tag" id="def1-tag">Legal concept</div><h3 id="def1-h3">Hate Speech</h3><p id="def1-p">Most definitions require that content dehumanise or incite discrimination against an identifiable group based on protected characteristics &mdash; race, religion, gender, sexuality, national origin. The threshold for criminalisation varies: some jurisdictions require a direct incitement to hatred or violence; others include content that merely glorifies discrimination.</p></div>
+    <div class="def-card"><div class="def-tag" id="def2-tag">Critical distinction</div><h3 id="def2-h3">Incitement to Violence</h3><p id="def2-p">Incitement to violence is a distinct and more clearly defined category &mdash; direct calls for violence against specific individuals or groups. This is more widely criminalised than hate speech per se, including in the United States where general hate speech is constitutionally protected under the First Amendment. The distinction between hate speech (protected in the US) and incitement (not protected) is a core tension in American platform regulation debates.</p></div>
+    <div class="def-card"><div class="def-tag" id="def3-tag">Platform concept</div><h3 id="def3-h3">Harmful but Legal</h3><p id="def3-p">A significant category of content is not illegal in any jurisdiction but is nonetheless harmful &mdash; content that demeans, stereotypes, or degrades groups without meeting the legal threshold for hate speech. Platforms must decide whether to moderate this content through their own policies, independent of what the law requires. This decision &mdash; and its inconsistency &mdash; is a source of major ongoing controversy directly addressed by the EU Digital Services Act.</p></div>
+  </div>
+</section>
+
+<!-- S7: LEGAL FRAMEWORKS -->
+<section class="content-section legal-section">
+  <span class="section-eyebrow" id="s7-eye">Section 7</span>
+  <h2 class="section-h2" id="s7-h2">Legal Frameworks:<br>How Different Countries Respond</h2>
+  <p class="prose" id="s7-intro">The legal response to online hate speech is more divergent globally than almost any other category of internet crime &mdash; shaped by fundamentally different constitutional traditions, particularly around free speech.</p>
+  <div class="legal-items">
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1E9;&#x1F1EA;</div><div class="legal-name" id="ln1">Germany</div><div class="legal-law" id="ll1">NetzDG (2017) + Volksverhetzung</div><span class="legal-status ls-strong" id="ls1">Most Stringent</span></div>
+      <div class="legal-body"><h3 id="lh1">Network Enforcement Act &mdash; The World&rsquo;s Strictest Platform Law</h3><p id="lp1">Germany&rsquo;s Netzwerkdurchsetzungsgesetz (NetzDG) requires large social media platforms to remove clearly illegal hate speech within 24 hours of a valid complaint, with fines of up to &euro;50 million for systemic non-compliance. Twitter/X was fined &euro;54 million in 2023. Germany&rsquo;s particularly stringent approach reflects its historical experience with Nazi propaganda &mdash; Volksverhetzung (incitement to hatred) laws date to the post-war period and carry custodial sentences of up to five years. Denial of the Holocaust is a specific criminal offence.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1EA;&#x1F1FA;</div><div class="legal-name" id="ln2">European Union</div><div class="legal-law" id="ll2">Digital Services Act (2024)</div><span class="legal-status ls-new" id="ls2">Landmark New Framework</span></div>
+      <div class="legal-body"><h3 id="lh2">Digital Services Act &mdash; Platform Accountability at Scale</h3><p id="lp2">The EU&rsquo;s Digital Services Act, fully in force from 2024, requires large platforms (over 45 million EU users) to conduct annual risk assessments of their systemic risks &mdash; including the amplification of hate speech &mdash; and to implement mitigation measures. Critically, it targets not just illegal content but the algorithmic systems that amplify it, requiring platforms to provide opt-out options from recommendation systems. Fines of up to 6% of global turnover make it the most financially consequential platform regulation in history.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1EC;&#x1F1E7;</div><div class="legal-name" id="ln3">United Kingdom</div><div class="legal-law" id="ll3">Online Safety Act (2023)</div><span class="legal-status ls-strong" id="ls3">Comprehensive Framework</span></div>
+      <div class="legal-body"><h3 id="lh3">Online Safety Act &mdash; Duty of Care Approach</h3><p id="lp3">The UK&rsquo;s Online Safety Act takes a &lsquo;duty of care&rsquo; approach, requiring platforms to protect users from both illegal content and &mdash; for the largest platforms &mdash; content that is &lsquo;legal but harmful&rsquo;. This expansive scope was controversial, with critics arguing the &lsquo;legal but harmful&rsquo; provisions could threaten free expression. Ofcom has powers to fine platforms up to &pound;18 million or 10% of global turnover for non-compliance.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1FA;&#x1F1F8;</div><div class="legal-name" id="ln4">United States</div><div class="legal-law" id="ll4">First Amendment / Section 230</div><span class="legal-status ls-limited" id="ls4">Speech Protections Dominant</span></div>
+      <div class="legal-body"><h3 id="lh4">The First Amendment Barrier and Section 230 Immunity</h3><p id="lp4">The United States presents the starkest contrast: the First Amendment provides extremely strong protections for speech including most hate speech, meaning there is no general federal hate speech law. Incitement to imminent lawless action is not protected (Brandenburg v. Ohio, 1969), but the threshold is very high. Section 230 of the Communications Decency Act additionally immunises platforms from liability for third-party content, reducing legal pressure to moderate. US platforms are therefore largely self-regulated.</p></div>
+    </div>
+
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:52px">
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g1-lbl">Platform hate speech removal rates by jurisdiction</p>
+      <div class="dbar"><div class="dbar-label"><span id="br1-lbl">Germany (NetzDG enforcement)</span><span>~89%</span></div><div class="dbar-track"><div class="dbar-fill fill-purple" style="width:89%;animation-delay:.1s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br2-lbl">EU average (DSA)</span><span>~74%</span></div><div class="dbar-track"><div class="dbar-fill fill-purple" style="width:74%;animation-delay:.2s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br3-lbl">United Kingdom</span><span>~68%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:68%;animation-delay:.3s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br4-lbl">United States (voluntary)</span><span>~51%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:51%;animation-delay:.4s"></div></div></div>
+    </div>
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g2-lbl">Groups most targeted by online hate speech</p>
+      <div class="dbar"><div class="dbar-label"><span id="br5-lbl">Racial and ethnic minorities</span><span>~34%</span></div><div class="dbar-track"><div class="dbar-fill fill-red" style="width:34%;animation-delay:.1s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br6-lbl">Women / gender-based</span><span>~26%</span></div><div class="dbar-track"><div class="dbar-fill fill-red" style="width:26%;animation-delay:.2s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br7-lbl">Religious minorities</span><span>~22%</span></div><div class="dbar-track"><div class="dbar-fill fill-red" style="width:22%;animation-delay:.3s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="br8-lbl">LGBTQ+ individuals</span><span>~18%</span></div><div class="dbar-track"><div class="dbar-fill fill-purple" style="width:18%;animation-delay:.4s"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES — kept in English -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="ref-eye">References</span>
+  <h2 class="section-h2" id="ref-h2">Sources and Further Reading</h2>
+  <div class="ref-list">
+    <div class="ref-item">Byman, D. (2021). <em>Spreading Hate: The Global Attack on Democracy and the Future of Terrorism.</em> Oxford University Press.</div>
+    <div class="ref-item">Center for Countering Digital Hate. (2023). <em>Toxic Twitter: Hate Speech Post-Acquisition.</em> counterhate.com.</div>
+    <div class="ref-item">EU Agency for Fundamental Rights. (2022). <em>Online Hate Speech &mdash; Experiences of Young People.</em> fra.europa.eu.</div>
+    <div class="ref-item">Haugen, F. (2021). <em>Senate Commerce Committee Testimony.</em> US Senate, October 2021.</div>
+    <div class="ref-item">ICCT. (2022). <em>Pathways to Online Radicalisation: A Systematic Review.</em> International Centre for Counter-Terrorism.</div>
+    <div class="ref-item">New Zealand Royal Commission. (2020). <em>Ko to ra o Aroha &mdash; Report of the Royal Commission of Inquiry into the Terrorist Attack on Christchurch Mosques.</em> royalcommission.govt.nz.</div>
+    <div class="ref-item">Radicalization Awareness Network. (2023). <em>Online Radicalisation to Terrorism.</em> European Commission, ran.ec.europa.eu.</div>
+    <div class="ref-item">Ribeiro, M. H., et al. (2020). Auditing Radicalization Pathways on YouTube. <em>ACM Conference on Fairness, Accountability, and Transparency.</em></div>
+    <div class="ref-item">Sunstein, C. R. (2017). <em>#Republic: Divided Democracy in the Age of Social Media.</em> Princeton University Press.</div>
+    <div class="ref-item">Waldman, A. E. (2023). <em>Industry Unbound: The Inside Story of Privacy, Data, and Corporate Power.</em> Cambridge University Press.</div>
+    <div class="ref-item">Zuboff, S. (2019). <em>The Age of Surveillance Capitalism.</em> Profile Books.</div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p id="quiz-strip-p">Test your knowledge on hate speech, radicalisation, and all other internet crime topics <span>&mdash; 10 randomised questions, no time limit.</span></p>
+  <a href="../quiz/index.html" class="btn-quiz" id="quiz-strip-btn">Take the Quiz &nbsp;&rarr;</a>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav">
+  <a href="piracy.html" class="topic-nav-card">
+    <span class="tnav-dir" id="tnav1-dir">&#x2190; Previous Topic</span>
+    <span class="tnav-title" id="tnav1-title">Online Piracy</span>
+    <span class="tnav-sub" id="tnav1-sub">03 &mdash; BitTorrent, illegal IPTV, and the $46B copyright problem</span>
+  </a>
+  <a href="cyberstalking.html" class="topic-nav-card next">
+    <span class="tnav-dir" id="tnav2-dir">Next Topic &nbsp;&rarr;</span>
+    <span class="tnav-title" id="tnav2-title">Cyberstalking &amp; Doxxing</span>
+    <span class="tnav-sub" id="tnav2-sub">05 &mdash; Digital surveillance, coordinated harassment, and identity exposure</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="../index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="../sources.html"      id="footer-src">References</a>
+    <a href="../prevention.html"   id="footer-prev">Prevention</a>
+    <a href="../index.html#topics" id="footer-top">All Topics</a>
+    <a href="../quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="../imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+var T = {};
+
+T.en = {
+  page_title:'Hate Speech & Radicalisation | CrimeOnline',
+  nav_topics:'Topics', nav_prev:'Prevention', nav_sources:'Sources', nav_cta:'Take the Quiz \u2197',
+  mob_home:'Home', mob_lang:'Language',
+  bc_home:'Home', bc_topics:'Topics', bc_current:'Hate Speech & Radicalisation',
+  hero_series:'Internet Crime Series \u00b7 Full Report',
+  hero_h1:'Hate Speech<br>&amp; <em>Radicalisation</em>',
+  hero_lead:'How algorithms designed to maximise engagement became the most effective radicalisation infrastructure in history \u2014 and how a comment section becomes a pipeline to real-world violence.',
+  meta1_lbl:'Severity:', meta1_val:'High',
+  meta2_lbl:'Mechanism:', meta2_val:'Algorithmic amplification',
+  meta3_lbl:'Key platforms:', meta3_val:'YouTube \u00b7 Telegram \u00b7 4chan \u00b7 Twitter/X',
+  meta4_lbl:'Real-world link:', meta4_val:'Multiple mass-casualty events',
+  stat1_lbl:'of young people in the EU have encountered hate speech online',
+  stat2_lbl:'of far-right extremists who committed attacks were radicalised primarily online',
+  stat3_lbl:'the Christchurch terrorist livestream remained on Facebook before removal',
+  stat4_lbl:'fine issued to Twitter/X under Germany\u2019s NetzDG for hate speech non-compliance',
+  s1_eye:'Overview',
+  pq_text:'\u201cThe algorithm does not care about democracy, or the mental health of its users, or the truth. It cares about engagement. And outrage drives engagement better than anything else.\u201d',
+  pq_cite:'Frances Haugen, Facebook whistleblower \u2014 paraphrased from Senate testimony, 2021',
+  s1p1:'Online hate speech and digital radicalisation are among the most consequential and least understood harms produced by the internet. Unlike the drug trade or piracy, these are not primarily crimes of commerce \u2014 they are crimes of <strong>ideology and influence</strong>, operating through the same recommendation systems, comment threads, and algorithmic feedback loops that billions of people use every day.',
+  s1p2:'Hate speech has always existed. The internet did not create it. What the internet did was give it <strong>distribution at zero marginal cost, algorithmic amplification at scale, and anonymity for its producers</strong>. A message that once circulated in a pamphlet reaching hundreds can now reach millions within hours.',
+  s1p3:'The link between online hate speech and real-world violence is not theoretical. It is documented in court records, post-attack manifestos, and the testimony of survivors and investigators from Christchurch to Pittsburgh, from Buffalo to Halle. Understanding this pipeline is essential to confronting it.',
+  s2_eye:'Section 2 \u2014 Signature Feature',
+  s2_h2:'The Radicalisation Pipeline:<br>From Mainstream to Extremist',
+  s2_intro:'Radicalisation rarely happens overnight. Researchers describe it as a gradual journey \u2014 each step feeling like a small, natural progression from the last. The internet has industrialised this process, making it faster, more scalable, and harder to detect.',
+  pipeline_lbl:'The radicalisation funnel \u2014 mainstream to violence',
+  st1_step:'Stage 1 \u2014 Entry', st1_h3:'Mainstream Platform Content',
+  st1_p:'The journey begins with entirely ordinary content consumption \u2014 YouTube videos, Facebook groups, Twitter/X feeds, Reddit threads. A user searches for political commentary, news, comedy, or niche hobbies. Nothing is extreme yet. This is where the algorithm first observes preferences.',
+  st2_step:'Stage 2 \u2014 Algorithmic Drift', st2_h3:'Edgy, Grievance-Based Content',
+  st2_p:'Recommendation algorithms surface increasingly provocative content \u2014 videos critiquing feminism, immigration, or specific ethnic or religious groups. Content that generates strong emotional reactions drives longer watch times, which the algorithm rewards with wider distribution.',
+  ex2_1:'Outrage commentary', ex2_2:'Grievance politics', ex2_3:'Anti-media narratives', ex2_4:'Victimhood framing',
+  st3_step:'Stage 3 \u2014 Community Formation', st3_h3:'Semi-Private Groups and Servers',
+  st3_p:'The user is directed \u2014 often explicitly, via links in video descriptions or comments \u2014 to Discord servers, Telegram channels, or private Facebook groups. Here, the norms shift. Rhetoric that would be moderated on mainstream platforms is not only tolerated but celebrated. Community belonging is leveraged to normalise escalating content.',
+  ex3_1:'Discord servers', ex3_2:'Telegram channels', ex3_3:'Private Facebook groups',
+  st4_step:'Stage 4 \u2014 Extremist Networks', st4_h3:'Fringe Platforms and Dark Web Boards',
+  st4_p:'The final pre-violence stage: imageboards (4chan\u2019s /pol/, 8kun), dark web forums, and ultra-fringe social networks where no content moderation exists. Dehumanising language about target groups is normalised. Violence is discussed openly, sometimes celebrated. Manifestos from past attackers are shared approvingly.',
+  ex4_1:'4chan /pol/', ex4_2:'Dark web forums', ex4_3:'Fringe imageboards',
+  st5_step:'Stage 5 \u2014 Real-World Action', st5_h3:'Violence, Terror, or Coordinated Harassment',
+  st5_p:'In the most extreme cases, online radicalisation translates to real-world violence. Attackers at Christchurch, Pittsburgh, Halle, El Paso, and Buffalo were all deeply embedded in online extremist communities before their attacks. The online environment provided ideology, tactical inspiration, community validation, and in some cases operational planning support.',
+  ex5_1:'Mass violence', ex5_2:'Domestic terrorism', ex5_3:'Coordinated harassment', ex5_4:'Swatting / doxxing',
+  s3_eye:'Section 3', s3_h2:'How Algorithms Amplify Hate',
+  s3_intro:'No engineer at YouTube, Facebook, or Twitter designed their recommendation systems to radicalise users. But engagement-optimised algorithms have an inherent structural bias toward content that triggers strong emotional responses \u2014 and hatred, fear, and outrage are among the strongest emotional triggers available.',
+  as1_h4:'Engagement as the Optimisation Target', as1_p:'Recommendation systems are primarily optimised to maximise time spent on platform. Content that generates strong emotional reactions \u2014 including anger, fear, and moral outrage \u2014 demonstrably drives longer engagement than neutral content. This creates a systematic bias toward amplifying emotionally activating material.',
+  as2_h4:'The Rabbit Hole Effect', as2_p:'YouTube\u2019s recommendation system was specifically studied for what researchers termed the \u2018rabbit hole\u2019 problem. Users who watched moderately political content were systematically recommended progressively more extreme content \u2014 with each recommendation optimised individually but the cumulative effect driving users toward increasingly fringe material.',
+  as3_h4:'Filter Bubbles and Epistemic Closure', as3_p:'Personalisation algorithms create information environments in which users are shown content that confirms existing beliefs. Over time, this narrows the range of perspectives encountered and reinforces existing views \u2014 including extremist ones.',
+  as4_h4:'Virality Mechanics and Sharing Incentives', as4_p:'Social media platforms design virality mechanics \u2014 likes, shares, retweets \u2014 that incentivise the production and dissemination of emotionally activating content. Facebook\u2019s internal research (revealed by Frances Haugen in 2021) found that \u2018angry\u2019 reactions were distributed significantly more widely by the algorithm.',
+  as5_h4:'Anonymity and Disinhibition', as5_p:'Online anonymity removes social constraints that moderate in-person speech. Research on the \u2018online disinhibition effect\u2019 documents that people say things online they would never say in person \u2014 including expressions of hatred, threats, and dehumanising language.',
+  slot2_title:'Image Slot 2', slot2_desc:'Your diagram of the algorithmic amplification feedback loop', slot2_tag:'Add your artwork here',
+  s4_eye:'Section 4', s4_h2:'Platforms and Their Roles',
+  s4_intro:'Every major platform has a distinct relationship with hate speech \u2014 shaped by its technical architecture, moderation policies, ownership, and user demographics.',
+  pt1_type:'Video recommendation platform', pt1_p:'YouTube\u2019s recommendation engine has been extensively documented as a radicalisation vector. Its watch-time optimisation systematically surfaced increasingly extreme content to users who engaged with politically adjacent material. Following significant regulatory and press pressure from 2019 onward, YouTube made changes to its recommendation algorithm and removed thousands of channels. Researchers debate the effectiveness of these changes.', pt1_badge:'Significant reforms \u2014 contested effectiveness',
+  pt2_type:'Encrypted messaging / broadcast channels', pt2_p:'Telegram has become the primary communication infrastructure for extremist movements globally \u2014 from far-right neo-Nazi networks in Europe to jihadist propaganda channels. Its combination of massive public broadcast channels, end-to-end encrypted private messaging, and minimal content moderation makes it the platform of choice for groups seeking to communicate at scale while evading enforcement. Following Pavel Durov\u2019s 2024 arrest in France, the platform announced improved cooperation with law enforcement.', pt2_badge:'Critical infrastructure for extremism',
+  pt3_type:'Public social network', pt3_p:'Twitter\u2019s acquisition by Elon Musk in 2022 and the dismantling of significant portions of its Trust and Safety team has been accompanied by documented increases in hate speech on the platform. Research found measurable spikes in slurs targeting multiple minority groups. The platform was fined \u20ac54 million by Germany\u2019s Federal Network Agency in 2023 for failure to comply with NetzDG requirements.', pt3_badge:'Post-acquisition safety deterioration documented',
+  pt4_type:'Social network / image platform', pt4_p:'Meta operates the largest content moderation operation in the world \u2014 and is still widely documented as a vehicle for hate speech at scale, particularly in markets with non-English languages where its moderation capabilities are significantly weaker. Internal research leaked by Frances Haugen in 2021 showed the company was aware its algorithms amplified divisive and hateful content.', pt4_badge:'Largest moderation operation \u2014 uneven globally',
+  pt5_type:'Anonymous imageboard', pt5_p:'4chan\u2019s /pol/ board and its successor 8kun are the internet\u2019s most documented incubators of far-right extremism. Anonymous posting, near-zero moderation, and a culture of deliberate transgression have made them the origin point of multiple extremist memes, movements, and mass-casualty attacks. The Christchurch, El Paso, and Buffalo attackers all had significant presence in these communities.', pt5_badge:'Primary incubator of far-right extremism',
+  pt6_name:'Alternative Platforms', pt6_type:'Gab \u00b7 Rumble \u00b7 Parler \u00b7 Truth Social', pt6_p:'A constellation of alternative platforms has emerged positioning itself as \u2018free speech\u2019 alternatives to mainstream social networks. These platforms have become gathering points for users removed from mainstream platforms for hate speech violations. They create ideological echo chambers with minimal content friction and have been associated with coordination of harassment campaigns.', pt6_badge:'Deplatforming destination \u2014 concentrated extremism',
+  s5_eye:'Section 5 \u2014 Critical Cases', s5_h2:'From Screen to Violence:<br>Documented Cases',
+  s5_intro:'The following attacks were carried out by individuals whose online radicalisation is documented in court records, investigative reports, and the perpetrators\u2019 own words. These are not isolated anomalies \u2014 they represent a documented and recurring pattern in which online extremist communities provide ideology, inspiration, tactical knowledge, and emotional validation to individuals who subsequently commit violence.',
+  cl1:'Christchurch, New Zealand', ct1:'51 killed', ch1:'Christchurch Mosque Attacks',
+  cp1:'The attacker Brenton Tarrant had been deeply embedded in online far-right communities for years before his attack on two mosques in March 2019. He posted his manifesto on 8chan, live-streamed the attack on Facebook, and linked explicitly to internet memes throughout his writing. The stream remained on Facebook for 17 minutes before removal and was reposted millions of times. The New Zealand Royal Commission found online radicalisation played a central role. The attack directly prompted the Christchurch Call \u2014 an international initiative to eliminate terrorist content online.',
+  cl2:'Pittsburgh, USA', ct2:'11 killed', ch2:'Tree of Life Synagogue Shooting',
+  cp2:'Robert Bowers, who killed eleven worshippers at the Tree of Life synagogue, was an active user of Gab. In the hours before his attack he posted explicitly antisemitic content. The attack led to Gab being temporarily dropped by its hosting provider, payment processor, and domain registrar \u2014 raising significant questions about the role of platform infrastructure providers in moderating online hate.',
+  cl3:'Buffalo, USA', ct3:'10 killed', ch3:'Buffalo Supermarket Shooting',
+  cp3:'Payton Gendron left an extensive manifesto documenting his years of immersion in 4chan\u2019s /pol/ board. He described finding and internalising the \u2018Great Replacement\u2019 conspiracy theory through online communities. His manifesto was a near-direct copy of the Christchurch attacker\u2019s, demonstrating the \u2018inspiration cascade\u2019 dynamic in which online communities treat past attackers as role models and tactical templates.',
+  cl4:'El Paso, USA', ct4:'23 killed', ch4:'El Paso Walmart Shooting',
+  cp4:'Patrick Crusius posted a manifesto on 8chan minutes before his attack on a Walmart, targeting Hispanic shoppers. The manifesto echoed the Great Replacement theory and cited the Christchurch attack as direct inspiration. The 8chan platform was subsequently taken offline by its infrastructure provider Cloudflare. It later returned as 8kun under different infrastructure.',
+  s6_eye:'Section 6', s6_h2:'Defining Hate Speech:<br>Why It Is Harder Than It Looks',
+  s6_intro:'There is no single universally agreed legal definition of hate speech. The definitional challenge \u2014 distinguishing hate speech from protected expression \u2014 is one of the most contested questions in free speech law, and the answer varies significantly by jurisdiction.',
+  slot4_title:'Image Slot 4', slot4_desc:'A spectrum diagram from protected speech through hate speech to incitement to violence', slot4_tag:'Add your artwork here',
+  def1_tag:'Legal concept', def1_h3:'Hate Speech', def1_p:'Most definitions require that content dehumanise or incite discrimination against an identifiable group based on protected characteristics \u2014 race, religion, gender, sexuality, national origin. The threshold for criminalisation varies: some jurisdictions require a direct incitement to hatred or violence; others include content that merely glorifies discrimination.',
+  def2_tag:'Critical distinction', def2_h3:'Incitement to Violence', def2_p:'Incitement to violence is a distinct and more clearly defined category \u2014 direct calls for violence against specific individuals or groups. This is more widely criminalised than hate speech per se, including in the United States where general hate speech is constitutionally protected under the First Amendment.',
+  def3_tag:'Platform concept', def3_h3:'Harmful but Legal', def3_p:'A significant category of content is not illegal in any jurisdiction but is nonetheless harmful \u2014 content that demeans, stereotypes, or degrades groups without meeting the legal threshold for hate speech. Platforms must decide whether to moderate this content through their own policies, independent of what the law requires.',
+  s7_eye:'Section 7', s7_h2:'Legal Frameworks:<br>How Different Countries Respond',
+  s7_intro:'The legal response to online hate speech is more divergent globally than almost any other category of internet crime \u2014 shaped by fundamentally different constitutional traditions, particularly around free speech.',
+  ln1:'Germany', ll1:'NetzDG (2017) + Volksverhetzung', ls1:'Most Stringent',
+  lh1:'Network Enforcement Act \u2014 The World\u2019s Strictest Platform Law',
+  lp1:'Germany\u2019s NetzDG requires large social media platforms to remove clearly illegal hate speech within 24 hours of a valid complaint, with fines of up to \u20ac50 million for systemic non-compliance. Twitter/X was fined \u20ac54 million in 2023. Germany\u2019s particularly stringent approach reflects its historical experience with Nazi propaganda \u2014 Volksverhetzung (incitement to hatred) laws carry custodial sentences of up to five years. Denial of the Holocaust is a specific criminal offence.',
+  ln2:'European Union', ll2:'Digital Services Act (2024)', ls2:'Landmark New Framework',
+  lh2:'Digital Services Act \u2014 Platform Accountability at Scale',
+  lp2:'The EU\u2019s Digital Services Act, fully in force from 2024, requires large platforms to conduct annual risk assessments of their systemic risks \u2014 including the amplification of hate speech \u2014 and to implement mitigation measures. It targets not just illegal content but the algorithmic systems that amplify it. Fines of up to 6% of global turnover make it the most financially consequential platform regulation in history.',
+  ln3:'United Kingdom', ll3:'Online Safety Act (2023)', ls3:'Comprehensive Framework',
+  lh3:'Online Safety Act \u2014 Duty of Care Approach',
+  lp3:'The UK\u2019s Online Safety Act takes a \u2018duty of care\u2019 approach, requiring platforms to protect users from both illegal content and \u2014 for the largest platforms \u2014 content that is \u2018legal but harmful\u2019. Ofcom has powers to fine platforms up to \u00a318 million or 10% of global turnover for non-compliance.',
+  ln4:'United States', ll4:'First Amendment / Section 230', ls4:'Speech Protections Dominant',
+  lh4:'The First Amendment Barrier and Section 230 Immunity',
+  lp4:'The United States presents the starkest contrast: the First Amendment provides extremely strong protections for speech including most hate speech, meaning there is no general federal hate speech law. Section 230 of the Communications Decency Act additionally immunises platforms from liability for third-party content. US platforms are therefore largely self-regulated.',
+  bar_g1:'Platform hate speech removal rates by jurisdiction',
+  bar_g2:'Groups most targeted by online hate speech',
+  br1_lbl:'Germany (NetzDG enforcement)', br2_lbl:'EU average (DSA)',
+  br3_lbl:'United Kingdom', br4_lbl:'United States (voluntary)',
+  br5_lbl:'Racial and ethnic minorities', br6_lbl:'Women / gender-based',
+  br7_lbl:'Religious minorities', br8_lbl:'LGBTQ+ individuals',
+  slot3_title:'Image Slot 3', slot3_desc:'A sombre, abstract illustration \u2014 evoke consequence and weight, not graphic content', slot3_tag:'Add your artwork here',
+  ref_eye:'References', ref_h2:'Sources and Further Reading',
+  quiz_p:'Test your knowledge on hate speech, radicalisation, and all other internet crime topics',
+  quiz_span:'\u2014 10 randomised questions, no time limit.',
+  quiz_btn:'Take the Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Previous Topic', tnav1_title:'Online Piracy', tnav1_sub:'03 \u2014 BitTorrent, illegal IPTV, and the $46B copyright problem',
+  tnav2_dir:'Next Topic \u00a0\u2192', tnav2_title:'Cyberstalking & Doxxing', tnav2_sub:'05 \u2014 Digital surveillance, coordinated harassment, and identity exposure',
+  footer_note:'Educational project \u2014 Academic submission 2026. All statistics sourced and cited above.',
+  footer_src:'References', footer_prev:'Prevention', footer_top:'All Topics', footer_quiz:'Quiz', foot_imprint:"Imprint"
+};
+
+/* ── GERMAN ───────────────────────────────────────────── */
+T.de = {
+  page_title:'Hassrede & Radikalisierung | CrimeOnline',
+  nav_topics:'Themen', nav_prev:'Pr\u00e4vention', nav_sources:'Quellen', nav_cta:'Quiz starten \u2197',
+  mob_home:'Startseite', mob_lang:'Sprache',
+  bc_home:'Startseite', bc_topics:'Themen', bc_current:'Hassrede & Radikalisierung',
+  hero_series:'Serie Internetkriminalit\u00e4t \u00b7 Vollst\u00e4ndiger Bericht',
+  hero_h1:'Hassrede<br>&amp; <em>Radikalisierung</em>',
+  hero_lead:'Wie Algorithmen, die darauf ausgelegt waren, das Engagement zu maximieren, zur effektivsten Radikalisierungsinfrastruktur der Geschichte wurden \u2014 und wie ein Kommentarbereich zur Pipeline f\u00fcr reale Gewalt wird.',
+  meta1_lbl:'Schwere:', meta1_val:'Hoch',
+  meta2_lbl:'Mechanismus:', meta2_val:'Algorithmische Amplifikation',
+  meta3_lbl:'Wichtige Plattformen:', meta3_val:'YouTube \u00b7 Telegram \u00b7 4chan \u00b7 Twitter/X',
+  meta4_lbl:'Reale Verbindung:', meta4_val:'Mehrere Massenanschlagsereignisse',
+  stat1_lbl:'der Jugendlichen in der EU sind online auf Hassrede getroffen',
+  stat2_lbl:'der rechtsextremen Extremisten, die Anschl\u00e4ge begingen, wurden prim\u00e4r online radikalisiert',
+  stat3_lbl:'verblieb der Terroristen-Livestream aus Christchurch auf Facebook, bevor er entfernt wurde',
+  stat4_lbl:'Geldstrafe gegen Twitter/X gem\u00e4\u00df NetzDG wegen Nichteinhaltung der Hassrede-Vorschriften',
+  s1_eye:'\u00dcberblick',
+  pq_text:'\u201eDer Algorithmus k\u00fcmmert sich nicht um Demokratie, die psychische Gesundheit seiner Nutzer oder die Wahrheit. Er k\u00fcmmert sich um Engagement. Und Emp\u00f6rung treibt das Engagement besser an als alles andere.\u201c',
+  pq_cite:'Frances Haugen, Facebook-Whistleblowerin \u2014 paraphrasiert aus der Senatsaussage, 2021',
+  s1p1:'Online-Hassrede und digitale Radikalisierung geh\u00f6ren zu den folgenreichsten und am wenigsten verstandenen Sch\u00e4den des Internets. Im Gegensatz zum Drogenhandel oder zur Piraterie sind dies keine Verbrechen des Handels \u2014 es sind Verbrechen der <strong>Ideologie und des Einflusses</strong>, die \u00fcber dieselben Empfehlungssysteme, Kommentarbereiche und algorithmischen Feedback-Schleifen operieren, die Milliarden von Menschen t\u00e4glich nutzen.',
+  s1p2:'Hassrede hat immer existiert. Das Internet hat sie nicht erschaffen. Was das Internet getan hat, war ihr <strong>Verbreitung zu null Grenzkosten, algorithmische Amplifikation in gro\u00dfem Ma\u00dfstab und Anonymit\u00e4t f\u00fcr ihre Produzenten</strong> zu geben.',
+  s1p3:'Die Verbindung zwischen Online-Hassrede und realer Gewalt ist nicht theoretisch. Sie ist in Gerichtsunterlagen, Nachtatmanifesten und Aussagen von \u00dcberlebenden und Ermittlern dokumentiert, von Christchurch bis Pittsburgh, von Buffalo bis Halle.',
+  s2_eye:'Abschnitt 2 \u2014 Signaturelement',
+  s2_h2:'Die Radikalisierungspipeline:<br>Von Mainstream zu Extremismus',
+  s2_intro:'Radikalisierung geschieht selten \u00fcber Nacht. Forscher beschreiben es als eine schrittweise Reise \u2014 jeder Schritt f\u00fchlt sich wie eine kleine, nat\u00fcrliche Weiterentwicklung vom vorherigen an. Das Internet hat diesen Prozess industrialisiert.',
+  pipeline_lbl:'Der Radikalisierungstrichter \u2014 von Mainstream zu Gewalt',
+  st1_step:'Stufe 1 \u2014 Einstieg', st1_h3:'Mainstream-Plattform-Inhalte',
+  st1_p:'Die Reise beginnt mit ganz gew\u00f6hnlichem Inhalteskonsum \u2014 YouTube-Videos, Facebook-Gruppen, Twitter/X-Feeds, Reddit-Threads. Ein Nutzer sucht nach politischem Kommentar, Nachrichten, Komik oder Nischenhobbys. Nichts ist noch extrem.',
+  st2_step:'Stufe 2 \u2014 Algorithmischer Drift', st2_h3:'Kantige, beschwerdebasierte Inhalte',
+  st2_p:'Empfehlungsalgorithmen bringen zunehmend provokative Inhalte an die Oberfl\u00e4che \u2014 Videos, die Feminismus, Einwanderung oder bestimmte ethnische oder religi\u00f6se Gruppen kritisieren. Inhalte, die starke emotionale Reaktionen erzeugen, treiben l\u00e4ngere Betrachtungszeiten an, was der Algorithmus mit breiterer Verbreitung belohnt.',
+  ex2_1:'Emp\u00f6rungskommentare', ex2_2:'Beschwerdepolitik', ex2_3:'Anti-Medien-Narrative', ex2_4:'Opfer-Framing',
+  st3_step:'Stufe 3 \u2014 Gemeinschaftsbildung', st3_h3:'Halbprivate Gruppen und Server',
+  st3_p:'Der Nutzer wird \u2014 oft explizit, \u00fcber Links in Videobeschreibungen oder Kommentaren \u2014 zu Discord-Servern, Telegram-Kan\u00e4len oder privaten Facebook-Gruppen geleitet. Hier verschieben sich die Normen. Rhetorik, die auf Mainstream-Plattformen moderiert w\u00fcrde, wird hier nicht nur toleriert, sondern gefeiert.',
+  ex3_1:'Discord-Server', ex3_2:'Telegram-Kan\u00e4le', ex3_3:'Private Facebook-Gruppen',
+  st4_step:'Stufe 4 \u2014 Extremistische Netzwerke', st4_h3:'Fringe-Plattformen und Darknet-Boards',
+  st4_p:'Die letzte Vor-Gewalt-Stufe: Imageboards (4chans /pol/, 8kun), Darknet-Foren und ultra-fringe soziale Netzwerke, in denen keine Inhaltsmoderation existiert. Entmenschlichende Sprache \u00fcber Zielgruppen ist normalisiert. \u00dcber Gewalt wird offen diskutiert.',
+  ex4_1:'4chan /pol/', ex4_2:'Darknet-Foren', ex4_3:'Fringe-Imageboards',
+  st5_step:'Stufe 5 \u2014 Reale Handlung', st5_h3:'Gewalt, Terror oder koordinierte Bel\u00e4stigung',
+  st5_p:'In den extremsten F\u00e4llen \u00fcbersetzt sich Online-Radikalisierung in reale Gewalt. Angreifer in Christchurch, Pittsburgh, Halle, El Paso und Buffalo waren alle tief in Online-Extremisten-Gemeinschaften eingebettet, bevor ihre Anschl\u00e4ge stattfanden.',
+  ex5_1:'Massengewalt', ex5_2:'Inl\u00e4ndischer Terrorismus', ex5_3:'Koordinierte Bel\u00e4stigung', ex5_4:'Swatting / Doxxing',
+  s3_eye:'Abschnitt 3', s3_h2:'Wie Algorithmen Hass Verst\u00e4rken',
+  s3_intro:'Kein Ingenieur bei YouTube, Facebook oder Twitter hat seine Empfehlungssysteme so konzipiert, dass sie Nutzer radikalisieren. Aber engagement-optimierte Algorithmen haben eine inhärente strukturelle Voreingenommenheit f\u00fcr Inhalte, die starke emotionale Reaktionen ausl\u00f6sen.',
+  as1_h4:'Engagement als Optimierungsziel', as1_p:'Empfehlungssysteme sind prim\u00e4r darauf ausgerichtet, die auf der Plattform verbrachte Zeit zu maximieren. Inhalte, die starke emotionale Reaktionen erzeugen \u2014 einschlie\u00dflich Wut, Angst und moralische Emp\u00f6rung \u2014 f\u00fchren nachweislich zu l\u00e4ngerem Engagement als neutrale Inhalte.',
+  as2_h4:'Der Kaninchenloch-Effekt', as2_p:'YouTubes Empfehlungssystem wurde speziell f\u00fcr das, was Forscher als \u201eKaninchenloch\u201c-Problem bezeichneten, untersucht. Nutzer, die m\u00e4\u00dfig politische Inhalte anschauten, wurden systematisch zunehmend extremere Inhalte empfohlen.',
+  as3_h4:'Filterblasen und epistemische Schlie\u00dfung', as3_p:'Personalisierungsalgorithmen schaffen Informationsumgebungen, in denen Nutzern Inhalte gezeigt werden, die bestehende \u00dcberzeugungen best\u00e4tigen. Im Laufe der Zeit verengt dies die Bandbreite der Perspektiven.',
+  as4_h4:'Viralita\u0308tsmechaniken und Teilungsanreize', as4_p:'Social-Media-Plattformen gestalten Viralita\u0308tsmechaniken \u2014 Likes, Shares, Retweets \u2014 die die Produktion und Verbreitung emotional aktivierender Inhalte incentivieren. Facebooks interne Forschung (von Frances Haugen 2021 enthüllt) ergab, dass \u201eW\u00fctendes\u201c Reaktionen deutlich weitreichender verbreitet wurden.',
+  as5_h4:'Anonymit\u00e4t und Enthemmung', as5_p:'Online-Anonymit\u00e4t entfernt soziale Einschr\u00e4nkungen, die Redefreiheit m\u00e4\u00dfigen. Forschung zum \u201eOnline-Enthemmungseffekt\u201c dokumentiert, dass Menschen online Dinge sagen, die sie pers\u00f6nlich nie sagen w\u00fcrden.',
+  slot2_title:'Bildplatz 2', slot2_desc:'Ihr Diagramm der algorithmischen Amplifikations-Feedback-Schleife', slot2_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  s4_eye:'Abschnitt 4', s4_h2:'Plattformen und ihre Rollen',
+  s4_intro:'Jede gro\u00dfe Plattform hat eine eigene Beziehung zu Hassrede \u2014 geformt durch ihre technische Architektur, Moderationsrichtlinien, Eigent\u00fcmerschaft und Nutzerdemografie.',
+  pt1_type:'Video-Empfehlungsplattform', pt1_p:'YouTubes Empfehlungsalgorithmus wurde ausf\u00fchrlich als Radikalisierungsvektor dokumentiert. Nach erheblichem Regulierungs- und Pressedruck ab 2019 \u00e4nderte YouTube seinen Algorithmus und entfernte Tausende von Kan\u00e4len. Forscher debattieren \u00fcber die Wirksamkeit dieser \u00c4nderungen.', pt1_badge:'Bedeutende Reformen \u2014 umstrittene Wirksamkeit',
+  pt2_type:'Verschl\u00fcsselte Nachrichten / Broadcast-Kan\u00e4le', pt2_p:'Telegram ist zur prim\u00e4ren Kommunikationsinfrastruktur f\u00fcr extremistische Bewegungen weltweit geworden. Seine Kombination aus riesigen \u00f6ffentlichen Broadcast-Kan\u00e4len, Ende-zu-Ende-verschl\u00fcsseltem privaten Messaging und minimaler Inhaltsmoderation macht es zur Plattform der Wahl. Nach Pavels Durovs Verhaftung 2024 k\u00fcndigte die Plattform verbesserte Zusammenarbeit mit Strafverfolgungsbeh\u00f6rden an.', pt2_badge:'Kritische Infrastruktur f\u00fcr Extremismus',
+  pt3_type:'\u00d6ffentliches soziales Netzwerk', pt3_p:'Twitters Akquisition durch Elon Musk 2022 und der Abbau bedeutender Teile seines Trust-and-Safety-Teams wurden von dokumentierten Anstiegen der Hassrede auf der Plattform begleitet. Die Plattform wurde 2023 mit 54 Millionen Euro vom deutschen BNetzA wegen Nichteinhaltung der NetzDG-Anforderungen bestraft.', pt3_badge:'Dokumentierter Sicherheitsverfall nach der \u00dcbernahme',
+  pt4_type:'Soziales Netzwerk / Bildplattform', pt4_p:'Meta betreibt die gr\u00f6\u00dfte Inhaltsmoderationsoperation der Welt \u2014 und wird immer noch weit verbreitet als Plattform f\u00fcr Hassrede in gro\u00dfem Ma\u00dfstab dokumentiert, insbesondere in M\u00e4rkten mit nicht-englischen Sprachen. Interne von Frances Haugen 2021 geleakte Forschung zeigte, dass das Unternehmen wusste, dass seine Algorithmen spaltende Inhalte verst\u00e4rken.', pt4_badge:'Gr\u00f6\u00dfte Moderationsoperation \u2014 global ungleichm\u00e4\u00dfig',
+  pt5_type:'Anonymes Imageboard', pt5_p:'4chans /pol/-Board und sein Nachfolger 8kun sind die am meisten dokumentierten Brutp\u00e4tten des rechtsextremen Extremismus im Internet. Anonymes Posting, nahezu null Moderation und eine Kultur der bewussten \u00dcbertretung haben sie zum Ursprungspunkt mehrerer extremistischer Memes, Bewegungen und Massenanschl\u00e4ge gemacht.', pt5_badge:'Prim\u00e4rer Br\u00fcter des rechtsextremen Extremismus',
+  pt6_name:'Alternative Plattformen', pt6_type:'Gab \u00b7 Rumble \u00b7 Parler \u00b7 Truth Social', pt6_p:'Eine Konstellation alternativer Plattformen hat sich als \u201eFreie Meinungs\u00e4u\u00dferung\u201c-Alternativen zu Mainstream-Sozialen Netzwerken positioniert. Diese Plattformen sind zu Sammelorten f\u00fcr Nutzer geworden, die von Mainstream-Plattformen wegen Hassrede-Verst\u00f6\u00dfen entfernt wurden.', pt6_badge:'Deplatforming-Ziel \u2014 konzentrierter Extremismus',
+  s5_eye:'Abschnitt 5 \u2014 Kritische F\u00e4lle', s5_h2:'Vom Bildschirm zur Gewalt:<br>Dokumentierte F\u00e4lle',
+  s5_intro:'Die folgenden Anschl\u00e4ge wurden von Personen begangen, deren Online-Radikalisierung in Gerichtsunterlagen, Ermittlungsberichten und den eigenen Worten der T\u00e4ter dokumentiert ist. Dies sind keine isolierten Anomalien \u2014 sie repr\u00e4sentieren ein dokumentiertes und wiederkehrendes Muster.',
+  cl1:'Christchurch, Neuseeland', ct1:'51 Tote', ch1:'Anschl\u00e4ge auf Christchurch-Moscheen',
+  cp1:'Der Angreifer Brenton Tarrant war jahrelang tief in rechtsextremen Online-Gemeinschaften eingebettet, bevor er im M\u00e4rz 2019 zwei Moscheen angriff. Er postete sein Manifest auf 8chan, streamte den Angriff live auf Facebook. Der Stream blieb 17 Minuten auf Facebook, bevor er entfernt wurde. Die Neuseel\u00e4ndische K\u00f6nigliche Kommission stellte fest, dass Online-Radikalisierung eine zentrale Rolle spielte. Der Angriff f\u00fchrte direkt zum Christchurch-Aufruf.',
+  cl2:'Pittsburgh, USA', ct2:'11 Tote', ch2:'Schie\u00dferei in der Tree-of-Life-Synagoge',
+  cp2:'Robert Bowers, der elf Gl\u00e4ubige in der Tree-of-Life-Synagoge t\u00f6tete, war ein aktiver Nutzer von Gab. In den Stunden vor seinem Angriff postete er explizit antisemitische Inhalte. Der Angriff f\u00fchrte dazu, dass Gab von seinem Hosting-Anbieter, Zahlungsverarbeiter und Domain-Registrar vor\u00fcbergehend fallen gelassen wurde.',
+  cl3:'Buffalo, USA', ct3:'10 Tote', ch3:'Supermarkt-Schie\u00dferei in Buffalo',
+  cp3:'Payton Gendron hinterlie\u00df ein umfassendes Manifest, das seine jahrelange Einbettung in 4chans /pol/-Board dokumentiert. Er beschrieb, wie er die \u201eGro\u00dfe Ersetzungs\u201c-Verschw\u00f6rungstheorie in Online-Gemeinschaften fand. Sein Manifest war eine nahezu direkte Kopie des Christchurch-Angreifers.',
+  cl4:'El Paso, USA', ct4:'23 Tote', ch4:'Walmart-Schie\u00dferei in El Paso',
+  cp4:'Patrick Crusius postete ein Manifest auf 8chan Minuten vor seinem Angriff auf einen Walmart. Das Manifest verwies auf die Gro\u00dfe-Ersetzungs-Theorie und nannte den Christchurch-Angriff als direkte Inspiration. Die 8chan-Plattform wurde anschlie\u00dfend von ihrem Infrastrukturanbieter Cloudflare offline genommen.',
+  s6_eye:'Abschnitt 6', s6_h2:'Hassrede definieren:<br>Warum es schwieriger ist als es aussieht',
+  s6_intro:'Es gibt keine einheitliche, allgemein anerkannte rechtliche Definition von Hassrede. Die Definitionsherausforderung \u2014 Hassrede von gesch\u00fctztem Ausdruck zu unterscheiden \u2014 ist eine der umstrittensten Fragen im Redefreiheitsrecht.',
+  slot4_title:'Bildplatz 4', slot4_desc:'Ein Spektrumdiagramm von gesch\u00fctzter Redefreiheit \u00fcber Hassrede bis hin zu Aufstachelung zur Gewalt', slot4_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  def1_tag:'Rechtliches Konzept', def1_h3:'Hassrede', def1_p:'Die meisten Definitionen erfordern, dass Inhalte eine identifizierbare Gruppe aufgrund gesch\u00fctzter Merkmale \u2014 Rasse, Religion, Geschlecht, Sexualit\u00e4t, Herkunft \u2014 entmenschlichen oder zur Diskriminierung aufstacheln. Der Strafbarkeitsschwellenwert variiert.',
+  def2_tag:'Kritische Unterscheidung', def2_h3:'Aufstachelung zur Gewalt', def2_p:'Aufstachelung zur Gewalt ist eine eigene, klar definierte Kategorie \u2014 direkte Aufforderungen zur Gewalt gegen bestimmte Personen oder Gruppen. Dies ist breiter kriminalisiert als Hassrede per se, auch in den USA, wo allgemeine Hassrede verfassungsrechtlich gesch\u00fctzt ist.',
+  def3_tag:'Plattformkonzept', def3_h3:'Sch\u00e4dlich aber legal', def3_p:'Eine bedeutende Inhaltskategorie ist in keiner Rechtsordnung illegal, ist aber dennoch sch\u00e4dlich \u2014 Inhalte, die Gruppen entwerten, stereotypisieren oder herabsetzen, ohne die rechtliche Schwelle der Hassrede zu erreichen.',
+  s7_eye:'Abschnitt 7', s7_h2:'Rechtliche Rahmenbedingungen:<br>Wie verschiedene L\u00e4nder reagieren',
+  s7_intro:'Die rechtliche Reaktion auf Online-Hassrede ist weltweit divergierender als fast jede andere Kategorie der Internetkriminalit\u00e4t \u2014 gepr\u00e4gt durch grundlegend unterschiedliche Verfassungstraditionen.',
+  ln1:'Deutschland', ll1:'NetzDG (2017) + Volksverhetzung', ls1:'Am strengsten',
+  lh1:'Netzwerkdurchsetzungsgesetz \u2014 Das strengste Plattformgesetz der Welt',
+  lp1:'Deutschlands NetzDG verpflichtet gro\u00dfe soziale Medienplattformen, eindeutig illegale Hassrede innerhalb von 24 Stunden nach einer berechtigten Beschwerde zu entfernen, mit Bussgeldern von bis zu 50 Millionen Euro. Twitter/X wurde 2023 mit 54 Millionen Euro bestraft. Die besonders strenge Herangehensweise Deutschlands spiegelt seine historische Erfahrung mit Nazi-Propaganda wider.',
+  ln2:'Europ\u00e4ische Union', ll2:'Digital Services Act (2024)', ls2:'Wegweisendes neues Rahmenwerk',
+  lh2:'Digital Services Act \u2014 Plattformhaftung im Massstab',
+  lp2:'Der EU Digital Services Act, der ab 2024 vollst\u00e4ndig in Kraft ist, verpflichtet gro\u00dfe Plattformen zu j\u00e4hrlichen Risikobewertungen ihrer systemischen Risiken \u2014 einschlie\u00dflich der Verst\u00e4rkung von Hassrede. Bu\u00dfgelder von bis zu 6 % des weltweiten Umsatzes machen ihn zur folgenreichsten Plattformregulierung der Geschichte.',
+  ln3:'Vereinigtes K\u00f6nigreich', ll3:'Online Safety Act (2023)', ls3:'Umfassendes Rahmenwerk',
+  lh3:'Online Safety Act \u2014 Sorgfaltspflicht-Ansatz',
+  lp3:'Der britische Online Safety Act verfolgt einen \u201eSorgfaltspflicht\u201c-Ansatz und verpflichtet Plattformen, Nutzer vor illegalen Inhalten und \u2014 f\u00fcr die gr\u00f6\u00dften Plattformen \u2014 Inhalten zu sch\u00fctzen, die \u201elegal, aber sch\u00e4dlich\u201c sind. Ofcom hat die Befugnis, Plattformen mit bis zu 18 Millionen Pfund oder 10 % des weltweiten Umsatzes zu bestrafen.',
+  ln4:'Vereinigte Staaten', ll4:'Erster Zusatz / Section 230', ls4:'Redefreiheitsschutz dominierend',
+  lh4:'Die Erster-Zusatz-Barriere und die Section-230-Immunita\u0308t',
+  lp4:'Die Vereinigten Staaten bilden den gr\u00f6\u00dften Kontrast: Der Erste Zusatz bietet extrem starken Schutz f\u00fcr Redefreiheit einschlie\u00dflich der meisten Hassrede. Section 230 immunisiert Plattformen zus\u00e4tzlich vor Haftung f\u00fcr Drittinhalte. US-Plattformen sind daher weitgehend selbstreguliert.',
+  bar_g1:'Hate-Speech-Entfernungsraten der Plattformen nach Rechtsordnung',
+  bar_g2:'Am st\u00e4rksten von Online-Hassrede betroffene Gruppen',
+  br1_lbl:'Deutschland (NetzDG-Durchsetzung)', br2_lbl:'EU-Durchschnitt (DSA)',
+  br3_lbl:'Vereinigtes K\u00f6nigreich', br4_lbl:'Vereinigte Staaten (freiwillig)',
+  br5_lbl:'Rassische und ethnische Minderheiten', br6_lbl:'Frauen / Geschlechtsbasiert',
+  br7_lbl:'Religi\u00f6se Minderheiten', br8_lbl:'LGBTQ+-Personen',
+  slot3_title:'Bildplatz 3', slot3_desc:'Eine d\u00fcstere, abstrakte Illustration \u2014 Konsequenz und Schwere evozieren, kein grafischer Inhalt', slot3_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  ref_eye:'Quellen', ref_h2:'Quellen und weiterf\u00fchrende Lekt\u00fcre',
+  quiz_p:'Testen Sie Ihr Wissen \u00fcber Hassrede, Radikalisierung und alle anderen Internetkriminalit\u00e4tsthemen',
+  quiz_span:'\u2014 10 zuf\u00e4llige Fragen, kein Zeitlimit.',
+  quiz_btn:'Quiz starten \u00a0\u2192',
+  tnav1_dir:'\u2190 Vorheriges Thema', tnav1_title:'Online-Piraterie', tnav1_sub:'03 \u2014 BitTorrent, illegales IPTV und das 46-Milliarden-Dollar-Urheberrechtsproblem',
+  tnav2_dir:'N\u00e4chstes Thema \u00a0\u2192', tnav2_title:'Cyberstalking & Doxxing', tnav2_sub:'05 \u2014 Digitale \u00dcberwachung, koordinierte Bel\u00e4stigung und Identit\u00e4tsexposition',
+  footer_note:'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind oben belegt.',
+  footer_src:'Quellen', footer_prev:'Pr\u00e4vention', footer_top:'Alle Themen', footer_quiz:'Quiz', foot_imprint:"Impressum"
+};
+
+/* ── ITALIAN ──────────────────────────────────────────── */
+T.it = {
+  page_title:'Incitamento all\'Odio e Radicalizzazione | CrimeOnline',
+  nav_topics:'Argomenti', nav_prev:'Prevenzione', nav_sources:'Fonti', nav_cta:'Inizia il Quiz \u2197',
+  mob_home:'Inizio', mob_lang:'Lingua',
+  bc_home:'Inizio', bc_topics:'Argomenti', bc_current:'Incitamento all\'Odio e Radicalizzazione',
+  hero_series:'Serie Criminalit\u00e0 Informatica \u00b7 Rapporto Completo',
+  hero_h1:'Incitamento all\'Odio<br>&amp; <em>Radicalizzazione</em>',
+  hero_lead:'Come gli algoritmi progettati per massimizzare il coinvolgimento sono diventati l\'infrastruttura di radicalizzazione pi\u00f9 efficace della storia \u2014 e come una sezione commenti diventa una pipeline alla violenza reale.',
+  meta1_lbl:'Gravit\u00e0:', meta1_val:'Alta',
+  meta2_lbl:'Meccanismo:', meta2_val:'Amplificazione algoritmica',
+  meta3_lbl:'Piattaforme chiave:', meta3_val:'YouTube \u00b7 Telegram \u00b7 4chan \u00b7 Twitter/X',
+  meta4_lbl:'Collegamento reale:', meta4_val:'Molteplici eventi con vittime di massa',
+  stat1_lbl:'dei giovani nell\'UE ha incontrato discorso d\'odio online',
+  stat2_lbl:'degli estremisti di destra che hanno commesso attacchi erano stati radicalizzati principalmente online',
+  stat3_lbl:'il livestream terroristico di Christchurch \u00e8 rimasto su Facebook prima della rimozione',
+  stat4_lbl:'multa emessa a Twitter/X ai sensi del NetzDG tedesco per non conformit\u00e0 all\'incitamento all\'odio',
+  s1_eye:'Panoramica',
+  pq_text:'\u201cL\'algoritmo non si preoccupa della democrazia, della salute mentale dei suoi utenti o della verit\u00e0. Si preoccupa del coinvolgimento. E l\'indignazione guida il coinvolgimento meglio di qualsiasi altra cosa.\u201d',
+  pq_cite:'Frances Haugen, whistleblower di Facebook \u2014 parafrasato dalla testimonianza al Senato, 2021',
+  s1p1:'Il discorso d\'odio online e la radicalizzazione digitale sono tra i danni pi\u00f9 consequenziali e meno compresi prodotti da internet. A differenza del traffico di droga o della pirateria, questi non sono principalmente crimini di commercio \u2014 sono crimini di <strong>ideologia e influenza</strong>, che operano attraverso gli stessi sistemi di raccomandazione e cicli di feedback algoritmici che miliardi di persone usano ogni giorno.',
+  s1p2:'Il discorso d\'odio \u00e8 sempre esistito. Internet non lo ha creato. Ci\u00f2 che internet ha fatto \u00e8 dargli <strong>distribuzione a costo marginale zero, amplificazione algoritmica su scala e anonimato per i suoi produttori</strong>.',
+  s1p3:'Il collegamento tra l\'incitamento all\'odio online e la violenza reale non \u00e8 teorico. \u00c8 documentato in verbali giudiziari, manifesti post-attacco e testimonianze di sopravvissuti e investigatori da Christchurch a Pittsburgh, da Buffalo a Halle.',
+  s2_eye:'Sezione 2 \u2014 Elemento Distintivo',
+  s2_h2:'La Pipeline di Radicalizzazione:<br>Dal Mainstream all\'Estremismo',
+  s2_intro:'La radicalizzazione raramente avviene dall\'oggi all\'indomani. I ricercatori la descrivono come un viaggio graduale \u2014 ogni passo sembra una piccola, naturale progressione dall\'ultimo. Internet ha industrializzato questo processo.',
+  pipeline_lbl:'Il funnel di radicalizzazione \u2014 dal mainstream alla violenza',
+  st1_step:'Fase 1 \u2014 Ingresso', st1_h3:'Contenuti Mainstream della Piattaforma',
+  st1_p:'Il viaggio inizia con un consumo di contenuti completamente ordinario \u2014 video YouTube, gruppi Facebook, feed Twitter/X, thread Reddit. Un utente cerca commenti politici, notizie, commedie o hobby di nicchia. Niente \u00e8 ancora estremo.',
+  st2_step:'Fase 2 \u2014 Deriva Algoritmica', st2_h3:'Contenuti Audaci Basati sul Risentimento',
+  st2_p:'Gli algoritmi di raccomandazione portano in superficie contenuti sempre pi\u00f9 provocatori \u2014 video che criticano il femminismo, l\'immigrazione o specifici gruppi etnici o religiosi. I contenuti che generano forti reazioni emotive guidano tempi di visione pi\u00f9 lunghi, che l\'algoritmo premia con una distribuzione pi\u00f9 ampia.',
+  ex2_1:'Commenti di indignazione', ex2_2:'Politica del risentimento', ex2_3:'Narrative anti-media', ex2_4:'Framing della vittima',
+  st3_step:'Fase 3 \u2014 Formazione della Comunit\u00e0', st3_h3:'Gruppi e Server Semi-Privati',
+  st3_p:'L\'utente viene diretto \u2014 spesso esplicitamente, tramite link nelle descrizioni dei video o nei commenti \u2014 a server Discord, canali Telegram o gruppi Facebook privati. Qui le norme cambiano. La retorica che verrebbe moderata sulle piattaforme mainstream non \u00e8 solo tollerata ma celebrata.',
+  ex3_1:'Server Discord', ex3_2:'Canali Telegram', ex3_3:'Gruppi Facebook privati',
+  st4_step:'Fase 4 \u2014 Reti Estremiste', st4_h3:'Piattaforme Fringe e Board del Dark Web',
+  st4_p:'L\'ultima fase pre-violenza: imageboard (il /pol/ di 4chan, 8kun), forum del dark web e reti sociali ultra-fringe dove non esiste moderazione dei contenuti. Il linguaggio disumanizzante sui gruppi target \u00e8 normalizzato. La violenza viene discussa apertamente.',
+  ex4_1:'4chan /pol/', ex4_2:'Forum del dark web', ex4_3:'Imageboard fringe',
+  st5_step:'Fase 5 \u2014 Azione nel Mondo Reale', st5_h3:'Violenza, Terrore o Molestie Coordinate',
+  st5_p:'Nei casi pi\u00f9 estremi, la radicalizzazione online si traduce in violenza nel mondo reale. Gli attentatori a Christchurch, Pittsburgh, Halle, El Paso e Buffalo erano tutti profondamente immersi nelle comunit\u00e0 estremiste online prima dei loro attacchi.',
+  ex5_1:'Violenza di massa', ex5_2:'Terrorismo interno', ex5_3:'Molestie coordinate', ex5_4:'Swatting / doxxing',
+  s3_eye:'Sezione 3', s3_h2:'Come gli Algoritmi Amplificano l\'Odio',
+  s3_intro:'Nessun ingegnere di YouTube, Facebook o Twitter ha progettato i propri sistemi di raccomandazione per radicalizzare gli utenti. Ma gli algoritmi ottimizzati per il coinvolgimento hanno un pregiudizio strutturale intrinseco verso i contenuti che scatenano forti risposte emotive.',
+  as1_h4:'Il Coinvolgimento come Obiettivo di Ottimizzazione', as1_p:'I sistemi di raccomandazione sono principalmente ottimizzati per massimizzare il tempo trascorso sulla piattaforma. I contenuti che generano forti reazioni emotive \u2014 inclusi rabbia, paura e indignazione morale \u2014 guidano un coinvolgimento pi\u00f9 lungo rispetto ai contenuti neutri.',
+  as2_h4:'L\'Effetto Tana del Coniglio', as2_p:'Il sistema di raccomandazione di YouTube \u00e8 stato specificamente studiato per quello che i ricercatori hanno chiamato il problema della "tana del coniglio". Gli utenti che guardavano contenuti moderatamente politici ricevevano sistematicamente raccomandazioni di contenuti sempre pi\u00f9 estremi.',
+  as3_h4:'Bolle Filtro e Chiusura Epistemica', as3_p:'Gli algoritmi di personalizzazione creano ambienti informativi in cui agli utenti vengono mostrati contenuti che confermano le credenze esistenti. Nel tempo, questo restringe la gamma di prospettive incontrate e rafforza le opinioni esistenti.',
+  as4_h4:'Meccanismi di Viralita\u0300 e Incentivi alla Condivisione', as4_p:'Le piattaforme di social media progettano meccanismi di viralita\u0300 \u2014 mi piace, condivisioni, retweet \u2014 che incentivano la produzione e diffusione di contenuti emotivamente attivanti. La ricerca interna di Facebook (rivelata da Frances Haugen nel 2021) ha rilevato che le reazioni "arrabbiate" venivano distribuite significativamente pi\u00f9 ampiamente dall\'algoritmo.',
+  as5_h4:'Anonimato e Disinibizione', as5_p:'L\'anonimato online rimuove i vincoli sociali che moderano il discorso di persona. La ricerca sull\'"effetto di disinibizione online" documenta che le persone dicono cose online che non direbbero mai di persona \u2014 incluse espressioni di odio, minacce e linguaggio disumanizzante.',
+  slot2_title:'Spazio Immagine 2', slot2_desc:'Il tuo diagramma del ciclo di feedback dell\'amplificazione algoritmica', slot2_tag:'Aggiungi la tua opera d\'arte qui',
+  s4_eye:'Sezione 4', s4_h2:'Piattaforme e i Loro Ruoli',
+  s4_intro:'Ogni grande piattaforma ha una relazione distinta con il discorso d\'odio \u2014 plasmata dalla sua architettura tecnica, dalle politiche di moderazione, dalla propriet\u00e0 e dalla demografia degli utenti.',
+  pt1_type:'Piattaforma di raccomandazione video', pt1_p:'Il motore di raccomandazione di YouTube \u00e8 stato ampiamente documentato come vettore di radicalizzazione. La sua ottimizzazione del tempo di visione portava sistematicamente in superficie contenuti sempre pi\u00f9 estremi. Dopo significative pressioni normative e della stampa dal 2019 in poi, YouTube ha apportato modifiche al suo algoritmo.', pt1_badge:'Riforme significative \u2014 efficacia controversa',
+  pt2_type:'Messaggistica cifrata / canali broadcast', pt2_p:'Telegram \u00e8 diventata l\'infrastruttura di comunicazione principale per i movimenti estremisti a livello globale. La sua combinazione di enormi canali broadcast pubblici, messaggistica privata crittografata end-to-end e moderazione minima dei contenuti lo rende la piattaforma preferita. Dopo l\'arresto di Pavel Durov nel 2024 in Francia, la piattaforma ha annunciato una migliore cooperazione con le forze dell\'ordine.', pt2_badge:'Infrastruttura critica per l\'estremismo',
+  pt3_type:'Rete sociale pubblica', pt3_p:'L\'acquisizione di Twitter da parte di Elon Musk nel 2022 \u00e8 stata accompagnata da documentati aumenti del discorso d\'odio sulla piattaforma. La piattaforma \u00e8 stata multata di 54 milioni di euro dalla Federal Network Agency tedesca nel 2023 per non conformit\u00e0 ai requisiti NetzDG.', pt3_badge:'Deterioramento della sicurezza post-acquisizione documentato',
+  pt4_type:'Rete sociale / piattaforma di immagini', pt4_p:'Meta gestisce la pi\u00f9 grande operazione di moderazione dei contenuti al mondo \u2014 ed \u00e8 ancora ampiamente documentata come veicolo di discorso d\'odio su larga scala, particolarmente nei mercati con lingue non inglesi. La ricerca interna trapelata da Frances Haugen nel 2021 mostrava che l\'azienda era consapevole che i suoi algoritmi amplificavano contenuti divisivi.', pt4_badge:'Pi\u00f9 grande operazione di moderazione \u2014 disomogenea globalmente',
+  pt5_type:'Imageboard anonimo', pt5_p:'Il board /pol/ di 4chan e il suo successore 8kun sono i pi\u00f9 documentati incubatori di estremismo di destra di internet. Pubblicazione anonima, moderazione quasi nulla e una cultura di deliberata trasgressione li hanno resi il punto di origine di multipli memi estremisti, movimenti e attacchi con vittime di massa.', pt5_badge:'Incubatore primario dell\'estremismo di destra',
+  pt6_name:'Piattaforme Alternative', pt6_type:'Gab \u00b7 Rumble \u00b7 Parler \u00b7 Truth Social', pt6_p:'Una costellazione di piattaforme alternative si \u00e8 posizionata come alternative di "libert\u00e0 di parola" alle reti sociali mainstream. Queste piattaforme sono diventate punti di raccolta per gli utenti rimossi dalle piattaforme mainstream per violazioni del discorso d\'odio.', pt6_badge:'Destinazione di deplatforming \u2014 estremismo concentrato',
+  s5_eye:'Sezione 5 \u2014 Casi Critici', s5_h2:'Dallo Schermo alla Violenza:<br>Casi Documentati',
+  s5_intro:'I seguenti attacchi sono stati compiuti da individui la cui radicalizzazione online \u00e8 documentata in verbali giudiziari, rapporti investigativi e nelle stesse parole degli autori. Questi non sono anomalie isolate \u2014 rappresentano un modello documentato e ricorrente.',
+  cl1:'Christchurch, Nuova Zelanda', ct1:'51 morti', ch1:'Attacchi alle Moschee di Christchurch',
+  cp1:'L\'attentatore Brenton Tarrant era profondamente immerso nelle comunit\u00e0 online di destra per anni prima del suo attacco a due moschee nel marzo 2019. Ha postato il suo manifesto su 8chan e trasmesso in diretta l\'attacco su Facebook. Lo stream \u00e8 rimasto su Facebook per 17 minuti prima della rimozione ed \u00e8 stato ripubblicato milioni di volte. La Commissione Reale Neozelandese ha rilevato che la radicalizzazione online ha svolto un ruolo centrale. L\'attacco ha portato direttamente al Christchurch Call.',
+  cl2:'Pittsburgh, USA', ct2:'11 morti', ch2:'Sparatoria alla Sinagoga Tree of Life',
+  cp2:'Robert Bowers, che ha ucciso undici fedeli alla sinagoga Tree of Life, era un utente attivo di Gab. Nelle ore prima del suo attacco ha pubblicato contenuti esplicitamente antisemiti. L\'attacco ha portato Gab ad essere temporaneamente abbandonato dal suo provider di hosting, elaboratore di pagamenti e registrar di dominio.',
+  cl3:'Buffalo, USA', ct3:'10 morti', ch3:'Sparatoria al Supermercato di Buffalo',
+  cp3:'Payton Gendron ha lasciato un ampio manifesto che documenta anni di immersione nel board /pol/ di 4chan. Il suo manifesto era una copia quasi diretta di quello dell\'attentatore di Christchurch, dimostrando la dinamica della "cascata di ispirazione".',
+  cl4:'El Paso, USA', ct4:'23 morti', ch4:'Sparatoria al Walmart di El Paso',
+  cp4:'Patrick Crusius ha postato un manifesto su 8chan minuti prima del suo attacco a un Walmart, prendendo di mira acquirenti ispanici. Il manifesto faceva eco alla teoria della Grande Sostituzione. La piattaforma 8chan \u00e8 stata successivamente messa offline dal suo provider di infrastrutture Cloudflare.',
+  s6_eye:'Sezione 6', s6_h2:'Definire il Discorso d\'Odio:<br>Perch\u00e9 \u00c8 Pi\u00f9 Difficile di Quanto Sembri',
+  s6_intro:'Non esiste una singola definizione legale universalmente concordata di discorso d\'odio. La sfida definitoria \u2014 distinguere il discorso d\'odio dall\'espressione protetta \u2014 \u00e8 una delle questioni pi\u00f9 controverse nel diritto alla libert\u00e0 di espressione.',
+  slot4_title:'Spazio Immagine 4', slot4_desc:'Un diagramma spettrale dalla libert\u00e0 di espressione protetta attraverso il discorso d\'odio all\'istigazione alla violenza', slot4_tag:'Aggiungi la tua opera d\'arte qui',
+  def1_tag:'Concetto legale', def1_h3:'Discorso d\'Odio', def1_p:'La maggior parte delle definizioni richiede che i contenuti disumanizzino o incitino alla discriminazione contro un gruppo identificabile sulla base di caratteristiche protette \u2014 razza, religione, genere, sessualit\u00e0, origine nazionale. La soglia di criminalizzazione varia.',
+  def2_tag:'Distinzione critica', def2_h3:'Istigazione alla Violenza', def2_p:'L\'istigazione alla violenza \u00e8 una categoria distinta e pi\u00f9 chiaramente definita \u2014 appelli diretti alla violenza contro individui o gruppi specifici. Questo \u00e8 pi\u00f9 ampiamente criminalizzato rispetto al discorso d\'odio in s\u00e9, anche negli Stati Uniti dove il discorso d\'odio generale \u00e8 costituzionalmente protetto.',
+  def3_tag:'Concetto di piattaforma', def3_h3:'Dannoso ma Legale', def3_p:'Una categoria significativa di contenuti non \u00e8 illegale in nessuna giurisdizione ma \u00e8 comunque dannosa \u2014 contenuti che sminuiscono, stereotipano o degradano gruppi senza raggiungere la soglia legale per il discorso d\'odio. Le piattaforme devono decidere se moderare questo contenuto attraverso le proprie politiche.',
+  s7_eye:'Sezione 7', s7_h2:'Quadri Giuridici:<br>Come Diversi Paesi Rispondono',
+  s7_intro:'La risposta legale al discorso d\'odio online \u00e8 pi\u00f9 divergente a livello globale rispetto a quasi qualsiasi altra categoria di criminalit\u00e0 informatica \u2014 plasmata da tradizioni costituzionali fondamentalmente diverse.',
+  ln1:'Germania', ll1:'NetzDG (2017) + Volksverhetzung', ls1:'Pi\u00f9 Stringente',
+  lh1:'Network Enforcement Act \u2014 La Legge sulle Piattaforme Pi\u00f9 Severa al Mondo',
+  lp1:'Il NetzDG tedesco richiede alle grandi piattaforme di social media di rimuovere il discorso d\'odio chiaramente illegale entro 24 ore da un reclamo valido, con multe fino a 50 milioni di euro. Twitter/X \u00e8 stato multato di 54 milioni di euro nel 2023. L\'approccio particolarmente stringente della Germania riflette la sua esperienza storica con la propaganda nazista.',
+  ln2:'Unione Europea', ll2:'Digital Services Act (2024)', ls2:'Nuovo Quadro Fondamentale',
+  lh2:'Digital Services Act \u2014 Responsabilit\u00e0 della Piattaforma su Scala',
+  lp2:'Il DSA dell\'UE, pienamente in vigore dal 2024, richiede alle grandi piattaforme di condurre valutazioni annuali del rischio dei loro rischi sistemici \u2014 inclusa l\'amplificazione del discorso d\'odio. Prende di mira non solo i contenuti illegali ma i sistemi algoritmici che li amplificano. Multe fino al 6% del fatturato globale lo rendono la regolamentazione delle piattaforme pi\u00f9 consequenziale della storia.',
+  ln3:'Regno Unito', ll3:'Online Safety Act (2023)', ls3:'Quadro Completo',
+  lh3:'Online Safety Act \u2014 Approccio al Dovere di Diligenza',
+  lp3:'L\'Online Safety Act del Regno Unito adotta un approccio di "dovere di diligenza", richiedendo alle piattaforme di proteggere gli utenti sia dai contenuti illegali che \u2014 per le piattaforme pi\u00f9 grandi \u2014 dai contenuti "legali ma dannosi". Ofcom ha il potere di multare le piattaforme fino a 18 milioni di sterline o il 10% del fatturato globale.',
+  ln4:'Stati Uniti', ll4:'Primo Emendamento / Sezione 230', ls4:'Protezioni della Libert\u00e0 di Parola Dominanti',
+  lh4:'La Barriera del Primo Emendamento e l\'Immunit\u00e0 della Sezione 230',
+  lp4:'Gli Stati Uniti presentano il contrasto pi\u00f9 netto: il Primo Emendamento fornisce protezioni estremamente forti per la libert\u00e0 di parola, inclusa la maggior parte del discorso d\'odio, il che significa che non esiste una legge federale generale sul discorso d\'odio. La Sezione 230 immunizza inoltre le piattaforme dalla responsabilit\u00e0 per i contenuti di terzi. Le piattaforme statunitensi sono quindi principalmente autoregolate.',
+  bar_g1:'Tassi di rimozione del discorso d\'odio delle piattaforme per giurisdizione',
+  bar_g2:'Gruppi pi\u00f9 colpiti dall\'odio online',
+  br1_lbl:'Germania (applicazione NetzDG)', br2_lbl:'Media UE (DSA)',
+  br3_lbl:'Regno Unito', br4_lbl:'Stati Uniti (volontario)',
+  br5_lbl:'Minoranze razziali ed etniche', br6_lbl:'Donne / basato sul genere',
+  br7_lbl:'Minoranze religiose', br8_lbl:'Individui LGBTQ+',
+  slot3_title:'Spazio Immagine 3', slot3_desc:'Un\'illustrazione sobria e astratta \u2014 evocare conseguenze e peso, non contenuti grafici', slot3_tag:'Aggiungi la tua opera d\'arte qui',
+  ref_eye:'Fonti', ref_h2:'Fonti e Ulteriori Letture',
+  quiz_p:'Metti alla prova le tue conoscenze sull\'incitamento all\'odio, la radicalizzazione e tutti gli altri argomenti di criminalit\u00e0 informatica',
+  quiz_span:'\u2014 10 domande casuali, nessun limite di tempo.',
+  quiz_btn:'Inizia il Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Argomento Precedente', tnav1_title:'Pirateria Online', tnav1_sub:'03 \u2014 BitTorrent, IPTV illegale e il problema del copyright da 46 miliardi di dollari',
+  tnav2_dir:'Argomento Successivo \u00a0\u2192', tnav2_title:'Cyberstalking e Doxxing', tnav2_sub:'05 \u2014 Sorveglianza digitale, molestie coordinate ed esposizione dell\'identit\u00e0',
+  footer_note:'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate sopra.',
+  footer_src:'Fonti', footer_prev:'Prevenzione', footer_top:'Tutti gli Argomenti', footer_quiz:'Quiz', foot_imprint:"Note legali"
+};
+
+/* =======================================================
+   RENDERER
+======================================================= */
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function applyLang(lang){
+  var c=T[lang]; if(!c)return;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect'); if(s1)s1.value=lang;
+  var s2=g('langSelMob'); if(s2)s2.value=lang;
+  document.title=c.page_title;
+  /* nav */
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  /* breadcrumb */
+  st('bc-home',c.bc_home);st('bc-topics',c.bc_topics);st('bc-current',c.bc_current);
+  /* hero */
+  st('hero-series-lbl',c.hero_series);si('hero-h1',c.hero_h1);st('hero-lead',c.hero_lead);
+  st('meta1-lbl',c.meta1_lbl);st('meta1-val',c.meta1_val);
+  st('meta2-lbl',c.meta2_lbl);st('meta2-val',c.meta2_val);
+  st('meta3-lbl',c.meta3_lbl);st('meta3-val',c.meta3_val);
+  st('meta4-lbl',c.meta4_lbl);st('meta4-val',c.meta4_val);
+  /* stats */
+  st('stat1-lbl',c.stat1_lbl);st('stat2-lbl',c.stat2_lbl);
+  st('stat3-lbl',c.stat3_lbl);st('stat4-lbl',c.stat4_lbl);
+  /* s1 */
+  st('s1-eye',c.s1_eye);si('pq-text',c.pq_text);st('pq-cite',c.pq_cite);
+  si('s1p1',c.s1p1);st('s1p2',c.s1p2);st('s1p3',c.s1p3);
+  /* s2 pipeline */
+  st('s2-eye',c.s2_eye);si('s2-h2',c.s2_h2);st('s2-intro',c.s2_intro);
+  st('pipeline-lbl',c.pipeline_lbl);
+  st('st1-step',c.st1_step);st('st1-h3',c.st1_h3);st('st1-p',c.st1_p);
+  st('st2-step',c.st2_step);st('st2-h3',c.st2_h3);st('st2-p',c.st2_p);
+  st('ex2-1',c.ex2_1);st('ex2-2',c.ex2_2);st('ex2-3',c.ex2_3);st('ex2-4',c.ex2_4);
+  st('st3-step',c.st3_step);st('st3-h3',c.st3_h3);st('st3-p',c.st3_p);
+  st('ex3-1',c.ex3_1);st('ex3-2',c.ex3_2);st('ex3-3',c.ex3_3);
+  st('st4-step',c.st4_step);st('st4-h3',c.st4_h3);st('st4-p',c.st4_p);
+  st('ex4-1',c.ex4_1);st('ex4-2',c.ex4_2);st('ex4-3',c.ex4_3);
+  st('st5-step',c.st5_step);st('st5-h3',c.st5_h3);st('st5-p',c.st5_p);
+  st('ex5-1',c.ex5_1);st('ex5-2',c.ex5_2);st('ex5-3',c.ex5_3);st('ex5-4',c.ex5_4);
+  /* s3 algo */
+  st('s3-eye',c.s3_eye);st('s3-h2',c.s3_h2);st('s3-intro',c.s3_intro);
+  st('as1-h4',c.as1_h4);st('as1-p',c.as1_p);
+  st('as2-h4',c.as2_h4);st('as2-p',c.as2_p);
+  st('as3-h4',c.as3_h4);st('as3-p',c.as3_p);
+  st('as4-h4',c.as4_h4);st('as4-p',c.as4_p);
+  st('as5-h4',c.as5_h4);st('as5-p',c.as5_p);
+  st('slot2-title',c.slot2_title);st('slot2-desc',c.slot2_desc);st('slot2-tag',c.slot2_tag);
+  /* s4 platforms */
+  st('s4-eye',c.s4_eye);st('s4-h2',c.s4_h2);st('s4-intro',c.s4_intro);
+  st('pt1-type',c.pt1_type);st('pt1-p',c.pt1_p);st('pt1-badge',c.pt1_badge);
+  st('pt2-type',c.pt2_type);st('pt2-p',c.pt2_p);st('pt2-badge',c.pt2_badge);
+  st('pt3-type',c.pt3_type);st('pt3-p',c.pt3_p);st('pt3-badge',c.pt3_badge);
+  st('pt4-type',c.pt4_type);st('pt4-p',c.pt4_p);st('pt4-badge',c.pt4_badge);
+  st('pt5-type',c.pt5_type);st('pt5-p',c.pt5_p);st('pt5-badge',c.pt5_badge);
+  st('pt6-name',c.pt6_name);st('pt6-type',c.pt6_type);st('pt6-p',c.pt6_p);st('pt6-badge',c.pt6_badge);
+  /* s5 violence */
+  st('s5-eye',c.s5_eye);si('s5-h2',c.s5_h2);st('s5-intro',c.s5_intro);
+  st('cl1',c.cl1);st('ct1',c.ct1);st('ch1',c.ch1);st('cp1',c.cp1);
+  st('cl2',c.cl2);st('ct2',c.ct2);st('ch2',c.ch2);st('cp2',c.cp2);
+  st('cl3',c.cl3);st('ct3',c.ct3);st('ch3',c.ch3);st('cp3',c.cp3);
+  st('cl4',c.cl4);st('ct4',c.ct4);st('ch4',c.ch4);st('cp4',c.cp4);
+  st('slot3-title',c.slot3_title);st('slot3-desc',c.slot3_desc);st('slot3-tag',c.slot3_tag);
+  /* s6 definitions */
+  st('s6-eye',c.s6_eye);si('s6-h2',c.s6_h2);st('s6-intro',c.s6_intro);
+  st('slot4-title',c.slot4_title);st('slot4-desc',c.slot4_desc);st('slot4-tag',c.slot4_tag);
+  st('def1-tag',c.def1_tag);st('def1-h3',c.def1_h3);st('def1-p',c.def1_p);
+  st('def2-tag',c.def2_tag);st('def2-h3',c.def2_h3);st('def2-p',c.def2_p);
+  st('def3-tag',c.def3_tag);st('def3-h3',c.def3_h3);st('def3-p',c.def3_p);
+  /* s7 legal */
+  st('s7-eye',c.s7_eye);si('s7-h2',c.s7_h2);st('s7-intro',c.s7_intro);
+  st('ln1',c.ln1);st('ll1',c.ll1);st('ls1',c.ls1);st('lh1',c.lh1);st('lp1',c.lp1);
+  st('ln2',c.ln2);st('ll2',c.ll2);st('ls2',c.ls2);st('lh2',c.lh2);st('lp2',c.lp2);
+  st('ln3',c.ln3);st('ll3',c.ll3);st('ls3',c.ls3);st('lh3',c.lh3);st('lp3',c.lp3);
+  st('ln4',c.ln4);st('ll4',c.ll4);st('ls4',c.ls4);st('lh4',c.lh4);st('lp4',c.lp4);
+  st('bar-g1-lbl',c.bar_g1);st('bar-g2-lbl',c.bar_g2);
+  st('br1-lbl',c.br1_lbl);st('br2-lbl',c.br2_lbl);st('br3-lbl',c.br3_lbl);st('br4-lbl',c.br4_lbl);
+  st('br5-lbl',c.br5_lbl);st('br6-lbl',c.br6_lbl);st('br7-lbl',c.br7_lbl);st('br8-lbl',c.br8_lbl);
+  /* refs */
+  st('ref-eye',c.ref_eye);st('ref-h2',c.ref_h2);
+  /* quiz strip */
+  var qp=g('quiz-strip-p');
+  if(qp)qp.innerHTML=c.quiz_p+' <span>'+c.quiz_span+'</span>';
+  st('quiz-strip-btn',c.quiz_btn);
+  /* topic nav */
+  st('tnav1-dir',c.tnav1_dir);st('tnav1-title',c.tnav1_title);st('tnav1-sub',c.tnav1_sub);
+  st('tnav2-dir',c.tnav2_dir);st('tnav2-title',c.tnav2_title);st('tnav2-sub',c.tnav2_sub);
+  /* footer */
+  st('footer-note',c.footer_note);st('footer-src',c.footer_src);
+  st('footer-prev',c.footer_prev);st('footer-top',c.footer_top);st('footer-quiz',c.footer_quiz);
+}
+
+function switchLanguage(lang){applyLang(lang)}
+
+/* HAMBURGER */
+var hb=document.getElementById('hamburger');
+var nm=document.getElementById('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+/* INIT */
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>

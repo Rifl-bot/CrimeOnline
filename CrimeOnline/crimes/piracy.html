@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Online Piracy | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.14);
+  --blue:#2563eb;--blue-lt:#3b82f6;--blue-vivid:#60a5fa;
+  --blue-glow:rgba(37,99,235,0.13);--blue-border:rgba(37,99,235,0.35);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);--border-red:rgba(192,57,43,0.38);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--blue);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+
+/* HERO */
+.topic-hero{position:relative;overflow:hidden;min-height:72vh;display:flex;align-items:flex-end;padding:0 80px 72px}
+.hero-img-slot{position:absolute;inset:0;background:var(--navy-mid);display:flex;align-items:center;justify-content:center}
+.placeholder-label{font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.13);letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(255,255,255,0.09);padding:10px 20px;border-radius:3px;pointer-events:none;user-select:none}
+.hero-overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,1) 0%,rgba(10,14,26,0.7) 40%,rgba(10,14,26,0.25) 100%);pointer-events:none}
+.hero-overlay-blue{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 72% 30%,rgba(37,99,235,0.09),transparent 65%);pointer-events:none}
+.hero-scanlines{position:absolute;inset:0;pointer-events:none;z-index:1;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px)}
+.topic-hero-content{position:relative;z-index:2;max-width:800px}
+.topic-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-vivid);margin-bottom:22px}
+.topic-num-badge{background:var(--blue);color:var(--white);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700}
+.topic-hero h1{font-family:var(--font-d);font-size:clamp(38px,5.5vw,70px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--white);margin-bottom:22px}
+.topic-hero h1 em{font-style:italic;color:var(--blue-vivid)}
+.hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:660px;margin-bottom:36px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.05em;padding-top:24px;border-top:1px solid var(--border)}
+.hero-meta strong{color:var(--slate-lt);font-weight:500}
+@media(max-width:860px){.topic-hero{padding:80px 24px 52px;min-height:55vh}}
+
+/* STAT STRIP */
+.stat-strip{background:var(--navy-surface);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:28px 32px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:900;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-num .b{color:var(--blue-vivid)}
+.stat-num .r{color:var(--crimson)}
+.stat-lbl{font-size:12px;color:var(--slate);line-height:1.4;max-width:150px}
+.stat-src{display:block;font-size:10px;font-family:var(--font-m);color:rgba(100,116,139,0.55);margin-top:8px;letter-spacing:.04em}
+@media(max-width:720px){.stat-strip{grid-template-columns:1fr 1fr}.stat-cell:nth-child(2){border-right:none}.stat-cell:nth-child(3){border-top:1px solid var(--border)}.stat-cell:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* CONTENT */
+.content-section{padding:80px}
+.bg-mid{background:var(--navy-mid)}
+.section-eyebrow{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:14px;display:block}
+.section-eyebrow.red{color:var(--crimson)}
+.section-h2{font-family:var(--font-d);font-size:clamp(26px,3vw,42px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.section-h3{font-family:var(--font-d);font-size:21px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:12px;margin-top:40px}
+.prose{font-size:15px;color:var(--slate-lt);line-height:1.85;max-width:800px;margin-bottom:20px}
+.prose strong{color:var(--white);font-weight:600}
+.section-divider{height:1px;background:linear-gradient(90deg,var(--blue),transparent);margin:0 80px;opacity:.22}
+@media(max-width:860px){.content-section{padding:52px 24px}.section-divider{margin:0 24px}}
+
+/* PULL QUOTE */
+.pull-quote{margin:36px 0;padding:28px 36px;border-left:3px solid var(--blue);background:var(--blue-glow);border-radius:0 4px 4px 0}
+.pull-quote p{font-family:var(--font-d);font-size:20px;font-style:italic;color:var(--white);line-height:1.55;margin-bottom:10px}
+.pull-quote cite{font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+
+/* CALLOUT */
+.callout{margin:28px 0;padding:20px 26px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.callout.blue{border:1px solid var(--blue-border);background:var(--blue-glow)}
+.callout.red{border:1px solid var(--border-red);background:rgba(192,57,43,0.06)}
+.callout-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+.callout-icon.blue{background:var(--blue)}
+.callout-icon.red{background:var(--crimson)}
+.callout-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.callout-text strong{font-weight:600}
+.callout.blue .callout-text strong{color:var(--blue-vivid)}
+.callout.red .callout-text strong{color:#e89a90}
+
+/* ECOSYSTEM GRID */
+.ecosystem-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:52px}
+.eco-card{background:var(--navy-mid);padding:34px 30px;position:relative;overflow:hidden;transition:background .2s}
+.eco-card:hover{background:var(--navy-surface)}
+.eco-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.eco-card:hover::before{transform:scaleX(1)}
+.eco-card.wide{grid-column:span 2}
+.eco-tag{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px}
+.eco-card h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.eco-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.eco-badge{display:inline-block;margin-top:16px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.eb-blue{background:rgba(37,99,235,0.15);color:var(--blue-vivid)}
+.eb-red{background:rgba(192,57,43,0.15);color:#e89a90}
+.eb-green{background:rgba(22,163,74,0.15);color:#6ec97a}
+.eb-slate{background:rgba(100,116,139,0.15);color:var(--slate-lt)}
+@media(max-width:720px){.ecosystem-grid{grid-template-columns:1fr}.eco-card.wide{grid-column:span 1}}
+
+/* HOW ORGANISED */
+.how-split{display:grid;grid-template-columns:1fr 380px;gap:72px;align-items:start;margin-top:52px}
+.img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.11);border-radius:5px;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(37,99,235,0.05),transparent);pointer-events:none}
+.slot-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,0.02);position:relative;z-index:1}
+.slot-title-el{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
+.slot-desc-el{font-size:12px;color:rgba(100,116,139,0.45);line-height:1.6;max-width:220px;text-align:center;position:relative;z-index:1}
+.slot-tag-el{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(37,99,235,0.5);border:1px dashed rgba(37,99,235,0.3);padding:4px 12px;border-radius:2px;position:relative;z-index:1}
+@media(max-width:860px){.how-split{grid-template-columns:1fr}.img-slot{min-height:200px}}
+
+/* MALWARE SPLIT */
+.malware-split{display:grid;grid-template-columns:1fr 420px;min-height:560px;padding:0}
+.malware-text{padding:88px 80px;background:var(--navy);display:flex;flex-direction:column;justify-content:center}
+.malware-text .prose{max-width:100%}
+.malware-img{background:var(--navy-surface);border-left:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:48px;text-align:center}
+.malware-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(192,57,43,0.06),transparent 65%);pointer-events:none}
+.malware-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(60deg,rgba(192,57,43,0.04) 0px,rgba(192,57,43,0.04) 1px,transparent 1px,transparent 20px),repeating-linear-gradient(-60deg,rgba(192,57,43,0.04) 0px,rgba(192,57,43,0.04) 1px,transparent 1px,transparent 20px);pointer-events:none}
+.malware-threat-box{position:relative;z-index:2;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:14px;width:100%}
+.threat-row{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-m);font-size:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.threat-row:last-child{padding-bottom:0;border-bottom:none}
+.threat-name{color:var(--slate-lt)}
+.threat-level{font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:.04em}
+.tl-crit{background:rgba(192,57,43,0.25);color:#e89a90}
+.tl-high{background:rgba(217,119,6,0.2);color:#f0c97a}
+.tl-med{background:rgba(37,99,235,0.2);color:var(--blue-vivid)}
+.malware-slot-label{position:relative;z-index:2;font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(192,57,43,0.4);border:1px dashed rgba(192,57,43,0.25);padding:5px 14px;border-radius:2px}
+.malware-slot-desc{position:relative;z-index:2;font-size:12px;color:rgba(100,116,139,0.45);text-align:center;max-width:200px}
+.threat-box-lbl{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+@media(max-width:860px){.malware-split{grid-template-columns:1fr}.malware-img{border-left:none;border-top:1px solid var(--border);min-height:300px}.malware-text{padding:52px 24px}}
+
+/* SCALE */
+.scale-section{background:var(--navy-mid)}
+.scale-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.scale-card{background:var(--navy-mid);padding:36px 30px;text-align:center;transition:background .2s}
+.scale-card:hover{background:var(--navy-surface)}
+.scale-card-num{font-family:var(--font-d);font-size:48px;font-weight:900;color:var(--white);line-height:1;margin-bottom:10px}
+.scale-card-num .b{color:var(--blue-vivid)}
+.scale-card-num .r{color:var(--crimson)}
+.scale-card-label{font-size:13px;color:var(--slate-lt);line-height:1.55;margin-bottom:8px}
+.scale-card-src{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.05em}
+.data-bars{margin-top:0}
+.dbar{margin-bottom:22px}
+.dbar-label{display:flex;justify-content:space-between;font-size:13px;color:var(--slate-lt);margin-bottom:7px}
+.dbar-label span:last-child{font-family:var(--font-m);color:var(--white);font-size:12px}
+.dbar-track{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.dbar-fill{height:100%;border-radius:2px;transform-origin:left;animation:bar-in 1s ease both}
+@keyframes bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fill-blue{background:var(--blue)}
+.fill-slate{background:var(--slate)}
+@media(max-width:720px){.scale-grid{grid-template-columns:1fr}}
+
+/* CASES */
+.cases-list{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.case-item{display:grid;grid-template-columns:180px 1fr;gap:48px;padding:36px 0;border-bottom:1px solid var(--border);align-items:start}
+.case-item:last-child{border-bottom:none}
+.case-meta{display:flex;flex-direction:column;gap:6px}
+.case-year{font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--blue-lt);line-height:1}
+.case-jurisdiction{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.case-outcome{display:inline-block;margin-top:6px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.co-convicted{background:rgba(192,57,43,0.15);color:#e89a90}
+.co-settled{background:rgba(217,119,6,0.15);color:#f0c97a}
+.co-shutdown{background:rgba(22,163,74,0.15);color:#6ec97a}
+.co-ongoing{background:rgba(37,99,235,0.15);color:var(--blue-vivid)}
+.case-body h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.case-body p{font-size:14px;color:var(--slate-lt);line-height:1.75}
+@media(max-width:720px){.case-item{grid-template-columns:1fr}}
+
+/* RESPONSE */
+.response-section{background:var(--navy-mid)}
+.response-img-slot{width:100%;height:280px;background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:48px 0;position:relative;overflow:hidden}
+.response-img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(37,99,235,0.05),transparent);pointer-events:none}
+.response-img-slot::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.response-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.resp-card{background:var(--navy-mid);padding:30px 28px;transition:background .2s}
+.resp-card:hover{background:var(--navy-surface)}
+.resp-card-tag{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:10px}
+.resp-card h3{font-family:var(--font-d);font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.25}
+.resp-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.resp-card-result{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.rr-mixed{background:rgba(217,119,6,0.15);color:#f0c97a}
+.rr-success{background:rgba(22,163,74,0.15);color:#6ec97a}
+.rr-limited{background:rgba(192,57,43,0.15);color:#e89a90}
+.rr-growing{background:rgba(37,99,235,0.15);color:var(--blue-vivid)}
+@media(max-width:640px){.response-grid{grid-template-columns:1fr}}
+
+/* DEBATE */
+.debate-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:52px}
+.debate-col{padding:40px 38px}
+.debate-col:first-child{border-right:1px solid var(--border)}
+.debate-col h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);line-height:1.2}
+.debate-point{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px;font-size:13px;color:var(--slate-lt);line-height:1.65}
+.ddot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.ddot.blue{background:var(--blue)}
+.ddot.slate{background:var(--slate)}
+@media(max-width:720px){.debate-split{grid-template-columns:1fr}.debate-col:first-child{border-right:none;border-bottom:1px solid var(--border)}}
+
+/* REFS */
+.ref-list{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.ref-item{font-size:13px;color:var(--slate);line-height:1.6;padding:12px 16px;background:rgba(255,255,255,0.02);border-left:2px solid rgba(255,255,255,0.07);border-radius:0 3px 3px 0;font-family:var(--font-m);letter-spacing:.02em;transition:border-color .2s}
+.ref-item:hover{border-color:rgba(37,99,235,0.4);color:var(--slate-lt)}
+
+/* QUIZ STRIP */
+.quiz-strip{background:var(--crimson);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.quiz-strip p{font-size:15px;font-weight:500;color:rgba(255,255,255,0.92)}
+.quiz-strip p span{font-weight:300;opacity:.8;font-size:13px}
+.btn-quiz{background:rgba(255,255,255,0.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background .2s;white-space:nowrap}
+.btn-quiz:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:600px){.quiz-strip{padding:24px}}
+
+/* TOPIC NAV */
+.topic-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.topic-nav-card{background:var(--navy-mid);padding:36px 48px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.topic-nav-card:hover{background:var(--navy-surface)}
+.topic-nav-card.next{text-align:right}
+.tnav-dir{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.tnav-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);line-height:1.2}
+.tnav-sub{font-size:13px;color:var(--slate)}
+@media(max-width:640px){.topic-nav{grid-template-columns:1fr}.topic-nav-card{padding:28px 24px}.topic-nav-card.next{text-align:left}}
+
+/* FOOTER */
+footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:380px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="../prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="../sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="../quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="../index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="../prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="../sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="../quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="../index.html#topics" id="bc-topics">Topics</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Online Piracy</span>
+</div>
+
+<!-- HERO -->
+<section class="topic-hero">
+  <div class="hero-img-slot">
+    <span class="placeholder-label"></span>
+  </div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-blue"></div>
+  <div class="hero-scanlines"></div>
+  <div class="topic-hero-content">
+    <div class="topic-label">
+      <span class="topic-num-badge">03</span>
+      <span id="hero-series-lbl">Internet Crime Series &nbsp;&middot;&nbsp; Full Report</span>
+    </div>
+    <h1 id="hero-h1">Online<br><em>Piracy</em></h1>
+    <p class="hero-lead" id="hero-lead">A $46 billion annual problem that the entertainment industry has been losing for three decades &mdash; the history, mechanics, and contested ethics of digital copyright infringement, and the hidden danger lurking inside every cracked software download.</p>
+    <div class="hero-meta">
+      <span><strong id="meta1-lbl">Severity:</strong>&nbsp;<span id="meta1-val">Medium&ndash;High</span></span>
+      <span><strong id="meta2-lbl">Annual economic impact:</strong>&nbsp;<span id="meta2-val">$46B+ globally</span></span>
+      <span><strong id="meta3-lbl">Key methods:</strong>&nbsp;<span id="meta3-val">BitTorrent &middot; IPTV &middot; DDL &middot; Scene groups</span></span>
+      <span><strong id="meta4-lbl">Hidden threat:</strong>&nbsp;<span id="meta4-val">Malware in pirated software</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">$<span class="b">46</span>B</div><div class="stat-lbl" id="stat1-lbl">annual global losses attributed to software piracy alone</div><span class="stat-src">BSA / IDC, 2023</span></div>
+  <div class="stat-cell"><div class="stat-num">1.<span class="b">3B</span></div><div class="stat-lbl" id="stat2-lbl">visits to piracy sites monthly at peak of The Pirate Bay&rsquo;s popularity</div><span class="stat-src">MUSO, 2022</span></div>
+  <div class="stat-cell"><div class="stat-num">58<span class="r">%</span></div><div class="stat-lbl" id="stat3-lbl">of pirated software downloads contain malware, according to cybersecurity research</div><span class="stat-src">Cybereason, 2022</span></div>
+  <div class="stat-cell"><div class="stat-num">67<span class="b">B</span></div><div class="stat-lbl" id="stat4-lbl">annual visits to piracy sites globally across all content categories</div><span class="stat-src">MUSO, 2023</span></div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s1-eye">Overview</span>
+  <div class="pull-quote">
+    <p id="pq-text">&ldquo;Information wants to be free. Information also wants to be expensive. That tension will not go away.&rdquo;</p>
+    <cite id="pq-cite">Stewart Brand, 1984 &mdash; the line that launched a thousand arguments</cite>
+  </div>
+  <p class="prose" id="s1p1">Online piracy &mdash; the unauthorised reproduction, distribution, and consumption of copyrighted material via the internet &mdash; is one of the oldest, most debated, and most persistent categories of internet crime. Unlike the drug trade or NCII, its victims are primarily corporations and industry bodies rather than individuals, and its perpetrators include hundreds of millions of ordinary internet users who do not consider themselves criminals in any meaningful sense.</p>
+  <p class="prose" id="s1p2">This moral complexity does not eliminate the legal reality: <strong>copyright infringement at scale costs measurable economic harm</strong>, displaces legitimate revenue, and funds organised criminal networks (particularly in the illegal IPTV sector). It also, paradoxically, demonstrates real market failures &mdash; geo-blocking, pricing inequality, and release window delays that the entertainment industry has been slow to address.</p>
+  <p class="prose" id="s1p3">But piracy also carries a danger most casual users completely underestimate: the malware embedded in cracked software downloads. This is not an edge case. It is a primary infection vector for ransomware, spyware, and credential-stealing trojans affecting millions of machines annually.</p>
+  <p class="prose" id="s1p4">This report examines all of it: the methods, the scale, the ecosystem of organised piracy, the criminal infrastructure around it, the landmark legal cases, and the ongoing debate about access, pricing, and the internet&rsquo;s relationship with intellectual property.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S2: ECOSYSTEM -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="s2-eye">Section 2</span>
+  <h2 class="section-h2" id="s2-h2">The Piracy Ecosystem:<br>Five Methods, One Supply Chain</h2>
+  <p class="prose" id="s2-intro">Digital piracy is not a single activity. It is a layered ecosystem of methods ranging from individual peer-to-peer file sharing to highly organised criminal distribution networks &mdash; each with distinct legal, technical, and economic characteristics.</p>
+  <div class="ecosystem-grid">
+
+    <div class="eco-card wide">
+      <div class="eco-tag" id="eco1-tag">01 &mdash; Most Widely Used</div>
+      <h3 id="eco1-h3">BitTorrent and Peer-to-Peer (P2P) File Sharing</h3>
+      <p id="eco1-p">BitTorrent is a decentralised file transfer protocol where users download pieces of a file from multiple sources simultaneously while also uploading pieces they have. It is also the primary method by which pirated films, music, software, and games are distributed. The Pirate Bay, founded in 2003 in Sweden, became the world&rsquo;s most visited torrent index site. Its founders were convicted and sentenced to prison in 2009 &mdash; but the site continued operating for years, and numerous successor sites remain active. BitTorrent traffic is visible to ISPs and copyright enforcement agencies, making it a legally risky method.</p>
+      <span class="eco-badge eb-blue" id="eco1-badge">67B+ annual visits to torrent sites</span>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-tag" id="eco2-tag">02 &mdash; Fastest Growing</div>
+      <h3 id="eco2-h3">Illegal IPTV</h3>
+      <p id="eco2-p">Internet Protocol Television piracy involves subscription services that provide live television, film, and sports content through illegally obtained streams. Illegal IPTV has become the dominant form of piracy in Europe and has significant organised crime involvement. Operations resell access to stolen broadcast streams at low monthly rates, undercutting legitimate services.</p>
+      <span class="eco-badge eb-red" id="eco2-badge">Major organised crime involvement</span>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-tag" id="eco3-tag">03 &mdash; Scene Groups</div>
+      <h3 id="eco3-h3">The Warez Scene</h3>
+      <p id="eco3-p">The &lsquo;Scene&rsquo; is a semi-underground network of release groups that crack, encode, and distribute pirated content &mdash; films, software, games &mdash; via private FTP servers, often hours before legitimate release. Scene groups operate under strict internal rules, use pseudonyms, and form a hierarchical reputation economy.</p>
+      <span class="eco-badge eb-slate" id="eco3-badge">Organised release network</span>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-tag" id="eco4-tag">04 &mdash; Direct Download</div>
+      <h3 id="eco4-h3">Cyberlockers and DDL Sites</h3>
+      <p id="eco4-p">Direct download sites host pirated content on centralised servers. The 2012 Megaupload seizure was one of the most significant anti-piracy operations in history, arresting founder Kim Dotcom in New Zealand. Legal proceedings continued for over a decade. Users download directly rather than peer-to-peer, providing less legal exposure than BitTorrent.</p>
+      <span class="eco-badge eb-blue" id="eco4-badge">Centralised &mdash; faster, lower exposure</span>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-tag" id="eco5-tag">05 &mdash; Emerging</div>
+      <h3 id="eco5-h3">Streaming Piracy and Ripping</h3>
+      <p id="eco5-p">As legitimate streaming services have proliferated, so have pirate streaming sites embedding content in browser-based players. Sites like 123Movies served hundreds of millions of visitors. The proliferation of multiple paid services (Netflix, Disney+, HBO Max, Apple TV+) has directly correlated with rising streaming piracy &mdash; many users cite cost and fragmentation as their primary motivation.</p>
+      <span class="eco-badge eb-green" id="eco5-badge">Fastest-growing piracy category</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- S3: HOW ORGANISED PIRACY WORKS -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s3-eye">Section 3</span>
+  <h2 class="section-h2" id="s3-h2">How Organised Piracy Works</h2>
+  <p class="prose" id="s3-intro">Casual piracy &mdash; a student downloading a film &mdash; is legally and operationally distinct from the organised distribution networks that supply pirated content at scale. Understanding the latter is essential to understanding enforcement.</p>
+  <div class="how-split">
+    <div>
+      <p class="prose" id="s3p1">At the top of the supply chain sit the <strong>release groups</strong> &mdash; the Scene. These are small, geographically distributed groups of specialists: encoders who compress film and audio; crackers who defeat software copy-protection (DRM); NFO writers who produce documentation; and couriers who distribute to private FTP servers.</p>
+      <p class="prose" id="s3p2">From private FTP servers, releases move to semi-public pre-databases, then to public torrent indexing sites and DDL portals. A major film can move from cinema screen to global public availability within hours of release via camrip, screener leak, or compressed digital file.</p>
+      <div class="callout blue"><div class="callout-icon blue">&#x2192;</div><div class="callout-text" id="s3-callout"><strong>Software supply chain:</strong> For pirated software, release groups crack commercial applications &mdash; removing DRM and licence verification &mdash; and package them with key generators. This is precisely the step at which malware is most frequently introduced, by malicious third parties repackaging legitimate releases or criminal groups operating counterfeit sites.</div></div>
+      <p class="prose" id="s3p3">The <strong>illegal IPTV sector</strong> operates differently: operators steal broadcast streams using satellite receivers, restream them via server infrastructure, and sell monthly subscriptions via reseller networks. Some operations generate millions of euros annually before seizure.</p>
+      <p class="prose" id="s3p4">Payment processing is a persistent challenge for piracy operations &mdash; banks and card networks have been pressured to refuse processing for known piracy sites. Many resort to cryptocurrency, PayPal alternatives, or cash-based reseller networks.</p>
+    </div>
+    <div class="img-slot">
+      <img src="../media/img/piracy.jpg"/>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S4: MALWARE -->
+<section class="malware-split">
+  <div class="malware-text">
+    <span class="section-eyebrow red" id="s4-eye">Section 4 &mdash; Critical Risk</span>
+    <h2 class="section-h2" id="s4-h2">The Hidden Danger:<br>Malware in Pirated Software</h2>
+    <p class="prose" id="s4p1">For most casual users, online piracy feels like a victimless shortcut. The reality of pirated software downloads is considerably darker. Research consistently finds that a <strong>majority of pirated software packages contain malicious code</strong> &mdash; not as a fringe occurrence, but as standard practice among criminal groups that operate counterfeit distribution sites.</p>
+    <p class="prose" id="s4p2">The mechanism is straightforward: a user searches for a cracked version of a commercial application, downloads it from a piracy portal or torrent, and the payload installs silently alongside the promised software. The user sees the application launch normally. The malware is already running.</p>
+    <div class="callout red"><div class="callout-icon red">!</div><div class="callout-text" id="s4-callout"><strong>Cybereason research (2022)</strong> found that 58% of pirated software downloads they tested contained embedded malware. Recorded Future&rsquo;s analysis identified credential stealers, cryptominers, and ransomware droppers as the most common payloads &mdash; all operating silently after installation.</div></div>
+    <p class="prose" id="s4p3">Common malware types include: <strong>credential stealers</strong> harvesting saved passwords and banking logins; <strong>cryptominers</strong> using the victim&rsquo;s CPU/GPU; <strong>ransomware droppers</strong> staging later deployments sometimes weeks after infection; and <strong>remote access trojans (RATs)</strong> giving attackers persistent control.</p>
+    <p class="prose" id="s4p4">This makes pirated software a significant threat not just to individuals but to organisations. Employees who install pirated software on work devices &mdash; or personal machines that connect to corporate networks &mdash; create entry points for attacks that may have nothing to do with the piracy itself.</p>
+  </div>
+  <div class="malware-img">
+    <div class="malware-threat-box">
+      <p class="threat-box-lbl" id="threat-box-lbl">Common malware payloads in pirated software</p>
+      <div class="threat-row"><span class="threat-name" id="tr1-name">Credential Stealer</span><span class="threat-level tl-crit" id="tr1-lvl">Critical</span></div>
+      <div class="threat-row"><span class="threat-name" id="tr2-name">Ransomware Dropper</span><span class="threat-level tl-crit" id="tr2-lvl">Critical</span></div>
+      <div class="threat-row"><span class="threat-name" id="tr3-name">Remote Access Trojan</span><span class="threat-level tl-high" id="tr3-lvl">High</span></div>
+      <div class="threat-row"><span class="threat-name" id="tr4-name">Cryptominer</span><span class="threat-level tl-high" id="tr4-lvl">High</span></div>
+      <div class="threat-row"><span class="threat-name" id="tr5-name">Adware / Spyware</span><span class="threat-level tl-med" id="tr5-lvl">Medium</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: SCALE -->
+<section class="content-section scale-section">
+  <span class="section-eyebrow" id="s5-eye">Section 5</span>
+  <h2 class="section-h2" id="s5-h2">The Scale of the Problem</h2>
+  <p class="prose" id="s5-intro">Measuring piracy&rsquo;s economic impact is contested &mdash; industry figures tend toward maximalism, while independent researchers often find significantly lower real-world displacement effects.</p>
+  <div class="scale-grid">
+    <div class="scale-card"><div class="scale-card-num">$<span class="b">46</span>B</div><div class="scale-card-label" id="sc1-lbl">annual global losses from software piracy, covering commercial applications, games, and enterprise software</div><div class="scale-card-src">BSA / IDC Global Software Survey, 2023</div></div>
+    <div class="scale-card"><div class="scale-card-num">$<span class="b">71</span>B</div><div class="scale-card-label" id="sc2-lbl">estimated annual revenue loss to the US economy from piracy across all media &mdash; film, music, software, publishing</div><div class="scale-card-src">US Chamber of Commerce, 2023</div></div>
+    <div class="scale-card"><div class="scale-card-num">37<span class="r">%</span></div><div class="scale-card-label" id="sc3-lbl">of all software installed on personal computers globally is unlicensed &mdash; including pirated and improperly licensed copies</div><div class="scale-card-src">BSA, 2022</div></div>
+  </div>
+  <div class="callout blue" style="margin-top:40px"><div class="callout-icon blue">&#x2192;</div><div class="callout-text" id="s5-callout"><strong>The displacement debate:</strong> Not every pirated download represents a lost sale. Academic research &mdash; including studies by the EU Intellectual Property Office &mdash; has consistently found that the relationship between piracy and legitimate sales is more complex than industry figures suggest. Some piracy is displacement of real purchases; some is consumption by people who would not have purchased regardless; and some has been linked to increased legitimate consumption through discovery effects.</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:52px">
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g1-lbl">Most pirated content categories (by volume)</p>
+      <div class="data-bars">
+        <div class="dbar"><div class="dbar-label"><span id="bar1-lbl">Film &amp; TV</span><span>~38%</span></div><div class="dbar-track"><div class="dbar-fill fill-blue" style="width:38%;animation-delay:.1s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar2-lbl">Music</span><span>~24%</span></div><div class="dbar-track"><div class="dbar-fill fill-blue" style="width:24%;animation-delay:.2s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar3-lbl">Software &amp; Games</span><span>~22%</span></div><div class="dbar-track"><div class="dbar-fill fill-blue" style="width:22%;animation-delay:.3s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar4-lbl">Live Sports (IPTV)</span><span>~11%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:11%;animation-delay:.4s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar5-lbl">Books / Publishing</span><span>~5%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:5%;animation-delay:.5s"></div></div></div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g2-lbl">User-cited motivations for piracy</p>
+      <div class="data-bars">
+        <div class="dbar"><div class="dbar-label"><span id="bar6-lbl">Price / unaffordable</span><span>~47%</span></div><div class="dbar-track"><div class="dbar-fill fill-blue" style="width:47%;animation-delay:.1s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar7-lbl">Geo-blocking / unavailable</span><span>~28%</span></div><div class="dbar-track"><div class="dbar-fill fill-blue" style="width:28%;animation-delay:.2s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar8-lbl">Convenience / speed</span><span>~17%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:17%;animation-delay:.3s"></div></div></div>
+        <div class="dbar"><div class="dbar-label"><span id="bar9-lbl">Subscription fatigue</span><span>~8%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:8%;animation-delay:.4s"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: LANDMARK CASES -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s6-eye">Section 6</span>
+  <h2 class="section-h2" id="s6-h2">Landmark Cases in Anti-Piracy Law</h2>
+  <p class="prose" id="s6-intro">Legal battles over online piracy have defined the boundaries of internet law, platform liability, and copyright enforcement for three decades &mdash; producing some of the most consequential rulings in digital legal history.</p>
+  <div class="cases-list">
+
+    <div class="case-item">
+      <div class="case-meta">
+        <div class="case-year">1999</div>
+        <div class="case-jurisdiction" id="cj1">United States</div>
+        <span class="case-outcome co-shutdown" id="co1">Shut Down</span>
+      </div>
+      <div class="case-body">
+        <h3 id="ch1">Napster &mdash; The Case That Started Everything</h3>
+        <p id="cp1">Napster&rsquo;s peer-to-peer music sharing service launched in 1999 and reached 80 million registered users within two years. The RIAA sued under the DMCA. Judge Marilyn Patel ruled that Napster had materially contributed to infringement and ordered it to prevent sharing of copyrighted material &mdash; an impossible technical requirement. Napster shut down in 2001. The case established contributory and vicarious infringement liability for P2P platforms and triggered a decade of industry legal action against individual file sharers.</p>
+      </div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-meta">
+        <div class="case-year">2009</div>
+        <div class="case-jurisdiction" id="cj2">Sweden</div>
+        <span class="case-outcome co-convicted" id="co2">Convicted</span>
+      </div>
+      <div class="case-body">
+        <h3 id="ch2">The Pirate Bay Trial</h3>
+        <p id="cp2">The four founders of The Pirate Bay were convicted of assisting copyright infringement and sentenced to one year in prison each, plus 30 million Swedish kronor in damages. The verdict was upheld and sentences increased on appeal. The case drew global attention to BitTorrent indexing liability and made the defendants folk heroes within internet freedom communities. The Pirate Bay continued operating through numerous domain changes for over a decade after conviction.</p>
+      </div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-meta">
+        <div class="case-year">2012</div>
+        <div class="case-jurisdiction" id="cj3">New Zealand / USA</div>
+        <span class="case-outcome co-ongoing" id="co3">Decade-Long Case</span>
+      </div>
+      <div class="case-body">
+        <h3 id="ch3">Megaupload / Kim Dotcom</h3>
+        <p id="cp3">The FBI coordinated with New Zealand police to arrest Kim Dotcom at his Auckland mansion in January 2012, simultaneously seizing Megaupload&rsquo;s servers &mdash; a platform hosting 50 petabytes of data for 150 million registered users. The US DOJ alleged $500 million in infringement losses. The case became one of the longest-running extradition battles in internet history. As of 2024, proceedings were still ongoing. Dotcom launched Mega as a successor service operating legally with end-to-end encryption.</p>
+      </div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-meta">
+        <div class="case-year">2019</div>
+        <div class="case-jurisdiction" id="cj4">European Union</div>
+        <span class="case-outcome co-settled" id="co4">Legislation Passed</span>
+      </div>
+      <div class="case-body">
+        <h3 id="ch4">EU Copyright Directive &mdash; Article 17</h3>
+        <p id="cp4">The EU&rsquo;s Copyright in the Digital Single Market Directive required large online platforms to implement upload filters to prevent users posting copyrighted material. The provision was deeply controversial, with critics arguing it would require automated censorship of all user-uploaded content. YouTube, Wikipedia, and major internet freedom organisations campaigned against it. Passed in 2019, its implementation across member states has been uneven, and its long-term impact remains contested.</p>
+      </div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-meta">
+        <div class="case-year">2024</div>
+        <div class="case-jurisdiction" id="cj5">Global</div>
+        <span class="case-outcome co-ongoing" id="co5">Ongoing</span>
+      </div>
+      <div class="case-body">
+        <h3 id="ch5">AI Training Data and the New Copyright Frontier</h3>
+        <p id="cp5">The most contested copyright battleground of 2024 is the use of copyrighted works to train AI systems without licence or compensation. Multiple lawsuits have been filed against OpenAI, Stability AI, Google, and others by authors, artists, and publishers. The outcomes will likely redefine intellectual property law for the digital age &mdash; potentially dwarfing the impact of any previous piracy case.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S7: INDUSTRY RESPONSE -->
+<section class="content-section response-section">
+  <span class="section-eyebrow" id="s7-eye">Section 7</span>
+  <h2 class="section-h2" id="s7-h2">How Industry and Platforms<br>Have Fought Back</h2>
+  <p class="prose" id="s7-intro">Anti-piracy enforcement has evolved significantly from the early RIAA strategy of suing individual file sharers &mdash; widely considered a public relations disaster &mdash; toward technical blocking, platform cooperation, and the insight that the most effective anti-piracy tool is a competitively priced legitimate service.</p>
+
+  <div class="response-img-slot">
+    <img src="../media/img/anti-piracy.jpg"/>
+  </div>
+
+  <div class="response-grid">
+    <div class="resp-card"><div class="resp-card-tag" id="rc1-tag">Legal strategy</div><h3 id="rc1-h3">DMCA Takedowns and Notice-and-Takedown</h3><p id="rc1-p">The DMCA&rsquo;s notice-and-takedown provision requires platforms to remove infringing content upon receiving a valid copyright complaint. Rights holders now send millions of takedown notices monthly &mdash; Google processes over 5 million per week &mdash; but the volume of infringing content means takedowns function more as suppression than eradication. Content is typically re-uploaded within hours.</p><span class="resp-card-result rr-mixed" id="rc1-res">Mixed Effectiveness</span></div>
+    <div class="resp-card"><div class="resp-card-tag" id="rc2-tag">Technical blocking</div><h3 id="rc2-h3">Court-Ordered ISP Blocking</h3><p id="rc2-p">In the UK, EU, and Australia, rights holders have obtained court orders requiring ISPs to block access to known piracy sites. The Premier League has been particularly effective, securing real-time blocking injunctions during live broadcasts. However, users bypass site blocks trivially using VPNs or by accessing mirror sites &mdash; technically sophisticated users are barely inconvenienced.</p><span class="resp-card-result rr-limited" id="rc2-res">Limited Against VPN Users</span></div>
+    <div class="resp-card"><div class="resp-card-tag" id="rc3-tag">Market response</div><h3 id="rc3-h3">The Spotify / Netflix Effect</h3><p id="rc3-p">The most effective anti-piracy intervention in music and video has not been enforcement &mdash; it has been competitively priced, convenient legal alternatives. Music piracy dropped dramatically following Spotify&rsquo;s growth. Netflix&rsquo;s expansion correlated with significant reductions in TV and film piracy. This is the most empirically supported finding in piracy research: <strong>availability and price are the dominant drivers of piracy rates.</strong></p><span class="resp-card-result rr-success" id="rc3-res">Most Effective Strategy</span></div>
+    <div class="resp-card"><div class="resp-card-tag" id="rc4-tag">Emerging concern</div><h3 id="rc4-h3">Streaming Fragmentation and the Piracy Rebound</h3><p id="rc4-p">The proliferation of streaming services has ironically driven a piracy rebound. Research by MUSO found global piracy increased significantly in 2022&ndash;2023, directly correlated with the fragmentation of streaming catalogues across incompatible, individually priced services. Geo-blocking frustration has historically driven piracy &mdash; and fragmentation recreates it.</p><span class="resp-card-result rr-growing" id="rc4-res">Growing Problem</span></div>
+  </div>
+</section>
+
+<!-- S8: ACCESS DEBATE -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s8-eye">Section 8 &mdash; Policy Debate</span>
+  <h2 class="section-h2" id="s8-h2">The Ethics of Access:<br>Piracy as a Global Inequality Issue</h2>
+  <p class="prose" id="s8-intro">Online piracy generates a genuine ethical debate that is distinct from its legal status. The economics of digital content distribution create real access inequities that the industry has been slow to address &mdash; and that no honest analysis of piracy can ignore.</p>
+  <div class="debate-split">
+    <div class="debate-col">
+      <h3 id="debate1-h3">The Case That Piracy Reflects <span style="color:var(--blue-vivid)">Market Failure</span></h3>
+      <div class="debate-point"><div class="ddot blue"></div><span id="dp1-1">Geo-blocking denies legal access to content based on geographic location &mdash; creating regions where legitimate purchase is impossible regardless of willingness to pay. A user in a developing country blocked from purchasing a streaming service has no legal option other than not watching.</span></div>
+      <div class="debate-point"><div class="ddot blue"></div><span id="dp1-2">Purchasing power parity is largely ignored in content pricing. A Netflix subscription trivial in Western Europe may represent a significant proportion of a monthly salary in South Asia, Africa, or Latin America &mdash; where piracy rates are correspondingly highest.</span></div>
+      <div class="debate-point"><div class="ddot blue"></div><span id="dp1-3">Release window strategies &mdash; withholding digital releases for weeks or months after theatrical premieres &mdash; create artificial windows where piracy is the only way to access new content. The film industry&rsquo;s own data shows piracy spikes during these windows.</span></div>
+      <div class="debate-point"><div class="ddot blue"></div><span id="dp1-4">Academic and scientific publishing represents a particularly acute case: publicly funded research is locked behind paywalls charging $30&ndash;50 per article. Sci-Hub &mdash; often described as &lsquo;the Pirate Bay of science&rsquo; &mdash; serves tens of millions of researchers monthly who have no institutional access.</span></div>
+    </div>
+    <div class="debate-col">
+      <h3 id="debate2-h3">The Case That Piracy Is <span style="color:var(--slate-lt)">Still Harmful</span></h3>
+      <div class="debate-point"><div class="ddot slate"></div><span id="dp2-1">Copyright exists to incentivise the creation of cultural and intellectual works by ensuring creators can monetise them. Systemic piracy undermines the economic models that fund music, film, literature, and software development &mdash; ultimately harming creators rather than just corporations.</span></div>
+      <div class="debate-point"><div class="ddot slate"></div><span id="dp2-2">The access argument does not apply to developed-market piracy &mdash; where users have both the means to pay and legal access &mdash; which represents the majority of piracy by volume. Price sensitivity in high-income markets is a preference, not a genuine barrier to access.</span></div>
+      <div class="debate-point"><div class="ddot slate"></div><span id="dp2-3">The criminal infrastructure of organised piracy &mdash; illegal IPTV networks, cracked software sites &mdash; monetises piracy at scale for operators who profit substantially while providing neither creative value nor any of the access benefits cited by advocates.</span></div>
+      <div class="debate-point"><div class="ddot slate"></div><span id="dp2-4">Malware-laced pirate software imposes real costs on individuals and organisations &mdash; costs that fall on ordinary users who believed they were making a victimless choice. The harm of piracy is not only economic; it is also the harm distributed via the criminal ecosystem that piracy supports.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES — kept in English -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="ref-eye">References</span>
+  <h2 class="section-h2" id="ref-h2">Sources and Further Reading</h2>
+  <div class="ref-list">
+    <div class="ref-item">BSA | The Software Alliance. (2023). <em>BSA Global Software Survey.</em> bsa.org.</div>
+    <div class="ref-item">Cybereason. (2022). <em>Malware in Pirated Software: Threat Intelligence Report.</em> cybereason.com.</div>
+    <div class="ref-item">European Intellectual Property Office. (2023). <em>Online Copyright Infringement in the EU.</em> euipo.europa.eu.</div>
+    <div class="ref-item">Forde, E. (2019). <em>The Final Days of Napster.</em> The Guardian.</div>
+    <div class="ref-item">Karaganis, J. (Ed.). (2011). <em>Media Piracy in Emerging Economies.</em> Social Science Research Council.</div>
+    <div class="ref-item">MUSO. (2023). <em>Global Piracy Report 2023.</em> muso.com.</div>
+    <div class="ref-item">Oberholzer-Gee, F., &amp; Strumpf, K. (2007). The Effect of File Sharing on Record Sales. <em>Journal of Political Economy, 115(1),</em> 1&ndash;42.</div>
+    <div class="ref-item">Recorded Future. (2023). <em>Piracy-Related Malware: Threat Actor Patterns.</em> recordedfuture.com.</div>
+    <div class="ref-item">Svensson, M., &amp; Larsson, S. (2012). Social Norms and Intellectual Property. <em>Lund University.</em></div>
+    <div class="ref-item">US Chamber of Commerce / GIPC. (2023). <em>Measuring the Magnitude of Global Counterfeiting.</em> theglobalipcenter.com.</div>
+    <div class="ref-item">Wired. (2012). <em>The Dotcom Affair: Inside the Megaupload Raid.</em> wired.com.</div>
+    <div class="ref-item">Zentner, A. (2006). Measuring the Effect of File Sharing on Music Purchases. <em>Journal of Law &amp; Economics, 49(1),</em> 63&ndash;90.</div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p id="quiz-strip-p">Test your knowledge on piracy and all other internet crime topics <span>&mdash; 10 randomised questions, no time limit.</span></p>
+  <a href="../quiz/index.html" class="btn-quiz" id="quiz-strip-btn">Take the Quiz &nbsp;&rarr;</a>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav">
+  <a href="drug-trade.html" class="topic-nav-card">
+    <span class="tnav-dir" id="tnav1-dir">&#x2190; Previous Topic</span>
+    <span class="tnav-title" id="tnav1-title">Online Drug Trade</span>
+    <span class="tnav-sub" id="tnav1-sub">02 &mdash; Dark web markets, Telegram, and the fentanyl crisis</span>
+  </a>
+  <a href="hate-speech.html" class="topic-nav-card next">
+    <span class="tnav-dir" id="tnav2-dir">Next Topic &nbsp;&rarr;</span>
+    <span class="tnav-title" id="tnav2-title">Hate Speech &amp; Radicalisation</span>
+    <span class="tnav-sub" id="tnav2-sub">04 &mdash; Algorithmic pipelines, extremism, and real-world violence</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="../index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="../sources.html"      id="footer-src">References</a>
+    <a href="../prevention.html"   id="footer-prev">Prevention</a>
+    <a href="../index.html#topics" id="footer-top">All Topics</a>
+    <a href="../quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="../imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+var T = {};
+
+/* ── ENGLISH ───────────────────────────────────────────── */
+T.en = {
+  page_title:'Online Piracy | CrimeOnline',
+  nav_topics:'Topics', nav_prev:'Prevention', nav_sources:'Sources', nav_cta:'Take the Quiz \u2197',
+  mob_home:'Home', mob_lang:'Language',
+  bc_home:'Home', bc_topics:'Topics', bc_current:'Online Piracy',
+  hero_series:'Internet Crime Series \u00b7 Full Report',
+  hero_h1:'Online<br><em>Piracy</em>',
+  hero_lead:'A $46 billion annual problem that the entertainment industry has been losing for three decades \u2014 the history, mechanics, and contested ethics of digital copyright infringement, and the hidden danger lurking inside every cracked software download.',
+  meta1_lbl:'Severity:', meta1_val:'Medium\u2013High',
+  meta2_lbl:'Annual economic impact:', meta2_val:'$46B+ globally',
+  meta3_lbl:'Key methods:', meta3_val:'BitTorrent \u00b7 IPTV \u00b7 DDL \u00b7 Scene groups',
+  meta4_lbl:'Hidden threat:', meta4_val:'Malware in pirated software',
+  stat1_lbl:'annual global losses attributed to software piracy alone',
+  stat2_lbl:'visits to piracy sites monthly at peak of The Pirate Bay\u2019s popularity',
+  stat3_lbl:'of pirated software downloads contain malware, according to cybersecurity research',
+  stat4_lbl:'annual visits to piracy sites globally across all content categories',
+  s1_eye:'Overview',
+  pq_text:'\u201cInformation wants to be free. Information also wants to be expensive. That tension will not go away.\u201d',
+  pq_cite:'Stewart Brand, 1984 \u2014 the line that launched a thousand arguments',
+  s1p1:'Online piracy \u2014 the unauthorised reproduction, distribution, and consumption of copyrighted material via the internet \u2014 is one of the oldest, most debated, and most persistent categories of internet crime. Unlike the drug trade or NCII, its victims are primarily corporations and industry bodies, and its perpetrators include hundreds of millions of ordinary internet users who do not consider themselves criminals.',
+  s1p2:'This moral complexity does not eliminate the legal reality: <strong>copyright infringement at scale costs measurable economic harm</strong>, displaces legitimate revenue, and funds organised criminal networks (particularly in the illegal IPTV sector). It also demonstrates real market failures \u2014 geo-blocking, pricing inequality, and release window delays.',
+  s1p3:'But piracy also carries a danger most casual users completely underestimate: the malware embedded in cracked software downloads. This is not an edge case. It is a primary infection vector for ransomware, spyware, and credential-stealing trojans affecting millions of machines annually.',
+  s1p4:'This report examines all of it: the methods, the scale, the ecosystem of organised piracy, the criminal infrastructure around it, the landmark legal cases, and the ongoing debate about access, pricing, and the internet\u2019s relationship with intellectual property.',
+  s2_eye:'Section 2', s2_h2:'The Piracy Ecosystem:<br>Five Methods, One Supply Chain',
+  s2_intro:'Digital piracy is not a single activity. It is a layered ecosystem of methods ranging from individual peer-to-peer file sharing to highly organised criminal distribution networks \u2014 each with distinct legal, technical, and economic characteristics.',
+  eco1_tag:'01 \u2014 Most Widely Used', eco1_h3:'BitTorrent and Peer-to-Peer (P2P) File Sharing',
+  eco1_p:'BitTorrent is a decentralised file transfer protocol where users download pieces of a file from multiple sources simultaneously while uploading the pieces they have. It is also the primary method by which pirated films, music, software, and games are distributed. The Pirate Bay became the world\u2019s most visited torrent index site; its founders were convicted in 2009 but the site continued operating for years. BitTorrent traffic is visible to ISPs and copyright enforcement agencies.',
+  eco1_badge:'67B+ annual visits to torrent sites',
+  eco2_tag:'02 \u2014 Fastest Growing', eco2_h3:'Illegal IPTV',
+  eco2_p:'Internet Protocol Television piracy involves subscription services providing live television, film, and sports content through illegally obtained streams. Illegal IPTV has become the dominant form of piracy in Europe and has significant organised crime involvement. Operations resell stolen broadcast streams at low monthly rates, undercutting legitimate services.',
+  eco2_badge:'Major organised crime involvement',
+  eco3_tag:'03 \u2014 Scene Groups', eco3_h3:'The Warez Scene',
+  eco3_p:'The \u2018Scene\u2019 is a semi-underground network of release groups that crack, encode, and distribute pirated content via private FTP servers, often hours before legitimate release. Scene groups operate under strict internal rules, use pseudonyms, and form a hierarchical reputation economy.',
+  eco3_badge:'Organised release network',
+  eco4_tag:'04 \u2014 Direct Download', eco4_h3:'Cyberlockers and DDL Sites',
+  eco4_p:'Direct download sites host pirated content on centralised servers. The 2012 Megaupload seizure was one of the most significant anti-piracy operations in history, arresting founder Kim Dotcom in New Zealand. Legal proceedings continued for over a decade. Users download directly, providing less legal exposure than BitTorrent.',
+  eco4_badge:'Centralised \u2014 faster, lower exposure',
+  eco5_tag:'05 \u2014 Emerging', eco5_h3:'Streaming Piracy and Ripping',
+  eco5_p:'As legitimate streaming services have proliferated, so have pirate streaming sites embedding content in browser-based players. Sites like 123Movies served hundreds of millions of visitors. The proliferation of multiple paid services has directly correlated with rising streaming piracy \u2014 many users cite cost and fragmentation as their primary motivation.',
+  eco5_badge:'Fastest-growing piracy category',
+  s3_eye:'Section 3', s3_h2:'How Organised Piracy Works',
+  s3_intro:'Casual piracy \u2014 a student downloading a film \u2014 is legally and operationally distinct from the organised distribution networks that supply pirated content at scale. Understanding the latter is essential to understanding enforcement.',
+  s3p1:'At the top of the supply chain sit the <strong>release groups</strong> \u2014 the Scene. These are small, geographically distributed groups of specialists: encoders who compress film and audio; crackers who defeat software copy-protection (DRM); NFO writers; and couriers who distribute to private FTP servers.',
+  s3p2:'From private FTP servers, releases move to semi-public pre-databases, then to public torrent indexing sites and DDL portals. A major film can move from cinema screen to global public availability within hours of release.',
+  s3_callout:'<strong>Software supply chain:</strong> For pirated software, release groups crack commercial applications \u2014 removing DRM and licence verification \u2014 and package them with key generators. This is precisely the step at which malware is most frequently introduced, by malicious third parties repackaging legitimate releases or criminal groups operating counterfeit sites.',
+  s3p3:'The <strong>illegal IPTV sector</strong> operates differently: operators steal broadcast streams, restream them via server infrastructure, and sell monthly subscriptions via reseller networks. Some operations generate millions of euros annually before seizure.',
+  s3p4:'Payment processing is a persistent challenge for piracy operations \u2014 banks and card networks have been pressured to refuse processing for known piracy sites. Many resort to cryptocurrency, PayPal alternatives, or cash-based reseller networks.',
+  slot2_title:'Image Slot 2', slot2_desc:'Your diagram of the piracy supply chain \u2014 from release group to end user', slot2_tag:'Add your artwork here',
+  s4_eye:'Section 4 \u2014 Critical Risk', s4_h2:'The Hidden Danger:<br>Malware in Pirated Software',
+  s4p1:'For most casual users, online piracy feels like a victimless shortcut. The reality of pirated software downloads is considerably darker. Research consistently finds that a <strong>majority of pirated software packages contain malicious code</strong> \u2014 not as a fringe occurrence, but as standard practice among criminal groups that operate counterfeit distribution sites.',
+  s4p2:'The mechanism is straightforward: a user searches for a cracked version of a commercial application, downloads it from a piracy portal or torrent, and the payload installs silently alongside the promised software. The user sees the application launch normally. The malware is already running.',
+  s4_callout:'<strong>Cybereason research (2022)</strong> found that 58% of pirated software downloads they tested contained embedded malware. Recorded Future\u2019s analysis identified credential stealers, cryptominers, and ransomware droppers as the most common payloads \u2014 all operating silently after installation.',
+  s4p3:'Common malware types include: <strong>credential stealers</strong> harvesting saved passwords and banking logins; <strong>cryptominers</strong> using the victim\u2019s CPU/GPU; <strong>ransomware droppers</strong> staging later deployments; and <strong>remote access trojans (RATs)</strong> giving attackers persistent control.',
+  s4p4:'This makes pirated software a significant threat not just to individuals but to organisations. Employees who install pirated software on work devices \u2014 or personal machines that connect to corporate networks \u2014 create entry points for attacks that may have nothing to do with the piracy itself.',
+  slot3_lbl:'Image slot 3 \u2014 Add your illustration', slot3_desc:'Conceptual artwork \u2014 malware, intrusion, digital danger',
+  threat_box_lbl:'Common malware payloads in pirated software',
+  tr1_name:'Credential Stealer', tr1_lvl:'Critical',
+  tr2_name:'Ransomware Dropper', tr2_lvl:'Critical',
+  tr3_name:'Remote Access Trojan', tr3_lvl:'High',
+  tr4_name:'Cryptominer', tr4_lvl:'High',
+  tr5_name:'Adware / Spyware', tr5_lvl:'Medium',
+  s5_eye:'Section 5', s5_h2:'The Scale of the Problem',
+  s5_intro:'Measuring piracy\u2019s economic impact is contested \u2014 industry figures tend toward maximalism, while independent researchers often find significantly lower real-world displacement effects.',
+  sc1_lbl:'annual global losses from software piracy, covering commercial applications, games, and enterprise software',
+  sc2_lbl:'estimated annual revenue loss to the US economy from piracy across all media \u2014 film, music, software, publishing',
+  sc3_lbl:'of all software installed on personal computers globally is unlicensed \u2014 including pirated and improperly licensed copies',
+  s5_callout:'<strong>The displacement debate:</strong> Not every pirated download represents a lost sale. Academic research \u2014 including studies by the EU Intellectual Property Office \u2014 has consistently found that the relationship between piracy and legitimate sales is more complex than industry figures suggest. Some piracy is displacement of real purchases; some is consumption by people who would not have purchased regardless; and some has been linked to increased legitimate consumption through discovery effects.',
+  bar_g1:'Most pirated content categories (by volume)',
+  bar_g2:'User-cited motivations for piracy',
+  bar1:'Film & TV', bar2:'Music', bar3:'Software & Games', bar4:'Live Sports (IPTV)', bar5:'Books / Publishing',
+  bar6:'Price / unaffordable', bar7:'Geo-blocking / unavailable', bar8:'Convenience / speed', bar9:'Subscription fatigue',
+  s6_eye:'Section 6', s6_h2:'Landmark Cases in Anti-Piracy Law',
+  s6_intro:'Legal battles over online piracy have defined the boundaries of internet law, platform liability, and copyright enforcement for three decades \u2014 producing some of the most consequential rulings in digital legal history.',
+  cj1:'United States', co1:'Shut Down',
+  ch1:'Napster \u2014 The Case That Started Everything',
+  cp1:'Napster\u2019s peer-to-peer music sharing service launched in 1999 and reached 80 million registered users within two years. The RIAA sued under the DMCA. The court ruled Napster had materially contributed to infringement and ordered it to prevent sharing of copyrighted material \u2014 an impossible technical requirement. Napster shut down in 2001. The case established contributory and vicarious infringement liability for P2P platforms.',
+  cj2:'Sweden', co2:'Convicted',
+  ch2:'The Pirate Bay Trial',
+  cp2:'The four founders of The Pirate Bay were convicted of assisting copyright infringement and sentenced to one year in prison each, plus 30 million Swedish kronor in damages. The verdict was upheld and sentences increased on appeal. The case drew global attention to BitTorrent indexing liability. The Pirate Bay continued operating through numerous domain changes for over a decade after conviction.',
+  cj3:'New Zealand / USA', co3:'Decade-Long Case',
+  ch3:'Megaupload / Kim Dotcom',
+  cp3:'The FBI coordinated with New Zealand police to arrest Kim Dotcom in January 2012, simultaneously seizing Megaupload\u2019s servers \u2014 a platform hosting 50 petabytes of data for 150 million registered users. The US DOJ alleged $500 million in infringement losses. The case became one of the longest-running extradition battles in internet history. As of 2024, proceedings were still ongoing.',
+  cj4:'European Union', co4:'Legislation Passed',
+  ch4:'EU Copyright Directive \u2014 Article 17',
+  cp4:'The EU\u2019s Copyright in the Digital Single Market Directive required large online platforms to implement upload filters to prevent users posting copyrighted material. The provision was deeply controversial, with critics arguing it would require automated censorship of all user-uploaded content. Passed in 2019, its implementation across member states has been uneven, and its long-term impact remains contested.',
+  cj5:'Global', co5:'Ongoing',
+  ch5:'AI Training Data and the New Copyright Frontier',
+  cp5:'The most contested copyright battleground of 2024 is the use of copyrighted works to train AI systems without licence or compensation. Multiple lawsuits have been filed against OpenAI, Stability AI, Google, and others by authors, artists, and publishers. The outcomes will likely redefine intellectual property law for the digital age.',
+  s7_eye:'Section 7', s7_h2:'How Industry and Platforms<br>Have Fought Back',
+  s7_intro:'Anti-piracy enforcement has evolved significantly from the early RIAA strategy of suing individual file sharers \u2014 widely considered a public relations disaster \u2014 toward technical blocking, platform cooperation, and the insight that the most effective anti-piracy tool is a competitively priced legitimate service.',
+  slot4_title:'Image Slot 4', slot4_desc:'Your illustration of anti-piracy enforcement or the cat-and-mouse dynamic', slot4_tag:'Add your artwork here',
+  rc1_tag:'Legal strategy', rc1_h3:'DMCA Takedowns and Notice-and-Takedown',
+  rc1_p:'The DMCA\u2019s notice-and-takedown provision requires platforms to remove infringing content upon receiving a valid copyright complaint. Rights holders now send millions of takedown notices monthly \u2014 Google processes over 5 million per week \u2014 but the volume of infringing content means takedowns function more as suppression than eradication. Content is typically re-uploaded within hours.',
+  rc1_res:'Mixed Effectiveness',
+  rc2_tag:'Technical blocking', rc2_h3:'Court-Ordered ISP Blocking',
+  rc2_p:'In the UK, EU, and Australia, rights holders have obtained court orders requiring ISPs to block access to known piracy sites. The Premier League has been particularly effective, securing real-time blocking injunctions during live broadcasts. However, users bypass site blocks trivially using VPNs or mirror sites \u2014 technically sophisticated users are barely inconvenienced.',
+  rc2_res:'Limited Against VPN Users',
+  rc3_tag:'Market response', rc3_h3:'The Spotify / Netflix Effect',
+  rc3_p:'The most effective anti-piracy intervention in music and video has not been enforcement \u2014 it has been competitively priced, convenient legal alternatives. Music piracy dropped dramatically following Spotify\u2019s growth. Netflix\u2019s expansion correlated with significant reductions in TV and film piracy. This is the most empirically supported finding in piracy research: <strong>availability and price are the dominant drivers of piracy rates.</strong>',
+  rc3_res:'Most Effective Strategy',
+  rc4_tag:'Emerging concern', rc4_h3:'Streaming Fragmentation and the Piracy Rebound',
+  rc4_p:'The proliferation of streaming services has ironically driven a piracy rebound. Research by MUSO found global piracy increased significantly in 2022\u20132023, directly correlated with the fragmentation of streaming catalogues across incompatible, individually priced services. Geo-blocking frustration historically drives piracy \u2014 and fragmentation recreates it.',
+  rc4_res:'Growing Problem',
+  s8_eye:'Section 8 \u2014 Policy Debate', s8_h2:'The Ethics of Access:<br>Piracy as a Global Inequality Issue',
+  s8_intro:'Online piracy generates a genuine ethical debate that is distinct from its legal status. The economics of digital content distribution create real access inequities that the industry has been slow to address.',
+  debate1_h3:'The Case That Piracy Reflects <span style="color:var(--blue-vivid)">Market Failure</span>',
+  dp1_1:'Geo-blocking denies legal access to content based on geographic location \u2014 creating regions where legitimate purchase is impossible regardless of willingness to pay.',
+  dp1_2:'Purchasing power parity is largely ignored in content pricing. A Netflix subscription trivial in Western Europe may represent a significant proportion of a monthly salary in South Asia, Africa, or Latin America \u2014 where piracy rates are correspondingly highest.',
+  dp1_3:'Release window strategies \u2014 withholding digital releases for weeks or months after theatrical premieres \u2014 create artificial windows where piracy is the only way to access new content.',
+  dp1_4:'Academic and scientific publishing represents a particularly acute case: publicly funded research is locked behind paywalls charging $30\u201350 per article. Sci-Hub serves tens of millions of researchers monthly who have no institutional access.',
+  debate2_h3:'The Case That Piracy Is <span style="color:var(--slate-lt)">Still Harmful</span>',
+  dp2_1:'Copyright exists to incentivise the creation of cultural and intellectual works. Systemic piracy undermines the economic models that fund music, film, literature, and software development \u2014 ultimately harming creators rather than just corporations.',
+  dp2_2:'The access argument does not apply to developed-market piracy \u2014 where users have both the means to pay and legal access \u2014 which represents the majority of piracy by volume. Price sensitivity in high-income markets is a preference, not a genuine barrier.',
+  dp2_3:'The criminal infrastructure of organised piracy \u2014 illegal IPTV networks, cracked software sites \u2014 monetises piracy at scale for operators who profit substantially while providing neither creative value nor access benefits.',
+  dp2_4:'Malware-laced pirate software imposes real costs on individuals and organisations \u2014 costs that fall on ordinary users who believed they were making a victimless choice. The harm of piracy is not only economic.',
+  ref_eye:'References', ref_h2:'Sources and Further Reading',
+  quiz_p:'Test your knowledge on piracy and all other internet crime topics',
+  quiz_span:'\u2014 10 randomised questions, no time limit.',
+  quiz_btn:'Take the Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Previous Topic', tnav1_title:'Online Drug Trade', tnav1_sub:'02 \u2014 Dark web markets, Telegram, and the fentanyl crisis',
+  tnav2_dir:'Next Topic \u00a0\u2192', tnav2_title:'Hate Speech & Radicalisation', tnav2_sub:'04 \u2014 Algorithmic pipelines, extremism, and real-world violence',
+  footer_note:'Educational project \u2014 Academic submission 2026. All statistics sourced and cited above.',
+  footer_src:'References', footer_prev:'Prevention', footer_top:'All Topics', footer_quiz:'Quiz', foot_imprint:"Imprint"
+};
+
+/* ── GERMAN ───────────────────────────────────────────── */
+T.de = {
+  page_title:'Online-Piraterie | CrimeOnline',
+  nav_topics:'Themen', nav_prev:'Pr\u00e4vention', nav_sources:'Quellen', nav_cta:'Quiz starten \u2197',
+  mob_home:'Startseite', mob_lang:'Sprache',
+  bc_home:'Startseite', bc_topics:'Themen', bc_current:'Online-Piraterie',
+  hero_series:'Serie Internetkriminalit\u00e4t \u00b7 Vollst\u00e4ndiger Bericht',
+  hero_h1:'Online-<br><em>Piraterie</em>',
+  hero_lead:'Ein j\u00e4hrliches 46-Milliarden-Dollar-Problem, das die Unterhaltungsindustrie seit drei Jahrzehnten verliert \u2014 die Geschichte, Mechanismen und umstrittene Ethik der digitalen Urheberrechtsverletzung sowie die verborgene Gefahr in jedem gecrackten Software-Download.',
+  meta1_lbl:'Schwere:', meta1_val:'Mittel\u2013Hoch',
+  meta2_lbl:'J\u00e4hrliche wirtschaftliche Auswirkung:', meta2_val:'$46 Mrd.+ weltweit',
+  meta3_lbl:'Wichtige Methoden:', meta3_val:'BitTorrent \u00b7 IPTV \u00b7 DDL \u00b7 Scene-Gruppen',
+  meta4_lbl:'Verborgene Bedrohung:', meta4_val:'Malware in Raubkopien',
+  stat1_lbl:'j\u00e4hrliche globale Verluste durch Software-Piraterie allein',
+  stat2_lbl:'monatliche Besuche auf Piraterie-Sites auf dem H\u00f6hepunkt der Popularit\u00e4t von The Pirate Bay',
+  stat3_lbl:'der Raubkopien-Software-Downloads enthalten Malware laut Cybersicherheitsforschung',
+  stat4_lbl:'j\u00e4hrliche Besuche auf Piraterie-Sites weltweit \u00fcber alle Inhaltskategorien',
+  s1_eye:'\u00dcberblick',
+  pq_text:'\u201eInformation will frei sein. Information will auch teuer sein. Diese Spannung wird nicht verschwinden.\u201c',
+  pq_cite:'Stewart Brand, 1984 \u2014 der Satz, der tausend Argumente entfachte',
+  s1p1:'Online-Piraterie \u2014 die unauthorisierte Reproduktion, Verbreitung und Nutzung urheberrechtlich gesch\u00fctzter Materialien \u00fcber das Internet \u2014 ist eine der \u00e4ltesten, meistdiskutierten und beharrlichsten Kategorien der Internetkriminalit\u00e4t. Im Gegensatz zum Drogenhandel oder NCII sind ihre Opfer prim\u00e4r Unternehmen und Branchenorganisationen, und ihre T\u00e4ter umfassen Hunderte von Millionen gew\u00f6hnlicher Internetnutzer.',
+  s1p2:'Diese moralische Komplexit\u00e4t beseitigt nicht die rechtliche Realit\u00e4t: <strong>Urheberrechtsverletzung im gro\u00dfen Ma\u00dfstab verursacht messbaren wirtschaftlichen Schaden</strong>, verdr\u00e4ngt legitime Einnahmen und finanziert kriminelle Netzwerke. Sie demonstriert auch echte Marktversagen \u2014 Geo-Blocking, Preisungleichheit und Verz\u00f6gerungen bei digitalen Releases.',
+  s1p3:'Piraterie birgt aber auch eine Gefahr, die die meisten Gelegenheitsnutzer v\u00f6llig untersch\u00e4tzen: die Malware in gecrackten Software-Downloads. Dies ist kein Randfall. Es ist ein prim\u00e4rer Infektionsvektor f\u00fcr Ransomware, Spyware und Credential-stealing-Trojaner.',
+  s1p4:'Dieser Bericht untersucht all das: die Methoden, das Ausma\u00df, das \u00d6kosystem der organisierten Piraterie, die kriminelle Infrastruktur darum herum, die wegweisenden Rechtssachen und die anhaltende Debatte \u00fcber Zugang und Preisgestaltung.',
+  s2_eye:'Abschnitt 2', s2_h2:'Das Piraterie-\u00d6kosystem:<br>F\u00fcnf Methoden, eine Lieferkette',
+  s2_intro:'Digitale Piraterie ist nicht eine einzige Aktivit\u00e4t. Es ist ein geschichtetes \u00d6kosystem von Methoden, das von individuellem Peer-to-Peer-Filesharing bis hin zu hochgradig organisierten kriminellen Vertriebsnetzwerken reicht.',
+  eco1_tag:'01 \u2014 Am weitesten verbreitet', eco1_h3:'BitTorrent und Peer-to-Peer (P2P) Filesharing',
+  eco1_p:'BitTorrent ist ein dezentrales Datei\u00fcbertragungsprotokoll, bei dem Nutzer Teile einer Datei aus mehreren Quellen gleichzeitig herunterladen, w\u00e4hrend sie die Teile hochladen, die sie bereits haben. Es ist auch die prim\u00e4re Methode, \u00fcber die Raubkopien von Filmen, Musik, Software und Spielen verbreitet werden. The Pirate Bay wurde die meistbesuchte Torrent-Indexseite der Welt; ihre Gr\u00fcnder wurden 2009 verurteilt, die Site betrieb aber jahrelang weiter.',
+  eco1_badge:'67 Mrd.+ j\u00e4hrliche Besuche auf Torrent-Sites',
+  eco2_tag:'02 \u2014 Am schnellsten wachsend', eco2_h3:'Illegales IPTV',
+  eco2_p:'Internet-Protokoll-Fernsehen-Piraterie umfasst Abonnementdienste, die Live-Fernsehen, Filme und Sportereignisse \u00fcber illegal beschaffte Streams bereitstellen. Illegales IPTV ist zur dominanten Form der Piraterie in Europa geworden und weist erhebliche Beteiligung des organisierten Verbrechens auf.',
+  eco2_badge:'Erhebliche Beteiligung des organisierten Verbrechens',
+  eco3_tag:'03 \u2014 Scene-Gruppen', eco3_h3:'Die Warez-Scene',
+  eco3_p:'Die \u2018Scene\u2019 ist ein halb-unterirdisches Netzwerk von Release-Gruppen, die urheberrechtlich gesch\u00fctzte Inhalte cracken, codieren und \u00fcber private FTP-Server verteilen, oft Stunden vor dem offiziellen Release. Scene-Gruppen agieren nach strengen internen Regeln und verwenden Pseudonyme.',
+  eco3_badge:'Organisiertes Release-Netzwerk',
+  eco4_tag:'04 \u2014 Direktdownload', eco4_h3:'Cyberlocker und DDL-Sites',
+  eco4_p:'Direct-Download-Sites hosten Raubkopien auf zentralisierten Servern. Die Megaupload-Beschlagnahme 2012 war eine der bedeutendsten Anti-Piraterie-Operationen in der Geschichte, bei der Gr\u00fcnder Kim Dotcom in Neuseeland verhaftet wurde. Rechtliche Verfahren dauerten \u00fcber ein Jahrzehnt an.',
+  eco4_badge:'Zentralisiert \u2014 schneller, geringere Exposition',
+  eco5_tag:'05 \u2014 Aufkommend', eco5_h3:'Streaming-Piraterie und Ripping',
+  eco5_p:'Parallel zur Verbreitung legitimer Streaming-Dienste haben auch Piraterie-Streaming-Sites zugenommen, die Inhalte in browserbasierten Playern einbetten. Die Proliferation mehrerer bezahlter Dienste hat direkt mit steigender Streaming-Piraterie korreliert \u2014 viele Nutzer nennen Kosten und Fragmentierung als Hauptmotiv.',
+  eco5_badge:'Am schnellsten wachsende Piraterie-Kategorie',
+  s3_eye:'Abschnitt 3', s3_h2:'Wie Organisierte Piraterie Funktioniert',
+  s3_intro:'Gelegentliche Piraterie \u2014 ein Student, der einen Film herunterl\u00e4dt \u2014 ist rechtlich und operativ verschieden von den organisierten Vertriebsnetzwerken, die Raubkopien in gro\u00dfem Ma\u00dfstab liefern.',
+  s3p1:'An der Spitze der Lieferkette stehen die <strong>Release-Gruppen</strong> \u2014 die Scene. Dies sind kleine, geografisch verteilte Gruppen von Spezialisten: Encoder, die Film und Audio komprimieren; Cracker, die Software-Kopierschutz (DRM) umgehen; NFO-Schreiber; und Kuriere, die Releases an private FTP-Server verteilen.',
+  s3p2:'Von privaten FTP-Servern gelangen Releases zu \u00f6ffentlichen Torrent-Indexseiten und DDL-Portalen. Ein gro\u00dfer Film kann innerhalb von Stunden nach der Ver\u00f6ffentlichung f\u00fcr die globale \u00d6ffentlichkeit verf\u00fcgbar sein.',
+  s3_callout:'<strong>Software-Lieferkette:</strong> F\u00fcr Raubkopien von Software cracken Release-Gruppen kommerzielle Anwendungen und paketieren sie mit Key-Generatoren. Genau an diesem Schritt wird Malware am h\u00e4ufigsten eingebracht, entweder durch b\u00f6sartige Dritte, die legitime Scene-Releases neu paketieren, oder durch kriminelle Gruppen, die gef\u00e4lschte Release-Sites betreiben.',
+  s3p3:'Der <strong>illegale IPTV-Sektor</strong> operiert anders: Betreiber stehlen Sendungsstr\u00f6me, streamen sie \u00fcber Server-Infrastruktur und verkaufen monatliche Abonnements \u00fcber Reseller-Netzwerke.',
+  s3p4:'Zahlungsabwicklung ist eine dauerhafte Herausforderung f\u00fcr Piraterie-Operationen \u2014 Banken wurden erfolgreich unter Druck gesetzt, die Verarbeitung f\u00fcr bekannte Piraterie-Sites zu verweigern. Viele greifen auf Kryptow\u00e4hrungen oder Cash-basierte Reseller-Netzwerke zur\u00fcck.',
+  slot2_title:'Bildplatz 2', slot2_desc:'Ihr Diagramm der Piraterie-Lieferkette \u2014 von der Release-Gruppe bis zum Endnutzer', slot2_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  s4_eye:'Abschnitt 4 \u2014 Kritisches Risiko', s4_h2:'Die verborgene Gefahr:<br>Malware in Raubkopien-Software',
+  s4p1:'F\u00fcr die meisten Gelegenheitsnutzer f\u00fchlt sich Online-Piraterie wie eine harmlose Abk\u00fcrzung an. Die Realit\u00e4t von Raubkopien-Software-Downloads ist erheblich d\u00fcsterer. Forschung zeigt konsistent, dass eine <strong>Mehrheit der Raubkopien-Softwarepakete b\u00f6sartigen Code enth\u00e4lt</strong>.',
+  s4p2:'Der Mechanismus ist einfach: Ein Nutzer sucht nach einer gecrackten Version einer kommerziellen Anwendung, l\u00e4dt sie herunter, und die Nutzlast installiert sich still neben der versprochenen Software. Der Nutzer sieht die Anwendung normal starten. Die Malware l\u00e4uft bereits.',
+  s4_callout:'<strong>Cybereason-Forschung (2022)</strong> stellte fest, dass 58 % der getesteten Raubkopien-Software-Downloads eingebettete Malware enthielten. Die h\u00e4ufigsten Nutzlasten waren Credential-Stealer, Cryptominer und Ransomware-Dropper.',
+  s4p3:'G\u00e4ngige Malware-Typen umfassen: <strong>Credential-Stealer</strong> zum Ernten von Passw\u00f6rtern und Banking-Anmeldedaten; <strong>Cryptominer</strong>, die CPU/GPU des Opfers nutzend; <strong>Ransomware-Dropper</strong> f\u00fcr sp\u00e4tere Angriffe; und <strong>Remote-Access-Trojaner (RATs)</strong> f\u00fcr dauerhaften Fernzugriff.',
+  s4p4:'Dies macht Raubkopien-Software nicht nur f\u00fcr Einzelpersonen, sondern auch f\u00fcr Organisationen zu einer erheblichen Bedrohung. Mitarbeiter, die Raubkopien-Software auf Arbeitsger\u00e4ten oder privaten Maschinen mit Unternehmensnetzwerkzugang installieren, schaffen Einfallstore f\u00fcr Angriffe.',
+  slot3_lbl:'Bildplatz 3 \u2014 F\u00fcgen Sie Ihre Illustration hinzu', slot3_desc:'Konzeptionelles Kunstwerk \u2014 Malware, Intrusion, digitale Gefahr',
+  threat_box_lbl:'H\u00e4ufige Malware-Nutzlasten in Raubkopien-Software',
+  tr1_name:'Credential-Stealer', tr1_lvl:'Kritisch',
+  tr2_name:'Ransomware-Dropper', tr2_lvl:'Kritisch',
+  tr3_name:'Remote-Access-Trojaner', tr3_lvl:'Hoch',
+  tr4_name:'Cryptominer', tr4_lvl:'Hoch',
+  tr5_name:'Adware / Spyware', tr5_lvl:'Mittel',
+  s5_eye:'Abschnitt 5', s5_h2:'Das Ausma\u00df des Problems',
+  s5_intro:'Die Messung der wirtschaftlichen Auswirkungen der Piraterie ist umstritten \u2014 Branchenzahlen neigen zum Maximalismus, w\u00e4hrend unabh\u00e4ngige Forscher oft deutlich niedrigere reale Verdr\u00e4ngungseffekte finden.',
+  sc1_lbl:'j\u00e4hrliche globale Verluste durch Software-Piraterie, einschlie\u00dflich kommerzieller Anwendungen, Spiele und Unternehmenssoftware',
+  sc2_lbl:'gesch\u00e4tzter j\u00e4hrlicher Einnahmeverlust f\u00fcr die US-Wirtschaft durch Piraterie \u00fcber alle Medien \u2014 Film, Musik, Software, Verlagswesen',
+  sc3_lbl:'der auf privaten Computern weltweit installierten Software ist unlizenziert \u2014 einschlie\u00dflich Raubkopien und unsachgem\u00e4\u00df lizenzierten Kopien',
+  s5_callout:'<strong>Die Verdr\u00e4ngungsdebatte:</strong> Nicht jeder Raubkopien-Download repr\u00e4sentiert einen verlorenen Verkauf. Akademische Forschung \u2014 einschlie\u00dflich Studien des EU-Amts f\u00fcr geistiges Eigentum \u2014 hat konsistent festgestellt, dass die Beziehung zwischen Piraterie und legitimen Verk\u00e4ufen komplexer ist, als Branchenzahlen nahelegen.',
+  bar_g1:'Meistgeraube Inhaltskategorien (nach Volumen)',
+  bar_g2:'Von Nutzern genannte Motive f\u00fcr Piraterie',
+  bar1:'Film & TV', bar2:'Musik', bar3:'Software & Spiele', bar4:'Live-Sport (IPTV)', bar5:'B\u00fccher / Verlagswesen',
+  bar6:'Preis / nicht leistbar', bar7:'Geo-Blocking / nicht verf\u00fcgbar', bar8:'Bequemlichkeit / Geschwindigkeit', bar9:'Abo-\u00dcberdruss',
+  s6_eye:'Abschnitt 6', s6_h2:'Wegweisende F\u00e4lle im Anti-Piraterie-Recht',
+  s6_intro:'Rechtsstreitigkeiten \u00fcber Online-Piraterie haben die Grenzen des Internetrechts, der Plattformhaftung und der Urheberrechtsdurchsetzung seit drei Jahrzehnten gepr\u00e4gt.',
+  cj1:'Vereinigte Staaten', co1:'Geschlossen',
+  ch1:'Napster \u2014 Der Fall, der alles begann',
+  cp1:'Napsters Peer-to-Peer-Musik-Sharing-Dienst startete 1999 und erreichte innerhalb von zwei Jahren 80 Millionen registrierte Nutzer. Die RIAA klagte unter dem DMCA. Das Gericht entschied, dass Napster wesentlich zur Urheberrechtsverletzung beigetragen hatte und ordnete an, das Teilen urheberrechtlich gesch\u00fctzten Materials zu verhindern \u2014 eine technisch unm\u00f6gliche Anforderung. Napster wurde 2001 geschlossen.',
+  cj2:'Schweden', co2:'Verurteilt',
+  ch2:'Der Pirate-Bay-Prozess',
+  cp2:'Die vier Gr\u00fcnder von The Pirate Bay wurden wegen Beihilfe zur Urheberrechtsverletzung verurteilt und zu je einem Jahr Gef\u00e4ngnis und 30 Millionen schwedischen Kronen Schadensersatz verurteilt. The Pirate Bay betrieb \u00fcber zahlreiche Domain\u00e4nderungen \u00fcber ein Jahrzehnt nach der Verurteilung weiter.',
+  cj3:'Neuseeland / USA', co3:'Jahrzehntlanger Fall',
+  ch3:'Megaupload / Kim Dotcom',
+  cp3:'Das FBI koordinierte mit der neuseel\u00e4ndischen Polizei die Verhaftung von Kim Dotcom in Auckland im Januar 2012 und beschlagnahmte gleichzeitig Megauploads Server \u2014 eine Plattform mit 50 Petabyte Daten f\u00fcr 150 Millionen registrierte Nutzer. Das US-Justizministerium bezifferte die Verluste auf 500 Millionen Dollar. Stand 2024 waren die Verfahren noch im Gange.',
+  cj4:'Europ\u00e4ische Union', co4:'Gesetzgebung verabschiedet',
+  ch4:'EU-Urheberrechtsrichtlinie \u2014 Artikel 17',
+  cp4:'Die EU-Richtlinie \u00fcber das Urheberrecht im digitalen Binnenmarkt verpflichtete gro\u00dfe Online-Plattformen zur Implementierung von Upload-Filtern, um das Hochladen urheberrechtlich gesch\u00fctzter Materialien durch Nutzer zu verhindern. Die Bestimmung war sehr umstritten, die Umsetzung in den Mitgliedstaaten uneinheitlich.',
+  cj5:'Global', co5:'Laufend',
+  ch5:'KI-Trainingsdaten und die neue Urheberrechtsgrenze',
+  cp5:'Das umstrittenste Urheberrechtsschlachtfeld 2024 ist die Verwendung urheberrechtlich gesch\u00fctzter Werke zur KI-Systemschulung ohne Lizenz oder Verg\u00fctung. Mehrere Klagen wurden gegen OpenAI, Stability AI, Google und andere von Autoren, K\u00fcnstlern und Verlegern eingereicht.',
+  s7_eye:'Abschnitt 7', s7_h2:'Wie Industrie und Plattformen<br>Zur\u00fcckgeschlagen Haben',
+  s7_intro:'Die Anti-Piraterie-Durchsetzung hat sich erheblich weiterentwickelt, von der fr\u00fchen RIAA-Strategie der Einzelklagen \u2014 weitgehend als PR-Desaster betrachtet \u2014 hin zu technischen Sperren, Plattformkooperation und der Erkenntnis, dass das effektivste Anti-Piraterie-Tool ein wettbewerbsf\u00e4hig bepreister legitimer Dienst ist.',
+  slot4_title:'Bildplatz 4', slot4_desc:'Ihre Illustration der Anti-Piraterie-Durchsetzung oder der Katz-und-Maus-Dynamik', slot4_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  rc1_tag:'Rechtsstrategie', rc1_h3:'DMCA-Takedowns und Notice-and-Takedown',
+  rc1_p:'Die Notice-and-Takedown-Bestimmung des DMCA verpflichtet Plattformen, urheberrechtsverletzende Inhalte nach Erhalt einer g\u00fcltigen Urheberrechtsbeschwerde zu entfernen. Rechteinhaber senden nun monatlich Millionen von Takedown-Hinweisen \u2014 Google verarbeitet mehr als 5 Millionen pro Woche. Inhalte werden jedoch typischerweise innerhalb von Stunden neu hochgeladen.',
+  rc1_res:'Gemischte Wirksamkeit',
+  rc2_tag:'Technische Sperrung', rc2_h3:'Gerichtlich angeordnete ISP-Sperrung',
+  rc2_p:'In UK, EU und Australien haben Rechteinhaber Gerichtsbeschl\u00fcsse erwirkt, die ISPs verpflichten, bekannte Piraterie-Sites zu sperren. Die Premier League hat Echtzeit-Sperrverf\u00fcgungen w\u00e4hrend Live-\u00dcbertragungen gesichert. Nutzer umgehen Sperren jedoch trivial \u00fcber VPNs oder Mirror-Sites.',
+  rc2_res:'Eingeschr\u00e4nkt gegen VPN-Nutzer',
+  rc3_tag:'Marktreaktion', rc3_h3:'Der Spotify / Netflix-Effekt',
+  rc3_p:'Die effektivste Anti-Piraterie-Ma\u00dfnahme in Musik und Video war nicht Durchsetzung \u2014 sondern wettbewerbsf\u00e4hig bepreiste, bequeme legale Alternativen. Musik-Piraterie sank nach Spotifys Wachstum dramatisch. Netflixs Expansion korrelierte mit erheblichen R\u00fccknahmen von TV- und Film-Piraterie. Dies ist der am st\u00e4rksten empirisch unterst\u00fctzte Befund: <strong>Verf\u00fcgbarkeit und Preis sind die dominanten Treiber der Piraterie-Raten.</strong>',
+  rc3_res:'Effektivste Strategie',
+  rc4_tag:'Aufkommende Sorge', rc4_h3:'Streaming-Fragmentierung und der Piraterie-Rebound',
+  rc4_p:'Die Verbreitung von Streaming-Diensten hat ironischerweise einen Piraterie-Rebound ausgel\u00f6st. MUSO-Forschung stellte fest, dass globale Piraterie in 2022\u20132023 erheblich zunahm, direkt korreliert mit der Fragmentierung von Streaming-Katalogen \u00fcber inkompatible, einzeln bepreiste Dienste.',
+  rc4_res:'Wachsendes Problem',
+  s8_eye:'Abschnitt 8 \u2014 Politische Debatte', s8_h2:'Die Ethik des Zugangs:<br>Piraterie als globale Ungleichheitsfrage',
+  s8_intro:'Online-Piraterie generiert eine echte ethische Debatte, die von ihrem rechtlichen Status getrennt ist. Die \u00d6konomie der digitalen Inhaltsverteilung schafft reale Zugangsinequit\u00e4ten, die die Industrie nur langsam adressiert hat.',
+  debate1_h3:'Das Argument, dass Piraterie <span style="color:var(--blue-vivid)">Marktversagen</span> widerspiegelt',
+  dp1_1:'Geo-Blocking verweigert den rechtm\u00e4\u00dfigen Zugang zu Inhalten basierend auf dem geografischen Standort \u2014 schafft Regionen, in denen legitimer Kauf unm\u00f6glich ist, unabh\u00e4ngig von der Zahlungsbereitschaft.',
+  dp1_2:'Kaufkraftparit\u00e4t wird bei der Inhaltspreisgestaltung weitgehend ignoriert. Ein Netflix-Abonnement, das in Westeuropa trivial ist, kann in S\u00fcdasien, Afrika oder Lateinamerika einen erheblichen Teil eines Monatsgehalts repr\u00e4sentieren.',
+  dp1_3:'Release-Window-Strategien \u2014 Zur\u00fcckhalten digitaler Ver\u00f6ffentlichungen nach Kinopremieres \u2014 schaffen k\u00fcnstliche Fenster, in denen Piraterie der einzige Weg ist, neue Inhalte zu erhalten.',
+  dp1_4:'Akademisches und wissenschaftliches Verlegen ist ein besonders akuter Fall: \u00f6ffentlich finanzierte Forschung ist hinter Paywalls gesperrt, die $30\u201350 pro Artikel verlangen. Sci-Hub dient monatlich Zehn von Millionen von Forschern.',
+  debate2_h3:'Das Argument, dass Piraterie <span style="color:var(--slate-lt)">Noch Sch\u00e4dlich</span> ist',
+  dp2_1:'Urheberrecht existiert, um die Schaffung kultureller und intellektueller Werke zu incentivieren. Systemische Piraterie unterh\u00f6hlt die wirtschaftlichen Modelle, die Musik, Film, Literatur und Softwareentwicklung finanzieren.',
+  dp2_2:'Das Zugangsargument gilt nicht f\u00fcr Piraterie in entwickelten M\u00e4rkten \u2014 wo Nutzer sowohl die Mittel zum Zahlen als auch legalen Zugang haben \u2014 die den gr\u00f6\u00dften Teil der Piraterie nach Volumen darstellt.',
+  dp2_3:'Die kriminelle Infrastruktur der organisierten Piraterie \u2014 illegale IPTV-Netzwerke, gecrackte Software-Sites \u2014 monetisiert Piraterie im gro\u00dfen Ma\u00dfstab f\u00fcr Betreiber, die wesentlich profitieren.',
+  dp2_4:'Mit Malware verseuchte Raubkopien-Software verursacht reale Kosten f\u00fcr Einzelpersonen und Organisationen \u2014 Kosten, die gew\u00f6hnliche Nutzer treffen, die glaubten, eine harmlose Wahl zu treffen.',
+  ref_eye:'Quellen', ref_h2:'Quellen und weiterf\u00fchrende Lekt\u00fcre',
+  quiz_p:'Testen Sie Ihr Wissen \u00fcber Online-Piraterie und alle anderen Internetkriminalit\u00e4tsthemen',
+  quiz_span:'\u2014 10 zuf\u00e4llige Fragen, kein Zeitlimit.',
+  quiz_btn:'Quiz starten \u00a0\u2192',
+  tnav1_dir:'\u2190 Vorheriges Thema', tnav1_title:'Online-Drogenhandel', tnav1_sub:'02 \u2014 Darknet-M\u00e4rkte, Telegram und die Fentanyl-Krise',
+  tnav2_dir:'N\u00e4chstes Thema \u00a0\u2192', tnav2_title:'Hassrede & Radikalisierung', tnav2_sub:'04 \u2014 Algorithmische Pipelines, Extremismus und reale Gewalt',
+  footer_note:'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind oben belegt.',
+  footer_src:'Quellen', footer_prev:'Pr\u00e4vention', footer_top:'Alle Themen', footer_quiz:'Quiz', foot_imprint:"Impressum"
+};
+
+/* ── ITALIAN ──────────────────────────────────────────── */
+T.it = {
+  page_title:'Pirateria Online | CrimeOnline',
+  nav_topics:'Argomenti', nav_prev:'Prevenzione', nav_sources:'Fonti', nav_cta:'Inizia il Quiz \u2197',
+  mob_home:'Inizio', mob_lang:'Lingua',
+  bc_home:'Inizio', bc_topics:'Argomenti', bc_current:'Pirateria Online',
+  hero_series:'Serie Criminalit\u00e0 Informatica \u00b7 Rapporto Completo',
+  hero_h1:'Pirateria<br><em>Online</em>',
+  hero_lead:'Un problema da 46 miliardi di dollari all\'anno che il settore dell\'intrattenimento perde da tre decenni \u2014 la storia, i meccanismi e l\'etica controversa della violazione del copyright digitale, e il pericolo nascosto in ogni download di software craccato.',
+  meta1_lbl:'Gravit\u00e0:', meta1_val:'Medio\u2013Alta',
+  meta2_lbl:'Impatto economico annuale:', meta2_val:'$46 miliardi+ globalmente',
+  meta3_lbl:'Metodi chiave:', meta3_val:'BitTorrent \u00b7 IPTV \u00b7 DDL \u00b7 Gruppi Scene',
+  meta4_lbl:'Minaccia nascosta:', meta4_val:'Malware nel software pirata',
+  stat1_lbl:'perdite globali annuali attribuite alla pirateria software',
+  stat2_lbl:'visite mensili ai siti di pirateria al culmine della popolarit\u00e0 di The Pirate Bay',
+  stat3_lbl:'dei download di software pirata contengono malware secondo ricerche sulla cybersicurezza',
+  stat4_lbl:'visite annuali ai siti di pirateria in tutto il mondo su tutte le categorie di contenuto',
+  s1_eye:'Panoramica',
+  pq_text:'\u201cL\'informazione vuole essere libera. L\'informazione vuole anche essere costosa. Quella tensione non scomparir\u00e0.\u201d',
+  pq_cite:'Stewart Brand, 1984 \u2014 la frase che ha lanciato mille discussioni',
+  s1p1:'La pirateria online \u2014 la riproduzione, distribuzione e consumo non autorizzati di materiale protetto da copyright via internet \u2014 \u00e8 una delle categorie pi\u00f9 antiche, pi\u00f9 dibattute e pi\u00f9 persistenti della criminalit\u00e0 informatica. A differenza del traffico di droga o del NCII, le sue vittime sono principalmente aziende e organizzazioni di settore, e i suoi autori includono centinaia di milioni di utenti internet ordinari.',
+  s1p2:'Questa complessit\u00e0 morale non elimina la realt\u00e0 legale: <strong>la violazione del copyright su larga scala causa danni economici misurabili</strong>, sostituisce i ricavi legittimi e finanzia reti criminali organizzate. Dimostra anche reali fallimenti di mercato \u2014 geo-blocking, disuguaglianza dei prezzi e ritardi nelle finestre di rilascio digitale.',
+  s1p3:'Ma la pirateria porta anche un pericolo che la maggior parte degli utenti occasionali sottovaluta completamente: il malware incorporato nei download di software craccati. Questo non \u00e8 un caso limite. \u00c8 un vettore di infezione primario per ransomware, spyware e trojan che rubano credenziali.',
+  s1p4:'Questo rapporto esamina tutto ci\u00f2: i metodi, la scala, l\u2019ecosistema della pirateria organizzata, i casi legali fondamentali e il dibattito in corso su accesso, prezzi e il rapporto di internet con la propriet\u00e0 intellettuale.',
+  s2_eye:'Sezione 2', s2_h2:'L\u2019Ecosistema della Pirateria:<br>Cinque Metodi, Una Catena di Approvvigionamento',
+  s2_intro:'La pirateria digitale non \u00e8 una singola attivit\u00e0. \u00c8 un ecosistema stratificato di metodi che va dalla condivisione individuale peer-to-peer alle reti criminali di distribuzione altamente organizzate.',
+  eco1_tag:'01 \u2014 Pi\u00f9 diffuso', eco1_h3:'BitTorrent e File Sharing Peer-to-Peer (P2P)',
+  eco1_p:'BitTorrent \u00e8 un protocollo di trasferimento file decentralizzato in cui gli utenti scaricano pezzi di un file da pi\u00f9 fonti contemporaneamente caricando i pezzi che gi\u00e0 hanno. \u00c8 anche il metodo principale attraverso cui vengono distribuite le copie pirata di film, musica, software e giochi. The Pirate Bay \u00e8 diventato il sito di indice torrent pi\u00f9 visitato al mondo; i suoi fondatori furono condannati nel 2009 ma il sito ha continuato a operare per anni.',
+  eco1_badge:'67 miliardi+ di visite annuali ai siti torrent',
+  eco2_tag:'02 \u2014 Crescita pi\u00f9 rapida', eco2_h3:'IPTV Illegale',
+  eco2_p:'La pirateria IPTV (Internet Protocol Television) coinvolge servizi di abbonamento che forniscono televisione in diretta, film e sport attraverso stream ottenuti illegalmente. L\'IPTV illegale \u00e8 diventata la forma dominante di pirateria in Europa e ha un coinvolgimento significativo della criminalit\u00e0 organizzata.',
+  eco2_badge:'Notevole coinvolgimento della criminalit\u00e0 organizzata',
+  eco3_tag:'03 \u2014 Gruppi Scene', eco3_h3:'La Warez Scene',
+  eco3_p:'La \u2018Scene\u2019 \u00e8 una rete semi-sotterranea di gruppi di release che craccano, codificano e distribuiscono contenuti pirata tramite server FTP privati, spesso ore prima del rilascio legittimo. I gruppi Scene operano secondo regole interne rigide e usano pseudonimi.',
+  eco3_badge:'Rete di release organizzata',
+  eco4_tag:'04 \u2014 Download diretto', eco4_h3:'Cyberlocker e Siti DDL',
+  eco4_p:'I siti di download diretto ospitano contenuti pirata su server centralizzati. Il sequestro di Megaupload nel 2012 \u00e8 stata una delle pi\u00f9 significative operazioni anti-pirateria della storia, con l\'arresto del fondatore Kim Dotcom in Nuova Zelanda. I procedimenti legali sono durati oltre un decennio.',
+  eco4_badge:'Centralizzato \u2014 pi\u00f9 veloce, minore esposizione',
+  eco5_tag:'05 \u2014 Emergente', eco5_h3:'Pirateria in Streaming e Ripping',
+  eco5_p:'Con la proliferazione dei servizi di streaming legittimi, sono proliferati anche i siti di streaming pirata. La proliferazione di pi\u00f9 servizi a pagamento ha correlato direttamente con l\'aumento della pirateria in streaming \u2014 molti utenti citano costo e frammentazione come motivazione principale.',
+  eco5_badge:'Categoria di pirateria con crescita pi\u00f9 rapida',
+  s3_eye:'Sezione 3', s3_h2:'Come Funziona la Pirateria Organizzata',
+  s3_intro:'La pirateria occasionale \u2014 uno studente che scarica un film \u2014 \u00e8 legalmente e operativamente distinta dalle reti di distribuzione organizzate che forniscono contenuti pirata su larga scala.',
+  s3p1:'In cima alla catena di approvvigionamento ci sono i <strong>gruppi di release</strong> \u2014 la Scene. Questi sono piccoli gruppi di specialisti geograficamente distribuiti: encoder che comprimono film e audio; cracker che sconfiggono la protezione dalla copia del software (DRM); scrittori NFO; e corrieri che distribuiscono ai server FTP privati.',
+  s3p2:'Dai server FTP privati, i release passano ai siti di indice torrent pubblici e ai portali DDL. Un grande film pu\u00f2 passare dallo schermo del cinema alla disponibilit\u00e0 pubblica globale entro ore dal rilascio.',
+  s3_callout:'<strong>Catena di approvvigionamento software:</strong> Per il software pirata, i gruppi di release craccano le applicazioni commerciali rimuovendo DRM e verifica della licenza e le confezionano con generatori di chiavi. Questo \u00e8 esattamente il passo in cui il malware viene pi\u00f9 frequentemente introdotto.',
+  s3p3:'Il <strong>settore IPTV illegale</strong> opera diversamente: gli operatori rubano stream broadcast, li ritrasmettono tramite infrastruttura server e vendono abbonamenti mensili tramite reti di rivenditori.',
+  s3p4:'L\'elaborazione dei pagamenti \u00e8 una sfida persistente per le operazioni di pirateria \u2014 banche e reti di carte sono state pressate con successo a rifiutare l\'elaborazione per siti di pirateria noti.',
+  slot2_title:'Spazio Immagine 2', slot2_desc:'Il tuo diagramma della catena di approvvigionamento della pirateria \u2014 dal gruppo di release all\'utente finale', slot2_tag:'Aggiungi la tua opera d\'arte qui',
+  s4_eye:'Sezione 4 \u2014 Rischio Critico', s4_h2:'Il Pericolo Nascosto:<br>Malware nel Software Pirata',
+  s4p1:'Per la maggior parte degli utenti occasionali, la pirateria online sembra una scorciatoia innocua. La realt\u00e0 dei download di software pirata \u00e8 considerevolmente pi\u00f9 oscura. La ricerca trova costantemente che una <strong>maggioranza dei pacchetti software pirata contiene codice malevolo</strong>.',
+  s4p2:'Il meccanismo \u00e8 semplice: un utente cerca una versione craccata di un\'applicazione commerciale, la scarica da un portale di pirateria o torrent, e il payload si installa silenziosamente accanto al software promesso. L\'utente vede l\'applicazione avviarsi normalmente. Il malware sta gi\u00e0 girando.',
+  s4_callout:'<strong>Ricerca Cybereason (2022)</strong> ha rilevato che il 58% dei download di software pirata testati contenevano malware incorporato. I tipi pi\u00f9 comuni erano credential stealer, cryptominer e ransomware dropper.',
+  s4p3:'I tipi di malware comuni includono: <strong>credential stealer</strong> che raccolgono password e credenziali bancarie; <strong>cryptominer</strong> che usano CPU/GPU della vittima; <strong>ransomware dropper</strong> che preparano attacchi successivi; e <strong>trojan di accesso remoto (RAT)</strong> che danno agli aggressori controllo persistente.',
+  s4p4:'Questo rende il software pirata una minaccia significativa non solo per gli individui ma per le organizzazioni. I dipendenti che installano software pirata su dispositivi di lavoro o macchine personali che si connettono alle reti aziendali creano punti di ingresso per attacchi.',
+  slot3_lbl:'Spazio immagine 3 \u2014 Aggiungi la tua illustrazione', slot3_desc:'Opera d\'arte concettuale \u2014 malware, intrusione, pericolo digitale',
+  threat_box_lbl:'Payload malware comuni nel software pirata',
+  tr1_name:'Credential Stealer', tr1_lvl:'Critico',
+  tr2_name:'Ransomware Dropper', tr2_lvl:'Critico',
+  tr3_name:'Trojan di Accesso Remoto', tr3_lvl:'Alto',
+  tr4_name:'Cryptominer', tr4_lvl:'Alto',
+  tr5_name:'Adware / Spyware', tr5_lvl:'Medio',
+  s5_eye:'Sezione 5', s5_h2:'La Scala del Problema',
+  s5_intro:'Misurare l\'impatto economico della pirateria \u00e8 controverso \u2014 le cifre del settore tendono al massimalismo, mentre i ricercatori indipendenti trovano spesso effetti di spostamento reali significativamente inferiori.',
+  sc1_lbl:'perdite globali annuali dalla pirateria software, che copre applicazioni commerciali, giochi e software aziendale',
+  sc2_lbl:'stima della perdita di entrate annuali per l\'economia statunitense dalla pirateria su tutti i media \u2014 film, musica, software, editoria',
+  sc3_lbl:'di tutto il software installato sui personal computer globalmente non \u00e8 con licenza \u2014 incluse copie pirata e con licenza impropria',
+  s5_callout:'<strong>Il dibattito sullo spostamento:</strong> Non ogni download pirata rappresenta una vendita persa. La ricerca accademica \u2014 inclusi studi dell\'Ufficio dell\'Unione Europea per la Propriet\u00e0 Intellettuale \u2014 ha costantemente trovato che la relazione tra pirateria e vendite legittime \u00e8 pi\u00f9 complessa di quanto suggeriscano le cifre del settore.',
+  bar_g1:'Categorie di contenuto pi\u00f9 piratate (per volume)',
+  bar_g2:'Motivazioni citate dagli utenti per la pirateria',
+  bar1:'Film & TV', bar2:'Musica', bar3:'Software & Giochi', bar4:'Sport in diretta (IPTV)', bar5:'Libri / Editoria',
+  bar6:'Prezzo / non accessibile', bar7:'Geo-blocking / non disponibile', bar8:'Convenienza / velocit\u00e0', bar9:'Fatica da abbonamento',
+  s6_eye:'Sezione 6', s6_h2:'Casi Fondamentali nel Diritto Anti-Pirateria',
+  s6_intro:'Le battaglie legali sulla pirateria online hanno definito i confini del diritto internet, della responsabilit\u00e0 delle piattaforme e dell\'applicazione del copyright per tre decenni.',
+  cj1:'Stati Uniti', co1:'Chiuso',
+  ch1:'Napster \u2014 Il caso che ha dato inizio a tutto',
+  cp1:'Il servizio di condivisione musicale peer-to-peer di Napster \u00e8 stato lanciato nel 1999 e ha raggiunto 80 milioni di utenti registrati in due anni. La RIAA ha intentato causa ai sensi del DMCA. Il tribunale ha stabilito che Napster aveva contribuito materialmente alla violazione e ha ordinato di impedire la condivisione di materiale protetto da copyright. Napster ha chiuso nel 2001.',
+  cj2:'Svezia', co2:'Condannato',
+  ch2:'Il Processo di The Pirate Bay',
+  cp2:'I quattro fondatori di The Pirate Bay sono stati condannati per aver assistito la violazione del copyright e condannati a un anno di prigione ciascuno pi\u00f9 30 milioni di corone svedesi di danni. The Pirate Bay ha continuato a operare attraverso numerosi cambiamenti di dominio per oltre un decennio dopo la condanna.',
+  cj3:'Nuova Zelanda / USA', co3:'Caso Decennale',
+  ch3:'Megaupload / Kim Dotcom',
+  cp3:'L\'FBI ha coordinato con la polizia neozelandese l\'arresto di Kim Dotcom ad Auckland nel gennaio 2012, sequestrando simultaneamente i server di Megaupload \u2014 una piattaforma che ospitava 50 petabyte di dati per 150 milioni di utenti registrati. Il DOJ americano ha allegato 500 milioni di dollari di perdite. Al 2024, i procedimenti erano ancora in corso.',
+  cj4:'Unione Europea', co4:'Legislazione Approvata',
+  ch4:'Direttiva UE sul Copyright \u2014 Articolo 17',
+  cp4:'La Direttiva UE sul copyright nel mercato unico digitale richiedeva alle grandi piattaforme online di implementare filtri di upload per impedire agli utenti di caricare materiale protetto da copyright. La disposizione era profondamente controversa, la sua attuazione negli stati membri \u00e8 stata disomogenea.',
+  cj5:'Globale', co5:'In corso',
+  ch5:'Dati di Addestramento AI e la Nuova Frontiera del Copyright',
+  cp5:'Il campo di battaglia del copyright pi\u00f9 controverso del 2024 \u00e8 l\'uso di opere protette da copyright per addestrare sistemi AI senza licenza o compensazione. Pi\u00f9 cause legali sono state presentate contro OpenAI, Stability AI, Google e altri da autori, artisti ed editori.',
+  s7_eye:'Sezione 7', s7_h2:'Come Industria e Piattaforme<br>Hanno Risposto',
+  s7_intro:'L\'applicazione anti-pirateria si \u00e8 evoluta significativamente dalla prima strategia RIAA di citare in giudizio i singoli condivisori \u2014 ampiamente considerata un disastro di PR \u2014 verso il blocco tecnico, la cooperazione delle piattaforme, e la comprensione che lo strumento anti-pirateria pi\u00f9 efficace \u00e8 un servizio legale a prezzi competitivi.',
+  slot4_title:'Spazio Immagine 4', slot4_desc:'La tua illustrazione dell\'applicazione anti-pirateria o della dinamica gatto-e-topo', slot4_tag:'Aggiungi la tua opera d\'arte qui',
+  rc1_tag:'Strategia legale', rc1_h3:'Takedown DMCA e Notice-and-Takedown',
+  rc1_p:'La disposizione notice-and-takedown del DMCA richiede alle piattaforme di rimuovere contenuti in violazione dopo aver ricevuto un reclamo valido. I detentori di diritti inviano ora milioni di avvisi di takedown mensilmente \u2014 Google ne elabora pi\u00f9 di 5 milioni a settimana. Tuttavia i contenuti vengono tipicamente ricaricati entro ore.',
+  rc1_res:'Efficacia Mista',
+  rc2_tag:'Blocco tecnico', rc2_h3:'Blocco ISP Ordinato dal Tribunale',
+  rc2_p:'Nel UK, UE e Australia, i detentori di diritti hanno ottenuto ordini del tribunale che richiedono agli ISP di bloccare l\'accesso ai siti di pirateria noti. La Premier League ha ottenuto ingiunzioni di blocco in tempo reale durante le trasmissioni in diretta. Tuttavia, gli utenti aggirano i blocchi trivialmente usando VPN o siti mirror.',
+  rc2_res:'Limitata contro gli Utenti VPN',
+  rc3_tag:'Risposta di mercato', rc3_h3:'L\'Effetto Spotify / Netflix',
+  rc3_p:'L\'intervento anti-pirateria pi\u00f9 efficace in musica e video non \u00e8 stata l\'applicazione \u2014 \u00e8 stata la creazione di alternative legali convenienti e a prezzi competitivi. La pirateria musicale \u00e8 diminuita drasticamente dopo la crescita di Spotify. L\'espansione di Netflix ha correlato con significative riduzioni della pirateria TV e film. Questo \u00e8 il risultato pi\u00f9 empiricamente supportato: <strong>disponibilit\u00e0 e prezzo sono i fattori dominanti della pirateria.</strong>',
+  rc3_res:'Strategia Pi\u00f9 Efficace',
+  rc4_tag:'Preoccupazione emergente', rc4_h3:'Frammentazione dello Streaming e il Rimbalzo della Pirateria',
+  rc4_p:'La proliferazione dei servizi di streaming ha ironicamente alimentato un rimbalzo della pirateria. La ricerca MUSO ha rilevato che la pirateria globale \u00e8 aumentata significativamente nel 2022\u20132023, direttamente correlata alla frammentazione dei cataloghi di streaming su servizi incompatibili e singolarmente a pagamento.',
+  rc4_res:'Problema in Crescita',
+  s8_eye:'Sezione 8 \u2014 Dibattito Politico', s8_h2:'L\u2019Etica dell\u2019Accesso:<br>La Pirateria come Questione di Disuguaglianza Globale',
+  s8_intro:'La pirateria online genera un vero dibattito etico che \u00e8 distinto dal suo status legale. L\'economia della distribuzione di contenuti digitali crea reali inequit\u00e0 di accesso che il settore ha tardato ad affrontare.',
+  debate1_h3:'Il caso che la pirateria riflette un <span style="color:var(--blue-vivid)">Fallimento del Mercato</span>',
+  dp1_1:'Il geo-blocking nega l\'accesso legale ai contenuti in base alla posizione geografica \u2014 creando regioni in cui l\'acquisto legittimo \u00e8 impossibile indipendentemente dalla volont\u00e0 di pagare.',
+  dp1_2:'La parit\u00e0 del potere d\'acquisto viene ampiamente ignorata nella determinazione del prezzo dei contenuti. Un abbonamento Netflix banale in Europa occidentale pu\u00f2 rappresentare una parte significativa di uno stipendio mensile in Asia meridionale, Africa o America Latina.',
+  dp1_3:'Le strategie di release window \u2014 trattenere i rilasci digitali per settimane o mesi dopo le premiere cinematografiche \u2014 creano finestre artificiali in cui la pirateria \u00e8 l\'unico modo per accedere a nuovi contenuti.',
+  dp1_4:'L\'editoria accademica e scientifica rappresenta un caso particolarmente acuto: la ricerca finanziata pubblicamente \u00e8 bloccata dietro paywall che chiedono $30\u201350 per articolo. Sci-Hub serve decine di milioni di ricercatori mensili.',
+  debate2_h3:'Il caso che la pirateria \u00e8 <span style="color:var(--slate-lt)">Ancora Dannosa</span>',
+  dp2_1:'Il copyright esiste per incentivare la creazione di opere culturali e intellettuali. La pirateria sistematica mina i modelli economici che finanziano musica, film, letteratura e sviluppo software \u2014 danneggiando i creatori piuttosto che solo le aziende.',
+  dp2_2:'L\'argomento dell\'accesso non si applica alla pirateria nei mercati sviluppati \u2014 dove gli utenti hanno sia i mezzi per pagare sia l\'accesso legale \u2014 che rappresenta la maggior parte della pirateria per volume.',
+  dp2_3:'L\'infrastruttura criminale della pirateria organizzata \u2014 reti IPTV illegali, siti di software craccati \u2014 monetizza la pirateria su larga scala per operatori che traggono profitti sostanziali.',
+  dp2_4:'Il software pirata contenente malware impone costi reali a individui e organizzazioni \u2014 costi che ricadono su utenti ordinari che credevano di fare una scelta innocua.',
+  ref_eye:'Fonti', ref_h2:'Fonti e Ulteriori Letture',
+  quiz_p:'Metti alla prova le tue conoscenze sulla pirateria online e tutti gli altri argomenti di criminalit\u00e0 informatica',
+  quiz_span:'\u2014 10 domande casuali, nessun limite di tempo.',
+  quiz_btn:'Inizia il Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Argomento Precedente', tnav1_title:'Traffico di Droga Online', tnav1_sub:'02 \u2014 Mercati dark web, Telegram e la crisi del fentanil',
+  tnav2_dir:'Argomento Successivo \u00a0\u2192', tnav2_title:'Incitamento all\'Odio e Radicalizzazione', tnav2_sub:'04 \u2014 Pipeline algoritmiche, estremismo e violenza reale',
+  footer_note:'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate sopra.',
+  footer_src:'Fonti', footer_prev:'Prevenzione', footer_top:'Tutti gli Argomenti', footer_quiz:'Quiz', foot_imprint:"Note legali"
+};
+
+/* =======================================================
+   RENDERER
+======================================================= */
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function applyLang(lang){
+  var c=T[lang]; if(!c)return;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect'); if(s1)s1.value=lang;
+  var s2=g('langSelMob'); if(s2)s2.value=lang;
+  document.title=c.page_title;
+  /* nav */
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  /* breadcrumb */
+  st('bc-home',c.bc_home);st('bc-topics',c.bc_topics);st('bc-current',c.bc_current);
+  /* hero */
+  st('hero-series-lbl',c.hero_series);si('hero-h1',c.hero_h1);st('hero-lead',c.hero_lead);
+  st('meta1-lbl',c.meta1_lbl);st('meta1-val',c.meta1_val);
+  st('meta2-lbl',c.meta2_lbl);st('meta2-val',c.meta2_val);
+  st('meta3-lbl',c.meta3_lbl);st('meta3-val',c.meta3_val);
+  st('meta4-lbl',c.meta4_lbl);st('meta4-val',c.meta4_val);
+  /* stats */
+  st('stat1-lbl',c.stat1_lbl);st('stat2-lbl',c.stat2_lbl);
+  st('stat3-lbl',c.stat3_lbl);st('stat4-lbl',c.stat4_lbl);
+  /* s1 */
+  st('s1-eye',c.s1_eye);si('pq-text',c.pq_text);st('pq-cite',c.pq_cite);
+  si('s1p1',c.s1p1);si('s1p2',c.s1p2);st('s1p3',c.s1p3);st('s1p4',c.s1p4);
+  /* s2 */
+  st('s2-eye',c.s2_eye);si('s2-h2',c.s2_h2);st('s2-intro',c.s2_intro);
+  st('eco1-tag',c.eco1_tag);st('eco1-h3',c.eco1_h3);st('eco1-p',c.eco1_p);st('eco1-badge',c.eco1_badge);
+  st('eco2-tag',c.eco2_tag);st('eco2-h3',c.eco2_h3);st('eco2-p',c.eco2_p);st('eco2-badge',c.eco2_badge);
+  st('eco3-tag',c.eco3_tag);st('eco3-h3',c.eco3_h3);st('eco3-p',c.eco3_p);st('eco3-badge',c.eco3_badge);
+  st('eco4-tag',c.eco4_tag);st('eco4-h3',c.eco4_h3);st('eco4-p',c.eco4_p);st('eco4-badge',c.eco4_badge);
+  st('eco5-tag',c.eco5_tag);st('eco5-h3',c.eco5_h3);st('eco5-p',c.eco5_p);st('eco5-badge',c.eco5_badge);
+  /* s3 */
+  st('s3-eye',c.s3_eye);st('s3-h2',c.s3_h2);st('s3-intro',c.s3_intro);
+  si('s3p1',c.s3p1);st('s3p2',c.s3p2);si('s3-callout',c.s3_callout);st('s3p3',c.s3p3);st('s3p4',c.s3p4);
+  st('slot2-title',c.slot2_title);st('slot2-desc',c.slot2_desc);st('slot2-tag',c.slot2_tag);
+  /* s4 */
+  st('s4-eye',c.s4_eye);si('s4-h2',c.s4_h2);si('s4p1',c.s4p1);st('s4p2',c.s4p2);
+  si('s4-callout',c.s4_callout);si('s4p3',c.s4p3);st('s4p4',c.s4p4);
+  st('slot3-lbl',c.slot3_lbl);st('slot3-desc',c.slot3_desc);
+  st('threat-box-lbl',c.threat_box_lbl);
+  st('tr1-name',c.tr1_name);st('tr1-lvl',c.tr1_lvl);
+  st('tr2-name',c.tr2_name);st('tr2-lvl',c.tr2_lvl);
+  st('tr3-name',c.tr3_name);st('tr3-lvl',c.tr3_lvl);
+  st('tr4-name',c.tr4_name);st('tr4-lvl',c.tr4_lvl);
+  st('tr5-name',c.tr5_name);st('tr5-lvl',c.tr5_lvl);
+  /* s5 */
+  st('s5-eye',c.s5_eye);st('s5-h2',c.s5_h2);st('s5-intro',c.s5_intro);
+  st('sc1-lbl',c.sc1_lbl);st('sc2-lbl',c.sc2_lbl);st('sc3-lbl',c.sc3_lbl);
+  si('s5-callout',c.s5_callout);
+  st('bar-g1-lbl',c.bar_g1);st('bar-g2-lbl',c.bar_g2);
+  st('bar1-lbl',c.bar1);st('bar2-lbl',c.bar2);st('bar3-lbl',c.bar3);
+  st('bar4-lbl',c.bar4);st('bar5-lbl',c.bar5);
+  st('bar6-lbl',c.bar6);st('bar7-lbl',c.bar7);st('bar8-lbl',c.bar8);st('bar9-lbl',c.bar9);
+  /* s6 */
+  st('s6-eye',c.s6_eye);st('s6-h2',c.s6_h2);st('s6-intro',c.s6_intro);
+  st('cj1',c.cj1);st('co1',c.co1);st('ch1',c.ch1);st('cp1',c.cp1);
+  st('cj2',c.cj2);st('co2',c.co2);st('ch2',c.ch2);st('cp2',c.cp2);
+  st('cj3',c.cj3);st('co3',c.co3);st('ch3',c.ch3);st('cp3',c.cp3);
+  st('cj4',c.cj4);st('co4',c.co4);st('ch4',c.ch4);st('cp4',c.cp4);
+  st('cj5',c.cj5);st('co5',c.co5);st('ch5',c.ch5);st('cp5',c.cp5);
+  /* s7 */
+  st('s7-eye',c.s7_eye);si('s7-h2',c.s7_h2);st('s7-intro',c.s7_intro);
+  st('slot4-title',c.slot4_title);st('slot4-desc',c.slot4_desc);st('slot4-tag',c.slot4_tag);
+  st('rc1-tag',c.rc1_tag);st('rc1-h3',c.rc1_h3);st('rc1-p',c.rc1_p);st('rc1-res',c.rc1_res);
+  st('rc2-tag',c.rc2_tag);st('rc2-h3',c.rc2_h3);st('rc2-p',c.rc2_p);st('rc2-res',c.rc2_res);
+  st('rc3-tag',c.rc3_tag);st('rc3-h3',c.rc3_h3);si('rc3-p',c.rc3_p);st('rc3-res',c.rc3_res);
+  st('rc4-tag',c.rc4_tag);st('rc4-h3',c.rc4_h3);st('rc4-p',c.rc4_p);st('rc4-res',c.rc4_res);
+  /* s8 */
+  st('s8-eye',c.s8_eye);si('s8-h2',c.s8_h2);st('s8-intro',c.s8_intro);
+  si('debate1-h3',c.debate1_h3);
+  st('dp1-1',c.dp1_1);st('dp1-2',c.dp1_2);st('dp1-3',c.dp1_3);st('dp1-4',c.dp1_4);
+  si('debate2-h3',c.debate2_h3);
+  st('dp2-1',c.dp2_1);st('dp2-2',c.dp2_2);st('dp2-3',c.dp2_3);st('dp2-4',c.dp2_4);
+  /* refs */
+  st('ref-eye',c.ref_eye);st('ref-h2',c.ref_h2);
+  /* quiz strip */
+  var qp=g('quiz-strip-p');
+  if(qp)qp.innerHTML=c.quiz_p+' <span>'+c.quiz_span+'</span>';
+  st('quiz-strip-btn',c.quiz_btn);
+  /* topic nav */
+  st('tnav1-dir',c.tnav1_dir);st('tnav1-title',c.tnav1_title);st('tnav1-sub',c.tnav1_sub);
+  st('tnav2-dir',c.tnav2_dir);st('tnav2-title',c.tnav2_title);st('tnav2-sub',c.tnav2_sub);
+  /* footer */
+  st('footer-note',c.footer_note);st('footer-src',c.footer_src);
+  st('footer-prev',c.footer_prev);st('footer-top',c.footer_top);st('footer-quiz',c.footer_quiz);
+}
+
+function switchLanguage(lang){applyLang(lang)}
+
+/* HAMBURGER */
+var hb=document.getElementById('hamburger');
+var nm=document.getElementById('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+/* INIT */
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>

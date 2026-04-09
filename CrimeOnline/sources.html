@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Sources &amp; References | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;
+  --silver:#cbd5e1;--silver-lt:#e2e8f0;
+  --silver-glow:rgba(203,213,225,0.07);--silver-border:rgba(203,213,225,0.15);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);
+  --c-ncii:#c0392b;--c-drug:#d97706;--c-piracy:#2563eb;
+  --c-hate:#7c3aed;--c-stalk:#0d9488;--c-finance:#16a34a;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--crimson);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+.page-header{padding:72px 80px 60px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(180deg,transparent 0px,transparent 31px,rgba(255,255,255,0.025) 31px,rgba(255,255,255,0.025) 32px)}
+.header-inner{position:relative;z-index:1;max-width:860px}
+.header-label{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:16px;display:block}
+.page-header h1{font-family:var(--font-d);font-size:clamp(32px,4.5vw,58px);font-weight:900;line-height:1.06;letter-spacing:-1px;color:var(--white);margin-bottom:18px}
+.page-header h1 em{font-style:italic;color:var(--silver)}
+.header-desc{font-size:16px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:600px;margin-bottom:32px}
+.count-strip{display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--border)}
+.count-num{font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--white);line-height:1}
+.count-num span{color:var(--crimson)}
+.count-label{font-size:12px;color:var(--slate);margin-top:3px;font-family:var(--font-m);letter-spacing:.04em}
+@media(max-width:860px){.page-header{padding:52px 24px 40px}}
+.filter-bar{position:sticky;top:62px;z-index:100;background:#0a0e1a;border-bottom:1px solid var(--border);padding:14px 80px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.filter-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-right:4px;white-space:nowrap}
+.filter-btn{font-family:var(--font-m);font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;letter-spacing:.04em;cursor:pointer;border:1px solid transparent;transition:opacity .18s,transform .12s;white-space:nowrap;background:none}
+.filter-btn:hover{opacity:.75;transform:translateY(-1px)}
+.filter-btn.active{opacity:1}
+.filter-btn:not(.active){opacity:.45}
+.fb-all{color:var(--silver-lt);border-color:var(--silver-border);background:var(--silver-glow)}
+.fb-all.active{opacity:1;background:rgba(203,213,225,0.14)}
+.fb-ncii{color:#e89a90;border-color:rgba(192,57,43,0.35);background:rgba(192,57,43,0.1)}
+.fb-drug{color:#f0c97a;border-color:rgba(217,119,6,0.35);background:rgba(217,119,6,0.1)}
+.fb-piracy{color:#93c5fd;border-color:rgba(37,99,235,0.35);background:rgba(37,99,235,0.1)}
+.fb-hate{color:#c4b5fd;border-color:rgba(124,58,237,0.35);background:rgba(124,58,237,0.1)}
+.fb-stalk{color:#5eead4;border-color:rgba(13,148,136,0.35);background:rgba(13,148,136,0.1)}
+.fb-finance{color:#4ade80;border-color:rgba(22,163,74,0.35);background:rgba(22,163,74,0.1)}
+.fb-multi{color:var(--slate-lt);border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.05)}
+.filter-count{margin-left:auto;font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.06em;white-space:nowrap}
+@media(max-width:860px){.filter-bar{padding:12px 24px}.filter-count{display:none}}
+.foundational-section{padding:56px 80px 0;border-bottom:1px solid var(--border)}
+.foundational-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.foundational-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.1),transparent)}
+.foundational-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:56px}
+.foundational-card{background:var(--navy-mid);padding:28px 26px;transition:background .2s;text-decoration:none;display:block}
+.foundational-card:hover{background:var(--navy-surface)}
+.foundational-type{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:10px}
+.foundational-card h3{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.3}
+.foundational-author{font-size:12px;color:var(--slate-lt);margin-bottom:8px}
+.foundational-desc{font-size:12px;color:var(--slate);line-height:1.6}
+.foundational-topics{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap}
+.ft-pill{font-family:var(--font-m);font-size:10px;padding:2px 8px;border-radius:10px;letter-spacing:.03em}
+.ft-ncii{background:rgba(192,57,43,0.12);color:#e89a90}
+.ft-drug{background:rgba(217,119,6,0.12);color:#f0c97a}
+.ft-piracy{background:rgba(37,99,235,0.12);color:#93c5fd}
+.ft-hate{background:rgba(124,58,237,0.12);color:#c4b5fd}
+.ft-stalk{background:rgba(13,148,136,0.12);color:#5eead4}
+.ft-finance{background:rgba(22,163,74,0.12);color:#4ade80}
+.ft-multi{background:rgba(203,213,225,0.08);color:var(--slate-lt)}
+@media(max-width:860px){.foundational-section{padding:40px 24px 0}.foundational-grid{grid-template-columns:1fr}}
+.ref-list-section{padding:0 80px 80px}
+.ref-group{margin-top:52px}
+.ref-group:first-child{margin-top:48px}
+.ref-group-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.ref-group-colour{width:4px;height:32px;border-radius:2px;flex-shrink:0}
+.rgc-ncii{background:var(--c-ncii)}.rgc-drug{background:var(--c-drug)}.rgc-piracy{background:var(--c-piracy)}
+.rgc-hate{background:var(--c-hate)}.rgc-stalk{background:var(--c-stalk)}.rgc-finance{background:var(--c-finance)}
+.rgc-multi{background:linear-gradient(180deg,var(--c-ncii),var(--c-finance))}
+.ref-group-title{font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--white);line-height:1.2}
+.ref-group-subtitle{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.ref-group-link{margin-left:auto;font-family:var(--font-m);font-size:11px;color:var(--slate);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;transition:color .18s}
+.ref-group-link:hover{color:var(--slate-lt)}
+.ref-entry{display:grid;grid-template-columns:40px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s}
+.ref-entry:last-child{border-bottom:none}
+.ref-entry:hover{background:rgba(255,255,255,0.02)}
+.ref-entry.hidden{display:none}
+.ref-num{padding:15px 0 14px;font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.04em;opacity:.5;display:flex;align-items:flex-start}
+.ref-body{padding:12px 0}
+.ref-text{font-family:var(--font-m);font-size:12.5px;color:var(--slate-lt);line-height:1.75;letter-spacing:.01em}
+.ref-text em{font-style:italic;color:var(--silver-lt)}
+.ref-text .ref-author{color:var(--white)}
+.ref-tags{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
+.ref-tag{font-family:var(--font-m);font-size:10px;padding:2px 8px;border-radius:10px;letter-spacing:.03em;display:inline-block}
+.rt-ncii{background:rgba(192,57,43,0.1);color:#e89a90}
+.rt-drug{background:rgba(217,119,6,0.1);color:#f0c97a}
+.rt-piracy{background:rgba(37,99,235,0.1);color:#93c5fd}
+.rt-hate{background:rgba(124,58,237,0.1);color:#c4b5fd}
+.rt-stalk{background:rgba(13,148,136,0.1);color:#5eead4}
+.rt-finance{background:rgba(22,163,74,0.1);color:#4ade80}
+.rt-multi{background:rgba(203,213,225,0.06);color:var(--slate-lt)}
+.no-results{display:none;padding:48px 0;text-align:center;font-family:var(--font-m);font-size:13px;color:var(--slate);letter-spacing:.04em}
+.no-results.visible{display:block}
+@media(max-width:860px){.ref-list-section{padding:0 24px 52px}.ref-group-link{display:none}}
+.page-footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--navy-mid)}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:420px;line-height:1.6}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){.page-footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="sources.html" class="active" id="nav-sources-lbl">Sources</a></li>
+      <li><a href="quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option><option value="de">DE</option><option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+<div class="breadcrumb">
+  <a href="index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Sources &amp; References</span>
+</div>
+<header class="page-header">
+  <div class="header-inner">
+    <span class="header-label" id="header-label">Bibliography &amp; Academic Sources</span>
+    <h1 id="header-h1">Sources &amp;<br><em>References</em></h1>
+    <p class="header-desc" id="header-desc">All sources cited across the six topic reports, collected in one searchable catalogue. Filter by topic using the buttons below, or browse the complete bibliography in alphabetical order within each category.</p>
+    <div class="count-strip">
+      <div class="count-item"><div class="count-num">74<span>+</span></div><div class="count-label" id="count1-lbl">Total sources cited</div></div>
+      <div class="count-item"><div class="count-num">6<span></span></div><div class="count-label" id="count2-lbl">Topic categories</div></div>
+      <div class="count-item"><div class="count-num">18<span>+</span></div><div class="count-label" id="count3-lbl">Peer-reviewed studies</div></div>
+      <div class="count-item"><div class="count-num">12<span>+</span></div><div class="count-label" id="count4-lbl">Government reports</div></div>
+    </div>
+  </div>
+</header>
+<div class="filter-bar">
+  <span class="filter-label" id="filter-label">Filter by topic:</span>
+  <button class="filter-btn fb-all active" data-filter="all"     id="fb-all">All Sources</button>
+  <button class="filter-btn fb-ncii"       data-filter="ncii"    id="fb-ncii">01 NCII</button>
+  <button class="filter-btn fb-drug"       data-filter="drug"    id="fb-drug">02 Drug Trade</button>
+  <button class="filter-btn fb-piracy"     data-filter="piracy"  id="fb-piracy">03 Piracy</button>
+  <button class="filter-btn fb-hate"       data-filter="hate"    id="fb-hate">04 Hate Speech</button>
+  <button class="filter-btn fb-stalk"      data-filter="stalk"   id="fb-stalk">05 Cyberstalking</button>
+  <button class="filter-btn fb-finance"    data-filter="finance" id="fb-finance">06 Financial Crime</button>
+  <button class="filter-btn fb-multi"      data-filter="multi"   id="fb-multi">Cross-Topic</button>
+  <span class="filter-count" id="filterCount">Showing all 74 sources</span>
+</div>
+<section class="foundational-section">
+  <div class="foundational-label" id="foundational-lbl">Essential foundational reading &mdash; cited across multiple topics</div>
+  <div class="foundational-grid">
+    <a href="crimes/ncii.html" class="foundational-card">
+      <div class="foundational-type" id="fc1-type">Book</div>
+      <h3>Hate Crimes in Cyberspace</h3>
+      <div class="foundational-author">Danielle Keats Citron (2014) &mdash; Harvard University Press</div>
+      <div class="foundational-desc" id="fc1-desc">The foundational academic text on NCII and online harassment as civil rights violations. Argues for robust legal frameworks treating image-based abuse as a hate crime.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-ncii">NCII</span><span class="ft-pill ft-stalk">Cyberstalking</span><span class="ft-pill ft-hate">Hate Speech</span></div>
+    </a>
+    <a href="crimes/hate-speech.html" class="foundational-card">
+      <div class="foundational-type" id="fc2-type">Book</div>
+      <h3>The Age of Surveillance Capitalism</h3>
+      <div class="foundational-author">Shoshana Zuboff (2019) &mdash; Profile Books</div>
+      <div class="foundational-desc" id="fc2-desc">Zuboff&rsquo;s landmark analysis of how behavioural data extraction drives platform economics &mdash; and how engagement-optimised systems structurally amplify harmful content.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-hate">Hate Speech</span><span class="ft-pill ft-stalk">Cyberstalking</span><span class="ft-pill ft-multi">Cross-Topic</span></div>
+    </a>
+    <a href="crimes/financial-crime.html" class="foundational-card">
+      <div class="foundational-type" id="fc3-type">Book</div>
+      <h3>Tracers in the Dark</h3>
+      <div class="foundational-author">Andy Greenberg (2022) &mdash; Doubleday</div>
+      <div class="foundational-desc" id="fc3-desc">The definitive account of how blockchain forensics brought down Silk Road, AlphaBay, and the world&rsquo;s largest cryptocurrency launderers. Essential for understanding both the drug trade and financial crime.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-drug">Drug Trade</span><span class="ft-pill ft-finance">Financial Crime</span></div>
+    </a>
+    <a href="prevention.html" class="foundational-card">
+      <div class="foundational-type" id="fc4-type">Annual Report</div>
+      <h3>FBI Internet Crime Report 2023</h3>
+      <div class="foundational-author">FBI Internet Crime Complaint Center (IC3), 2024</div>
+      <div class="foundational-desc" id="fc4-desc">The primary statistical source for US financial cybercrime losses, covering phishing, BEC, investment fraud, ransomware, and identity theft with full breakdowns by crime type and victim demographics.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-finance">Financial Crime</span><span class="ft-pill ft-multi">Cross-Topic</span></div>
+    </a>
+    <a href="crimes/piracy.html" class="foundational-card">
+      <div class="foundational-type" id="fc5-type">Book</div>
+      <h3>Media Piracy in Emerging Economies</h3>
+      <div class="foundational-author">Joe Karaganis, Ed. (2011) &mdash; Social Science Research Council</div>
+      <div class="foundational-desc" id="fc5-desc">The most rigorous independent study of global piracy, challenging maximalist industry loss estimates and establishing the relationship between pricing, access, and piracy rates. Freely available online.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-piracy">Piracy</span><span class="ft-pill ft-multi">Policy</span></div>
+    </a>
+    <a href="prevention.html" class="foundational-card">
+      <div class="foundational-type" id="fc6-type">Legislative Text</div>
+      <h3>EU Digital Services Act (2024)</h3>
+      <div class="foundational-author">European Parliament &amp; Council of the EU, 2022 (full force 2024)</div>
+      <div class="foundational-desc" id="fc6-desc">The most significant internet platform regulation in history. Directly relevant to NCII, hate speech, cyberstalking enforcement, and financial fraud &mdash; cited across every topic in this project.</div>
+      <div class="foundational-topics"><span class="ft-pill ft-ncii">NCII</span><span class="ft-pill ft-hate">Hate Speech</span><span class="ft-pill ft-stalk">Cyberstalking</span><span class="ft-pill ft-multi">Cross-Topic</span></div>
+    </a>
+  </div>
+</section>
+<section class="ref-list-section" id="refList">
+  <div class="ref-group" data-group="ncii">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-ncii"></div><div><div class="ref-group-title" id="grp1-title">Non-Consensual Intimate Image Sharing</div><div class="ref-group-subtitle" id="grp1-sub">Topic 01 &middot; 12 sources</div></div><a href="crimes/ncii.html" class="ref-group-link" id="grp1-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">01</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Citron, D. K.</span> (2014). <em>Hate Crimes in Cyberspace.</em> Harvard University Press.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">02</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Cyber Civil Rights Initiative.</span> (2020). <em>2020 CCRI Survey Results.</em> cybercivilrights.org.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">03</div><div class="ref-body"><div class="ref-text"><span class="ref-author">eSafety Commissioner.</span> (2023). <em>eSafety Annual Report 2022&ndash;23.</em> Australian Government.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">04</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Internet Watch Foundation.</span> (2023). <em>Annual Report 2022.</em> iwf.org.uk.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">05</div><div class="ref-body"><div class="ref-text"><span class="ref-author">McGlynn, C., Rackley, E., &amp; Houghton, R.</span> (2017). Beyond &lsquo;Revenge Porn&rsquo;: The Continuum of Image-Based Sexual Abuse. <em>Feminist Legal Studies, 25</em>(1), 25&ndash;46.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">06</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Revenge Porn Helpline.</span> (2023). <em>Annual Report 2022.</em> revengepornhelpline.org.uk.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">07</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Sensity AI.</span> (2023). <em>The State of Deepfakes: Landscape, Threats, and Impact.</em> Sensity.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">08</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Stanford Internet Observatory.</span> (2023). <em>Telegram and the Distribution of Non-Consensual Intimate Images.</em> Stanford University.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii"><div class="ref-num">09</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Thorn.</span> (2021). <em>Sextortion: Summary of Findings.</em> thorn.org.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii hate"><div class="ref-num">10</div><div class="ref-body"><div class="ref-text"><span class="ref-author">UK Government.</span> (2023). <em>Online Safety Act 2023.</em> legislation.gov.uk.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii stalk"><div class="ref-num">11</div><div class="ref-body"><div class="ref-text"><span class="ref-author">United Nations.</span> (2023). <em>Online Violence Against Women and Girls.</em> UN Women.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="ncii stalk"><div class="ref-num">12</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Waldman, A. E.</span> (2019). <em>Privacy as Trust: Information Privacy for an Information Age.</em> Cambridge University Press.</div><div class="ref-tags"><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="drug">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-drug"></div><div><div class="ref-group-title" id="grp2-title">Online Drug Trade</div><div class="ref-group-subtitle" id="grp2-sub">Topic 02 &middot; 11 sources</div></div><a href="crimes/drug-trade.html" class="ref-group-link" id="grp2-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">13</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Barratt, M. J., &amp; Aldridge, J.</span> (2016). Everything you always wanted to know about drug cryptomarkets. <em>International Journal of Drug Policy, 35,</em> 1&ndash;6.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug finance"><div class="ref-num">14</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Chainalysis.</span> (2024). <em>The Chainalysis 2024 Crypto Crime Report.</em> chainalysis.com.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">15</div><div class="ref-body"><div class="ref-text"><span class="ref-author">DEA.</span> (2023). <em>Fentanyl: The Lethal Reality of the Drug Crisis.</em> US Drug Enforcement Administration.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">16</div><div class="ref-body"><div class="ref-text"><span class="ref-author">EMCDDA.</span> (2023). <em>European Drug Report 2023: Trends and Developments.</em> European Monitoring Centre for Drugs and Drug Addiction.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">17</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Europol.</span> (2022). <em>Darkweb: Taking Down a Multi-million Dollar Drug Empire.</em> europol.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">18</div><div class="ref-body"><div class="ref-text"><span class="ref-author">FBI.</span> (2013). <em>Silk Road Shut Down, Founder Arrested.</em> fbi.gov.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">19</div><div class="ref-body"><div class="ref-text"><span class="ref-author">German BKA.</span> (2022). <em>World&rsquo;s Largest Darknet Marketplace Taken Down.</em> bka.de.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug finance"><div class="ref-num">20</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Greenberg, A.</span> (2022). <em>Tracers in the Dark: The Global Hunt for the Crime Lords of Cryptocurrency.</em> Doubleday.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">21</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Martin, J.</span> (2014). Lost on the Silk Road. <em>Criminology &amp; Criminal Justice, 14</em>(3), 351&ndash;367.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">22</div><div class="ref-body"><div class="ref-text"><span class="ref-author">UNODC.</span> (2023). <em>World Drug Report 2023.</em> United Nations Office on Drugs and Crime.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="drug"><div class="ref-num">23</div><div class="ref-body"><div class="ref-text"><span class="ref-author">US DOJ.</span> (2021). <em>Global Operation Dark HunTOR Results in 150 Arrests.</em> justice.gov.</div><div class="ref-tags"><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="piracy">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-piracy"></div><div><div class="ref-group-title" id="grp3-title">Online Piracy</div><div class="ref-group-subtitle" id="grp3-sub">Topic 03 &middot; 12 sources</div></div><a href="crimes/piracy.html" class="ref-group-link" id="grp3-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">24</div><div class="ref-body"><div class="ref-text"><span class="ref-author">BSA | The Software Alliance.</span> (2023). <em>BSA Global Software Survey.</em> bsa.org.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">25</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Cybereason.</span> (2022). <em>Malware in Pirated Software: Threat Intelligence Report.</em> cybereason.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">26</div><div class="ref-body"><div class="ref-text"><span class="ref-author">European Intellectual Property Office.</span> (2023). <em>Online Copyright Infringement in the EU.</em> euipo.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">27</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Karaganis, J.</span> (Ed.). (2011). <em>Media Piracy in Emerging Economies.</em> Social Science Research Council.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">28</div><div class="ref-body"><div class="ref-text"><span class="ref-author">MUSO.</span> (2023). <em>Global Piracy Report 2023.</em> muso.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">29</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Oberholzer-Gee, F., &amp; Strumpf, K.</span> (2007). The Effect of File Sharing on Record Sales. <em>Journal of Political Economy, 115</em>(1), 1&ndash;42.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">30</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Recorded Future.</span> (2023). <em>Piracy-Related Malware: Threat Actor Patterns.</em> recordedfuture.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">31</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Svensson, M., &amp; Larsson, S.</span> (2012). Social Norms and Intellectual Property. <em>Lund University.</em></div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">32</div><div class="ref-body"><div class="ref-text"><span class="ref-author">US Chamber of Commerce / GIPC.</span> (2023). <em>Measuring the Magnitude of Global Counterfeiting.</em> theglobalipcenter.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">33</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Wired.</span> (2012). <em>The Dotcom Affair: Inside the Megaupload Raid.</em> wired.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy"><div class="ref-num">34</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Zentner, A.</span> (2006). Measuring the Effect of File Sharing on Music Purchases. <em>Journal of Law &amp; Economics, 49</em>(1), 63&ndash;90.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span></div></div></div>
+    <div class="ref-entry" data-topics="piracy finance"><div class="ref-num">35</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Verizon.</span> (2024). <em>2024 Data Breach Investigations Report.</em> verizon.com.</div><div class="ref-tags"><span class="ref-tag rt-piracy">Piracy</span><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="hate">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-hate"></div><div><div class="ref-group-title" id="grp4-title">Hate Speech &amp; Radicalisation</div><div class="ref-group-subtitle" id="grp4-sub">Topic 04 &middot; 11 sources</div></div><a href="crimes/hate-speech.html" class="ref-group-link" id="grp4-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">36</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Byman, D.</span> (2021). <em>Spreading Hate: The Global Attack on Democracy and the Future of Terrorism.</em> Oxford University Press.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">37</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Center for Countering Digital Hate.</span> (2023). <em>Toxic Twitter: Hate Speech Post-Acquisition.</em> counterhate.com.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">38</div><div class="ref-body"><div class="ref-text"><span class="ref-author">EU Agency for Fundamental Rights.</span> (2022). <em>Online Hate Speech &mdash; Experiences of Young People.</em> fra.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">39</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Haugen, F.</span> (2021). <em>Senate Commerce Committee Testimony.</em> US Senate, October 2021.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">40</div><div class="ref-body"><div class="ref-text"><span class="ref-author">ICCT.</span> (2022). <em>Pathways to Online Radicalisation: A Systematic Review.</em> International Centre for Counter-Terrorism.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">41</div><div class="ref-body"><div class="ref-text"><span class="ref-author">New Zealand Royal Commission.</span> (2020). <em>Ko to ra o Aroha &mdash; Report of the Royal Commission of Inquiry into the Terrorist Attack on Christchurch Mosques.</em> royalcommission.govt.nz.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">42</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Radicalization Awareness Network.</span> (2023). <em>Online Radicalisation to Terrorism.</em> European Commission, ran.ec.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">43</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Ribeiro, M. H., et al.</span> (2020). Auditing Radicalization Pathways on YouTube. <em>ACM Conference on Fairness, Accountability, and Transparency.</em></div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate"><div class="ref-num">44</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Sunstein, C. R.</span> (2017). <em>#Republic: Divided Democracy in the Age of Social Media.</em> Princeton University Press.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="hate multi stalk"><div class="ref-num">45</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Waldman, A. E.</span> (2023). <em>Industry Unbound: The Inside Story of Privacy, Data, and Corporate Power.</em> Cambridge University Press.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="hate multi stalk"><div class="ref-num">46</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Zuboff, S.</span> (2019). <em>The Age of Surveillance Capitalism.</em> Profile Books.</div><div class="ref-tags"><span class="ref-tag rt-hate">Hate Speech</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="stalk">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-stalk"></div><div><div class="ref-group-title" id="grp5-title">Cyberstalking &amp; Doxxing</div><div class="ref-group-subtitle" id="grp5-sub">Topic 05 &middot; 11 sources</div></div><a href="crimes/cyberstalking.html" class="ref-group-link" id="grp5-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">47</div><div class="ref-body"><div class="ref-text"><span class="ref-author">CDC.</span> (2022). <em>National Intimate Partner and Sexual Violence Survey.</em> Centers for Disease Control and Prevention.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">48</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Coalition Against Stalkerware.</span> (2023). <em>Annual Report on Stalkerware Detection.</em> stopstalkerware.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">49</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Cyber Civil Rights Initiative.</span> (2021). <em>2021 CCRI Online Harassment Survey.</em> cybercivilrights.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">50</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Douglas, H., Harris, B. A., &amp; Dragiewicz, M.</span> (2019). Technology-facilitated Domestic and Family Violence. <em>British Journal of Criminology, 59</em>(3), 551&ndash;570.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">51</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Kaspersky.</span> (2023). <em>Stalkerware: Numbers and Trends.</em> kaspersky.com.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">52</div><div class="ref-body"><div class="ref-text"><span class="ref-author">National Network to End Domestic Violence (NNEDV).</span> (2022). <em>Safety Net: Technology Safety.</em> nnedv.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">53</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Privacy Rights Clearinghouse.</span> (2023). <em>Data Brokers and Personal Privacy.</em> privacyrights.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">54</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Southworth, C., et al.</span> (2007). A High-Tech Twist on Abuse: Technology, Intimate Partner Stalking, and Advocacy. <em>Violence Against Women, 13</em>(12).</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">55</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Suzy Lamplugh Trust.</span> (2023). <em>Stalking &mdash; The Facts.</em> suzylamplugh.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk hate"><div class="ref-num">56</div><div class="ref-body"><div class="ref-text"><span class="ref-author">UNESCO.</span> (2021). <em>The Chilling: Global Trends in Online Violence Against Women Journalists.</em> unesco.org.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="stalk"><div class="ref-num">57</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Woodlock, D.</span> (2017). The Abuse of Technology in Domestic Violence and Stalking. <em>Violence Against Women, 23</em>(5), 584&ndash;602.</div><div class="ref-tags"><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="finance">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-finance"></div><div><div class="ref-group-title" id="grp6-title">Financial Cybercrime</div><div class="ref-group-subtitle" id="grp6-sub">Topic 06 &middot; 12 sources</div></div><a href="crimes/financial-crime.html" class="ref-group-link" id="grp6-link">View full report &#x2192;</a></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">58</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Coveware.</span> (2024). <em>Q4 2023 Ransomware Marketplace Report.</em> coveware.com.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance multi"><div class="ref-num">59</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Cybersecurity Ventures.</span> (2023). <em>Cybercrime Magazine: Cybercrime To Cost The World $10.5 Trillion Annually By 2025.</em> cybersecurityventures.com.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span><span class="ref-tag rt-multi">Cross-Topic</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">60</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Deloitte.</span> (2023). <em>Phishing Attacks: The Gateway to Cybercrime.</em> deloitte.com.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">61</div><div class="ref-body"><div class="ref-text"><span class="ref-author">FBI IC3.</span> (2024). <em>Internet Crime Report 2023.</em> ic3.gov.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">62</div><div class="ref-body"><div class="ref-text"><span class="ref-author">FTC.</span> (2024). <em>Consumer Sentinel Network Data Book 2023.</em> ftc.gov.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">63</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Global Anti-Scam Organisation.</span> (2023). <em>Pig Butchering Scam &mdash; How It Works.</em> globalantiscam.org.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">64</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Krebs, B.</span> (2023). <em>Pig Butchering Scams: A Deep Dive.</em> krebsonsecurity.com.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">65</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Proofpoint.</span> (2024). <em>State of the Phish 2024.</em> proofpoint.com.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+    <div class="ref-entry" data-topics="finance drug multi"><div class="ref-num">66</div><div class="ref-body"><div class="ref-text"><span class="ref-author">UNODC.</span> (2023). <em>Transnational Organised Crime and the Convergence of Cyber-Enabled Fraud.</em> unodc.org.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span><span class="ref-tag rt-drug">Drug Trade</span></div></div></div>
+    <div class="ref-entry" data-topics="finance"><div class="ref-num">67</div><div class="ref-body"><div class="ref-text"><span class="ref-author">US State Department.</span> (2023). <em>Southeast Asia Trafficking and Forced Labor in Online Scam Operations.</em> state.gov.</div><div class="ref-tags"><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+  </div>
+  <div class="ref-group" data-group="multi">
+    <div class="ref-group-header"><div class="ref-group-colour rgc-multi"></div><div><div class="ref-group-title" id="grp7-title">Cross-Topic: Policy, Legislation &amp; Frameworks</div><div class="ref-group-subtitle" id="grp7-sub">General &middot; 7 sources</div></div><a href="prevention.html" class="ref-group-link" id="grp7-link">View prevention page &#x2192;</a></div>
+    <div class="ref-entry" data-topics="multi hate ncii stalk"><div class="ref-num">68</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Council of Europe.</span> (2001). <em>Budapest Convention on Cybercrime.</em> coe.int.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span></div></div></div>
+    <div class="ref-entry" data-topics="multi ncii hate stalk"><div class="ref-num">69</div><div class="ref-body"><div class="ref-text"><span class="ref-author">European Parliament &amp; Council of the EU.</span> (2022). <em>Regulation (EU) 2022/2065 &mdash; Digital Services Act.</em> eur-lex.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="multi ncii stalk"><div class="ref-num">70</div><div class="ref-body"><div class="ref-text"><span class="ref-author">European Union.</span> (2024). <em>Directive on Combating Violence Against Women and Domestic Violence.</em> eur-lex.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span><span class="ref-tag rt-ncii">NCII</span><span class="ref-tag rt-stalk">Cyberstalking</span></div></div></div>
+    <div class="ref-entry" data-topics="multi piracy finance"><div class="ref-num">71</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Internet Society.</span> (2023). <em>Global Internet Report: Consolidation in the Internet Economy.</em> internetsociety.org.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span></div></div></div>
+    <div class="ref-entry" data-topics="multi hate"><div class="ref-num">72</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Schaake, M.</span> (2023). <em>Tech Coup: How to Save Democracy from Silicon Valley.</em> Princeton University Press.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span><span class="ref-tag rt-hate">Hate Speech</span></div></div></div>
+    <div class="ref-entry" data-topics="multi ncii stalk finance"><div class="ref-num">73</div><div class="ref-body"><div class="ref-text"><span class="ref-author">Europol.</span> (2024). <em>Internet Organised Crime Threat Assessment (IOCTA) 2024.</em> europol.europa.eu.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span></div></div></div>
+    <div class="ref-entry" data-topics="multi finance stalk"><div class="ref-num">74</div><div class="ref-body"><div class="ref-text"><span class="ref-author">National Cyber Security Centre (UK).</span> (2024). <em>Annual Review 2023.</em> ncsc.gov.uk.</div><div class="ref-tags"><span class="ref-tag rt-multi">Cross-Topic</span><span class="ref-tag rt-finance">Financial Crime</span></div></div></div>
+  </div>
+  <div class="no-results" id="noResults">No sources match that filter. Try selecting a different topic.</div>
+</section>
+<footer class="page-footer">
+  <a href="index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">All sources are cited in full APA format. Where possible, links to original publications are available on the respective topic pages. This bibliography was last reviewed April 2026.</p>
+  <div class="footer-links">
+    <a href="index.html#topics" id="footer-topics">Topics</a>
+    <a href="prevention.html"   id="footer-prev">Prevention</a>
+    <a href="quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+<script>
+'use strict';
+var T={};
+var TOTAL=75;
+var currentLang='en';
+
+T.en={page_title:'Sources & References | CrimeOnline',nav_topics:'Topics',nav_prev:'Prevention',nav_sources:'Sources',nav_cta:'Take the Quiz \u2197',mob_home:'Home',mob_lang:'Language',bc_home:'Home',bc_current:'Sources & References',header_label:'Bibliography & Academic Sources',header_h1:'Sources &amp;<br><em>References</em>',header_desc:'All sources cited across the six topic reports, collected in one searchable catalogue. Filter by topic using the buttons below, or browse the complete bibliography in alphabetical order within each category.',count1:'Total sources cited',count2:'Topic categories',count3:'Peer-reviewed studies',count4:'Government reports',filter_label:'Filter by topic:',fb_all:'All Sources',fb_ncii:'01 NCII',fb_drug:'02 Drug Trade',fb_piracy:'03 Piracy',fb_hate:'04 Hate Speech',fb_stalk:'05 Cyberstalking',fb_finance:'06 Financial Crime',fb_multi:'Cross-Topic',showing_all:'Showing all {n} sources',showing_n:'Showing {n} sources',no_results:'No sources match that filter. Try selecting a different topic.',foundational_lbl:'Essential foundational reading \u2014 cited across multiple topics',fc1_type:'Book',fc1_desc:'The foundational academic text on NCII and online harassment as civil rights violations. Argues for robust legal frameworks treating image-based abuse as a hate crime.',fc2_type:'Book',fc2_desc:'Zuboff\u2019s landmark analysis of how behavioural data extraction drives platform economics \u2014 and how engagement-optimised systems structurally amplify harmful content.',fc3_type:'Book',fc3_desc:'The definitive account of how blockchain forensics brought down Silk Road, AlphaBay, and the world\u2019s largest cryptocurrency launderers. Essential for understanding both the drug trade and financial crime.',fc4_type:'Annual Report',fc4_desc:'The primary statistical source for US financial cybercrime losses, covering phishing, BEC, investment fraud, ransomware, and identity theft with full breakdowns by crime type and victim demographics.',fc5_type:'Book',fc5_desc:'The most rigorous independent study of global piracy, challenging maximalist industry loss estimates and establishing the relationship between pricing, access, and piracy rates. Freely available online.',fc6_type:'Legislative Text',fc6_desc:'The most significant internet platform regulation in history. Directly relevant to NCII, hate speech, cyberstalking enforcement, and financial fraud \u2014 cited across every topic in this project.',grp1_title:'Non-Consensual Intimate Image Sharing',grp1_sub:'Topic 01 \u00b7 12 sources',grp1_link:'View full report \u2192',grp2_title:'Online Drug Trade',grp2_sub:'Topic 02 \u00b7 11 sources',grp2_link:'View full report \u2192',grp3_title:'Online Piracy',grp3_sub:'Topic 03 \u00b7 12 sources',grp3_link:'View full report \u2192',grp4_title:'Hate Speech & Radicalisation',grp4_sub:'Topic 04 \u00b7 11 sources',grp4_link:'View full report \u2192',grp5_title:'Cyberstalking & Doxxing',grp5_sub:'Topic 05 \u00b7 11 sources',grp5_link:'View full report \u2192',grp6_title:'Financial Cybercrime',grp6_sub:'Topic 06 \u00b7 12 sources',grp6_link:'View full report \u2192',grp7_title:'Cross-Topic: Policy, Legislation & Frameworks',grp7_sub:'General \u00b7 7 sources',grp7_link:'View prevention page \u2192',footer_note:'All sources are cited in full APA format. Where possible, links to original publications are available on the respective topic pages. This bibliography was last reviewed April 2026.',footer_topics:'Topics',footer_prev:'Prevention',footer_quiz:'Quiz',foot_imprint:"Imprint"};
+
+T.de={page_title:'Quellen & Referenzen | CrimeOnline',nav_topics:'Themen',nav_prev:'Pr\u00e4vention',nav_sources:'Quellen',nav_cta:'Quiz starten \u2197',mob_home:'Startseite',mob_lang:'Sprache',bc_home:'Startseite',bc_current:'Quellen & Referenzen',header_label:'Bibliographie & Akademische Quellen',header_h1:'Quellen &amp;<br><em>Referenzen</em>',header_desc:'Alle in den sechs Themenberichten zitierten Quellen, in einem durchsuchbaren Katalog gesammelt. Filtern Sie nach Thema mit den Schaltfl\u00e4chen unten oder durchsuchen Sie die vollst\u00e4ndige Bibliographie in alphabetischer Reihenfolge innerhalb jeder Kategorie.',count1:'Quellen insgesamt zitiert',count2:'Themenkategorien',count3:'Peer-reviewed Studien',count4:'Regierungsberichte',filter_label:'Nach Thema filtern:',fb_all:'Alle Quellen',fb_ncii:'01 NCII',fb_drug:'02 Drogenhandel',fb_piracy:'03 Piraterie',fb_hate:'04 Hassrede',fb_stalk:'05 Cyberstalking',fb_finance:'06 Finanzkriminalit\u00e4t',fb_multi:'Themen\u00fcbergreifend',showing_all:'{n} Quellen werden angezeigt (alle)',showing_n:'{n} Quellen werden angezeigt',no_results:'Keine Quellen entsprechen diesem Filter. Versuchen Sie ein anderes Thema.',foundational_lbl:'Grundlegende Pflichtlekt\u00fcre \u2014 \u00fcber mehrere Themen zitiert',fc1_type:'Buch',fc1_desc:'Der grundlegende akademische Text zu NCII und Online-Bel\u00e4stigung als Verletzungen der B\u00fcrgerrechte. Pl\u00e4diert f\u00fcr robuste rechtliche Rahmenbedingungen.',fc2_type:'Buch',fc2_desc:'Zuboffs wegweisende Analyse, wie die Verhaltens-Datenextraktion die Plattform\u00f6konomie antreibt \u2014 und wie engagement-optimierte Systeme strukturell sch\u00e4dliche Inhalte verst\u00e4rken.',fc3_type:'Buch',fc3_desc:'Der definitive Bericht dar\u00fcber, wie Blockchain-Forensik Silk Road, AlphaBay und die gr\u00f6\u00dften Kryptow\u00e4hrungsw\u00e4scher der Welt zu Fall brachte.',fc4_type:'Jahresbericht',fc4_desc:'Die prim\u00e4re statistische Quelle f\u00fcr US-Finanzkriminalit\u00e4tsverluste, die Phishing, BEC, Anlagebetrug, Ransomware und Identit\u00e4tsdiebstahl abdeckt.',fc5_type:'Buch',fc5_desc:'Die gr\u00fcndlichste unabh\u00e4ngige Studie zur globalen Piraterie, die maximalistische Branchenverlustsch\u00e4tzungen in Frage stellt.',fc6_type:'Gesetzgebungstext',fc6_desc:'Die bedeutendste Internetplattform-Regulierung in der Geschichte. Direkt relevant f\u00fcr NCII, Hassrede, Cyberstalking und Finanzbetrug.',grp1_title:'Nicht-Einvernehmliche Weitergabe Intimer Bilder',grp1_sub:'Thema 01 \u00b7 12 Quellen',grp1_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp2_title:'Online-Drogenhandel',grp2_sub:'Thema 02 \u00b7 11 Quellen',grp2_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp3_title:'Online-Piraterie',grp3_sub:'Thema 03 \u00b7 12 Quellen',grp3_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp4_title:'Hassrede & Radikalisierung',grp4_sub:'Thema 04 \u00b7 11 Quellen',grp4_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp5_title:'Cyberstalking & Doxxing',grp5_sub:'Thema 05 \u00b7 11 Quellen',grp5_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp6_title:'Finanzielle Internetkriminalit\u00e4t',grp6_sub:'Thema 06 \u00b7 12 Quellen',grp6_link:'Vollst\u00e4ndigen Bericht anzeigen \u2192',grp7_title:'Themen\u00fcbergreifend: Politik, Gesetzgebung & Rahmenbedingungen',grp7_sub:'Allgemein \u00b7 7 Quellen',grp7_link:'Pr\u00e4ventionsseite anzeigen \u2192',footer_note:'Alle Quellen sind im vollst\u00e4ndigen APA-Format zitiert. Diese Bibliographie wurde zuletzt im April 2026 \u00fcberpr\u00fcft.',footer_topics:'Themen',footer_prev:'Pr\u00e4vention',footer_quiz:'Quiz',foot_imprint:"Impressum"};
+
+T.it={page_title:'Fonti e Riferimenti | CrimeOnline',nav_topics:'Argomenti',nav_prev:'Prevenzione',nav_sources:'Fonti',nav_cta:'Inizia il Quiz \u2197',mob_home:'Inizio',mob_lang:'Lingua',bc_home:'Inizio',bc_current:'Fonti e Riferimenti',header_label:'Bibliografia & Fonti Accademiche',header_h1:'Fonti &amp;<br><em>Riferimenti</em>',header_desc:'Tutte le fonti citate nei sei rapporti tematici, raccolte in un catalogo ricercabile. Filtra per argomento usando i pulsanti qui sotto, o sfoglia la bibliografia completa in ordine alfabetico all\'interno di ogni categoria.',count1:'Fonti totali citate',count2:'Categorie tematiche',count3:'Studi peer-reviewed',count4:'Rapporti governativi',filter_label:'Filtra per argomento:',fb_all:'Tutte le Fonti',fb_ncii:'01 NCII',fb_drug:'02 Traffico di Droga',fb_piracy:'03 Pirateria',fb_hate:'04 Incitamento all\'Odio',fb_stalk:'05 Cyberstalking',fb_finance:'06 Criminalit\u00e0 Finanziaria',fb_multi:'Trasversale',showing_all:'Visualizzazione di tutte le {n} fonti',showing_n:'Visualizzazione di {n} fonti',no_results:'Nessuna fonte corrisponde a questo filtro. Prova a selezionare un argomento diverso.',foundational_lbl:'Lettura fondamentale essenziale \u2014 citata in pi\u00f9 argomenti',fc1_type:'Libro',fc1_desc:'Il testo accademico fondamentale su NCII e molestie online come violazioni dei diritti civili. Sostiene quadri giuridici robusti.',fc2_type:'Libro',fc2_desc:'L\'analisi fondamentale di Zuboff su come l\'estrazione dei dati comportamentali guida l\'economia delle piattaforme \u2014 e come i sistemi ottimizzati per il coinvolgimento amplificano i contenuti dannosi.',fc3_type:'Libro',fc3_desc:'Il resoconto definitivo di come la forensica blockchain ha abbattuto Silk Road, AlphaBay e i pi\u00f9 grandi riciclatori di criptovalute al mondo.',fc4_type:'Rapporto Annuale',fc4_desc:'La fonte statistica primaria per le perdite da criminalit\u00e0 informatica finanziaria negli USA, che copre phishing, BEC, frode sugli investimenti, ransomware e furto di identit\u00e0.',fc5_type:'Libro',fc5_desc:'Lo studio indipendente pi\u00f9 rigoroso sulla pirateria globale, che mette in discussione le stime massimaliste delle perdite del settore.',fc6_type:'Testo Legislativo',fc6_desc:'La regolamentazione delle piattaforme internet pi\u00f9 significativa nella storia. Direttamente rilevante per NCII, incitamento all\'odio, cyberstalking e frode finanziaria.',grp1_title:'Condivisione Non Consensuale di Immagini Intime',grp1_sub:'Argomento 01 \u00b7 12 fonti',grp1_link:'Visualizza rapporto completo \u2192',grp2_title:'Traffico di Droga Online',grp2_sub:'Argomento 02 \u00b7 11 fonti',grp2_link:'Visualizza rapporto completo \u2192',grp3_title:'Pirateria Online',grp3_sub:'Argomento 03 \u00b7 12 fonti',grp3_link:'Visualizza rapporto completo \u2192',grp4_title:'Incitamento all\'Odio e Radicalizzazione',grp4_sub:'Argomento 04 \u00b7 11 fonti',grp4_link:'Visualizza rapporto completo \u2192',grp5_title:'Cyberstalking e Doxxing',grp5_sub:'Argomento 05 \u00b7 11 fonti',grp5_link:'Visualizza rapporto completo \u2192',grp6_title:'Criminalit\u00e0 Finanziaria Informatica',grp6_sub:'Argomento 06 \u00b7 12 fonti',grp6_link:'Visualizza rapporto completo \u2192',grp7_title:'Trasversale: Politica, Legislazione e Quadri',grp7_sub:'Generale \u00b7 7 fonti',grp7_link:'Visualizza pagina prevenzione \u2192',footer_note:'Tutte le fonti sono citate nel formato APA completo. Questa bibliografia \u00e8 stata rivista l\'ultima volta nell\'aprile 2026.',footer_topics:'Argomenti',footer_prev:'Prevenzione',footer_quiz:'Quiz',foot_imprint:"Note legali"};
+
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function countStr(n){
+  var c=T[currentLang];
+  if(n===TOTAL)return c.showing_all.replace('{n}',n);
+  return c.showing_n.replace('{n}',n);
+}
+
+function applyLang(lang){
+  var c=T[lang];if(!c)return;
+  currentLang=lang;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect');if(s1)s1.value=lang;
+  var s2=g('langSelMob');if(s2)s2.value=lang;
+  document.title=c.page_title;
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  st('bc-home',c.bc_home);st('bc-current',c.bc_current);
+  st('header-label',c.header_label);si('header-h1',c.header_h1);st('header-desc',c.header_desc);
+  st('count1-lbl',c.count1);st('count2-lbl',c.count2);st('count3-lbl',c.count3);st('count4-lbl',c.count4);
+  st('filter-label',c.filter_label);
+  st('fb-all',c.fb_all);st('fb-ncii',c.fb_ncii);st('fb-drug',c.fb_drug);
+  st('fb-piracy',c.fb_piracy);st('fb-hate',c.fb_hate);
+  st('fb-stalk',c.fb_stalk);st('fb-finance',c.fb_finance);st('fb-multi',c.fb_multi);
+  var vis=document.querySelectorAll('.ref-entry:not(.hidden)').length;
+  var cEl=g('filterCount');if(cEl)cEl.textContent=countStr(vis);
+  var noR=g('noResults');if(noR)noR.textContent=c.no_results;
+  st('foundational-lbl',c.foundational_lbl);
+  st('fc1-type',c.fc1_type);st('fc1-desc',c.fc1_desc);
+  st('fc2-type',c.fc2_type);st('fc2-desc',c.fc2_desc);
+  st('fc3-type',c.fc3_type);st('fc3-desc',c.fc3_desc);
+  st('fc4-type',c.fc4_type);st('fc4-desc',c.fc4_desc);
+  st('fc5-type',c.fc5_type);st('fc5-desc',c.fc5_desc);
+  st('fc6-type',c.fc6_type);st('fc6-desc',c.fc6_desc);
+  st('grp1-title',c.grp1_title);st('grp1-sub',c.grp1_sub);st('grp1-link',c.grp1_link);
+  st('grp2-title',c.grp2_title);st('grp2-sub',c.grp2_sub);st('grp2-link',c.grp2_link);
+  st('grp3-title',c.grp3_title);st('grp3-sub',c.grp3_sub);st('grp3-link',c.grp3_link);
+  st('grp4-title',c.grp4_title);st('grp4-sub',c.grp4_sub);st('grp4-link',c.grp4_link);
+  st('grp5-title',c.grp5_title);st('grp5-sub',c.grp5_sub);st('grp5-link',c.grp5_link);
+  st('grp6-title',c.grp6_title);st('grp6-sub',c.grp6_sub);st('grp6-link',c.grp6_link);
+  st('grp7-title',c.grp7_title);st('grp7-sub',c.grp7_sub);st('grp7-link',c.grp7_link);
+  st('footer-note',c.footer_note);st('footer-topics',c.footer_topics);st('footer-prev',c.footer_prev);st('footer-quiz',c.footer_quiz);st(foot_imprint ,c.foot_imprint);
+}
+function switchLanguage(lang){applyLang(lang)}
+
+var hb=g('hamburger'),nm=g('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+var buttons=document.querySelectorAll('.filter-btn');
+var entries=document.querySelectorAll('.ref-entry');
+var groups=document.querySelectorAll('.ref-group');
+var noRes=g('noResults');
+var cEl=g('filterCount');
+
+function applyFilter(filter){
+  buttons.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-filter')===filter)});
+  var visible=0;
+  entries.forEach(function(e){
+    var topics=e.getAttribute('data-topics')||'';
+    var show=filter==='all'||topics.split(' ').indexOf(filter)>-1;
+    e.classList.toggle('hidden',!show);
+    if(show)visible++;
+  });
+  groups.forEach(function(grp){
+    var hasVis=grp.querySelectorAll('.ref-entry:not(.hidden)').length>0;
+    grp.style.display=(filter==='all'||hasVis)?'':'none';
+  });
+  if(cEl)cEl.textContent=countStr(visible);
+  if(noRes)noRes.classList.toggle('visible',visible===0);
+}
+buttons.forEach(function(btn){btn.addEventListener('click',function(){applyFilter(btn.getAttribute('data-filter'))})});
+
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+  applyFilter('all');
+})();
+</script>
+</body>
+</html>

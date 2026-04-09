@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">CrimeOnline — Internet Crime Awareness</title>
+<link rel="icon" type="image/png" sizes="32x32" href="media/img/logo_transparenz.png">
+<!--link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"-->
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+    --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.15);
+    --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+    --border:rgba(255,255,255,0.07);--border-accent:rgba(192,57,43,0.4);
+    --font-d:'Playfair Display',Georgia,serif;
+    --font-b:'Inter',system-ui,sans-serif;
+    --font-m:'DM Mono',monospace;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+  /* ── NAV ── */
+  nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+  .nav-logo span{color:var(--crimson)}
+  .nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+  .nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+  .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+  .nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+  .nav-cta:hover{background:var(--crimson-lt)!important}
+  .nav-right{display:flex;align-items:center;gap:0}
+  .nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px;z-index:2}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s,background .2s;transform-origin:center}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+  .nav-hamburger.open span:nth-child(2){opacity:0}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+
+  /* Language select in nav */
+  .nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+  .lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;transition:border-color .2s,color .2s}
+  .lang-select:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
+  .lang-select option{background:#0a0e1a;color:var(--offwhite)}
+
+  /* Mobile nav */
+  .nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+  .nav-mobile.open{display:flex}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+  .nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+  .nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+  .nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+  .nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+  .lang-select-mobile{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+  .lang-select-mobile option{background:#0a0e1a}
+
+  @media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+  @media(max-width:480px){nav{padding:0 20px}}
+
+  /* ── ALERT BANNER ── */
+  .alert-banner{background:linear-gradient(90deg,rgba(192,57,43,0.13) 0%,rgba(192,57,43,0.04) 100%);border-left:3px solid var(--crimson);padding:13px 60px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--slate-lt)}
+  .alert-icon{width:20px;height:20px;background:var(--crimson);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:white;font-family:var(--font-b)}
+  @media(max-width:600px){.alert-banner{padding:12px 24px}}
+
+  /* ── HERO ── */
+  .hero{min-height:90vh;display:flex;align-items:center;position:relative;padding:100px 80px 90px;overflow:hidden}
+  .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+  .hero-glow{position:absolute;top:-100px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(192,57,43,0.07) 0%,transparent 65%);pointer-events:none}
+  .hero-content{position:relative;max-width:700px;z-index:1}
+  .hero-tag{display:inline-flex;align-items:center;gap:9px;background:var(--crimson-glow);border:1px solid var(--border-accent);color:#e89a90;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:32px;font-family:var(--font-m)}
+  .hero-tag-dot{width:7px;height:7px;background:var(--crimson);border-radius:50%;animation:dot-pulse 2.2s infinite}
+  @keyframes dot-pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .hero h1{font-family:var(--font-d);font-size:clamp(44px,5.8vw,76px);font-weight:900;line-height:1.04;letter-spacing:-2px;color:var(--white);margin-bottom:26px}
+  .hero h1 .accent{color:var(--crimson)}
+  .hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:580px;margin-bottom:44px}
+  .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:72px}
+  .btn-primary{background:var(--crimson);color:var(--white);padding:14px 30px;font-size:14px;font-weight:600;border:none;border-radius:3px;cursor:pointer;letter-spacing:.02em;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
+  .btn-primary:hover{background:var(--crimson-lt);transform:translateY(-1px)}
+  .btn-ghost{color:var(--slate-lt);padding:14px 30px;font-size:14px;font-weight:500;border:1px solid rgba(255,255,255,0.12);background:transparent;border-radius:3px;cursor:pointer;transition:border-color .2s,color .2s;text-decoration:none;display:inline-block}
+  .btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
+  .hero-stats{display:flex;gap:48px;padding-top:40px;border-top:1px solid var(--border);flex-wrap:wrap}
+  .stat-num{font-family:var(--font-d);font-size:32px;font-weight:700;color:var(--white);line-height:1;margin-bottom:5px}
+  .stat-num .red{color:var(--crimson)}
+  .stat-label{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.07em;max-width:130px}
+  @media(max-width:860px){.hero{padding:80px 24px 64px;min-height:70vh}.hero-stats{gap:28px}}
+
+  /* ── COMMONS ── */
+  section{padding:96px 80px}
+  .section-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:14px;font-family:var(--font-m)}
+  .section-title{font-family:var(--font-d);font-size:clamp(28px,3vw,44px);font-weight:700;color:var(--white);line-height:1.12;letter-spacing:-.6px;margin-bottom:18px}
+  .section-sub{font-size:16px;color:var(--slate-lt);max-width:540px;line-height:1.75}
+  @media(max-width:860px){section{padding:64px 24px}}
+
+  /* ── TOPICS ── */
+  .topics-section{background:var(--navy-mid);padding-top:90px;padding-bottom:90px}
+  .topics-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:20px;flex-wrap:wrap}
+  .topics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden}
+  .topic-card{background:var(--navy-mid);padding:34px 30px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;text-decoration:none;display:block}
+  .topic-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+  .topic-card:hover{background:var(--navy-surface)}
+  .topic-card:hover::before{transform:scaleX(1)}
+  .topic-num{font-size:10px;font-weight:600;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-m)}
+  .topic-icon{width:40px;height:40px;border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:19px}
+  .topic-card h3{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.25}
+  .topic-card p{font-size:13px;color:var(--slate);line-height:1.65}
+  .topic-card-footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between}
+  .pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+  .pill-high{background:rgba(192,57,43,0.18);color:#e89a90}
+  .pill-med{background:rgba(186,117,23,0.18);color:#d4a857}
+  .topic-arrow{color:var(--slate);font-size:15px;transition:transform .18s,color .18s}
+  .topic-card:hover .topic-arrow{transform:translateX(5px);color:var(--white)}
+  .icon-red{background:rgba(192,57,43,0.13)}
+  .icon-amber{background:rgba(186,117,23,0.13)}
+  .icon-blue{background:rgba(29,78,216,0.13)}
+  .icon-purple{background:rgba(109,40,217,0.13)}
+  .icon-green{background:rgba(22,163,74,0.13)}
+  @media(max-width:860px){.topics-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.topics-grid{grid-template-columns:1fr}}
+
+  /* ── DEEPFAKE FEATURE ── */
+  .deepdive{display:grid;grid-template-columns:1fr 1fr;padding:0;min-height:540px}
+  .deepdive-text{padding:90px 80px;display:flex;flex-direction:column;justify-content:center;background:var(--navy)}
+  .deepdive-text p{font-size:15px;color:var(--slate-lt);line-height:1.8;margin-bottom:20px}
+  .deepdive-text .btn-primary{width:fit-content;margin-top:8px}
+  .deepdive-visual{background:var(--navy-surface);border-left:1px solid var(--border);padding:70px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .deepdive-visual::after{content:'';position:absolute;bottom:-80px;right:-80px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(192,57,43,0.12);pointer-events:none}
+  .stat-block{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border);position:relative;z-index:1}
+  .stat-block:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .stat-big{font-family:var(--font-d);font-size:52px;font-weight:900;color:var(--white);line-height:1;margin-bottom:8px}
+  .stat-big .red{color:var(--crimson)}
+  .stat-desc{font-size:13px;color:var(--slate);line-height:1.6}
+  @media(max-width:860px){.deepdive{grid-template-columns:1fr}.deepdive-text{padding:56px 24px}.deepdive-visual{border-left:none;border-top:1px solid var(--border);padding:48px 24px}}
+
+  /* ── TIMELINE ── */
+  .timeline-section{background:var(--navy-mid)}
+  .timeline-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 80px;margin-top:56px}
+  .timeline-col{position:relative;padding-left:36px}
+  .timeline-col::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--crimson) 0%,rgba(192,57,43,0.1) 100%)}
+  .timeline-item{position:relative;margin-bottom:42px}
+  .timeline-item::before{content:'';position:absolute;left:-41px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--crimson);border:2px solid var(--navy-mid);box-shadow:0 0 0 4px rgba(192,57,43,0.18)}
+  .timeline-year{font-size:10px;font-weight:700;color:var(--crimson);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-family:var(--font-m)}
+  .timeline-item h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:7px;line-height:1.3}
+  .timeline-item p{font-size:13px;color:var(--slate);line-height:1.65}
+  @media(max-width:720px){.timeline-grid{grid-template-columns:1fr;gap:0}}
+
+  /* ── QUIZ CTA ── */
+  .quiz-wrap{padding:80px}
+  .quiz-cta{background:var(--navy-surface);border:1px solid var(--border);border-radius:6px;padding:72px 60px;text-align:center;position:relative;overflow:hidden}
+  .quiz-cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:400px;height:1px;background:linear-gradient(90deg,transparent,var(--crimson),transparent)}
+  .quiz-cta h2{font-family:var(--font-d);font-size:clamp(26px,3vw,40px);font-weight:700;color:var(--white);margin-bottom:16px;letter-spacing:-.5px;line-height:1.15}
+  .quiz-cta>p{color:var(--slate-lt);max-width:500px;margin:0 auto 36px;font-size:15px;line-height:1.7}
+  .quiz-features{display:flex;gap:28px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+  .qfeat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--slate-lt)}
+  .qfeat-dot{width:6px;height:6px;border-radius:50%;background:var(--crimson);flex-shrink:0}
+  @media(max-width:860px){.quiz-wrap{padding:48px 24px}.quiz-cta{padding:52px 24px}}
+
+  /* ── FOOTER ── */
+  footer{padding:40px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+  .footer-logo span{color:var(--crimson)}
+  .footer-note{font-size:12px;color:var(--slate);max-width:380px}
+  .footer-links{display:flex;gap:22px;flex-wrap:wrap}
+  .footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--white)}
+  @media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="index.html#topics"  onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="prevention.html"    onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="sources.html"       onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-select-mobile" id="langSelectMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- ALERT -->
+<div class="alert-banner">
+  <div class="alert-icon">!</div>
+  <span id="alert-text">This website contains educational content about online crime. Some topics may be distressing. If you are affected by any of these issues, support resources are available on each topic page.</span>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span id="hero-eyebrow">Educational Resource &nbsp;&middot;&nbsp; Internet Crime Series</span>
+    </div>
+    <h1 id="hero-h1">The Dark Side<br>of <span class="accent">Connected</span><br>Life</h1>
+    <p class="hero-lead" id="hero-lead">A comprehensive investigation into the crimes that exploit the internet &mdash; from non-consensual image sharing and AI deepfakes, to organised drug markets, piracy networks, and online hate. Understanding these crimes is the first step in confronting them.</p>
+    <div class="hero-actions">
+      <a href="index.html#topics" class="btn-primary" id="hero-btn-topics">Explore the Topics</a>
+      <a href="quiz/index.html"   class="btn-ghost"   id="hero-btn-quiz">Take the Knowledge Quiz &nbsp;&rarr;</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">$12<span class="red">.5B</span></div>
+        <div class="stat-label" id="stat-1-lbl">US cybercrime losses in 2023</div>
+      </div>
+      <div>
+        <div class="stat-num">7<span class="red">+</span></div>
+        <div class="stat-label" id="stat-2-lbl">crime categories examined</div>
+      </div>
+      <div>
+        <div class="stat-num">1 <span class="red">in 8</span></div>
+        <div class="stat-label" id="stat-3-lbl">users targeted by NCII threats</div>
+      </div>
+      <div>
+        <div class="stat-num">96<span class="red">%</span></div>
+        <div class="stat-label" id="stat-4-lbl">of deepfake videos are sexual abuse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics-section" id="topics">
+  <div class="topics-header">
+    <div>
+      <span class="section-label" id="topics-eyebrow">Topics Covered</span>
+      <h2 class="section-title" id="topics-h2">Seven Crimes.<br>One Digital World.</h2>
+    </div>
+    <p class="section-sub" style="max-width:360px" id="topics-subtitle">Each topic includes a full report, real-world case studies, legal frameworks by country, and prevention guidance.</p>
+  </div>
+  <div class="topics-grid">
+
+    <a href="crimes/ncii.html" class="topic-card">
+      <div class="topic-num" id="t1-num">01 &mdash; NCII</div>
+      <div class="topic-icon icon-red">&#x1F512;</div>
+      <h3 id="t1-title">Non-Consensual Intimate Image Sharing</h3>
+      <p  id="t1-desc">How intimate images are stolen, fabricated, and distributed &mdash; and the devastating psychological and legal consequences for victims.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-high" id="t1-sev">High Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="crimes/drug-trade.html" class="topic-card">
+      <div class="topic-num" id="t2-num">02 &mdash; Drug Trade</div>
+      <div class="topic-icon icon-amber">&#x26A0;&#xFE0F;</div>
+      <h3 id="t2-title">Online Drug Trade</h3>
+      <p  id="t2-desc">From Silk Road to Telegram storefronts &mdash; the evolution of dark web drug markets and their connection to the fentanyl crisis.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-high" id="t2-sev">High Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="crimes/piracy.html" class="topic-card">
+      <div class="topic-num" id="t3-num">03 &mdash; Piracy</div>
+      <div class="topic-icon icon-blue">&#x1F4BB;</div>
+      <h3 id="t3-title">Online Piracy</h3>
+      <p  id="t3-desc">The $46B copyright infringement problem &mdash; from torrenting and illegal IPTV to the malware hidden in cracked software.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-med" id="t3-sev">Medium Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="crimes/hate-speech.html" class="topic-card">
+      <div class="topic-num" id="t4-num">04 &mdash; Hate Speech</div>
+      <div class="topic-icon icon-purple">&#x1F310;</div>
+      <h3 id="t4-title">Hate Speech &amp; Radicalisation</h3>
+      <p  id="t4-desc">Algorithmic pipelines from mainstream platforms into extremist networks &mdash; and the real-world violence they have inspired.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-high" id="t4-sev">High Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="crimes/cyberstalking.html" class="topic-card">
+      <div class="topic-num" id="t5-num">05 &mdash; Cyberstalking</div>
+      <div class="topic-icon icon-red">&#x1F3AF;</div>
+      <h3 id="t5-title">Cyberstalking &amp; Doxxing</h3>
+      <p  id="t5-desc">Digital surveillance, coordinated harassment campaigns, and the exposure of private information to incite harm.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-high" id="t5-sev">High Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="crimes/financial-crime.html" class="topic-card">
+      <div class="topic-num" id="t6-num">06 &mdash; Financial Crime</div>
+      <div class="topic-icon icon-green">&#x1F4B0;</div>
+      <h3 id="t6-title">Financial Cybercrime</h3>
+      <p  id="t6-desc">Phishing, ransomware, romance scams, and the billion-dollar pig-butchering operations targeting ordinary people worldwide.</p>
+      <div class="topic-card-footer">
+        <span class="pill pill-high" id="t6-sev">High Severity</span>
+        <span class="topic-arrow">&rarr;</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- DEEPFAKE FEATURE -->
+<section class="deepdive" id="statistics">
+  <div class="deepdive-text">
+    <span class="section-label" id="dd-eyebrow">Feature Deep-Dive</span>
+    <h2 class="section-title" id="dd-h2">The AI Deepfake Crisis Nobody Saw Coming</h2>
+    <p id="dd-p1">Generative AI has created a new category of sexual crime that requires no genuine intimate material to exist. Anyone with a public social media profile is now potentially a target. The law is racing to catch up &mdash; and losing.</p>
+    <p id="dd-p2">This deep-dive examines how deepfake NCII works, who is being targeted, what the EU Digital Services Act and UK Online Safety Act are doing about it &mdash; and where they fall short.</p>
+    <a href="crimes/ncii.html#deepfakes" class="btn-primary" id="dd-btn">Read the Full Analysis &nbsp;&rarr;</a>
+  </div>
+  <div class="deepdive-visual">
+    <div class="stat-block">
+      <div class="stat-big">96<span class="red">%</span></div>
+      <div class="stat-desc" id="dd-stat-1">of all deepfake videos online are non-consensual sexual imagery targeting women &mdash; Sensity AI, 2023</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big"><span class="red">+</span>100s<span class="red">%</span></div>
+      <div class="stat-desc" id="dd-stat-2">year-on-year growth in deepfake NCII volume every year since 2019</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big" style="font-size:36px" id="dd-stat-3-num">Zero</div>
+      <div class="stat-desc" id="dd-stat-3">genuine intimate material required to fabricate a convincing deepfake &mdash; only social media photos needed</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <span class="section-label" id="tl-eyebrow">Legal Progress</span>
+  <h2 class="section-title" id="tl-h2">How the Law Has Responded</h2>
+  <p class="section-sub" id="tl-subtitle">Landmark legislation, major enforcement actions, and pivotal events that have shaped the internet crime landscape.</p>
+  <div class="timeline-grid">
+    <div class="timeline-col">
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl1-yr">2013&ndash;2015</div>
+        <h4 id="tl1-title">Silk Road Taken Down</h4>
+        <p  id="tl1-text">The FBI shuts down Silk Road and arrests founder Ross Ulbricht. Successor markets emerge within months, demonstrating the resilience of the dark web drug ecosystem.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl2-yr">2014</div>
+        <h4 id="tl2-title">Celebgate iCloud Hack</h4>
+        <p  id="tl2-text">Targeted phishing attacks expose intimate photographs of over 100 celebrities. A watershed moment for public awareness of NCII and cloud security vulnerabilities.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl3-yr">2017</div>
+        <h4 id="tl3-title">AlphaBay &amp; Hansa Taken Down</h4>
+        <p  id="tl3-text">A coordinated Europol and FBI operation dismantles the two largest dark web marketplaces simultaneously. The largest such operation in history at the time.</p>
+      </div>
+    </div>
+    <div class="timeline-col">
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl4-yr">2021</div>
+        <h4 id="tl4-title">Australia Online Safety Act</h4>
+        <p  id="tl4-text">eSafety Commissioner gains powers to compel platforms to remove NCII within 24 hours of a valid complaint &mdash; one of the world&#39;s strongest frameworks.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl5-yr">2023</div>
+        <h4 id="tl5-title">UK Online Safety Act</h4>
+        <p  id="tl5-text">Sharing intimate images without consent becomes a specific criminal offence. Deepfake NCII creation is also criminalised for the first time in UK law.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year" id="tl6-yr">2024</div>
+        <h4 id="tl6-title">EU Digital Services Act in Force</h4>
+        <p  id="tl6-text">Major platforms legally required to proactively detect and remove illegal content. Telegram founder Pavel Durov arrested in France over platform facilitation of criminal activity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ CTA -->
+<div class="quiz-wrap" id="resources">
+  <div class="quiz-cta">
+    <span class="section-label" id="qcta-eyebrow">Test Your Knowledge</span>
+    <h2 id="qcta-h2">How Much Do You<br>Actually Know?</h2>
+    <p id="qcta-p">Take our randomised 10-question quiz covering all seven crime categories &mdash; definitions, statistics, real-world cases, legal frameworks, and prevention strategies.</p>
+    <div class="quiz-features">
+      <div class="qfeat"><div class="qfeat-dot"></div><span id="qfeat-1">10 randomised questions per attempt</span></div>
+      <div class="qfeat"><div class="qfeat-dot"></div><span id="qfeat-2">Covers all 7 crime types</span></div>
+      <div class="qfeat"><div class="qfeat-dot"></div><span id="qfeat-3">Scored with explanations</span></div>
+      <div class="qfeat"><div class="qfeat-dot"></div><span id="qfeat-4">No time limit</span></div>
+    </div>
+    <a href="quiz/index.html" class="btn-primary" style="font-size:15px;padding:15px 36px" id="qcta-btn">Start the Quiz &nbsp;&rarr;</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics are sourced and fully cited in the individual topic reports.</p>
+  <div class="footer-links">
+    <a href="sources.html"    id="footer-sources">References</a>
+    <a href="prevention.html" id="footer-prev">Prevention</a>
+    <a href="index.html#topics" id="footer-topics">All Topics</a>
+    <a href="quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* =============================================================
+   TRANSLATIONS
+============================================================= */
+var T = {};
+
+T.en = {
+  page_title: 'CrimeOnline \u2014 Internet Crime Awareness',
+  /* nav */
+  nav_topics:  'Topics',
+  nav_prev:    'Prevention',
+  nav_sources: 'Sources',
+  nav_cta:     'Take the Quiz \u2197',
+  mob_lang:    'Language',
+  /* alert */
+  alert: 'This website contains educational content about online crime. Some topics may be distressing. If you are affected by any of these issues, support resources are available on each topic page.',
+  /* hero */
+  hero_eyebrow: 'Educational Resource \u00b7 Internet Crime Series',
+  hero_h1:      'The Dark Side<br>of <span class="accent">Connected</span><br>Life',
+  hero_lead:    'A comprehensive investigation into the crimes that exploit the internet \u2014 from non-consensual image sharing and AI deepfakes, to organised drug markets, piracy networks, and online hate. Understanding these crimes is the first step in confronting them.',
+  hero_btn_topics: 'Explore the Topics',
+  hero_btn_quiz:   'Take the Knowledge Quiz \u00a0\u2192',
+  stat1: 'US cybercrime losses in 2023',
+  stat2: 'crime categories examined',
+  stat3: 'users targeted by NCII threats',
+  stat4: 'of deepfake videos are sexual abuse',
+  /* topics */
+  topics_eyebrow:  'Topics Covered',
+  topics_h2:       'Seven Crimes.<br>One Digital World.',
+  topics_subtitle: 'Each topic includes a full report, real-world case studies, legal frameworks by country, and prevention guidance.',
+  t1_title: 'Non-Consensual Intimate Image Sharing',
+  t1_desc:  'How intimate images are stolen, fabricated, and distributed \u2014 and the devastating psychological and legal consequences for victims.',
+  t1_sev:   'High Severity',
+  t2_title: 'Online Drug Trade',
+  t2_desc:  'From Silk Road to Telegram storefronts \u2014 the evolution of dark web drug markets and their connection to the fentanyl crisis.',
+  t2_sev:   'High Severity',
+  t3_title: 'Online Piracy',
+  t3_desc:  'The $46B copyright infringement problem \u2014 from torrenting and illegal IPTV to the malware hidden in cracked software.',
+  t3_sev:   'Medium Severity',
+  t4_title: 'Hate Speech & Radicalisation',
+  t4_desc:  'Algorithmic pipelines from mainstream platforms into extremist networks \u2014 and the real-world violence they have inspired.',
+  t4_sev:   'High Severity',
+  t5_title: 'Cyberstalking & Doxxing',
+  t5_desc:  'Digital surveillance, coordinated harassment campaigns, and the exposure of private information to incite harm.',
+  t5_sev:   'High Severity',
+  t6_title: 'Financial Cybercrime',
+  t6_desc:  'Phishing, ransomware, romance scams, and the billion-dollar pig-butchering operations targeting ordinary people worldwide.',
+  t6_sev:   'High Severity',
+  /* deepfake */
+  dd_eyebrow: 'Feature Deep-Dive',
+  dd_h2:  'The AI Deepfake Crisis Nobody Saw Coming',
+  dd_p1:  'Generative AI has created a new category of sexual crime that requires no genuine intimate material to exist. Anyone with a public social media profile is now potentially a target. The law is racing to catch up \u2014 and losing.',
+  dd_p2:  'This deep-dive examines how deepfake NCII works, who is being targeted, what the EU Digital Services Act and UK Online Safety Act are doing about it \u2014 and where they fall short.',
+  dd_btn: 'Read the Full Analysis \u00a0\u2192',
+  dd_s1:  'of all deepfake videos online are non-consensual sexual imagery targeting women \u2014 Sensity AI, 2023',
+  dd_s2:  'year-on-year growth in deepfake NCII volume every year since 2019',
+  dd_s3n: 'Zero',
+  dd_s3:  'genuine intimate material required to fabricate a convincing deepfake \u2014 only social media photos needed',
+  /* timeline */
+  tl_eyebrow:  'Legal Progress',
+  tl_h2:       'How the Law Has Responded',
+  tl_subtitle: 'Landmark legislation, major enforcement actions, and pivotal events that have shaped the internet crime landscape.',
+  tl1_yr: '2013\u20132015', tl1_title: 'Silk Road Taken Down',
+  tl1_text: 'The FBI shuts down Silk Road and arrests founder Ross Ulbricht. Successor markets emerge within months, demonstrating the resilience of the dark web drug ecosystem.',
+  tl2_yr: '2014', tl2_title: 'Celebgate iCloud Hack',
+  tl2_text: 'Targeted phishing attacks expose intimate photographs of over 100 celebrities. A watershed moment for public awareness of NCII and cloud security vulnerabilities.',
+  tl3_yr: '2017', tl3_title: 'AlphaBay & Hansa Taken Down',
+  tl3_text: 'A coordinated Europol and FBI operation dismantles the two largest dark web marketplaces simultaneously \u2014 the largest such operation in history at the time.',
+  tl4_yr: '2021', tl4_title: 'Australia Online Safety Act',
+  tl4_text: 'eSafety Commissioner gains powers to compel platforms to remove NCII within 24 hours of a valid complaint \u2014 one of the world\'s strongest frameworks.',
+  tl5_yr: '2023', tl5_title: 'UK Online Safety Act',
+  tl5_text: 'Sharing intimate images without consent becomes a specific criminal offence. Deepfake NCII creation is also criminalised for the first time in UK law.',
+  tl6_yr: '2024', tl6_title: 'EU Digital Services Act in Force',
+  tl6_text: 'Major platforms legally required to proactively detect and remove illegal content. Telegram founder Pavel Durov arrested in France over platform facilitation of criminal activity.',
+  /* quiz cta */
+  qcta_eyebrow: 'Test Your Knowledge',
+  qcta_h2:   'How Much Do You<br>Actually Know?',
+  qcta_p:    'Take our randomised 10-question quiz covering all crime categories \u2014 definitions, statistics, real-world cases, legal frameworks, and prevention strategies.',
+  qfeat1:    '10 randomised questions per attempt',
+  qfeat2:    'Covers all crime types',
+  qfeat3:    'Scored with explanations',
+  qfeat4:    'No time limit',
+  qcta_btn:  'Start the Quiz \u00a0\u2192',
+  /* footer */
+  footer_note: 'Educational project \u2014 Academic submission 2026. All statistics are sourced and cited in the individual topic reports.',
+  footer_ref:  'References',
+  footer_prev: 'Prevention',
+  footer_top:  'All Topics',
+  footer_quiz: 'Quiz',
+  foot_imprint:"Imprint"
+};
+
+T.de = {
+  page_title: 'CrimeOnline \u2014 Aufkl\u00e4rung \u00fcber Internetkriminalit\u00e4t',
+  nav_topics:  'Themen',
+  nav_prev:    'Pr\u00e4vention',
+  nav_sources: 'Quellen',
+  nav_cta:     'Quiz starten \u2197',
+  mob_lang:    'Sprache',
+  alert: 'Diese Website enth\u00e4lt Bildungsinhalte \u00fcber Internetkriminalit\u00e4t. Einige Themen k\u00f6nnten belastend sein. Wenn Sie betroffen sind, finden Sie auf jeder Themenseite Unterst\u00fctzungsressourcen.',
+  hero_eyebrow: 'Bildungsressource \u00b7 Serie Internetkriminalit\u00e4t',
+  hero_h1:      'Die dunkle Seite<br>des <span class="accent">vernetzten</span><br>Lebens',
+  hero_lead:    'Eine umfassende Untersuchung der Verbrechen, die das Internet ausnutzen \u2014 von nicht-einvernehmlicher Bildweitergabe und KI-Deepfakes bis hin zu organisierten Drogenmärkten, Piraterie-Netzwerken und Online-Hass.',
+  hero_btn_topics: 'Themen erkunden',
+  hero_btn_quiz:   'Wissensquiz starten \u00a0\u2192',
+  stat1: 'US-Cyberschäden 2023',
+  stat2: 'untersuchte Verbrechenskategorien',
+  stat3: 'Nutzer von NCII-Drohungen betroffen',
+  stat4: 'aller Deepfake-Videos sind sexueller Missbrauch',
+  topics_eyebrow:  'Behandelte Themen',
+  topics_h2:       'Sieben Verbrechen.<br>Eine digitale Welt.',
+  topics_subtitle: 'Jedes Thema umfasst einen vollst\u00e4ndigen Bericht, Fallstudien, rechtliche Rahmenbedingungen und Pr\u00e4ventionshinweise.',
+  t1_title: 'Nicht-Einvernehmliche Weitergabe Intimer Bilder',
+  t1_desc:  'Wie intime Bilder gestohlen, gefälscht und verbreitet werden \u2014 und die verheerenden psychologischen und rechtlichen Folgen f\u00fcr die Opfer.',
+  t1_sev:   'Hohe Schwere',
+  t2_title: 'Drogenhandel im Internet',
+  t2_desc:  'Von Silk Road bis zu Telegram-Schaufenstern \u2014 die Entwicklung der Darknet-Drogenmärkte und ihr Zusammenhang mit der Fentanyl-Krise.',
+  t2_sev:   'Hohe Schwere',
+  t3_title: 'Online-Piraterie',
+  t3_desc:  'Das 46-Milliarden-Dollar-Problem der Urheberrechtsverletzung \u2014 von Torrenting und illegalem IPTV bis zur Malware in gecr\u00e4ckter Software.',
+  t3_sev:   'Mittlere Schwere',
+  t4_title: 'Hassrede & Radikalisierung',
+  t4_desc:  'Algorithmische Pipelines von Mainstream-Plattformen in extremistische Netzwerke \u2014 und die reale Gewalt, die sie ausgel\u00f6st haben.',
+  t4_sev:   'Hohe Schwere',
+  t5_title: 'Cyberstalking & Doxxing',
+  t5_desc:  'Digitale \u00dcberwachung, koordinierte Bel\u00e4stigungskampagnen und die Ver\u00f6ffentlichung privater Daten zur Anstiftung von Schaden.',
+  t5_sev:   'Hohe Schwere',
+  t6_title: 'Finanzkriminalit\u00e4t im Internet',
+  t6_desc:  'Phishing, Ransomware, Liebesbetrug und milliardenschwere Pig-Butchering-Operationen, die Menschen weltweit zum Opfer fallen.',
+  t6_sev:   'Hohe Schwere',
+  dd_eyebrow: 'Vertiefung',
+  dd_h2:  'Die KI-Deepfake-Krise, die niemand kommen sah',
+  dd_p1:  'Generative KI hat eine neue Kategorie sexueller Straftaten geschaffen, f\u00fcr die kein echtes Intimmaterial existieren muss. Jeder mit einem \u00f6ffentlichen Social-Media-Profil ist potenziell ein Opfer. Das Recht l\u00e4uft hinterher \u2014 und verliert.',
+  dd_p2:  'Diese Vertiefung untersucht, wie Deepfake-NCII funktioniert, wer betroffen ist, was der EU Digital Services Act und der UK Online Safety Act dagegen tun \u2014 und wo sie scheitern.',
+  dd_btn: 'Vollständige Analyse lesen \u00a0\u2192',
+  dd_s1:  'aller Deepfake-Videos im Internet sind nicht-einvernehmliche sexuelle Bilder, die \u00fcberwiegend Frauen betreffen \u2014 Sensity AI, 2023',
+  dd_s2:  'j\u00e4hrliches Wachstum des Deepfake-NCII-Volumens seit 2019',
+  dd_s3n: 'Null',
+  dd_s3:  'echtes Intimaterial n\u00f6tig, um ein \u00fcberzeugendes Deepfake zu erstellen \u2014 nur Social-Media-Fotos gen\u00fcgen',
+  tl_eyebrow:  'Rechtliche Fortschritte',
+  tl_h2:       'Wie das Recht reagiert hat',
+  tl_subtitle: 'Wegweisende Gesetzgebung, gro\u00dfe Strafverfolgungsma\u00dfnahmen und Wendepunkte, die die Internetkriminalit\u00e4t geprägt haben.',
+  tl1_yr: '2013\u20132015', tl1_title: 'Silk Road abgeschaltet',
+  tl1_text: 'Das FBI schlie\u00dft Silk Road und verhaftet Gr\u00fcnder Ross Ulbricht. Nachfolgemärkte entstehen innerhalb von Monaten und zeigen die Widerstandsf\u00e4higkeit des Darknet-Drogenhandels.',
+  tl2_yr: '2014', tl2_title: 'Celebgate iCloud-Hack',
+  tl2_text: 'Gezielte Phishing-Angriffe legen intime Fotos von \u00fcber 100 Prominenten offen. Ein Wendepunkt f\u00fcr das \u00f6ffentliche Bewusstsein \u00fcber NCII und Cloud-Sicherheitsrisiken.',
+  tl3_yr: '2017', tl3_title: 'AlphaBay & Hansa abgeschaltet',
+  tl3_text: 'Eine koordinierte Europol- und FBI-Operation zerschl\u00e4gt gleichzeitig die zwei gr\u00f6\u00dften Darknet-Marktpl\u00e4tze \u2014 die gr\u00f6\u00dfte derartige Operation in der Geschichte.',
+  tl4_yr: '2021', tl4_title: 'Australischer Online Safety Act',
+  tl4_text: 'Der eSafety Commissioner erh\u00e4lt Befugnisse, Plattformen zur Entfernung von NCII-Inhalten innerhalb von 24 Stunden zu zwingen \u2014 eines der st\u00e4rksten Rechtsrahmen weltweit.',
+  tl5_yr: '2023', tl5_title: 'Britischer Online Safety Act',
+  tl5_text: 'Die Weitergabe intimer Bilder ohne Einwilligung wird zum spezifischen Straftatbestand. Die Erstellung von Deepfake-Intimbildern wird erstmals im britischen Recht kriminalisiert.',
+  tl6_yr: '2024', tl6_title: 'EU Digital Services Act in Kraft',
+  tl6_text: 'Gro\u00dfe Plattformen sind rechtlich verpflichtet, illegale Inhalte proaktiv zu erkennen und zu entfernen. Telegram-Gr\u00fcnder Pavel Durov wird in Frankreich wegen Beihilfe zu Straftaten verhaftet.',
+  qcta_eyebrow: 'Wissen testen',
+  qcta_h2:   'Wie viel wissen Sie wirklich?',
+  qcta_p:    'Nehmen Sie an unserem Quiz mit 10 zuf\u00e4lligen Fragen teil, das alle Verbrechenskategorien abdeckt \u2014 Definitionen, Statistiken, reale F\u00e4lle und Pr\u00e4ventionsstrategien.',
+  qfeat1:    '10 zuf\u00e4llige Fragen pro Versuch',
+  qfeat2:    'Alle Verbrechensarten abgedeckt',
+  qfeat3:    'Bewertet mit Erkl\u00e4rungen',
+  qfeat4:    'Kein Zeitlimit',
+  qcta_btn:  'Quiz starten \u00a0\u2192',
+  footer_note: 'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind in den einzelnen Themenberichten belegt.',
+  footer_ref:  'Quellen',
+  footer_prev: 'Pr\u00e4vention',
+  footer_top:  'Alle Themen',
+  footer_quiz: 'Quiz',
+  foot_imprint:"Impressum"
+};
+
+T.it = {
+  page_title: 'CrimeOnline \u2014 Consapevolezza sulla Criminalit\u00e0 Informatica',
+  nav_topics:  'Argomenti',
+  nav_prev:    'Prevenzione',
+  nav_sources: 'Fonti',
+  nav_cta:     'Inizia il Quiz \u2197',
+  mob_lang:    'Lingua',
+  alert: 'Questo sito contiene contenuti educativi sulla criminalit\u00e0 informatica. Alcuni argomenti potrebbero essere angoscianti. Se sei colpito da questi problemi, le risorse di supporto sono disponibili su ogni pagina tematica.',
+  hero_eyebrow: 'Risorsa Educativa \u00b7 Serie sulla Criminalit\u00e0 Informatica',
+  hero_h1:      'Il Lato<br><span class="accent">Oscuro</span><br>della Vita Connessa',
+  hero_lead:    'Un\'indagine approfondita sui crimini che sfruttano internet \u2014 dalla condivisione non consensuale di immagini ai deepfake AI, dai mercati organizzati della droga alle reti di pirateria e all\'odio online.',
+  hero_btn_topics: 'Esplora gli Argomenti',
+  hero_btn_quiz:   'Inizia il Quiz \u00a0\u2192',
+  stat1: 'perdite USA da cybercrimine nel 2023',
+  stat2: 'categorie di crimine esaminate',
+  stat3: 'utenti colpiti da minacce NCII',
+  stat4: 'dei video deepfake sono abusi sessuali',
+  topics_eyebrow:  'Argomenti Trattati',
+  topics_h2:       'Sette Crimini.<br>Un Mondo Digitale.',
+  topics_subtitle: 'Ogni argomento include un rapporto completo, casi reali, quadri giuridici per paese e linee guida per la prevenzione.',
+  t1_title: 'Condivisione Non Consensuale di Immagini Intime',
+  t1_desc:  'Come le immagini intime vengono rubate, fabbricate e distribuite \u2014 e le devastanti conseguenze psicologiche e legali per le vittime.',
+  t1_sev:   'Alta Gravit\u00e0',
+  t2_title: 'Traffico di Droga Online',
+  t2_desc:  'Da Silk Road ai negozi su Telegram \u2014 l\'evoluzione dei mercati dark web della droga e il loro legame con la crisi del fentanil.',
+  t2_sev:   'Alta Gravit\u00e0',
+  t3_title: 'Pirateria Online',
+  t3_desc:  'Il problema da 46 miliardi di dollari della violazione del copyright \u2014 dal torrenting all\'IPTV illegale fino al malware nascosto nei software cracckati.',
+  t3_sev:   'Media Gravit\u00e0',
+  t4_title: 'Incitamento all\'Odio & Radicalizzazione',
+  t4_desc:  'Pipeline algoritmiche dalle piattaforme mainstream verso reti estremiste \u2014 e la violenza reale che hanno ispirato.',
+  t4_sev:   'Alta Gravit\u00e0',
+  t5_title: 'Cyberstalking & Doxxing',
+  t5_desc:  'Sorveglianza digitale, campagne di molestie coordinate e l\'esposizione di informazioni private per incitare alla violenza.',
+  t5_sev:   'Alta Gravit\u00e0',
+  t6_title: 'Crimine Finanziario Informatico',
+  t6_desc:  'Phishing, ransomware, truffe romantiche e le operazioni di pig butchering da miliardi di dollari che colpiscono persone comuni in tutto il mondo.',
+  t6_sev:   'Alta Gravit\u00e0',
+  dd_eyebrow: 'Approfondimento',
+  dd_h2:  'La Crisi dei Deepfake AI che Nessuno Ha Previsto',
+  dd_p1:  'L\'IA generativa ha creato una nuova categoria di crimine sessuale che non richiede materiale intimo genuino. Chiunque abbia un profilo pubblico sui social media \u00e8 potenzialmente un bersaglio. La legge sta cercando di recuperare \u2014 e sta perdendo.',
+  dd_p2:  'Questo approfondimento esamina come funziona il deepfake NCII, chi viene preso di mira, cosa stanno facendo il Digital Services Act dell\'UE e l\'Online Safety Act del Regno Unito \u2014 e dove falliscono.',
+  dd_btn: 'Leggi l\'Analisi Completa \u00a0\u2192',
+  dd_s1:  'di tutti i video deepfake online sono immagini sessuali non consensuali che prendono di mira le donne \u2014 Sensity AI, 2023',
+  dd_s2:  'crescita anno su anno del volume di deepfake NCII ogni anno dal 2019',
+  dd_s3n: 'Zero',
+  dd_s3:  'materiale intimo genuino necessario per creare un deepfake convincente \u2014 bastano solo le foto dei social media',
+  tl_eyebrow:  'Progressi Giuridici',
+  tl_h2:       'Come la Legge Ha Risposto',
+  tl_subtitle: 'Legislazione storica, importanti azioni delle forze dell\'ordine ed eventi fondamentali che hanno plasmato il panorama della criminalit\u00e0 informatica.',
+  tl1_yr: '2013\u20132015', tl1_title: 'Silk Road Chiuso',
+  tl1_text: 'L\'FBI chiude Silk Road e arresta il fondatore Ross Ulbricht. Mercati successori emergono entro mesi, dimostrando la resilienza dell\'ecosistema del traffico di droga nel dark web.',
+  tl2_yr: '2014', tl2_title: 'Hack iCloud Celebgate',
+  tl2_text: 'Attacchi di phishing mirati espongono foto intime di oltre 100 celebrity. Un momento cruciale per la consapevolezza pubblica su NCII e vulnerabilit\u00e0 della sicurezza cloud.',
+  tl3_yr: '2017', tl3_title: 'AlphaBay & Hansa Chiusi',
+  tl3_text: 'Un\'operazione coordinata di Europol e FBI smantella simultaneamente i due pi\u00f9 grandi mercati dark web \u2014 la pi\u00f9 grande operazione del genere nella storia.',
+  tl4_yr: '2021', tl4_title: 'Online Safety Act Australiano',
+  tl4_text: 'L\'eSafety Commissioner ottiene il potere di obbligare le piattaforme a rimuovere il contenuto NCII entro 24 ore da un reclamo valido \u2014 uno dei quadri pi\u00f9 solidi al mondo.',
+  tl5_yr: '2023', tl5_title: 'Online Safety Act del Regno Unito',
+  tl5_text: 'La condivisione di immagini intime senza consenso diventa un reato specifico. La creazione di deepfake NCII viene criminalizzata per la prima volta nel diritto britannico.',
+  tl6_yr: '2024', tl6_title: 'Digital Services Act UE in Vigore',
+  tl6_text: 'Le grandi piattaforme sono legalmente obbligate a rilevare e rimuovere proattivamente i contenuti illegali. Il fondatore di Telegram Pavel Durov arrestato in Francia per favoreggiamento di attivit\u00e0 criminali.',
+  qcta_eyebrow: 'Metti alla Prova le Tue Conoscenze',
+  qcta_h2:   'Quanto Sai Davvero?',
+  qcta_p:    'Fai il nostro quiz con 10 domande casuali su tutte le categorie di crimine \u2014 definizioni, statistiche, casi reali, quadri giuridici e strategie di prevenzione.',
+  qfeat1:    '10 domande casuali per tentativo',
+  qfeat2:    'Copre tutti i tipi di crimine',
+  qfeat3:    'Punteggio con spiegazioni',
+  qfeat4:    'Nessun limite di tempo',
+  qcta_btn:  'Inizia il Quiz \u00a0\u2192',
+  footer_note: 'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate nei singoli rapporti tematici.',
+  footer_ref:  'Fonti',
+  footer_prev: 'Prevenzione',
+  footer_top:  'Tutti gli Argomenti',
+  footer_quiz: 'Quiz',
+  foot_imprint:"Note legali",
+};
+
+/* =============================================================
+   RENDERER
+============================================================= */
+function g(id) { return document.getElementById(id); }
+function st(id, val)  { var e = g(id); if (e) e.textContent  = val; }
+function si(id, html) { var e = g(id); if (e) e.innerHTML    = html; }
+
+function applyLang(lang) {
+  var c = T[lang];
+  if (!c) return;
+
+  /* persist */
+  try { localStorage.setItem('co_lang', lang); } catch(e) {}
+
+  /* sync both selects */
+  var s1 = g('langSelect');    if (s1) s1.value = lang;
+  var s2 = g('langSelectMob'); if (s2) s2.value = lang;
+
+  document.title = c.page_title;
+
+  /* nav */
+  st('nav-topics-lbl',  c.nav_topics);
+  st('nav-prev-lbl',    c.nav_prev);
+  st('nav-sources-lbl', c.nav_sources);
+  st('nav-cta-lbl',     c.nav_cta);
+  st('mob-topics-lbl',  c.nav_topics);
+  st('mob-prev-lbl',    c.nav_prev);
+  st('mob-sources-lbl', c.nav_sources);
+  st('mob-cta-lbl',     c.nav_cta);
+  st('mob-lang-lbl',    c.mob_lang);
+
+  /* alert */
+  st('alert-text', c.alert);
+
+  /* hero */
+  st('hero-eyebrow',      c.hero_eyebrow);
+  si('hero-h1',           c.hero_h1);
+  st('hero-lead',         c.hero_lead);
+  st('hero-btn-topics',   c.hero_btn_topics);
+  st('hero-btn-quiz',     c.hero_btn_quiz);
+  st('stat-1-lbl', c.stat1);
+  st('stat-2-lbl', c.stat2);
+  st('stat-3-lbl', c.stat3);
+  st('stat-4-lbl', c.stat4);
+
+  /* topics section */
+  st('topics-eyebrow',  c.topics_eyebrow);
+  si('topics-h2',       c.topics_h2);
+  st('topics-subtitle', c.topics_subtitle);
+  st('t1-title', c.t1_title); st('t1-desc', c.t1_desc); st('t1-sev', c.t1_sev);
+  st('t2-title', c.t2_title); st('t2-desc', c.t2_desc); st('t2-sev', c.t2_sev);
+  st('t3-title', c.t3_title); st('t3-desc', c.t3_desc); st('t3-sev', c.t3_sev);
+  st('t4-title', c.t4_title); st('t4-desc', c.t4_desc); st('t4-sev', c.t4_sev);
+  st('t5-title', c.t5_title); st('t5-desc', c.t5_desc); st('t5-sev', c.t5_sev);
+  st('t6-title', c.t6_title); st('t6-desc', c.t6_desc); st('t6-sev', c.t6_sev);
+
+  /* deepfake */
+  st('dd-eyebrow', c.dd_eyebrow);
+  st('dd-h2',      c.dd_h2);
+  st('dd-p1',      c.dd_p1);
+  st('dd-p2',      c.dd_p2);
+  st('dd-btn',     c.dd_btn);
+  st('dd-stat-1',   c.dd_s1);
+  st('dd-stat-2',   c.dd_s2);
+  st('dd-stat-3-num', c.dd_s3n);
+  st('dd-stat-3',   c.dd_s3);
+
+  /* timeline */
+  st('tl-eyebrow',  c.tl_eyebrow);
+  st('tl-h2',       c.tl_h2);
+  st('tl-subtitle', c.tl_subtitle);
+  st('tl1-yr', c.tl1_yr); st('tl1-title', c.tl1_title); st('tl1-text', c.tl1_text);
+  st('tl2-yr', c.tl2_yr); st('tl2-title', c.tl2_title); st('tl2-text', c.tl2_text);
+  st('tl3-yr', c.tl3_yr); st('tl3-title', c.tl3_title); st('tl3-text', c.tl3_text);
+  st('tl4-yr', c.tl4_yr); st('tl4-title', c.tl4_title); st('tl4-text', c.tl4_text);
+  st('tl5-yr', c.tl5_yr); st('tl5-title', c.tl5_title); st('tl5-text', c.tl5_text);
+  st('tl6-yr', c.tl6_yr); st('tl6-title', c.tl6_title); st('tl6-text', c.tl6_text);
+
+  /* quiz cta */
+  st('qcta-eyebrow', c.qcta_eyebrow);
+  si('qcta-h2',      c.qcta_h2);
+  st('qcta-p',       c.qcta_p);
+  st('qfeat-1', c.qfeat1); st('qfeat-2', c.qfeat2);
+  st('qfeat-3', c.qfeat3); st('qfeat-4', c.qfeat4);
+  st('qcta-btn', c.qcta_btn);
+
+  /* footer */
+  st('footer-note',    c.footer_note);
+  st('footer-sources', c.footer_ref);
+  st('footer-prev',    c.footer_prev);
+  st('footer-topics',  c.footer_top);
+  st('footer-quiz',    c.footer_quiz);
+}
+
+function switchLanguage(lang) {
+  applyLang(lang);
+}
+
+/* ── HAMBURGER ── */
+var hb = document.getElementById('hamburger');
+var nm = document.getElementById('nav-mobile');
+function closeMenu() {
+  hb.classList.remove('open'); nm.classList.remove('open');
+  hb.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+hb.addEventListener('click', function() {
+  var o = nm.classList.toggle('open');
+  hb.classList.toggle('open');
+  hb.setAttribute('aria-expanded', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.addEventListener('click', function(e) {
+  if (!hb.contains(e.target) && !nm.contains(e.target)) closeMenu();
+});
+window.addEventListener('resize', function() { if (window.innerWidth > 860) closeMenu(); });
+
+/* ── INIT: read saved language ── */
+(function() {
+  var saved = 'en';
+  try { saved = localStorage.getItem('co_lang') || 'en'; } catch(e) {}
+  if (!T[saved]) saved = 'en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>

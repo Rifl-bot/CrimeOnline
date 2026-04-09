@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prevention & What's Being Done | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:         #0a0e1a;
+    --navy-mid:     #111827;
+    --navy-surface: #1a2233;
+    --crimson:      #c0392b;
+    --crimson-lt:   #e74c3c;
+    --crimson-glow: rgba(192,57,43,0.13);
+    --silver:       #cbd5e1;
+    --silver-lt:    #e2e8f0;
+    --silver-glow:  rgba(203,213,225,0.08);
+    --silver-border:rgba(203,213,225,0.18);
+    --slate:        #64748b;
+    --slate-lt:     #94a3b8;
+    --offwhite:     #f0efe8;
+    --white:        #ffffff;
+    --border:       rgba(255,255,255,0.07);
+    /* Per-topic accent colours — all used on this page */
+    --c-ncii:    #c0392b;
+    --c-drug:    #d97706;
+    --c-piracy:  #2563eb;
+    --c-hate:    #7c3aed;
+    --c-stalk:   #0d9488;
+    --c-finance: #16a34a;
+    --font-d: 'Playfair Display', Georgia, serif;
+    --font-b: 'Inter', system-ui, sans-serif;
+    --font-m: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: var(--font-b);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV — solid mobile menu ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(10,14,26,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px; height: 62px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--font-d); font-size: 19px; font-weight: 700; color: var(--white); text-decoration: none; flex-shrink: 0; }
+  .nav-logo span { color: var(--crimson); }
+  .nav-right{display:flex;align-items:center}
+  .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--slate-lt); text-decoration: none; font-size: 13px; font-weight: 500;
+    padding: 6px 12px; border-radius: 3px; transition: color .2s, background .2s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+  .nav-links a.active { color: var(--white); }
+  .nav-cta { background: var(--crimson) !important; color: var(--white) !important; padding: 7px 18px !important; border-radius: 3px; margin-left: 10px; }
+  .nav-cta:hover { background: var(--crimson-lt) !important; }
+  .nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+  .lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+  .lang-select option{background:#0a0e1a;color:var(--offwhite)}
+  .lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+  .lang-select option{background:#0a0e1a;color:var(--offwhite)}
+
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    align-items: center; width: 40px; height: 40px; cursor: pointer;
+    gap: 5px; background: none; border: none; padding: 4px; z-index: 2;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--slate-lt); border-radius: 2px;
+    transition: transform .25s ease, opacity .2s ease, background .2s; transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--white); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--white); }
+  .nav-mobile {
+    display: none; position: fixed; top: 62px; left: 0; right: 0;
+    background: #0a0e1a;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    z-index: 199; padding: 8px 0 20px; flex-direction: column;
+    animation: slideDown .22s ease;
+  }
+  .nav-mobile.open { display: flex; }
+  @keyframes slideDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+  .nav-mobile a {
+    color: var(--slate-lt); text-decoration: none; font-size: 15px; font-weight: 500;
+    padding: 15px 32px; transition: color .18s, background .18s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav-mobile a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+  .nav-mobile a.mobile-cta {
+    margin: 14px 32px 0; padding: 13px 20px;
+    background: var(--crimson); color: var(--white) !important;
+    border-radius: 3px; text-align: center; border: none; font-size: 14px; font-weight: 600;
+  }
+  .nav-mobile a.mobile-cta:hover { background: var(--crimson-lt); }
+  @media (max-width: 860px) { nav { padding: 0 24px; } .nav-links { display: none; } .nav-hamburger { display: flex; } }
+  @media (max-width: 480px) { nav { padding: 0 20px; } }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    padding: 14px 80px; font-size: 12px; font-family: var(--font-m);
+    color: var(--slate); letter-spacing: .03em;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--slate); text-decoration: none; transition: color .2s; }
+  .breadcrumb a:hover { color: var(--slate-lt); }
+  .breadcrumb-sep { color: var(--crimson); opacity: .5; }
+  @media (max-width: 600px) { .breadcrumb { padding: 12px 24px; } }
+
+  /* ── HERO — multi-colour accent stripe ── */
+  .page-hero {
+    position: relative; overflow: hidden;
+    padding: 100px 80px 80px; min-height: 52vh;
+    display: flex; align-items: flex-end;
+  }
+  .hero-img-slot {
+    position: absolute; inset: 0; background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .placeholder-label {
+    font-family: var(--font-m); font-size: 11px; color: rgba(255,255,255,0.13);
+    letter-spacing: .1em; text-transform: uppercase;
+    border: 1px dashed rgba(255,255,255,0.09); padding: 10px 20px; border-radius: 3px;
+    pointer-events: none; user-select: none;
+  }
+  /* 6-colour spectrum stripe at top of hero */
+  .hero-spectrum {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; display: flex;
+  }
+  .hero-spectrum span { flex: 1; }
+  .hs-1 { background: var(--c-ncii); }
+  .hs-2 { background: var(--c-drug); }
+  .hs-3 { background: var(--c-piracy); }
+  .hs-4 { background: var(--c-hate); }
+  .hs-5 { background: var(--c-stalk); }
+  .hs-6 { background: var(--c-finance); }
+  .hero-overlay-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,14,26,1) 0%, rgba(10,14,26,0.65) 50%, rgba(10,14,26,0.18) 100%);
+    pointer-events: none;
+  }
+  .hero-overlay-silver {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 55% at 80% 30%, rgba(203,213,225,0.04), transparent 65%);
+    pointer-events: none;
+  }
+  .page-hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .page-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-m); font-size: 11px; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--silver); margin-bottom: 22px;
+  }
+  .page-label-dot {
+    width: 8px; height: 8px; border-radius: 2px;
+    background: linear-gradient(135deg, var(--c-finance), var(--c-stalk));
+  }
+  .page-hero h1 {
+    font-family: var(--font-d); font-size: clamp(34px,5vw,68px);
+    font-weight: 900; line-height: 1.06; letter-spacing: -1.5px;
+    color: var(--white); margin-bottom: 22px;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--silver); }
+  .hero-lead {
+    font-size: 17px; font-weight: 300; color: var(--slate-lt);
+    line-height: 1.8; max-width: 640px; margin-bottom: 36px;
+  }
+  /* Six topic pills in the hero */
+  .hero-topic-pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding-top: 28px; border-top: 1px solid var(--border);
+  }
+  .topic-pill {
+    font-family: var(--font-m); font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px; letter-spacing: .04em;
+    text-decoration: none; transition: opacity .2s;
+    border: 1px solid transparent;
+  }
+  .topic-pill:hover { opacity: .75; }
+  .tp-ncii    { background: rgba(192,57,43,0.15);  color: #e89a90; border-color: rgba(192,57,43,0.3); }
+  .tp-drug    { background: rgba(217,119,6,0.15);  color: #f0c97a; border-color: rgba(217,119,6,0.3); }
+  .tp-piracy  { background: rgba(37,99,235,0.15);  color: #93c5fd; border-color: rgba(37,99,235,0.3); }
+  .tp-hate    { background: rgba(124,58,237,0.15); color: #c4b5fd; border-color: rgba(124,58,237,0.3); }
+  .tp-stalk   { background: rgba(13,148,136,0.15); color: #5eead4; border-color: rgba(13,148,136,0.3); }
+  .tp-finance { background: rgba(22,163,74,0.15);  color: #4ade80; border-color: rgba(22,163,74,0.3); }
+  @media (max-width: 860px) { .page-hero { padding: 80px 24px 52px; min-height: 0; } }
+
+  /* ── COMMONS ── */
+  .content-section { padding: 80px; }
+  .bg-mid { background: var(--navy-mid); }
+  .section-eyebrow {
+    font-family: var(--font-m); font-size: 10px; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--silver); margin-bottom: 14px; display: block;
+  }
+  .section-h2 {
+    font-family: var(--font-d); font-size: clamp(24px,3vw,42px);
+    font-weight: 700; color: var(--white); line-height: 1.1;
+    letter-spacing: -.5px; margin-bottom: 20px;
+  }
+  .section-h3 {
+    font-family: var(--font-d); font-size: 21px; font-weight: 700;
+    color: var(--white); line-height: 1.2; margin-bottom: 12px; margin-top: 40px;
+  }
+  .prose {
+    font-size: 15px; color: var(--slate-lt); line-height: 1.85;
+    max-width: 800px; margin-bottom: 20px;
+  }
+  .prose strong { color: var(--white); font-weight: 600; }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(203,213,225,0.2), transparent);
+    margin: 0 80px;
+  }
+  @media (max-width: 860px) { .content-section { padding: 52px 24px; } .section-divider { margin: 0 24px; } }
+
+  .pull-quote {
+    margin: 36px 0; padding: 28px 36px;
+    border-left: 3px solid var(--silver);
+    background: var(--silver-glow); border-radius: 0 4px 4px 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-d); font-size: 20px; font-style: italic;
+    color: var(--white); line-height: 1.55; margin-bottom: 10px;
+  }
+  .pull-quote cite { font-size: 12px; font-family: var(--font-m); color: var(--slate); letter-spacing: .06em; text-transform: uppercase; font-style: normal; }
+
+  .callout {
+    margin: 28px 0; padding: 20px 26px; border-radius: 4px;
+    display: flex; gap: 16px; align-items: flex-start;
+    border: 1px solid var(--silver-border); background: var(--silver-glow);
+  }
+  .callout-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--slate); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .callout-text { font-size: 14px; color: var(--slate-lt); line-height: 1.7; }
+  .callout-text strong { color: var(--silver-lt); font-weight: 600; }
+
+  /* ══════════════════════════════════════════════
+     LEGISLATION PROGRESS TRACKER
+     Each row = one jurisdiction, bar shows overall coverage
+  ══════════════════════════════════════════════ */
+  .leg-section { background: var(--navy-mid); }
+  .leg-table { margin-top: 52px; }
+  .leg-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    align-items: stretch;
+  }
+  .leg-row:first-child { border-top: 1px solid var(--border); }
+  .leg-jurisdiction {
+    padding: 24px 28px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  }
+  .leg-flag { font-size: 22px; }
+  .leg-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .leg-status-badge {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 8px; border-radius: 2px; letter-spacing: .04em;
+  }
+  .lsb-strong  { background: rgba(22,163,74,0.15);  color: #4ade80; }
+  .lsb-growing { background: rgba(37,99,235,0.15);  color: #93c5fd; }
+  .lsb-partial { background: rgba(217,119,6,0.15);  color: #f0c97a; }
+  .lsb-gap     { background: rgba(192,57,43,0.15);  color: #e89a90; }
+  .leg-crimes { padding: 24px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .leg-crime-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .leg-crime-label {
+    font-family: var(--font-m); font-size: 11px; color: var(--slate-lt);
+    min-width: 160px; letter-spacing: .02em;
+  }
+  .leg-crime-dots { display: flex; gap: 5px; }
+  .lcd {
+    width: 14px; height: 14px; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px;
+  }
+  .lcd.yes    { background: rgba(22,163,74,0.2); color: #4ade80; border: 1px solid rgba(22,163,74,0.4); }
+  .lcd.no     { background: rgba(255,255,255,0.04); color: var(--slate); border: 1px solid rgba(255,255,255,0.08); }
+  .lcd.partial{ background: rgba(217,119,6,0.15); color: #f0c97a; border: 1px solid rgba(217,119,6,0.3); }
+  .leg-crime-note { font-size: 12px; color: var(--slate); font-style: italic; }
+  .leg-legend {
+    display: flex; gap: 20px; margin-top: 28px; flex-wrap: wrap;
+    font-size: 12px; color: var(--slate); align-items: center;
+  }
+  .leg-legend-item { display: flex; align-items: center; gap: 7px; }
+  @media (max-width: 720px) {
+    .leg-row { grid-template-columns: 1fr; }
+    .leg-jurisdiction { border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; align-items: center; gap: 12px; }
+    .leg-crime-label { min-width: 130px; font-size: 10px; }
+  }
+
+  /* ══════════════════════════════════════════════
+     PLATFORM ENFORCEMENT SCORECARD
+     The signature layout element of this page
+  ══════════════════════════════════════════════ */
+  .scorecard-section { }
+  .scorecard-intro { margin-bottom: 48px; }
+  .scorecard-grid {
+    display: grid; grid-template-columns: 200px repeat(6,1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 5px; overflow: hidden;
+  }
+  /* Header row */
+  .sc-header {
+    background: var(--navy-surface);
+    padding: 14px 10px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+  }
+  .sc-header.label-cell {
+    text-align: left; align-items: flex-start; padding: 14px 18px;
+  }
+  .sc-header-icon { font-size: 16px; }
+  .sc-header-name {
+    font-family: var(--font-m); font-size: 10px; color: var(--slate-lt);
+    letter-spacing: .05em; text-transform: uppercase;
+  }
+  .sc-crime-label {
+    font-family: var(--font-m); font-size: 10px; color: var(--slate);
+    letter-spacing: .06em; text-transform: uppercase; line-height: 1.3;
+  }
+  /* Data rows */
+  .sc-row { display: contents; }
+  .sc-cell {
+    background: var(--navy-mid); padding: 16px 10px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .18s;
+  }
+  .sc-cell:hover { background: var(--navy-surface); }
+  .sc-cell.platform-label {
+    background: var(--navy-surface); padding: 16px 18px;
+    justify-content: flex-start; gap: 10px;
+  }
+  .sc-plat-icon {
+    width: 28px; height: 28px; border-radius: 4px;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+    flex-shrink: 0;
+  }
+  .sc-plat-name { font-size: 13px; font-weight: 600; color: var(--white); }
+  /* Score badges */
+  .score {
+    width: 32px; height: 26px; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-m); font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  }
+  .score-A  { background: rgba(22,163,74,0.2);  color: #4ade80; border: 1px solid rgba(22,163,74,0.35); }
+  .score-B  { background: rgba(37,99,235,0.2);  color: #93c5fd; border: 1px solid rgba(37,99,235,0.35); }
+  .score-C  { background: rgba(217,119,6,0.2);  color: #f0c97a; border: 1px solid rgba(217,119,6,0.35); }
+  .score-D  { background: rgba(192,57,43,0.2);  color: #e89a90; border: 1px solid rgba(192,57,43,0.35); }
+  .score-F  { background: rgba(192,57,43,0.35); color: #e89a90; border: 1px solid rgba(192,57,43,0.5); }
+  .score-NA { background: rgba(100,116,139,0.15); color: var(--slate); border: 1px solid rgba(100,116,139,0.2); }
+  .sc-note {
+    font-size: 11px; font-family: var(--font-m); color: var(--slate);
+    letter-spacing: .02em; padding: 0 8px; text-align: center; line-height: 1.4;
+  }
+  .scorecard-legend {
+    display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap;
+    font-size: 12px; color: var(--slate); align-items: center;
+  }
+  .scorecard-legend-item { display: flex; align-items: center; gap: 6px; }
+  /* Responsive: horizontal scroll on small screens */
+  .scorecard-wrap { overflow-x: auto; }
+  .scorecard-grid { min-width: 680px; }
+
+  /* Crime column header colour tabs */
+  .sc-crime-tab {
+    width: 28px; height: 4px; border-radius: 2px; margin-bottom: 4px;
+  }
+
+  /* ══════════════════════════════════════════════
+     LAW ENFORCEMENT SECTION
+  ══════════════════════════════════════════════ */
+  .le-section { background: var(--navy-mid); }
+
+  /* ░░ IMAGE SLOT 2 ░░ */
+  .img-slot {
+    background: var(--navy-surface);
+    border: 1px dashed rgba(255,255,255,0.11); border-radius: 5px;
+    min-height: 320px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 14px; padding: 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .img-slot::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(203,213,225,0.04), transparent);
+    pointer-events: none;
+  }
+  .slot-icon { width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.09); display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(255,255,255,0.02); position: relative; z-index: 1; }
+  .slot-title { font-family: var(--font-m); font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.2); letter-spacing: .1em; text-transform: uppercase; position: relative; z-index: 1; }
+  .slot-desc { font-size: 12px; color: rgba(100,116,139,0.45); line-height: 1.6; max-width: 220px; text-align: center; position: relative; z-index: 1; }
+  .slot-tag { font-family: var(--font-m); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(203,213,225,0.35); border: 1px dashed rgba(203,213,225,0.2); padding: 4px 12px; border-radius: 2px; position: relative; z-index: 1; }
+
+  .le-split {
+    display: grid; grid-template-columns: 1fr 340px; gap: 72px;
+    align-items: start; margin-top: 48px;
+  }
+  .le-items { display: flex; flex-direction: column; gap: 0; }
+  .le-item {
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .le-item:last-child { border-bottom: none; }
+  .le-icon {
+    width: 36px; height: 36px; border-radius: 4px; flex-shrink: 0;
+    background: var(--silver-glow); border: 1px solid var(--silver-border);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .le-item h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .le-item p  { font-size: 13px; color: var(--slate); line-height: 1.65; }
+  @media (max-width: 860px) { .le-split { grid-template-columns: 1fr; } .img-slot { min-height: 180px; } }
+
+  /* ══════════════════════════════════════════════
+     INDIVIDUAL PROTECTION GUIDE — per topic
+  ══════════════════════════════════════════════ */
+  .protect-section { }
+  .protect-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 5px; overflow: hidden; margin-top: 48px;
+  }
+  .protect-card {
+    background: var(--navy-mid); padding: 32px 28px;
+    transition: background .2s; position: relative; overflow: hidden;
+  }
+  .protect-card:hover { background: var(--navy-surface); }
+  /* Coloured top border per topic */
+  .protect-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px; transform: scaleX(0);
+    transform-origin: left; transition: transform .22s;
+  }
+  .protect-card:hover::before { transform: scaleX(1); }
+  .pc-ncii::before    { background: var(--c-ncii); }
+  .pc-drug::before    { background: var(--c-drug); }
+  .pc-piracy::before  { background: var(--c-piracy); }
+  .pc-hate::before    { background: var(--c-hate); }
+  .pc-stalk::before   { background: var(--c-stalk); }
+  .pc-finance::before { background: var(--c-finance); }
+  .protect-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+  }
+  .protect-num {
+    width: 28px; height: 28px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-m); font-size: 11px; font-weight: 700;
+    color: var(--white); flex-shrink: 0;
+  }
+  .pn-ncii    { background: var(--c-ncii); }
+  .pn-drug    { background: var(--c-drug); }
+  .pn-piracy  { background: var(--c-piracy); }
+  .pn-hate    { background: var(--c-hate); }
+  .pn-stalk   { background: var(--c-stalk); }
+  .pn-finance { background: var(--c-finance); }
+  .protect-card h3 {
+    font-family: var(--font-d); font-size: 17px; font-weight: 700;
+    color: var(--white); line-height: 1.2;
+  }
+  .protect-link {
+    font-family: var(--font-m); font-size: 10px; color: var(--slate);
+    letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+    transition: color .18s;
+  }
+  .protect-link:hover { color: var(--slate-lt); }
+  .tips-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .tip-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: var(--slate-lt); line-height: 1.6;
+  }
+  .tip-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+  .td-ncii    { background: var(--c-ncii); }
+  .td-drug    { background: var(--c-drug); }
+  .td-piracy  { background: var(--c-piracy); }
+  .td-hate    { background: var(--c-hate); }
+  .td-stalk   { background: var(--c-stalk); }
+  .td-finance { background: var(--c-finance); }
+  @media (max-width: 720px) { .protect-grid { grid-template-columns: 1fr; } }
+
+  /* ══════════════════════════════════════════════
+     SYSTEMIC CHALLENGES SECTION
+  ══════════════════════════════════════════════ */
+  .challenges-section { background: var(--navy-mid); }
+  .challenges-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 5px; overflow: hidden; margin-top: 48px;
+  }
+  .challenge-card {
+    background: var(--navy-mid); padding: 30px 26px; transition: background .2s;
+  }
+  .challenge-card:hover { background: var(--navy-surface); }
+  .challenge-num {
+    font-family: var(--font-d); font-size: 48px; font-weight: 900;
+    color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: 12px;
+  }
+  .challenge-card h3 {
+    font-family: var(--font-d); font-size: 17px; font-weight: 700;
+    color: var(--white); margin-bottom: 10px; line-height: 1.2;
+  }
+  .challenge-card p { font-size: 13px; color: var(--slate); line-height: 1.65; }
+  @media (max-width: 720px) { .challenges-grid { grid-template-columns: 1fr; } }
+
+  /* ══════════════════════════════════════════════
+     WHAT YOU CAN DO — call to action closing
+  ══════════════════════════════════════════════ */
+  .cta-section { }
+  .cta-inner {
+    background: var(--navy-surface);
+    border: 1px solid var(--silver-border);
+    border-radius: 6px; padding: 64px 60px;
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+  /* Spectrum line at top */
+  .cta-inner::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg,
+      var(--c-ncii), var(--c-drug), var(--c-piracy),
+      var(--c-hate), var(--c-stalk), var(--c-finance)
+    );
+  }
+  .cta-inner h2 {
+    font-family: var(--font-d); font-size: clamp(26px,3vw,40px);
+    font-weight: 700; color: var(--white); margin-bottom: 16px; letter-spacing: -.5px;
+  }
+  .cta-inner p { color: var(--slate-lt); max-width: 520px; margin: 0 auto 36px; font-size: 15px; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--crimson); color: var(--white);
+    padding: 13px 28px; font-size: 14px; font-weight: 600;
+    border-radius: 3px; cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .15s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--crimson-lt); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--slate-lt); padding: 13px 28px; font-size: 14px; font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.12); background: transparent;
+    border-radius: 3px; transition: border-color .2s, color .2s; text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+  /* ── DATA BARS ── */
+  .dbar { margin-bottom: 20px; }
+  .dbar-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--slate-lt); margin-bottom: 7px; }
+  .dbar-label span:last-child { font-family: var(--font-m); color: var(--white); font-size: 12px; }
+  .dbar-track { height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+  .dbar-fill { height: 100%; border-radius: 2px; transform-origin: left; animation: bar-in 1s ease both; }
+  @keyframes bar-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* ── QUIZ STRIP ── */
+  .quiz-strip {
+    background: var(--crimson); padding: 28px 80px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+  .quiz-strip p { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.92); }
+  .quiz-strip p span { font-weight: 300; opacity: .8; font-size: 13px; }
+  .btn-quiz {
+    background: rgba(255,255,255,0.15); color: white; padding: 10px 24px; border-radius: 3px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25); transition: background .2s; white-space: nowrap;
+  }
+  .btn-quiz:hover { background: rgba(255,255,255,0.25); }
+  @media (max-width: 600px) { .quiz-strip { padding: 24px; } }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 36px 80px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+  .footer-logo { font-family: var(--font-d); font-size: 16px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .footer-logo span { color: var(--crimson); }
+  .footer-note { font-size: 12px; color: var(--slate); max-width: 360px; }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; color: var(--slate); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--white); }
+  @media (max-width: 640px) { footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics"  id="nav-topics-lbl" data-i18n="nav_topics">Topics</a></li>
+      <li><a href="prevention.html"    id="nav-prev-lbl" data-i18n="nav_prev">Prevention</a></li>
+      <li><a href="sources.html"       id="nav-sources-lbl" data-i18n="nav_sources">Sources</a></li>
+      <li><a href="quiz/index.html" class="nav-cta" id="nav-cta-lbl" data-i18n="nav_cta">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="index.html#topics"  onclick="closeMenu()" id="mob-topics-lbl" data-i18n="nav_topics">Topics</a>
+  <a href="prevention.html"    onclick="closeMenu()" id="mob-prev-lbl" data-i18n="nav_prev">Prevention</a>
+  <a href="sources.html"       onclick="closeMenu()" id="mob-sources-lbl" data-i18n="nav_sources">Sources</a>
+  <a href="quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl" data-i18n="nav_cta">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl" data-i18n="nav_lang">Language</label>
+    <select class="lang-select-mobile" id="langSelectMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+<script>
+  const btn=document.getElementById('hamburger'),mob=document.getElementById('nav-mobile');
+  function closeMenu(){btn.classList.remove('open');mob.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  btn.addEventListener('click',()=>{const o=mob.classList.toggle('open');btn.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
+  document.addEventListener('click',e=>{if(!btn.contains(e.target)&&!mob.contains(e.target))closeMenu();});
+  window.addEventListener('resize',()=>{if(window.innerWidth>860)closeMenu();});
+</script>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html" data-i18n="bc_home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt);" data-i18n="bc_prevention">Prevention &amp; What's Being Done</span>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-img-slot">
+    <!-- ╔═══════════════════════════════════════════════════════════════╗
+         ║  IMAGE SLOT 1 — Hero Background                             ║
+         ║  background: url('your-image.jpg') center/cover no-repeat  ║
+         ║                                                             ║
+         ║  Works best with: a broad, wide-angle abstract piece —     ║
+         ║  something that feels hopeful but still serious. A light   ║
+         ║  at the end of a tunnel, a shield motif, or a global       ║
+         ║  network with protective elements.                          ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <span class="placeholder-label">Image slot 1 — Hero background artwork</span>
+  </div>
+  <div class="hero-spectrum">
+    <span class="hs-1"></span><span class="hs-2"></span><span class="hs-3"></span>
+    <span class="hs-4"></span><span class="hs-5"></span><span class="hs-6"></span>
+  </div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-silver"></div>
+  <div class="page-hero-content">
+    <div class="page-label">
+      <div class="page-label-dot"></div>
+      <span data-i18n="hero_label">Cross-Cutting Summary</span> &nbsp;·&nbsp; <span data-i18n="hero_label2">All Six Topics</span>
+    </div>
+    <h1><span data-i18n="hero_h1a">Prevention</span> &amp;<br><em data-i18n="hero_h1b">What's Being Done</em></h1>
+    <p class="hero-lead">
+      <span data-i18n="hero_lead">Across six categories of internet crime, governments, platforms, law enforcement agencies, and individuals are responding — with uneven effectiveness, insufficient resources, and hard structural limits. This page synthesises what is working, what is not, and what you can do.</span>
+    </p>
+    <div class="hero-topic-pills">
+      <a href="crimes/ncii.html" class="topic-pill tp-ncii">01 NCII</a>
+      <a href="crimes/drug-trade.html" class="topic-pill tp-drug">02 Drug Trade</a>
+      <a href="crimes/piracy.html" class="topic-pill tp-piracy">03 Piracy</a>
+      <a href="crimes/hate-speech.html" class="topic-pill tp-hate">04 Hate Speech</a>
+      <a href="crimes/cyberstalking.html" class="topic-pill tp-stalk">05 Cyberstalking</a>
+      <a href="crimes/financial-crime.html" class="topic-pill tp-finance">06 Financial Crime</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" data-i18n="s1_eyebrow">Overview</span>
+  <div class="pull-quote">
+    <p data-i18n="s1_quote">"The internet was built for openness. Retrofitting it for safety is one of the defining governance challenges of the 21st century — and we are still losing."</p>
+    <cite data-i18n="s1_cite">Marietje Schaake, International Policy Director, Stanford Cyber Policy Center, 2023</cite>
+  </div>
+  <p class="prose">
+    <span data-i18n="s1_p1">Across all six categories examined in this project, a consistent pattern emerges: the harms produced by internet crime are <strong>real, documented, and severe</strong>; the legal and technical responses are <strong>real but insufficient</strong>; and the structural conditions that enable these crimes — platform architectures optimised for engagement over safety, jurisdictional fragmentation, inadequate enforcement resources, and the pace of technological change — remain largely intact.</span>
+  </p>
+  <p class="prose">
+    <span data-i18n="s1_p2">This does not mean nothing is working. Significant progress has been made. The EU's Digital Services Act represents the most ambitious attempt yet to hold platforms legally accountable for the harms their systems produce. Hash-matching technology has meaningfully reduced NCII distribution on participating platforms. Major ransomware operations have been disrupted by coordinated international law enforcement. Hundreds of cybercriminals are prosecuted every year.</span>
+  </p>
+  <p class="prose">
+    <span data-i18n="s1_p3">But progress is incremental against an adaptive adversary, and in most categories the trajectory of harm continues upward. The $12.5 billion in US cybercrime losses in 2023 was a record high. NCII volumes, including AI-generated deepfakes, continue to grow. The online drug trade has fragmented into a form more resilient to enforcement than Silk Road ever was. Hate speech radicalisation pipelines operate today with greater reach than at any previous point.</span>
+  </p>
+  <p class="prose">
+    <span data-i18n="s1_p4">Understanding the shape of the response — what is working, what is not, and where the hardest limits lie — is as important as understanding the crimes themselves.</span>
+  </p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 2: LEGISLATION TRACKER -->
+<section class="content-section leg-section">
+  <span class="section-eyebrow" data-i18n="s2_eyebrow">Section 2</span>
+  <h2 class="section-h2" data-i18n="s2_h2">Legislation at a Glance:<br>How Four Key Jurisdictions Compare</h2>
+  <p class="prose" data-i18n="s2_intro">The legal response to internet crime varies significantly by jurisdiction and by crime type. The grid below maps current legislative coverage — where laws exist, where they have gaps, and where enforcement is the limiting factor even where law is strong.</p>
+
+  <div class="leg-table">
+
+    <!-- HEADER -->
+    <div class="leg-row" style="background:var(--navy-surface);">
+      <div style="padding:16px 28px;border-right:1px solid var(--border);display:flex;align-items:center;">
+        <span style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;" data-i18n="leg_jurisdiction">Jurisdiction</span>
+      </div>
+      <div style="padding:16px 20px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center;">
+        <div style="text-align:center;font-family:var(--font-m);font-size:10px;color:#e89a90;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;">NCII</div>
+        <div style="text-align:center;font-family:var(--font-m);font-size:10px;color:#f0c97a;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;" data-i18n="leg_col_drug">Drug Trade</div>
+        <div style="text-align:center;font-family:var(--font-m);font-size:10px;color:#93c5fd;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;">Piracy</div>
+        <div style="text-align:center;font-family:var(--font-m);font-size:10px;color:#c4b5fd;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;" data-i18n="leg_col_hate">Hate Speech</div>
+        <div style="text-align:center;font-family:var(--font-m);font-size:10px;color:#5eead4;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;" data-i18n="leg_col_cyber">Cybercrime</div>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="leg-row">
+      <div class="leg-jurisdiction">
+        <div class="leg-flag">🇬🇧</div>
+        <div class="leg-name" data-i18n="jur_uk">United Kingdom</div>
+        <span class="leg-status-badge lsb-strong" data-i18n="badge_strong">Strong</span>
+      </div>
+      <div class="leg-crimes">
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_ncii">NCII / Deepfakes</span>
+          <div class="leg-crime-dots">
+            <div class="lcd yes" title="Criminalised">✓</div>
+          </div>
+          <span class="leg-crime-note" data-i18n="note_uk_ncii">Online Safety Act 2023 — deepfake creation criminalised</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_drug">Drug trafficking online</span>
+          <div class="leg-crime-dots">
+            <div class="lcd yes" title="Criminalised">✓</div>
+          </div>
+          <span class="leg-crime-note" data-i18n="note_uk_drug">Misuse of Drugs Act covers online supply</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_copy">Copyright infringement</span>
+          <div class="leg-crime-dots">
+            <div class="lcd yes" title="Covered">✓</div>
+          </div>
+          <span class="leg-crime-note" data-i18n="note_uk_copy">CDPA 1988 + court-ordered ISP blocking</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_hate">Hate speech online</span>
+          <div class="leg-crime-dots">
+            <div class="lcd yes" title="Covered">✓</div>
+          </div>
+          <span class="leg-crime-note" data-i18n="note_uk_hate">Online Safety Act + Communications Act</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_stalk">Cyberstalking / fraud</span>
+          <div class="leg-crime-dots">
+            <div class="lcd yes" title="Covered">✓</div>
+          </div>
+          <span class="leg-crime-note" data-i18n="note_uk_stalk">Computer Misuse Act + PFHA 1997</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU -->
+    <div class="leg-row">
+      <div class="leg-jurisdiction">
+        <div class="leg-flag">🇪🇺</div>
+        <div class="leg-name" data-i18n="jur_eu">European Union</div>
+        <span class="leg-status-badge lsb-growing" data-i18n="badge_framework">Strong Framework</span>
+      </div>
+      <div class="leg-crimes">
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_ncii">NCII / Deepfakes</span>
+          <div class="leg-crime-dots"><div class="lcd partial">~</div></div>
+          <span class="leg-crime-note" data-i18n="note_eu_ncii">DSA + new VAW Directive (2027 transposition)</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_drug">Drug trafficking online</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_eu_drug">Member state laws + Europol coordination</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_copy">Copyright infringement</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_eu_copy">EU Copyright Directive — Article 17 upload filters</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_hate">Hate speech online</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_eu_hate">DSA platform obligations + national laws (NetzDG strongest)</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_stalk">Cyberstalking / fraud</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_eu_stalk">Budapest Convention + national cybercrime laws</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- US -->
+    <div class="leg-row">
+      <div class="leg-jurisdiction">
+        <div class="leg-flag">🇺🇸</div>
+        <div class="leg-name" data-i18n="jur_us">United States</div>
+        <span class="leg-status-badge lsb-partial" data-i18n="badge_patchy">Patchy</span>
+      </div>
+      <div class="leg-crimes">
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_ncii">NCII / Deepfakes</span>
+          <div class="leg-crime-dots"><div class="lcd partial">~</div></div>
+          <span class="leg-crime-note" data-i18n="note_us_ncii">48 state laws — no federal statute</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_drug">Drug trafficking online</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_us_drug">Federal analog / controlled substance laws</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_copy">Copyright infringement</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_us_copy">DMCA — notice and takedown model</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_hate">Hate speech online</span>
+          <div class="leg-crime-dots"><div class="lcd no">✗</div></div>
+          <span class="leg-crime-note" data-i18n="note_us_hate">First Amendment — no general hate speech law</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_stalk">Cyberstalking / fraud</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_us_stalk">CFAA + interstate stalking statute</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Australia -->
+    <div class="leg-row" style="border-bottom:none;">
+      <div class="leg-jurisdiction">
+        <div class="leg-flag">🇦🇺</div>
+        <div class="leg-name" data-i18n="jur_au">Australia</div>
+        <span class="leg-status-badge lsb-strong" data-i18n="badge_progressive">Progressive</span>
+      </div>
+      <div class="leg-crimes">
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_ncii">NCII / Deepfakes</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_au_ncii">Online Safety Act 2021 — 24hr takedown powers</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_drug">Drug trafficking online</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_au_drug">Criminal Code Act + state trafficking laws</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_copy">Copyright infringement</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_au_copy">Copyright Act 1968 + site blocking regime</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_hate">Hate speech online</span>
+          <div class="leg-crime-dots"><div class="lcd partial">~</div></div>
+          <span class="leg-crime-note" data-i18n="note_au_hate">Racial Discrimination Act — limited to race</span>
+        </div>
+        <div class="leg-crime-row">
+          <span class="leg-crime-label" data-i18n="lbl_stalk">Cyberstalking / fraud</span>
+          <div class="leg-crime-dots"><div class="lcd yes">✓</div></div>
+          <span class="leg-crime-note" data-i18n="note_au_stalk">Criminal Code + eSafety Commissioner powers</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="leg-legend">
+    <div class="leg-legend-item"><div class="lcd yes" style="width:18px;height:18px;">✓</div> <span data-i18n="leg_yes">Specific law in place</span></div>
+    <div class="leg-legend-item"><div class="lcd partial" style="width:18px;height:18px;">~</div> <span data-i18n="leg_partial">Partial / emerging</span></div>
+    <div class="leg-legend-item"><div class="lcd no" style="width:18px;height:18px;">✗</div> <span data-i18n="leg_no">No specific law</span></div>
+  </div>
+</section>
+
+<!-- SECTION 3: PLATFORM SCORECARD -->
+<section class="content-section scorecard-section">
+  <span class="section-eyebrow" data-i18n="s3_eyebrow">Section 3 — Signature Feature</span>
+  <h2 class="section-h2" data-i18n="s3_h2">Platform Enforcement Scorecard:<br>How Major Platforms Are Performing</h2>
+  <div class="scorecard-intro">
+    <p class="prose" data-i18n="s3_intro">Based on published research, regulatory findings, and investigative journalism, this scorecard rates major platforms on their enforcement effectiveness across each crime category. Grades reflect policy quality, enforcement consistency, and cooperation with researchers and regulators — not merely the existence of a policy.</p>
+  </div>
+
+  <div class="scorecard-wrap">
+    <div class="scorecard-grid">
+
+      <!-- Header row -->
+      <div class="sc-header label-cell">
+        <span class="sc-crime-label" data-i18n="sc_platform">Platform</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-ncii);"></div>
+        <div class="sc-header-icon">🔒</div>
+        <span class="sc-header-name">NCII</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-drug);"></div>
+        <div class="sc-header-icon">⚠️</div>
+        <span class="sc-header-name" data-i18n="sc_drugs">Drugs</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-piracy);"></div>
+        <div class="sc-header-icon">💻</div>
+        <span class="sc-header-name">Piracy</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-hate);"></div>
+        <div class="sc-header-icon">🌐</div>
+        <span class="sc-header-name" data-i18n="sc_hate">Hate</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-stalk);"></div>
+        <div class="sc-header-icon">🎯</div>
+        <span class="sc-header-name" data-i18n="sc_stalking">Stalking</span>
+      </div>
+      <div class="sc-header">
+        <div class="sc-crime-tab" style="background:var(--c-finance);"></div>
+        <div class="sc-header-icon">💰</div>
+        <span class="sc-header-name" data-i18n="sc_fraud">Fraud</span>
+      </div>
+
+      <!-- Meta -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">f</div>
+        <div class="sc-plat-name">Meta</div>
+      </div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-NA">N/A</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+
+      <!-- YouTube -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">▶</div>
+        <div class="sc-plat-name">YouTube</div>
+      </div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-A">A</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+
+      <!-- X / Twitter -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">𝕏</div>
+        <div class="sc-plat-name">X (Twitter)</div>
+      </div>
+      <div class="sc-cell"><div class="score score-D">D</div></div>
+      <div class="sc-cell"><div class="score score-D">D</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-D">D</div></div>
+      <div class="sc-cell"><div class="score score-D">D</div></div>
+      <div class="sc-cell"><div class="score score-D">D</div></div>
+
+      <!-- Telegram -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">✈</div>
+        <div class="sc-plat-name">Telegram</div>
+      </div>
+      <div class="sc-cell"><div class="score score-F">F</div></div>
+      <div class="sc-cell"><div class="score score-F">F</div></div>
+      <div class="sc-cell"><div class="score score-NA">N/A</div></div>
+      <div class="sc-cell"><div class="score score-F">F</div></div>
+      <div class="sc-cell"><div class="score score-F">F</div></div>
+      <div class="sc-cell"><div class="score score-F">F</div></div>
+
+      <!-- TikTok -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">♪</div>
+        <div class="sc-plat-name">TikTok</div>
+      </div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-NA">N/A</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+
+      <!-- Reddit -->
+      <div class="sc-cell platform-label">
+        <div class="sc-plat-icon">◉</div>
+        <div class="sc-plat-name">Reddit</div>
+      </div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-C">C</div></div>
+      <div class="sc-cell"><div class="score score-NA">N/A</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+      <div class="sc-cell"><div class="score score-B">B</div></div>
+
+    </div>
+  </div>
+
+  <div class="scorecard-legend">
+    <strong style="color:var(--slate-lt);font-size:12px;" data-i18n="grade_key">Grade key:</strong>
+    <div class="scorecard-legend-item"><div class="score score-A" style="width:28px;height:22px;font-size:10px;">A</div> <span data-i18n="grade_A">Strong enforcement</span></div>
+    <div class="scorecard-legend-item"><div class="score score-B" style="width:28px;height:22px;font-size:10px;">B</div> <span data-i18n="grade_B">Adequate with gaps</span></div>
+    <div class="scorecard-legend-item"><div class="score score-C" style="width:28px;height:22px;font-size:10px;">C</div> <span data-i18n="grade_C">Policy exists, weak enforcement</span></div>
+    <div class="scorecard-legend-item"><div class="score score-D" style="width:28px;height:22px;font-size:10px;">D</div> <span data-i18n="grade_D">Deteriorating / poor</span></div>
+    <div class="scorecard-legend-item"><div class="score score-F" style="width:28px;height:22px;font-size:10px;">F</div> <span data-i18n="grade_F">Minimal to none</span></div>
+    <div class="scorecard-legend-item"><div class="score score-NA" style="width:28px;height:22px;font-size:10px;">N/A</div> <span data-i18n="grade_NA">Not applicable</span></div>
+  </div>
+
+  <p class="prose" style="margin-top:28px;font-size:13px;color:var(--slate);" data-i18n="s3_note">Grades are assessments based on published research, regulatory findings, academic studies, and investigative journalism as of 2024–2026. They represent a synthesis of evidence, not an official rating. Enforcement quality varies by region, language, and case type within each platform.</p>
+</section>
+
+<!-- SECTION 4: LAW ENFORCEMENT -->
+<section class="content-section le-section">
+  <span class="section-eyebrow" data-i18n="s4_eyebrow">Section 4</span>
+  <h2 class="section-h2" data-i18n="s4_h2">Law Enforcement:<br>What Works and What Doesn't</h2>
+
+  <div class="le-split">
+    <div class="le-items">
+      <div class="le-item">
+        <div class="le-icon">🌐</div>
+        <div>
+          <h4 data-i18n="le1_h4">Europol's EC3 — European Cybercrime Centre</h4>
+          <p data-i18n="le1_p">Europol's dedicated cybercrime unit coordinates investigations across EU member states, provides technical support and cyber intelligence, and runs joint operations with non-EU partners including the FBI. Responsible for significant takedowns including AlphaBay, Hansa, Hydra, and LockBit. The scale of resources, however, remains vastly smaller than the scale of the problem.</p>
+        </div>
+      </div>
+      <div class="le-item">
+        <div class="le-icon">🔍</div>
+        <div>
+          <h4 data-i18n="le2_h4">FBI Cyber Division and IC3</h4>
+          <p data-i18n="le2_p">The FBI's dedicated cyber division runs major investigations including Operation Bayonet, the Colonial Pipeline ransomware response, and major BEC prosecutions. IC3 (Internet Crime Complaint Center) aggregates victim reports into actionable intelligence. The FBI has also pioneered the use of blockchain analytics as a primary investigative tool — recovering hundreds of millions in cryptocurrency seized from criminal wallets.</p>
+        </div>
+      </div>
+      <div class="le-item">
+        <div class="le-icon">🤝</div>
+        <div>
+          <h4 data-i18n="le3_h4">International Cooperation — The Budapest Convention</h4>
+          <p data-i18n="le3_p">The Budapest Convention on Cybercrime (2001) is the primary international legal framework enabling cross-border cybercrime cooperation — mutual legal assistance treaties (MLATs), joint investigations, and evidence sharing. Signed by 68 countries, it provides the legal basis for most successful international prosecutions. However, major cybercrime-producing nations including Russia and China are not signatories, creating significant enforcement gaps for the most damaging state-adjacent criminal operations.</p>
+        </div>
+      </div>
+      <div class="le-item">
+        <div class="le-icon">⚖️</div>
+        <div>
+          <h4 data-i18n="le4_h4">The Persistent Limits</h4>
+          <p data-i18n="le4_p">Despite genuine operational successes, three structural limits consistently constrain law enforcement effectiveness: <strong>attribution</strong> (identifying perpetrators through layers of anonymity technology remains technically and legally complex); <strong>jurisdiction</strong> (criminals deliberately operate from non-cooperative or permissive states); and <strong>resources</strong> (most national police forces lack the specialist technical expertise to investigate sophisticated cybercrime at scale). These limits are not administrative failures — they are structural features of how the internet was built.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE SLOT 2 -->
+    <div class="img-slot">
+      <div class="slot-inner" style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;position:relative;z-index:1;">
+        <img src="media/img/handcuffs.png"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 5: INDIVIDUAL PROTECTION GUIDE -->
+<section class="content-section protect-section">
+  <span class="section-eyebrow" data-i18n="s5_eyebrow">Section 5</span>
+  <h2 class="section-h2" data-i18n="s5_h2">Your Personal Protection Guide:<br>By Topic</h2>
+  <p class="prose" data-i18n="s5_intro">The most effective individual defence against internet crime is informed behaviour. The key actions per topic are summarised here — full detail is available on each topic page.</p>
+
+  <div class="protect-grid">
+
+    <div class="protect-card pc-ncii">
+      <div class="protect-header">
+        <div class="protect-num pn-ncii">01</div>
+        <div>
+          <h3 data-i18n="p1_h3">NCII &amp; Deepfakes</h3>
+          <a href="crimes/ncii.html#deepfakes" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-ncii"></div><span data-i18n="tip_ncii1">Use strong, unique passwords and MFA on all cloud photo storage — iCloud, Google Photos, Dropbox.</span></div>
+        <div class="tip-item"><div class="tip-dot td-ncii"></div><span data-i18n="tip_ncii2">Review social media privacy settings — restrict who can see tagged photos and location data.</span></div>
+        <div class="tip-item"><div class="tip-dot td-ncii"></div><span data-i18n="tip_ncii3">If targeted: preserve evidence immediately. Report to StopNCII.org, your national helpline, and police. Do not delete content before documenting it.</span></div>
+        <div class="tip-item"><div class="tip-dot td-ncii"></div><span data-i18n="tip_ncii4">Awareness: AI deepfakes require only your face photos. Restricting public photo access reduces (but cannot eliminate) exposure to synthetic NCII.</span></div>
+      </div>
+    </div>
+
+    <div class="protect-card pc-drug">
+      <div class="protect-header">
+        <div class="protect-num pn-drug">02</div>
+        <div>
+          <h3 data-i18n="p2_h3">Online Drug Trade</h3>
+          <a href="crimes/drug-trade.html" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-drug"></div><span data-i18n="tip_drug1">Counterfeit pill awareness: pills purchased online — including through apparent acquaintances — may contain fentanyl regardless of appearance. One pill can be lethal.</span></div>
+        <div class="tip-item"><div class="tip-dot td-drug"></div><span data-i18n="tip_drug2">Fentanyl test strips and naloxone are harm reduction tools available in most countries. If you or someone you know uses drugs, access to naloxone saves lives.</span></div>
+        <div class="tip-item"><div class="tip-dot td-drug"></div><span data-i18n="tip_drug3">Sextortion in drug contexts: blackmail is used alongside drug supply to extort continued payment. Report to police regardless of the illegality of the original purchase.</span></div>
+      </div>
+    </div>
+
+    <div class="protect-card pc-piracy">
+      <div class="protect-header">
+        <div class="protect-num pn-piracy">03</div>
+        <div>
+          <h3 data-i18n="p3_h3">Piracy &amp; Malware</h3>
+          <a href="crimes/piracy.html" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-piracy"></div><span data-i18n="tip_pir1">Never install cracked or pirated software. 58% of pirated software packages contain malware — ransomware, credential stealers, and remote access trojans are the most common payloads.</span></div>
+        <div class="tip-item"><div class="tip-dot td-piracy"></div><span data-i18n="tip_pir2">Keep operating systems and applications updated. The majority of malware — including that distributed via piracy — exploits known, patched vulnerabilities in unupdated software.</span></div>
+        <div class="tip-item"><div class="tip-dot td-piracy"></div><span data-i18n="tip_pir3">Use reputable antivirus software and enable real-time scanning. For work devices, install software only from approved, verified sources.</span></div>
+      </div>
+    </div>
+
+    <div class="protect-card pc-hate">
+      <div class="protect-header">
+        <div class="protect-num pn-hate">04</div>
+        <div>
+          <h3 data-i18n="p4_h3">Hate Speech &amp; Radicalisation</h3>
+          <a href="crimes/hate-speech.html" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-hate"></div><span data-i18n="tip_hate1">Algorithmic awareness: understand that recommendation systems are optimised for engagement, not accuracy or safety. Deliberately seek out diverse sources rather than following algorithms.</span></div>
+        <div class="tip-item"><div class="tip-dot td-hate"></div><span data-i18n="tip_hate2">Report hate speech on platforms — consistent reporting builds enforcement records and can trigger account actions. Document before reporting in case content is deleted.</span></div>
+        <div class="tip-item"><div class="tip-dot td-hate"></div><span data-i18n="tip_hate3">If you're concerned about someone's radicalisation: contact Prevent (UK), Life After Hate (US), or equivalent national counter-extremism services for guidance before intervening directly.</span></div>
+      </div>
+    </div>
+
+    <div class="protect-card pc-stalk">
+      <div class="protect-header">
+        <div class="protect-num pn-stalk">05</div>
+        <div>
+          <h3 data-i18n="p5_h3">Cyberstalking &amp; Doxxing</h3>
+          <a href="crimes/cyberstalking.html" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-stalk"></div><span data-i18n="tip_stalk1">Submit opt-out requests to major data brokers (Spokeo, Whitepages, BeenVerified). Use services like DeleteMe to automate this across dozens of sites.</span></div>
+        <div class="tip-item"><div class="tip-dot td-stalk"></div><span data-i18n="tip_stalk2">Audit all shared accounts and smart home devices after any relationship change. Revoke access immediately — stalkerware may still be active on shared devices.</span></div>
+        <div class="tip-item"><div class="tip-dot td-stalk"></div><span data-i18n="tip_stalk3">If targeted: document everything with timestamps. Contact the National Stalking Helpline (UK), CCRI (US), or equivalent national service. Do not confront the perpetrator directly.</span></div>
+      </div>
+    </div>
+
+    <div class="protect-card pc-finance">
+      <div class="protect-header">
+        <div class="protect-num pn-finance">06</div>
+        <div>
+          <h3 data-i18n="p6_h3">Financial Cybercrime</h3>
+          <a href="crimes/financial-crime.html" class="protect-link" data-i18n="protect_link">Full report →</a>
+        </div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-dot td-finance"></div><span data-i18n="tip_fin1">Enable multi-factor authentication on every financial account and email address. This single step prevents the majority of account takeover attacks.</span></div>
+        <div class="tip-item"><div class="tip-dot td-finance"></div><span data-i18n="tip_fin2">Verify before acting on any unexpected request for money or credentials — through a separate, trusted channel. No legitimate bank or company will pressure you to act immediately.</span></div>
+        <div class="tip-item"><div class="tip-dot td-finance"></div><span data-i18n="tip_fin3">Online investment opportunities offering unusually high returns, guaranteed profits, or involving cryptocurrency — especially those from recent contacts — are almost certainly fraud.</span></div>
+        <div class="tip-item"><div class="tip-dot td-finance"></div><span data-i18n="tip_fin4">Report financial cybercrime immediately: FBI IC3 (ic3.gov) in the US; Action Fraud (actionfraud.police.uk) in the UK. Speed of reporting is critical for financial recovery.</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 6: SYSTEMIC CHALLENGES -->
+<section class="content-section challenges-section">
+  <span class="section-eyebrow" data-i18n="s6_eyebrow">Section 6</span>
+  <h2 class="section-h2" data-i18n="s6_h2">Why This Is Hard:<br>Six Structural Challenges</h2>
+  <p class="prose" data-i18n="s6_intro">Understanding why internet crime is so difficult to combat requires looking beyond individual failures of law, platform, or enforcement — and examining the structural features of the internet itself that create this environment.</p>
+
+  <div class="challenges-grid">
+    <div class="challenge-card">
+      <div class="challenge-num">01</div>
+      <h3 data-i18n="ch1_h">Jurisdictional Fragmentation</h3>
+      <p data-i18n="ch1_p">The internet is global; law is national. A criminal operating from a non-cooperative state, hosting content on servers in a third country, and targeting victims in a fourth faces limited legal exposure regardless of the severity of the harm caused. Closing this gap requires treaties, political will, and enforcement resources that are all in short supply.</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">02</div>
+      <h3 data-i18n="ch2_h">Pace of Technological Change</h3>
+      <p data-i18n="ch2_p">Law, regulation, and enforcement practice move slowly. Technology moves fast. AI-generated NCII and voice-cloning fraud barely existed as legal categories two years ago. By the time legislation catches up with a new technology, the technology has typically advanced further. Regulatory lag is not a failure of governance — it is a structural feature of how democratic lawmaking works.</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">03</div>
+      <h3 data-i18n="ch3_h">Encryption and Anonymity</h3>
+      <p data-i18n="ch3_p">The same technologies that protect journalists, dissidents, and ordinary people from surveillance — end-to-end encryption, VPNs, Tor, privacy coins — are the primary tools of cybercriminals. There is no technical solution that protects one without protecting the other. The encryption debate is not a question with a right answer; it is a genuine value conflict between privacy and safety.</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">04</div>
+      <h3 data-i18n="ch4_h">Platform Incentive Misalignment</h3>
+      <p data-i18n="ch4_p">Platforms are primarily commercial entities optimised for engagement and growth. Content moderation is expensive, politically controversial, and reduces the engagement metrics that drive revenue. Platforms invest in safety when regulators require it, when reputational costs make inaction too expensive, or when it aligns with commercial interests. Left to their own devices, most platforms have historically underinvested in safety relative to the scale of harm produced.</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">05</div>
+      <h3 data-i18n="ch5_h">Underreporting and Evidence Loss</h3>
+      <p data-i18n="ch5_p">The majority of internet crime goes unreported — through shame, hopelessness about recovery, or lack of awareness of reporting channels. Without victim reports, law enforcement cannot build the intelligence picture needed to identify and prosecute perpetrators. And digital evidence is highly volatile: platforms delete content, accounts are closed, and cached material disappears, often before victims know they need to preserve it.</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">06</div>
+      <h3 data-i18n="ch6_h">Adversarial Adaptation</h3>
+      <p data-i18n="ch6_p">Criminal operations adapt. Every successful takedown generates knowledge about enforcement methods. Every new platform policy drives criminals to less-regulated alternatives. Every new authentication method prompts new bypass techniques. This is not a problem that can be solved — it is an adversarial dynamic that must be managed. The goal is not eradication but sufficient friction to reduce harm, deter casual participation, and protect the most vulnerable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: CONCLUSION / CTA -->
+<section class="content-section cta-section">
+  <div class="cta-inner">
+    <span class="section-eyebrow" style="display:block;text-align:center;margin-bottom:14px;" data-i18n="cta_eyebrow">Conclusion</span>
+    <h2 data-i18n="cta_h2">Awareness Is the<br>First Line of Defence</h2>
+    <p data-i18n="cta_p">The crimes covered in this project are not abstract risks. They affect ordinary people — students, parents, professionals, activists, journalists — every day. Understanding how they work is the necessary first step to protecting yourself, recognising them in others, and contributing to a more informed public conversation about how the internet should be governed.</p>
+    <div class="cta-buttons">
+      <a href="index.html#topics" class="btn-primary" data-i18n="cta_btn1">Explore All Topics</a>
+      <a href="quiz/index.html" class="btn-ghost" data-i18n="cta_btn2">Take the Quiz →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p><span data-i18n="quiz_text">Test your knowledge across all six internet crime categories</span> <span data-i18n="quiz_sub">— 10 randomised questions, no time limit.</span></p>
+  <a href="quiz/index.html" class="btn-quiz" data-i18n="quiz_btn">Take the Quiz →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" data-i18n="footer_note">Educational project — Academic submission 2026. Grades in the platform scorecard are evidence-based assessments, not official ratings.</p>
+  <div class="footer-links">
+    <a href="index.html#topics" data-i18n="foot_topics">All Topics</a>
+    <a href="sources.html" data-i18n="foot_refs">References</a>
+    <a href="index.html#resources" data-i18n="foot_support">Support Resources</a>
+    <a href="quiz/index.html" data-i18n="foot_quiz">Quiz</a>
+    <a href="imprint.html"      data-il8n="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+
+<script>
+const TRANSLATIONS = {
+
+  /* ───────────────────────────────────────────────────────────────────
+     ENGLISH — default
+  ─────────────────────────────────────────────────────────────────── */
+  en: {
+
+    /* Nav */
+    nav_topics:       "Topics",
+    nav_prev:         "Prevention",
+    nav_sources:      "Sources",
+    nav_cta:          "Take the Quiz &#x2197;",
+    nav_lang:         "Language",
+
+    /* Breadcrumb */
+    bc_home:          "Home",
+    bc_prevention:    "Prevention &amp; What's Being Done",
+
+    /* Hero */
+    hero_label:       "Cross-Cutting Summary",
+    hero_label2:      "All Six Topics",
+    hero_h1a:         "Prevention",
+    hero_h1b:         "What's Being Done",
+    hero_lead:        "Across six categories of internet crime, governments, platforms, law enforcement agencies, and individuals are responding — with uneven effectiveness, insufficient resources, and hard structural limits. This page synthesises what is working, what is not, and what you can do.",
+
+    /* Section 1 — Overview */
+    s1_eyebrow:       "Overview",
+    s1_quote:         "&ldquo;The internet was built for openness. Retrofitting it for safety is one of the defining governance challenges of the 21st century — and we are still losing.&rdquo;",
+    s1_cite:          "Marietje Schaake, International Policy Director, Stanford Cyber Policy Center, 2023",
+    s1_p1:            "Across all six categories examined in this project, a consistent pattern emerges: the harms produced by internet crime are <strong>real, documented, and severe</strong>; the legal and technical responses are <strong>real but insufficient</strong>; and the structural conditions that enable these crimes — platform architectures optimised for engagement over safety, jurisdictional fragmentation, inadequate enforcement resources, and the pace of technological change — remain largely intact.",
+    s1_p2:            "This does not mean nothing is working. Significant progress has been made. The EU's Digital Services Act represents the most ambitious attempt yet to hold platforms legally accountable for the harms their systems produce. Hash-matching technology has meaningfully reduced NCII distribution on participating platforms. Major ransomware operations have been disrupted by coordinated international law enforcement. Hundreds of cybercriminals are prosecuted every year.",
+    s1_p3:            "But progress is incremental against an adaptive adversary, and in most categories the trajectory of harm continues upward. The $12.5 billion in US cybercrime losses in 2023 was a record high. NCII volumes, including AI-generated deepfakes, continue to grow. The online drug trade has fragmented into a form more resilient to enforcement than Silk Road ever was. Hate speech radicalisation pipelines operate today with greater reach than at any previous point.",
+    s1_p4:            "Understanding the shape of the response — what is working, what is not, and where the hardest limits lie — is as important as understanding the crimes themselves.",
+
+    /* Section 2 — Legislation table */
+    s2_eyebrow:       "Section 2",
+    s2_h2:            "Legislation at a Glance:<br>How Four Key Jurisdictions Compare",
+    s2_intro:         "The legal response to internet crime varies significantly by jurisdiction and by crime type. The grid below maps current legislative coverage — where laws exist, where they have gaps, and where enforcement is the limiting factor even where law is strong.",
+    leg_jurisdiction: "Jurisdiction",
+    leg_col_drug:     "Drug Trade",
+    leg_col_hate:     "Hate Speech",
+    leg_col_cyber:    "Cybercrime",
+    jur_uk:           "United Kingdom",
+    jur_eu:           "European Union",
+    jur_us:           "United States",
+    jur_au:           "Australia",
+    badge_strong:     "Strong",
+    badge_framework:  "Strong Framework",
+    badge_patchy:     "Patchy",
+    badge_progressive:"Progressive",
+    lbl_ncii:         "NCII / Deepfakes",
+    lbl_drug:         "Drug trafficking online",
+    lbl_copy:         "Copyright infringement",
+    lbl_hate:         "Hate speech online",
+    lbl_stalk:        "Cyberstalking / fraud",
+    note_uk_ncii:     "Online Safety Act 2023 — deepfake creation criminalised",
+    note_uk_drug:     "Misuse of Drugs Act covers online supply",
+    note_uk_copy:     "CDPA 1988 + court-ordered ISP blocking",
+    note_uk_hate:     "Online Safety Act + Communications Act",
+    note_uk_stalk:    "Computer Misuse Act + PFHA 1997",
+    note_eu_ncii:     "DSA + new VAW Directive (2027 transposition)",
+    note_eu_drug:     "Member state laws + Europol coordination",
+    note_eu_copy:     "EU Copyright Directive — Article 17 upload filters",
+    note_eu_hate:     "DSA platform obligations + national laws (NetzDG strongest)",
+    note_eu_stalk:    "Budapest Convention + national cybercrime laws",
+    note_us_ncii:     "48 state laws — no federal statute",
+    note_us_drug:     "Federal analog / controlled substance laws",
+    note_us_copy:     "DMCA — notice and takedown model",
+    note_us_hate:     "First Amendment — no general hate speech law",
+    note_us_stalk:    "CFAA + interstate stalking statute",
+    note_au_ncii:     "Online Safety Act 2021 — 24hr takedown powers",
+    note_au_drug:     "Criminal Code Act + state trafficking laws",
+    note_au_copy:     "Copyright Act 1968 + site blocking regime",
+    note_au_hate:     "Racial Discrimination Act — limited to race",
+    note_au_stalk:    "Criminal Code + eSafety Commissioner powers",
+    leg_yes:          "Specific law in place",
+    leg_partial:      "Partial / emerging",
+    leg_no:           "No specific law",
+
+    /* Section 3 — Scorecard */
+    s3_eyebrow:       "Section 3 — Signature Feature",
+    s3_h2:            "Platform Enforcement Scorecard:<br>How Major Platforms Are Performing",
+    s3_intro:         "Based on published research, regulatory findings, and investigative journalism, this scorecard rates major platforms on their enforcement effectiveness across each crime category. Grades reflect policy quality, enforcement consistency, and cooperation with researchers and regulators — not merely the existence of a policy.",
+    sc_platform:      "Platform",
+    sc_drugs:         "Drugs",
+    sc_hate:          "Hate",
+    sc_stalking:      "Stalking",
+    sc_fraud:         "Fraud",
+    grade_key:        "Grade key:",
+    grade_A:          "Strong enforcement",
+    grade_B:          "Adequate with gaps",
+    grade_C:          "Policy exists, weak enforcement",
+    grade_D:          "Deteriorating / poor",
+    grade_F:          "Minimal to none",
+    grade_NA:         "Not applicable",
+    s3_note:          "Grades are assessments based on published research, regulatory findings, academic studies, and investigative journalism as of 2024–2026. They represent a synthesis of evidence, not an official rating. Enforcement quality varies by region, language, and case type within each platform.",
+
+    /* Section 4 — Law Enforcement */
+    s4_eyebrow:       "Section 4",
+    s4_h2:            "Law Enforcement:<br>What Works and What Doesn't",
+    le1_h4:           "Europol's EC3 — European Cybercrime Centre",
+    le1_p:            "Europol's dedicated cybercrime unit coordinates investigations across EU member states, provides technical support and cyber intelligence, and runs joint operations with non-EU partners including the FBI. Responsible for significant takedowns including AlphaBay, Hansa, Hydra, and LockBit. The scale of resources, however, remains vastly smaller than the scale of the problem.",
+    le2_h4:           "FBI Cyber Division and IC3",
+    le2_p:            "The FBI's dedicated cyber division runs major investigations including Operation Bayonet, the Colonial Pipeline ransomware response, and major BEC prosecutions. IC3 (Internet Crime Complaint Center) aggregates victim reports into actionable intelligence. The FBI has also pioneered the use of blockchain analytics as a primary investigative tool — recovering hundreds of millions in cryptocurrency seized from criminal wallets.",
+    le3_h4:           "International Cooperation — The Budapest Convention",
+    le3_p:            "The Budapest Convention on Cybercrime (2001) is the primary international legal framework enabling cross-border cybercrime cooperation — mutual legal assistance treaties (MLATs), joint investigations, and evidence sharing. Signed by 68 countries, it provides the legal basis for most successful international prosecutions. However, major cybercrime-producing nations including Russia and China are not signatories, creating significant enforcement gaps for the most damaging state-adjacent criminal operations.",
+    le4_h4:           "The Persistent Limits",
+    le4_p:            "Despite genuine operational successes, three structural limits consistently constrain law enforcement effectiveness: <strong>attribution</strong> (identifying perpetrators through layers of anonymity technology remains technically and legally complex); <strong>jurisdiction</strong> (criminals deliberately operate from non-cooperative or permissive states); and <strong>resources</strong> (most national police forces lack the specialist technical expertise to investigate sophisticated cybercrime at scale). These limits are not administrative failures — they are structural features of how the internet was built.",
+    slot2_title:      "Image Slot 2",
+    slot2_desc:       "Illustration of international law enforcement cooperation — or the limits of jurisdiction",
+    slot2_tag:        "Add your artwork here",
+
+    /* Section 5 — Protection Guide */
+    s5_eyebrow:       "Section 5",
+    s5_h2:            "Your Personal Protection Guide:<br>By Topic",
+    s5_intro:         "The most effective individual defence against internet crime is informed behaviour. The key actions per topic are summarised here — full detail is available on each topic page.",
+    p1_h3:            "NCII &amp; Deepfakes",
+    p2_h3:            "Online Drug Trade",
+    p3_h3:            "Piracy &amp; Malware",
+    p4_h3:            "Hate Speech &amp; Radicalisation",
+    p5_h3:            "Cyberstalking &amp; Doxxing",
+    p6_h3:            "Financial Cybercrime",
+    protect_link:     "Full report →",
+    tip_ncii1:        "Use strong, unique passwords and MFA on all cloud photo storage — iCloud, Google Photos, Dropbox.",
+    tip_ncii2:        "Review social media privacy settings — restrict who can see tagged photos and location data.",
+    tip_ncii3:        "If targeted: preserve evidence immediately. Report to StopNCII.org, your national helpline, and police. Do not delete content before documenting it.",
+    tip_ncii4:        "Awareness: AI deepfakes require only your face photos. Restricting public photo access reduces (but cannot eliminate) exposure to synthetic NCII.",
+    tip_drug1:        "Counterfeit pill awareness: pills purchased online — including through apparent acquaintances — may contain fentanyl regardless of appearance. One pill can be lethal.",
+    tip_drug2:        "Fentanyl test strips and naloxone are harm reduction tools available in most countries. If you or someone you know uses drugs, access to naloxone saves lives.",
+    tip_drug3:        "Sextortion in drug contexts: blackmail is used alongside drug supply to extort continued payment. Report to police regardless of the illegality of the original purchase.",
+    tip_pir1:         "Never install cracked or pirated software. 58% of pirated software packages contain malware — ransomware, credential stealers, and remote access trojans are the most common payloads.",
+    tip_pir2:         "Keep operating systems and applications updated. The majority of malware — including that distributed via piracy — exploits known, patched vulnerabilities in unupdated software.",
+    tip_pir3:         "Use reputable antivirus software and enable real-time scanning. For work devices, install software only from approved, verified sources.",
+    tip_hate1:        "Algorithmic awareness: understand that recommendation systems are optimised for engagement, not accuracy or safety. Deliberately seek out diverse sources rather than following algorithms.",
+    tip_hate2:        "Report hate speech on platforms — consistent reporting builds enforcement records and can trigger account actions. Document before reporting in case content is deleted.",
+    tip_hate3:        "If you're concerned about someone's radicalisation: contact Prevent (UK), Life After Hate (US), or equivalent national counter-extremism services for guidance before intervening directly.",
+    tip_stalk1:       "Submit opt-out requests to major data brokers (Spokeo, Whitepages, BeenVerified). Use services like DeleteMe to automate this across dozens of sites.",
+    tip_stalk2:       "Audit all shared accounts and smart home devices after any relationship change. Revoke access immediately — stalkerware may still be active on shared devices.",
+    tip_stalk3:       "If targeted: document everything with timestamps. Contact the National Stalking Helpline (UK), CCRI (US), or equivalent national service. Do not confront the perpetrator directly.",
+    tip_fin1:         "Enable multi-factor authentication on every financial account and email address. This single step prevents the majority of account takeover attacks.",
+    tip_fin2:         "Verify before acting on any unexpected request for money or credentials — through a separate, trusted channel. No legitimate bank or company will pressure you to act immediately.",
+    tip_fin3:         "Online investment opportunities offering unusually high returns, guaranteed profits, or involving cryptocurrency — especially those from recent contacts — are almost certainly fraud.",
+    tip_fin4:         "Report financial cybercrime immediately: FBI IC3 (ic3.gov) in the US; Action Fraud (actionfraud.police.uk) in the UK. Speed of reporting is critical for financial recovery.",
+
+    /* Section 6 — Challenges */
+    s6_eyebrow:       "Section 6",
+    s6_h2:            "Why This Is Hard:<br>Six Structural Challenges",
+    s6_intro:         "Understanding why internet crime is so difficult to combat requires looking beyond individual failures of law, platform, or enforcement — and examining the structural features of the internet itself that create this environment.",
+    ch1_h:            "Jurisdictional Fragmentation",
+    ch1_p:            "The internet is global; law is national. A criminal operating from a non-cooperative state, hosting content on servers in a third country, and targeting victims in a fourth faces limited legal exposure regardless of the severity of the harm caused. Closing this gap requires treaties, political will, and enforcement resources that are all in short supply.",
+    ch2_h:            "Pace of Technological Change",
+    ch2_p:            "Law, regulation, and enforcement practice move slowly. Technology moves fast. AI-generated NCII and voice-cloning fraud barely existed as legal categories two years ago. By the time legislation catches up with a new technology, the technology has typically advanced further. Regulatory lag is not a failure of governance — it is a structural feature of how democratic lawmaking works.",
+    ch3_h:            "Encryption and Anonymity",
+    ch3_p:            "The same technologies that protect journalists, dissidents, and ordinary people from surveillance — end-to-end encryption, VPNs, Tor, privacy coins — are the primary tools of cybercriminals. There is no technical solution that protects one without protecting the other. The encryption debate is not a question with a right answer; it is a genuine value conflict between privacy and safety.",
+    ch4_h:            "Platform Incentive Misalignment",
+    ch4_p:            "Platforms are primarily commercial entities optimised for engagement and growth. Content moderation is expensive, politically controversial, and reduces the engagement metrics that drive revenue. Platforms invest in safety when regulators require it, when reputational costs make inaction too expensive, or when it aligns with commercial interests. Left to their own devices, most platforms have historically underinvested in safety relative to the scale of harm produced.",
+    ch5_h:            "Underreporting and Evidence Loss",
+    ch5_p:            "The majority of internet crime goes unreported — through shame, hopelessness about recovery, or lack of awareness of reporting channels. Without victim reports, law enforcement cannot build the intelligence picture needed to identify and prosecute perpetrators. And digital evidence is highly volatile: platforms delete content, accounts are closed, and cached material disappears, often before victims know they need to preserve it.",
+    ch6_h:            "Adversarial Adaptation",
+    ch6_p:            "Criminal operations adapt. Every successful takedown generates knowledge about enforcement methods. Every new platform policy drives criminals to less-regulated alternatives. Every new authentication method prompts new bypass techniques. This is not a problem that can be solved — it is an adversarial dynamic that must be managed. The goal is not eradication but sufficient friction to reduce harm, deter casual participation, and protect the most vulnerable.",
+
+    /* Conclusion / CTA */
+    cta_eyebrow:      "Conclusion",
+    cta_h2:           "Awareness Is the<br>First Line of Defence",
+    cta_p:            "The crimes covered in this project are not abstract risks. They affect ordinary people — students, parents, professionals, activists, journalists — every day. Understanding how they work is the necessary first step to protecting yourself, recognising them in others, and contributing to a more informed public conversation about how the internet should be governed.",
+    cta_btn1:         "Explore All Topics",
+    cta_btn2:         "Take the Quiz →",
+
+    /* Quiz strip */
+    quiz_text:        "Test your knowledge across all six internet crime categories",
+    quiz_sub:         "— 10 randomised questions, no time limit.",
+    quiz_btn:         "Take the Quiz →",
+
+    /* Footer */
+    footer_note:      "Educational project — Academic submission 2026. Grades in the platform scorecard are evidence-based assessments, not official ratings.",
+    foot_topics:      "All Topics",
+    foot_refs:        "References",
+    foot_support:     "Support Resources",
+    foot_quiz:        "Quiz",
+    foot_imprint:     "Imprint",
+  },
+
+  /* ───────────────────────────────────────────────────────────────────
+     GERMAN / DEUTSCH
+  ─────────────────────────────────────────────────────────────────── */
+  de: {
+
+    /* Nav */
+    nav_topics:       "Themen",
+    nav_prev:         "Prävention",
+    nav_sources:      "Quellen",
+    nav_cta:          "Quiz starten &#x2197;",
+    nav_lang:         "Sprache",
+
+    /* Breadcrumb */
+    bc_home:          "Startseite",
+    bc_prevention:    "Prävention &amp; Maßnahmen",
+
+    /* Hero */
+    hero_label:       "Themenübergreifende Zusammenfassung",
+    hero_label2:      "Alle sechs Themen",
+    hero_h1a:         "Prävention",
+    hero_h1b:         "Was wird getan?",
+    hero_lead:        "In sechs Kategorien der Internetkriminalität reagieren Regierungen, Plattformen, Strafverfolgungsbehörden und Einzelpersonen — mit ungleichmäßiger Wirksamkeit, unzureichenden Ressourcen und strukturellen Grenzen. Diese Seite fasst zusammen, was funktioniert, was nicht und was Sie tun können.",
+
+    /* Section 1 — Overview */
+    s1_eyebrow:       "Überblick",
+    s1_quote:         "&bdquo;Das Internet wurde für Offenheit gebaut. Es nachträglich für Sicherheit umzurüsten ist eine der prägenden Governance-Herausforderungen des 21. Jahrhunderts — und wir verlieren noch immer.&ldquo;",
+    s1_cite:          "Marietje Schaake, Leiterin Internationale Politik, Stanford Cyber Policy Center, 2023",
+    s1_p1:            "In allen sechs untersuchten Kategorien zeigt sich ein konsistentes Muster: Die durch Internetkriminalität verursachten Schäden sind <strong>real, dokumentiert und schwerwiegend</strong>; die rechtlichen und technischen Reaktionen sind <strong>real, aber unzureichend</strong>; und die strukturellen Bedingungen, die diese Verbrechen ermöglichen — Plattformarchitekturen, die auf Engagement statt auf Sicherheit ausgerichtet sind, Zuständigkeitsfragmentierung, unzureichende Strafverfolgungsressourcen und das Tempo des technologischen Wandels — bleiben weitgehend bestehen.",
+    s1_p2:            "Das bedeutet nicht, dass nichts funktioniert. Bedeutende Fortschritte wurden erzielt. Der Digital Services Act der EU stellt den bislang ehrgeizigsten Versuch dar, Plattformen rechtlich für die Schäden haftbar zu machen, die ihre Systeme verursachen. Hash-Matching-Technologie hat die NCII-Verbreitung auf teilnehmenden Plattformen spürbar reduziert. Große Ransomware-Operationen wurden durch koordinierte internationale Strafverfolgung gestört. Hunderte von Cyberkriminellen werden jedes Jahr strafrechtlich verfolgt.",
+    s1_p3:            "Aber der Fortschritt ist inkrementell gegen einen adaptiven Gegner, und in den meisten Kategorien steigt die Schadenstendenz weiter an. Die 12,5 Milliarden Dollar an US-Cyberkriminalitätsverlusten im Jahr 2023 waren ein Rekordhoch. NCII-Volumina, einschließlich KI-generierter Deepfakes, wachsen weiter. Der Online-Drogenhandel hat sich in eine Form fragmentiert, die widerstandsfähiger gegen die Strafverfolgung ist als Silk Road es je war. Hassrede-Radikalisierungspipelines operieren heute mit größerer Reichweite als je zuvor.",
+    s1_p4:            "Die Form der Reaktion zu verstehen — was funktioniert, was nicht und wo die härtesten Grenzen liegen — ist ebenso wichtig wie das Verstehen der Verbrechen selbst.",
+
+    /* Section 2 — Legislation */
+    s2_eyebrow:       "Abschnitt 2",
+    s2_h2:            "Gesetzgebung im Überblick:<br>Vier wichtige Jurisdiktionen im Vergleich",
+    s2_intro:         "Die rechtliche Reaktion auf Internetkriminalität variiert erheblich nach Jurisdiktion und Deliktart. Die Tabelle zeigt den aktuellen gesetzlichen Stand — wo Gesetze bestehen, wo Lücken vorhanden sind und wo die Strafverfolgung auch bei starker Gesetzgebung das limitierende Element ist.",
+    leg_jurisdiction: "Jurisdiktion",
+    leg_col_drug:     "Drogenhandel",
+    leg_col_hate:     "Hassrede",
+    leg_col_cyber:    "Cyberkriminalität",
+    jur_uk:           "Vereinigtes Königreich",
+    jur_eu:           "Europäische Union",
+    jur_us:           "Vereinigte Staaten",
+    jur_au:           "Australien",
+    badge_strong:     "Stark",
+    badge_framework:  "Starker Rahmen",
+    badge_patchy:     "Lückenhaft",
+    badge_progressive:"Fortschrittlich",
+    lbl_ncii:         "NCII / Deepfakes",
+    lbl_drug:         "Online-Drogenhandel",
+    lbl_copy:         "Urheberrechtsverletzung",
+    lbl_hate:         "Hassrede online",
+    lbl_stalk:        "Cyberstalking / Betrug",
+    note_uk_ncii:     "Online Safety Act 2023 — Deepfake-Erstellung kriminalisiert",
+    note_uk_drug:     "Misuse of Drugs Act deckt Online-Versorgung ab",
+    note_uk_copy:     "CDPA 1988 + gerichtlich angeordnete ISP-Sperrungen",
+    note_uk_hate:     "Online Safety Act + Communications Act",
+    note_uk_stalk:    "Computer Misuse Act + PFHA 1997",
+    note_eu_ncii:     "DSA + neue VAW-Richtlinie (Umsetzung 2027)",
+    note_eu_drug:     "Mitgliedsstaatengesetze + Europol-Koordination",
+    note_eu_copy:     "EU-Urheberrechtsrichtlinie — Artikel 17 Upload-Filter",
+    note_eu_hate:     "DSA-Plattformpflichten + nationale Gesetze (NetzDG am stärksten)",
+    note_eu_stalk:    "Budapester Konvention + nationale Cyberkriminalitätsgesetze",
+    note_us_ncii:     "48 Staatsgesetze — kein Bundesgesetz",
+    note_us_drug:     "Bundesgesetze zu Analoga / kontrollierten Substanzen",
+    note_us_copy:     "DMCA — Notice-and-Takedown-Modell",
+    note_us_hate:     "Erster Zusatzartikel — kein allgemeines Hassredegesetz",
+    note_us_stalk:    "CFAA + bundesstaatliches Stalking-Gesetz",
+    note_au_ncii:     "Online Safety Act 2021 — 24-Stunden-Takedown-Befugnisse",
+    note_au_drug:     "Criminal Code Act + staatliche Drogenhandelsgesetze",
+    note_au_copy:     "Copyright Act 1968 + Website-Sperrregime",
+    note_au_hate:     "Racial Discrimination Act — begrenzt auf Rasse",
+    note_au_stalk:    "Criminal Code + Befugnisse des eSafety Commissioner",
+    leg_yes:          "Spezifisches Gesetz vorhanden",
+    leg_partial:      "Teilweise / im Entstehen",
+    leg_no:           "Kein spezifisches Gesetz",
+
+    /* Section 3 — Scorecard */
+    s3_eyebrow:       "Abschnitt 3 — Schwerpunktmerkmal",
+    s3_h2:            "Plattform-Durchsetzungs-Scorecard:<br>Wie schneiden die großen Plattformen ab?",
+    s3_intro:         "Basierend auf veröffentlichter Forschung, regulatorischen Erkenntnissen und investigativem Journalismus bewertet diese Scorecard die Durchsetzungseffektivität großer Plattformen in jeder Verbrechenskategorie. Die Noten spiegeln Qualität der Richtlinien, Durchsetzungskonsistenz und Kooperation mit Forschern und Regulatoren wider — nicht nur das Vorhandensein einer Richtlinie.",
+    sc_platform:      "Plattform",
+    sc_drugs:         "Drogen",
+    sc_hate:          "Hass",
+    sc_stalking:      "Stalking",
+    sc_fraud:         "Betrug",
+    grade_key:        "Notenschlüssel:",
+    grade_A:          "Starke Durchsetzung",
+    grade_B:          "Ausreichend mit Lücken",
+    grade_C:          "Richtlinie vorhanden, schwache Durchsetzung",
+    grade_D:          "Verschlechternd / schlecht",
+    grade_F:          "Minimal bis gar nicht",
+    grade_NA:         "Nicht anwendbar",
+    s3_note:          "Die Bewertungen basieren auf veröffentlichter Forschung, regulatorischen Erkenntnissen, akademischen Studien und investigativem Journalismus (Stand 2024–2026). Sie stellen eine Synthesebewertung dar, keine offizielle Einstufung. Die Durchsetzungsqualität variiert je nach Region, Sprache und Falltyp innerhalb jeder Plattform.",
+
+    /* Section 4 — Law Enforcement */
+    s4_eyebrow:       "Abschnitt 4",
+    s4_h2:            "Strafverfolgung:<br>Was funktioniert und was nicht",
+    le1_h4:           "Europols EC3 — Europäisches Zentrum für Cyberkriminalität",
+    le1_p:            "Die spezialisierte Cyberkriminalitätseinheit von Europol koordiniert Ermittlungen in allen EU-Mitgliedstaaten, bietet technischen Support und Cyber-Intelligenz und führt gemeinsame Operationen mit Nicht-EU-Partnern einschließlich des FBI durch. Verantwortlich für bedeutende Abschaltungen wie AlphaBay, Hansa, Hydra und LockBit. Das Ressourcenvolumen bleibt jedoch weit hinter dem Ausmaß des Problems zurück.",
+    le2_h4:           "FBI Cyber Division und IC3",
+    le2_p:            "Die spezialisierte Cyberabteilung des FBI leitet bedeutende Ermittlungen, darunter Operation Bayonet, die Reaktion auf den Colonial-Pipeline-Ransomware-Angriff und wichtige BEC-Strafverfolgungen. Das IC3 (Internet Crime Complaint Center) bündelt Opfermeldungen zu verwertbaren Erkenntnissen. Das FBI hat auch die Verwendung von Blockchain-Analytik als primäres Ermittlungswerkzeug etabliert.",
+    le3_h4:           "Internationale Zusammenarbeit — Die Budapester Konvention",
+    le3_p:            "Die Budapester Konvention über Cyberkriminalität (2001) ist der primäre internationale Rechtsrahmen für grenzüberschreitende Zusammenarbeit — gegenseitige Rechtshilfeverträge (MLATs), gemeinsame Ermittlungen und Beweisaustausch. Von 68 Ländern unterzeichnet, bildet sie die rechtliche Grundlage für die meisten erfolgreichen internationalen Strafverfolgungen. Wichtige cyberkriminalitätsfördernde Länder wie Russland und China sind jedoch keine Unterzeichner.",
+    le4_h4:           "Die anhaltenden Grenzen",
+    le4_p:            "Trotz echter operativer Erfolge schränken drei strukturelle Grenzen die Wirksamkeit der Strafverfolgung konsequent ein: <strong>Zurechnung</strong> (die Identifizierung von Tätern durch Schichten von Anonymitätstechnologie bleibt technisch und rechtlich komplex); <strong>Zuständigkeit</strong> (Kriminelle operieren absichtlich aus nicht kooperativen oder permissiven Staaten); und <strong>Ressourcen</strong> (den meisten nationalen Polizeikräften fehlt die spezialisierte technische Expertise). Diese Grenzen sind keine administrativen Versäumnisse — sie sind strukturelle Merkmale, wie das Internet gebaut wurde.",
+    slot2_title:      "Bildplatz 2",
+    slot2_desc:       "Illustration der internationalen Strafverfolgungskooperation — oder die Grenzen der Zuständigkeit",
+    slot2_tag:        "Fügen Sie hier Ihr Kunstwerk ein",
+
+    /* Section 5 — Protection Guide */
+    s5_eyebrow:       "Abschnitt 5",
+    s5_h2:            "Ihr persönlicher Schutzleitfaden:<br>Nach Thema",
+    s5_intro:         "Die wirksamste individuelle Verteidigung gegen Internetkriminalität ist informiertes Verhalten. Die wichtigsten Maßnahmen pro Thema sind hier zusammengefasst — vollständige Details finden Sie auf den jeweiligen Themenseiten.",
+    p1_h3:            "NCII &amp; Deepfakes",
+    p2_h3:            "Online-Drogenhandel",
+    p3_h3:            "Piraterie &amp; Malware",
+    p4_h3:            "Hassrede &amp; Radikalisierung",
+    p5_h3:            "Cyberstalking &amp; Doxxing",
+    p6_h3:            "Finanzkriminalität im Internet",
+    protect_link:     "Vollständiger Bericht →",
+    tip_ncii1:        "Verwenden Sie starke, einzigartige Passwörter und MFA für alle Cloud-Fotospeicher — iCloud, Google Fotos, Dropbox.",
+    tip_ncii2:        "Überprüfen Sie die Datenschutzeinstellungen sozialer Medien — schränken Sie ein, wer markierte Fotos und Standortdaten sehen kann.",
+    tip_ncii3:        "Bei Betroffenheit: Sichern Sie sofort Beweise. Melden Sie dies bei StopNCII.org, Ihrer nationalen Helpline und der Polizei. Löschen Sie keine Inhalte vor der Dokumentation.",
+    tip_ncii4:        "Bewusstsein: KI-Deepfakes benötigen nur Ihre Gesichtsfotos. Die Einschränkung des öffentlichen Fotozentrums reduziert (kann aber nicht eliminieren) die Exposition gegenüber synthetischem NCII.",
+    tip_drug1:        "Bewusstsein für gefälschte Pillen: Online gekaufte Pillen — auch über scheinbare Bekannte — können Fentanyl enthalten, unabhängig vom Aussehen. Eine Pille kann tödlich sein.",
+    tip_drug2:        "Fentanyl-Teststreifen und Naloxon sind Schadensminderungswerkzeuge, die in den meisten Ländern verfügbar sind. Wenn Sie oder jemand, den Sie kennen, Drogen konsumiert, rettet der Zugang zu Naloxon Leben.",
+    tip_drug3:        "Sextortion im Drogenkontext: Erpressung wird neben der Drogenversorgung eingesetzt, um weitere Zahlungen zu erpressen. Erstatten Sie Anzeige bei der Polizei, unabhängig von der Illegalität des ursprünglichen Kaufs.",
+    tip_pir1:         "Installieren Sie niemals gecrackte oder raubkopierte Software. 58% der Raubkopie-Softwarepakete enthalten Malware — Ransomware, Credential-Stealer und Remote-Access-Trojaner sind die häufigsten Nutzlasten.",
+    tip_pir2:         "Halten Sie Betriebssysteme und Anwendungen aktuell. Der Großteil der Malware — einschließlich der über Piraterie verteilten — nutzt bekannte, gepatchte Sicherheitslücken in veralteter Software aus.",
+    tip_pir3:         "Verwenden Sie seriöse Antivirensoftware und aktivieren Sie die Echtzeit-Überprüfung. Installieren Sie auf Arbeitsgeräten nur Software aus genehmigten, verifizierten Quellen.",
+    tip_hate1:        "Algorithmisches Bewusstsein: Verstehen Sie, dass Empfehlungssysteme für Engagement optimiert sind, nicht für Genauigkeit oder Sicherheit. Suchen Sie bewusst nach vielfältigen Quellen, anstatt Algorithmen zu folgen.",
+    tip_hate2:        "Melden Sie Hassrede auf Plattformen — konsequentes Melden baut Durchsetzungsaufzeichnungen auf und kann Kontomaßnahmen auslösen. Dokumentieren Sie vor der Meldung, falls Inhalte gelöscht werden.",
+    tip_hate3:        "Wenn Sie sich Sorgen um die Radikalisierung einer Person machen: Kontaktieren Sie Prevent (UK), Life After Hate (US) oder entsprechende nationale Extremismusdienste, bevor Sie direkt eingreifen.",
+    tip_stalk1:       "Stellen Sie Opt-out-Anfragen an große Datenmakler (Spokeo, Whitepages, BeenVerified). Nutzen Sie Dienste wie DeleteMe, um dies auf Dutzenden von Websites zu automatisieren.",
+    tip_stalk2:       "Überprüfen Sie alle gemeinsamen Konten und Smart-Home-Geräte nach jeder Beziehungsänderung. Widerrufen Sie den Zugang sofort — Stalkerware könnte noch auf gemeinsamen Geräten aktiv sein.",
+    tip_stalk3:       "Bei Betroffenheit: Dokumentieren Sie alles mit Zeitstempeln. Kontaktieren Sie die National Stalking Helpline (UK), CCRI (US) oder einen entsprechenden nationalen Dienst. Konfrontieren Sie den Täter nicht direkt.",
+    tip_fin1:         "Aktivieren Sie die Multi-Faktor-Authentifizierung für jedes Finanzkonto und jede E-Mail-Adresse. Dieser einzelne Schritt verhindert die Mehrheit der Kontoübernahmeangriffe.",
+    tip_fin2:         "Überprüfen Sie vor jeder unerwarteten Anfrage nach Geld oder Zugangsdaten — über einen separaten, vertrauenswürdigen Kanal. Keine legitime Bank oder Unternehmen wird Sie unter Druck setzen, sofort zu handeln.",
+    tip_fin3:         "Online-Investitionsmöglichkeiten mit ungewöhnlich hohen Renditen, garantierten Gewinnen oder Kryptowährungen — insbesondere von neuen Kontakten — sind fast sicher Betrug.",
+    tip_fin4:         "Melden Sie Finanzkyberkriminalität sofort: FBI IC3 (ic3.gov) in den USA; Action Fraud (actionfraud.police.uk) im Vereinigten Königreich. Die Meldegeschwindigkeit ist entscheidend für die finanzielle Erholung.",
+
+    /* Section 6 — Challenges */
+    s6_eyebrow:       "Abschnitt 6",
+    s6_h2:            "Warum es so schwer ist:<br>Sechs strukturelle Herausforderungen",
+    s6_intro:         "Um zu verstehen, warum Internetkriminalität so schwer zu bekämpfen ist, muss man über individuelle Versäumnisse von Recht, Plattform oder Strafverfolgung hinausblicken — und die strukturellen Merkmale des Internets selbst untersuchen.",
+    ch1_h:            "Fragmentierung der Zuständigkeiten",
+    ch1_p:            "Das Internet ist global; das Recht ist national. Ein Krimineller, der aus einem nicht kooperierenden Staat heraus operiert, Inhalte auf Servern in einem dritten Land hostet und Opfer in einem vierten Land angreift, ist kaum rechtlich angreifbar. Diese Lücke zu schließen erfordert Verträge, politischen Willen und Durchsetzungsressourcen, die alle knapp sind.",
+    ch2_h:            "Tempo des technologischen Wandels",
+    ch2_p:            "Recht, Regulierung und Strafverfolgungspraxis entwickeln sich langsam. Technologie entwickelt sich schnell. KI-generiertes NCII und Stimm-Cloning-Betrug existierten vor zwei Jahren kaum als Rechtskategorien. Bis die Gesetzgebung eine neue Technologie einholt, hat sich diese typischerweise weiterentwickelt. Regulatorische Verzögerung ist kein Versagen der Governance.",
+    ch3_h:            "Verschlüsselung und Anonymität",
+    ch3_p:            "Dieselben Technologien, die Journalisten, Dissidenten und gewöhnliche Menschen vor Überwachung schützen — Ende-zu-Ende-Verschlüsselung, VPNs, Tor, Datenschutz-Coins — sind die primären Werkzeuge von Cyberkriminellen. Es gibt keine technische Lösung, die das eine ohne das andere schützt. Die Verschlüsselungsdebatte ist ein echter Wertekonflikt zwischen Privatsphäre und Sicherheit.",
+    ch4_h:            "Fehlanreize der Plattformen",
+    ch4_p:            "Plattformen sind in erster Linie kommerzielle Unternehmen, die auf Engagement und Wachstum ausgerichtet sind. Inhaltsmoderation ist teuer, politisch umstritten und reduziert die Engagement-Metriken. Plattformen investieren in Sicherheit, wenn Regulatoren es verlangen oder wenn Reputationskosten Untätigkeit zu teuer machen. Sich selbst überlassen haben die meisten Plattformen historisch zu wenig in Sicherheit investiert.",
+    ch5_h:            "Untererfassung und Beweissicherung",
+    ch5_p:            "Die Mehrheit der Internetkriminalität wird nicht angezeigt — aus Scham, Hoffnungslosigkeit oder mangelndem Bewusstsein für Meldekanäle. Ohne Opferanzeigen kann die Strafverfolgung kein Lagebild aufbauen. Digitale Beweise sind zudem hochflüchtig: Plattformen löschen Inhalte, Konten werden geschlossen und zwischengespeichertes Material verschwindet — oft bevor Opfer wissen, dass sie es sichern müssen.",
+    ch6_h:            "Gegnerische Anpassung",
+    ch6_p:            "Kriminelle Operationen passen sich an. Jede erfolgreiche Abschaltung erzeugt Wissen über Strafverfolgungsmethoden. Jede neue Plattformrichtlinie treibt Kriminelle zu weniger regulierten Alternativen. Das Ziel ist nicht die Ausrottung, sondern ausreichende Reibung, um Schäden zu reduzieren, beiläufige Teilnahme abzuschrecken und die Schwächsten zu schützen.",
+
+    /* CTA */
+    cta_eyebrow:      "Fazit",
+    cta_h2:           "Aufklärung ist die<br>erste Verteidigungslinie",
+    cta_p:            "Die in diesem Projekt behandelten Verbrechen sind keine abstrakten Risiken. Sie betreffen gewöhnliche Menschen — Studierende, Eltern, Fachleute, Aktivisten, Journalisten — jeden Tag. Zu verstehen, wie sie funktionieren, ist der notwendige erste Schritt zum Schutz Ihrer selbst und zu einem informierteren öffentlichen Diskurs.",
+    cta_btn1:         "Alle Themen erkunden",
+    cta_btn2:         "Quiz machen →",
+
+    /* Quiz strip */
+    quiz_text:        "Testen Sie Ihr Wissen in allen sechs Internetkriminalitätskategorien",
+    quiz_sub:         "— 10 zufällige Fragen, kein Zeitlimit.",
+    quiz_btn:         "Quiz machen →",
+
+    /* Footer */
+    footer_note:      "Bildungsprojekt — Akademische Einreichung 2026. Bewertungen in der Plattform-Scorecard sind evidenzbasierte Einschätzungen, keine offiziellen Einstufungen.",
+    foot_topics:      "Alle Themen",
+    foot_refs:        "Referenzen",
+    foot_support:     "Hilfsressourcen",
+    foot_quiz:        "Quiz",
+    foot_imprint:     "Impressum",
+  },
+
+  /* ───────────────────────────────────────────────────────────────────
+     ITALIAN / ITALIANO
+  ─────────────────────────────────────────────────────────────────── */
+  it: {
+
+    /* Nav */
+    nav_topics:       "Argomenti",
+    nav_prev:         "Prevenzione",
+    nav_sources:      "Fonti",
+    nav_cta:          "Fai il Quiz &#x2197;",
+    nav_lang:         "Lingua",
+
+    /* Breadcrumb */
+    bc_home:          "Home",
+    bc_prevention:    "Prevenzione &amp; Cosa Si Sta Facendo",
+
+    /* Hero */
+    hero_label:       "Riepilogo Trasversale",
+    hero_label2:      "Tutti e Sei gli Argomenti",
+    hero_h1a:         "Prevenzione",
+    hero_h1b:         "Cosa Si Sta Facendo",
+    hero_lead:        "In sei categorie di criminalità informatica, governi, piattaforme, forze dell'ordine e singoli individui stanno rispondendo — con efficacia disomogenea, risorse insufficienti e limiti strutturali profondi. Questa pagina sintetizza cosa funziona, cosa no e cosa puoi fare.",
+
+    /* Section 1 — Overview */
+    s1_eyebrow:       "Panoramica",
+    s1_quote:         "&ldquo;Internet è stato costruito per l'apertura. Riconvertirlo per la sicurezza è una delle sfide di governance fondamentali del XXI secolo — e stiamo ancora perdendo.&rdquo;",
+    s1_cite:          "Marietje Schaake, Direttrice delle Politiche Internazionali, Stanford Cyber Policy Center, 2023",
+    s1_p1:            "In tutte e sei le categorie esaminate in questo progetto emerge un pattern costante: i danni prodotti dalla criminalità informatica sono <strong>reali, documentati e gravi</strong>; le risposte legali e tecniche sono <strong>reali ma insufficienti</strong>; e le condizioni strutturali che abilitano questi reati — architetture di piattaforma ottimizzate per il coinvolgimento piuttosto che per la sicurezza, frammentazione giurisdizionale, risorse di applicazione inadeguate e il ritmo del cambiamento tecnologico — rimangono sostanzialmente intatte.",
+    s1_p2:            "Ciò non significa che nulla funzioni. Progressi significativi sono stati compiuti. Il Digital Services Act dell'UE rappresenta il tentativo più ambizioso finora di rendere le piattaforme legalmente responsabili per i danni che i loro sistemi producono. La tecnologia di hash-matching ha ridotto significativamente la distribuzione di NCII sulle piattaforme partecipanti. Grandi operazioni ransomware sono state interrotte dalla cooperazione internazionale delle forze dell'ordine. Centinaia di criminali informatici vengono perseguiti ogni anno.",
+    s1_p3:            "Ma il progresso è incrementale contro un avversario adattivo, e nella maggior parte delle categorie la traiettoria del danno continua a salire. I 12,5 miliardi di dollari di perdite da criminalità informatica negli USA nel 2023 erano un record. I volumi NCII, inclusi i deepfake generati dall'IA, continuano a crescere. Il commercio online di droga si è frammentato in una forma più resistente all'applicazione di quanto Silk Road sia mai stato. Le pipeline di radicalizzazione dell'incitamento all'odio operano oggi con una portata maggiore che in qualsiasi momento precedente.",
+    s1_p4:            "Comprendere la forma della risposta — cosa funziona, cosa no e dove si trovano i limiti più duri — è importante quanto comprendere i reati stessi.",
+
+    /* Section 2 — Legislation */
+    s2_eyebrow:       "Sezione 2",
+    s2_h2:            "La Legislazione in Sintesi:<br>Come si Confrontano Quattro Giurisdizioni Chiave",
+    s2_intro:         "La risposta legale alla criminalità informatica varia significativamente per giurisdizione e tipo di reato. La tabella mostra la copertura legislativa attuale — dove esistono leggi, dove ci sono lacune e dove l'applicazione è il fattore limitante anche laddove la legge è solida.",
+    leg_jurisdiction: "Giurisdizione",
+    leg_col_drug:     "Commercio di Droga",
+    leg_col_hate:     "Incitamento all'Odio",
+    leg_col_cyber:    "Criminalità Informatica",
+    jur_uk:           "Regno Unito",
+    jur_eu:           "Unione Europea",
+    jur_us:           "Stati Uniti",
+    jur_au:           "Australia",
+    badge_strong:     "Forte",
+    badge_framework:  "Quadro Solido",
+    badge_patchy:     "Lacunoso",
+    badge_progressive:"Progressivo",
+    lbl_ncii:         "NCII / Deepfake",
+    lbl_drug:         "Traffico di droga online",
+    lbl_copy:         "Violazione del diritto d'autore",
+    lbl_hate:         "Incitamento all'odio online",
+    lbl_stalk:        "Cyberstalking / frode",
+    note_uk_ncii:     "Online Safety Act 2023 — creazione di deepfake criminalizzata",
+    note_uk_drug:     "Misuse of Drugs Act copre la fornitura online",
+    note_uk_copy:     "CDPA 1988 + blocco ISP ordinato dal tribunale",
+    note_uk_hate:     "Online Safety Act + Communications Act",
+    note_uk_stalk:    "Computer Misuse Act + PFHA 1997",
+    note_eu_ncii:     "DSA + nuova Direttiva VAW (recepimento 2027)",
+    note_eu_drug:     "Leggi degli Stati membri + coordinamento Europol",
+    note_eu_copy:     "Direttiva UE sul diritto d'autore — filtri di caricamento Art. 17",
+    note_eu_hate:     "Obblighi DSA per le piattaforme + leggi nazionali (NetzDG il più forte)",
+    note_eu_stalk:    "Convenzione di Budapest + leggi nazionali sulla criminalità informatica",
+    note_us_ncii:     "48 leggi statali — nessuno statuto federale",
+    note_us_drug:     "Leggi federali sugli analoghi / sostanze controllate",
+    note_us_copy:     "DMCA — modello di notifica e rimozione",
+    note_us_hate:     "Primo Emendamento — nessuna legge generale sull'incitamento all'odio",
+    note_us_stalk:    "CFAA + statuto federale sullo stalking",
+    note_au_ncii:     "Online Safety Act 2021 — poteri di rimozione in 24 ore",
+    note_au_drug:     "Criminal Code Act + leggi statali sul traffico",
+    note_au_copy:     "Copyright Act 1968 + regime di blocco dei siti",
+    note_au_hate:     "Racial Discrimination Act — limitato alla razza",
+    note_au_stalk:    "Criminal Code + poteri dell'eSafety Commissioner",
+    leg_yes:          "Legge specifica in vigore",
+    leg_partial:      "Parziale / in evoluzione",
+    leg_no:           "Nessuna legge specifica",
+
+    /* Section 3 — Scorecard */
+    s3_eyebrow:       "Sezione 3 — Funzionalità Distintiva",
+    s3_h2:            "Scorecard sull'Applicazione delle Piattaforme:<br>Come si Comportano le Principali Piattaforme",
+    s3_intro:         "Basandosi su ricerche pubblicate, risultati di indagini normative e giornalismo investigativo, questa scorecard valuta l'efficacia delle principali piattaforme nell'applicazione delle regole per ogni categoria di reato. I voti riflettono la qualità delle politiche, la coerenza nell'applicazione e la cooperazione con ricercatori e regolatori.",
+    sc_platform:      "Piattaforma",
+    sc_drugs:         "Droghe",
+    sc_hate:          "Odio",
+    sc_stalking:      "Stalking",
+    sc_fraud:         "Frode",
+    grade_key:        "Legenda voti:",
+    grade_A:          "Applicazione efficace",
+    grade_B:          "Adeguata con lacune",
+    grade_C:          "Politica esistente, applicazione debole",
+    grade_D:          "In peggioramento / scarsa",
+    grade_F:          "Minima o assente",
+    grade_NA:         "Non applicabile",
+    s3_note:          "I voti sono valutazioni basate su ricerche pubblicate, risultati normativi, studi accademici e giornalismo investigativo aggiornati al 2024–2026. Rappresentano una sintesi delle evidenze, non una valutazione ufficiale. La qualità dell'applicazione varia per regione, lingua e tipo di caso all'interno di ogni piattaforma.",
+
+    /* Section 4 — Law Enforcement */
+    s4_eyebrow:       "Sezione 4",
+    s4_h2:            "Forze dell'Ordine:<br>Cosa Funziona e Cosa No",
+    le1_h4:           "EC3 di Europol — Centro Europeo per la Criminalità Informatica",
+    le1_p:            "L'unità specializzata di Europol per la criminalità informatica coordina le indagini in tutti gli Stati membri dell'UE, fornisce supporto tecnico e cyber intelligence, e conduce operazioni congiunte con partner extra-UE incluso l'FBI. Responsabile di importanti smantellamenti tra cui AlphaBay, Hansa, Hydra e LockBit. Le risorse disponibili, tuttavia, restano molto inferiori alla portata del problema.",
+    le2_h4:           "FBI Cyber Division e IC3",
+    le2_p:            "La divisione cyber dell'FBI conduce indagini importanti tra cui l'Operazione Bayonet, la risposta al ransomware Colonial Pipeline e importanti procedimenti BEC. L'IC3 (Internet Crime Complaint Center) aggrega le segnalazioni delle vittime in informazioni operative. L'FBI ha anche aperto la strada all'uso dell'analisi blockchain come strumento investigativo primario.",
+    le3_h4:           "Cooperazione Internazionale — La Convenzione di Budapest",
+    le3_p:            "La Convenzione di Budapest sulla criminalità informatica (2001) è il principale quadro giuridico internazionale per la cooperazione transfrontaliera — trattati di mutua assistenza giudiziaria (MLAT), indagini congiunte e condivisione delle prove. Firmata da 68 paesi, fornisce la base giuridica per la maggior parte dei procedimenti penali internazionali di successo. Tuttavia, importanti nazioni produttrici di criminalità informatica tra cui Russia e Cina non sono firmatarie.",
+    le4_h4:           "I Limiti Strutturali Persistenti",
+    le4_p:            "Nonostante i reali successi operativi, tre limiti strutturali vincolano costantemente l'efficacia delle forze dell'ordine: <strong>attribuzione</strong> (identificare i responsabili attraverso strati di tecnologia di anonimizzazione rimane complesso); <strong>giurisdizione</strong> (i criminali operano deliberatamente da Stati non cooperativi); e <strong>risorse</strong> (la maggior parte delle forze di polizia nazionali manca della competenza tecnica specializzata). Questi limiti non sono fallimenti amministrativi — sono caratteristiche strutturali di come è stato costruito internet.",
+    slot2_title:      "Slot Immagine 2",
+    slot2_desc:       "Illustrazione della cooperazione internazionale delle forze dell'ordine — o i limiti della giurisdizione",
+    slot2_tag:        "Aggiungi qui la tua opera",
+
+    /* Section 5 — Protection Guide */
+    s5_eyebrow:       "Sezione 5",
+    s5_h2:            "La Tua Guida Personale alla Protezione:<br>Per Argomento",
+    s5_intro:         "La difesa individuale più efficace contro la criminalità informatica è il comportamento consapevole. Le azioni chiave per argomento sono qui riassunte — i dettagli completi sono disponibili nelle singole pagine tematiche.",
+    p1_h3:            "NCII &amp; Deepfake",
+    p2_h3:            "Commercio di Droga Online",
+    p3_h3:            "Pirateria &amp; Malware",
+    p4_h3:            "Incitamento all'Odio &amp; Radicalizzazione",
+    p5_h3:            "Cyberstalking &amp; Doxxing",
+    p6_h3:            "Criminalità Finanziaria Informatica",
+    protect_link:     "Rapporto completo →",
+    tip_ncii1:        "Usa password forti e uniche e l'autenticazione a più fattori (MFA) per tutti i servizi di archiviazione foto in cloud — iCloud, Google Foto, Dropbox.",
+    tip_ncii2:        "Rivedi le impostazioni sulla privacy dei social media — limita chi può vedere le foto taggate e i dati sulla posizione.",
+    tip_ncii3:        "Se sei un bersaglio: conserva immediatamente le prove. Segnala a StopNCII.org, alla tua helpline nazionale e alla polizia. Non eliminare i contenuti prima di documentarli.",
+    tip_ncii4:        "Consapevolezza: i deepfake AI richiedono solo le tue foto del viso. Limitare l'accesso pubblico alle foto riduce (ma non elimina) l'esposizione a NCII sintetici.",
+    tip_drug1:        "Consapevolezza sulle pillole contraffatte: le pillole acquistate online — anche tramite conoscenti apparenti — possono contenere fentanil indipendentemente dall'aspetto. Una pillola può essere letale.",
+    tip_drug2:        "Le strisce reattive per il fentanil e il naloxone sono strumenti di riduzione del danno disponibili nella maggior parte dei paesi. Se tu o qualcuno che conosci usa droghe, l'accesso al naloxone salva vite.",
+    tip_drug3:        "Sextortion in contesti di droga: il ricatto viene utilizzato insieme alla fornitura di droga per estorcere pagamenti continuati. Denuncia alla polizia indipendentemente dall'illegalità dell'acquisto originale.",
+    tip_pir1:         "Non installare mai software craccato o piratato. Il 58% dei pacchetti software piratati contiene malware — ransomware, credential stealer e trojan ad accesso remoto sono i payload più comuni.",
+    tip_pir2:         "Mantieni aggiornati sistemi operativi e applicazioni. La maggior parte dei malware — inclusi quelli distribuiti tramite pirateria — sfrutta vulnerabilità note e già corrette in software non aggiornato.",
+    tip_pir3:         "Usa un software antivirus affidabile e abilita la scansione in tempo reale. Per i dispositivi di lavoro, installa software solo da fonti approvate e verificate.",
+    tip_hate1:        "Consapevolezza algoritmica: comprendi che i sistemi di raccomandazione sono ottimizzati per il coinvolgimento, non per l'accuratezza o la sicurezza. Cerca deliberatamente fonti diverse invece di seguire gli algoritmi.",
+    tip_hate2:        "Segnala l'incitamento all'odio sulle piattaforme — le segnalazioni costanti costruiscono registri di applicazione e possono innescare azioni sugli account. Documenta prima di segnalare nel caso in cui i contenuti vengano eliminati.",
+    tip_hate3:        "Se sei preoccupato per la radicalizzazione di qualcuno: contatta Prevent (UK), Life After Hate (US) o i servizi nazionali equivalenti di contrasto all'estremismo prima di intervenire direttamente.",
+    tip_stalk1:       "Invia richieste di opt-out ai principali data broker (Spokeo, Whitepages, BeenVerified). Usa servizi come DeleteMe per automatizzare questo processo su decine di siti.",
+    tip_stalk2:       "Controlla tutti gli account condivisi e i dispositivi smart home dopo qualsiasi cambiamento di relazione. Revoca immediatamente l'accesso — lo stalkerware potrebbe essere ancora attivo su dispositivi condivisi.",
+    tip_stalk3:       "Se sei un bersaglio: documenta tutto con timestamp. Contatta la National Stalking Helpline (UK), il CCRI (US) o il servizio nazionale equivalente. Non confrontarti direttamente con il responsabile.",
+    tip_fin1:         "Abilita l'autenticazione a più fattori su ogni conto finanziario e indirizzo e-mail. Questo singolo passo previene la maggior parte degli attacchi di acquisizione di account.",
+    tip_fin2:         "Verifica prima di agire su qualsiasi richiesta inaspettata di denaro o credenziali — tramite un canale separato e affidabile. Nessuna banca o azienda legittima ti farà pressione ad agire immediatamente.",
+    tip_fin3:         "Le opportunità di investimento online che offrono rendimenti insolitamente elevati, profitti garantiti o che coinvolgono criptovalute — specialmente da contatti recenti — sono quasi certamente frodi.",
+    tip_fin4:         "Segnala immediatamente la criminalità finanziaria informatica: FBI IC3 (ic3.gov) negli USA; Action Fraud (actionfraud.police.uk) nel Regno Unito. La velocità di segnalazione è fondamentale per il recupero finanziario.",
+
+    /* Section 6 — Challenges */
+    s6_eyebrow:       "Sezione 6",
+    s6_h2:            "Perché È Così Difficile:<br>Sei Sfide Strutturali",
+    s6_intro:         "Capire perché la criminalità informatica sia così difficile da combattere richiede di andare oltre i singoli fallimenti di legge, piattaforma o applicazione — esaminando le caratteristiche strutturali di internet stesso che creano questo ambiente.",
+    ch1_h:            "Frammentazione Giurisdizionale",
+    ch1_p:            "Internet è globale; il diritto è nazionale. Un criminale che opera da uno Stato non cooperativo, ospita contenuti su server in un terzo paese e prende di mira vittime in un quarto, affronta un'esposizione legale limitata. Colmare questo divario richiede trattati, volontà politica e risorse di applicazione che scarseggiano.",
+    ch2_h:            "Ritmo del Cambiamento Tecnologico",
+    ch2_p:            "Legge, regolamentazione e prassi di applicazione procedono lentamente. La tecnologia avanza rapidamente. I deepfake NCII generati dall'IA e le frodi di clonazione vocale erano appena categorie legali due anni fa. Quando la legislazione raggiunge una nuova tecnologia, questa di norma ha già fatto ulteriori progressi. Il ritardo regolatorio è una caratteristica strutturale del processo legislativo democratico.",
+    ch3_h:            "Crittografia e Anonimato",
+    ch3_p:            "Le stesse tecnologie che proteggono giornalisti, dissidenti e persone comuni dalla sorveglianza — crittografia end-to-end, VPN, Tor, privacy coin — sono i principali strumenti dei criminali informatici. Non esiste una soluzione tecnica che protegga uno senza proteggere l'altro. Il dibattito sulla crittografia è un autentico conflitto di valori tra privacy e sicurezza.",
+    ch4_h:            "Disallineamento degli Incentivi delle Piattaforme",
+    ch4_p:            "Le piattaforme sono principalmente entità commerciali ottimizzate per l'engagement e la crescita. La moderazione dei contenuti è costosa, politicamente controversa e riduce le metriche di coinvolgimento. Le piattaforme investono nella sicurezza quando i regolatori lo richiedono o quando i costi reputazionali rendono l'inazione troppo costosa. La maggior parte delle piattaforme ha storicamente sottoinvestito nella sicurezza rispetto alla portata del danno prodotto.",
+    ch5_h:            "Sottosegnalazione e Perdita di Prove",
+    ch5_p:            "La maggior parte dei crimini informatici non viene denunciata — per vergogna, senso di impotenza o mancanza di consapevolezza dei canali di segnalazione. Senza le denunce delle vittime, le forze dell'ordine non riescono a costruire il quadro informativo necessario. E le prove digitali sono altamente volatili: le piattaforme eliminano i contenuti, gli account vengono chiusi e il materiale in cache scompare, spesso prima che le vittime sappiano di doverlo conservare.",
+    ch6_h:            "Adattamento Avversariale",
+    ch6_p:            "Le operazioni criminali si adattano. Ogni smantellamento di successo genera conoscenza sui metodi di applicazione. Ogni nuova politica della piattaforma spinge i criminali verso alternative meno regolamentate. Questo non è un problema che può essere risolto — è una dinamica avversariale che deve essere gestita. L'obiettivo non è lo sradicamento ma una resistenza sufficiente a ridurre il danno.",
+
+    /* CTA */
+    cta_eyebrow:      "Conclusione",
+    cta_h2:           "La Consapevolezza È la<br>Prima Linea di Difesa",
+    cta_p:            "I crimini trattati in questo progetto non sono rischi astratti. Riguardano persone comuni — studenti, genitori, professionisti, attivisti, giornalisti — ogni giorno. Capire come funzionano è il primo passo necessario per proteggersi, riconoscerli negli altri e contribuire a un dibattito pubblico più informato su come internet dovrebbe essere governato.",
+    cta_btn1:         "Esplora Tutti gli Argomenti",
+    cta_btn2:         "Fai il Quiz →",
+
+    /* Quiz strip */
+    quiz_text:        "Metti alla prova le tue conoscenze in tutte e sei le categorie di criminalità informatica",
+    quiz_sub:         "— 10 domande casuali, nessun limite di tempo.",
+    quiz_btn:         "Fai il Quiz →",
+
+    /* Footer */
+    footer_note:      "Progetto educativo — Elaborato accademico 2026. I voti nella scorecard delle piattaforme sono valutazioni basate su evidenze, non classificazioni ufficiali.",
+    foot_topics:      "Tutti gli Argomenti",
+    foot_refs:        "Riferimenti",
+    foot_support:     "Risorse di Supporto",
+    foot_quiz:        "Quiz",
+     foot_imprint:    "Note legali",
+  },
+
+};
+
+/* ── switchLanguage ──────────────────────────────────────────────────────────
+   Called by onchange="switchLanguage(this.value)" on both <select> elements.
+   Updates every [data-i18n] element and persists the choice in localStorage.
+   English is the default — loaded automatically if no preference is saved.
+── */
+function switchLanguage(lang) {
+  if (!TRANSLATIONS[lang]) return;
+  const t = TRANSLATIONS[lang];
+
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key && t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Keep desktop + mobile selects in sync
+  document.querySelectorAll('#langSelect, #langSelectMob').forEach(s => s.value = lang);
+
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+
+/* ── Auto-restore saved language on page load (default: EN) ─────────────── */
+(function () {
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch (e) {}
+  switchLanguage(saved);
+})();
+</script>
+
+</body>
+</html>

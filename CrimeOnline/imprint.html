@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Notice | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:          #0a0e1a;
+    --navy-mid:      #111827;
+    --navy-surface:  #1a2233;
+    --crimson:       #c0392b;
+    --crimson-lt:    #e74c3c;
+    --crimson-glow:  rgba(192,57,43,0.13);
+    --border-red:    rgba(192,57,43,0.38);
+    --slate:         #64748b;
+    --slate-lt:      #94a3b8;
+    --offwhite:      #f0efe8;
+    --white:         #ffffff;
+    --border:        rgba(255,255,255,0.07);
+    --font-d: 'Playfair Display', Georgia, serif;
+    --font-b: 'Inter', system-ui, sans-serif;
+    --font-m: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: var(--font-b);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(10,14,26,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px; height: 62px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--font-d); font-size: 19px; font-weight: 700; color: var(--white); text-decoration: none; flex-shrink: 0; }
+  .nav-logo span { color: var(--crimson); }
+  .nav-right { display: flex; align-items: center; gap: 0; }
+  .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--slate-lt); text-decoration: none; font-size: 13px; font-weight: 500;
+    padding: 6px 12px; border-radius: 3px; transition: color .2s, background .2s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+  .nav-links a.active { color: var(--white); }
+  .nav-cta { background: var(--crimson) !important; color: var(--white) !important; padding: 7px 18px !important; border-radius: 3px; margin-left: 10px; }
+  .nav-cta:hover { background: var(--crimson-lt) !important; }
+  .nav-lang-wrap { display:flex; align-items:center; margin-left:16px; padding-left:16px; border-left:1px solid var(--border); }
+  .lang-select {
+    background:transparent; border:1px solid rgba(255,255,255,0.15); color:var(--slate-lt);
+    font-family:var(--font-m); font-size:11px; padding:4px 22px 4px 8px; border-radius:3px;
+    cursor:pointer; outline:none; appearance:none; -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 6px center;
+  }
+  .lang-select option { background:#0a0e1a; color:var(--offwhite); }
+
+  .nav-hamburger {
+    display:none; flex-direction:column; justify-content:center; align-items:center;
+    width:40px; height:40px; cursor:pointer; gap:5px; background:none; border:none; padding:4px; z-index:2;
+  }
+  .nav-hamburger span {
+    display:block; width:22px; height:2px; background:var(--slate-lt); border-radius:2px;
+    transition: transform .25s ease, opacity .2s ease, background .2s; transform-origin:center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--white); }
+  .nav-hamburger.open span:nth-child(2) { opacity:0; }
+  .nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--white); }
+  .nav-mobile {
+    display:none; position:fixed; top:62px; left:0; right:0;
+    background:#0a0e1a; border-bottom:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 32px rgba(0,0,0,0.7);
+    z-index:199; padding:8px 0 20px; flex-direction:column;
+    animation: slideDown .22s ease;
+  }
+  .nav-mobile.open { display:flex; }
+  @keyframes slideDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+  .nav-mobile a {
+    color:var(--slate-lt); text-decoration:none; font-size:15px; font-weight:500;
+    padding:15px 32px; transition:color .18s, background .18s;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+  }
+  .nav-mobile a:hover { color:var(--white); background:rgba(255,255,255,0.05); }
+  .nav-mobile a.mobile-cta {
+    margin:14px 32px 0; padding:13px 20px;
+    background:var(--crimson); color:var(--white) !important;
+    border-radius:3px; text-align:center; border:none; font-size:14px; font-weight:600;
+  }
+  .nav-mobile-lang { padding:16px 32px 0; display:flex; flex-direction:column; gap:8px; }
+  .nav-mobile-lang label { font-family:var(--font-m); font-size:11px; color:var(--slate); letter-spacing:.08em; text-transform:uppercase; }
+  .lang-sel-mob {
+    background:var(--navy-surface); border:1px solid var(--border); color:var(--offwhite);
+    font-family:var(--font-m); font-size:13px; padding:8px 12px; border-radius:3px;
+    cursor:pointer; outline:none;
+  }
+  @media (max-width: 860px) { nav { padding:0 24px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+  @media (max-width: 480px) { nav { padding:0 20px; } }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    padding:14px 80px; font-size:12px; font-family:var(--font-m);
+    color:var(--slate); letter-spacing:.03em;
+    border-bottom:1px solid var(--border);
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  }
+  .breadcrumb a { color:var(--slate); text-decoration:none; transition:color .2s; }
+  .breadcrumb a:hover { color:var(--slate-lt); }
+  .breadcrumb-sep { color:var(--crimson); opacity:.5; }
+  @media (max-width:600px) { .breadcrumb { padding:12px 24px; } }
+
+  /* ── HERO ── */
+  .page-hero {
+    padding:80px 80px 60px;
+    border-bottom:1px solid var(--border);
+    position:relative; overflow:hidden;
+  }
+  .page-hero::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--crimson), rgba(192,57,43,0.2), transparent);
+  }
+  .page-hero::after {
+    content:''; position:absolute; top:0; right:0; width:400px; height:100%;
+    background:radial-gradient(ellipse 60% 80% at 100% 50%, rgba(192,57,43,0.05), transparent);
+    pointer-events:none;
+  }
+  .page-label {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-m); font-size:11px; font-weight:500;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:var(--slate-lt); margin-bottom:22px;
+  }
+  .page-label-dot {
+    width:8px; height:8px; border-radius:2px; background:var(--crimson);
+  }
+  .page-hero h1 {
+    font-family:var(--font-d); font-size:clamp(34px,4.5vw,60px);
+    font-weight:900; line-height:1.06; letter-spacing:-1.5px;
+    color:var(--white); margin-bottom:16px;
+  }
+  .page-hero h1 em { font-style:italic; color:var(--slate-lt); }
+  .hero-lead {
+    font-size:16px; font-weight:300; color:var(--slate-lt);
+    line-height:1.8; max-width:560px;
+  }
+  @media (max-width:860px) { .page-hero { padding:60px 24px 40px; } }
+
+  /* ── LAYOUT ── */
+  .impressum-layout {
+    display:grid; grid-template-columns:1fr 380px;
+    gap:0; max-width:100%; align-items:start;
+  }
+  .impressum-main { padding:60px 80px; border-right:1px solid var(--border); }
+  .impressum-sidebar { padding:60px 40px; position:sticky; top:62px; }
+  @media (max-width:860px) {
+    .impressum-layout { grid-template-columns:1fr; }
+    .impressum-main { padding:40px 24px; border-right:none; border-bottom:1px solid var(--border); }
+    .impressum-sidebar { padding:40px 24px; position:static; }
+  }
+
+  /* ── SECTIONS ── */
+  .section-eyebrow {
+    font-family:var(--font-m); font-size:10px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--slate); margin-bottom:14px; display:block;
+  }
+  .section-h2 {
+    font-family:var(--font-d); font-size:clamp(22px,2.5vw,34px);
+    font-weight:700; color:var(--white); line-height:1.1;
+    letter-spacing:-.5px; margin-bottom:28px;
+  }
+  .imprint-block {
+    margin-bottom:48px; padding-bottom:48px;
+    border-bottom:1px solid var(--border);
+  }
+  .imprint-block:last-child { border-bottom:none; margin-bottom:0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display:grid; grid-template-columns:140px 1fr; gap:0; }
+  .info-row {
+    display:contents;
+  }
+  .info-key {
+    padding:12px 0; font-family:var(--font-m); font-size:11px;
+    color:var(--slate); letter-spacing:.06em; text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+  }
+  .info-val {
+    padding:12px 0 12px 20px; color:var(--offwhite); font-size:14px;
+    border-bottom:1px solid var(--border);
+  }
+  .info-val a { color:var(--crimson-lt); text-decoration:none; transition:color .2s; }
+  .info-val a:hover { color:var(--white); }
+
+  /* ── LEGAL TEXT ── */
+  .prose {
+    font-size:14px; color:var(--slate-lt); line-height:1.85;
+    margin-bottom:16px;
+  }
+  .prose strong { color:var(--white); font-weight:600; }
+  .prose a { color:var(--crimson-lt); text-decoration:none; }
+  .prose a:hover { color:var(--white); }
+
+  /* ── SOCIAL LINKS ── */
+  .social-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;
+  }
+  .social-link {
+    display:flex; align-items:center; gap:12px;
+    padding:14px 16px; border-radius:4px;
+    background:var(--navy-surface); border:1px solid var(--border);
+    text-decoration:none; transition:border-color .2s, background .2s;
+  }
+  .social-link:hover { border-color:rgba(192,57,43,0.4); background:rgba(192,57,43,0.06); }
+  .social-icon {
+    width:34px; height:34px; border-radius:6px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; font-weight:700;
+  }
+  .social-name { font-size:13px; font-weight:600; color:var(--white); display:block; line-height:1.2; }
+  .social-url  { font-family:var(--font-m); font-size:10px; color:var(--slate); display:block; }
+
+  /* platform colours */
+  .si-ig   { background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color:#fff; }
+  .si-x    { background:#000; color:#fff; border:1px solid rgba(255,255,255,0.15); }
+  .si-yt   { background:#ff0000; color:#fff; }
+  .si-li   { background:#0077b5; color:#fff; }
+  .si-tg   { background:#26a5e4; color:#fff; }
+  .si-gh   { background:#24292e; color:#fff; border:1px solid rgba(255,255,255,0.12); }
+
+  /* ── CONTACT FORM (SIDEBAR) ── */
+  .sidebar-card {
+    background:var(--navy-surface); border:1px solid var(--border);
+    border-radius:4px; overflow:hidden; margin-bottom:20px;
+  }
+  .sidebar-card-head {
+    padding:20px 24px 16px; border-bottom:1px solid var(--border);
+  }
+  .sidebar-card-head h3 {
+    font-family:var(--font-d); font-size:18px; color:var(--white); margin-bottom:4px;
+  }
+  .sidebar-card-head p { font-size:12px; color:var(--slate); }
+  .sidebar-card-body { padding:20px 24px; }
+
+  .form-field { margin-bottom:16px; }
+  .form-label {
+    display:block; font-family:var(--font-m); font-size:10px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase;
+    color:var(--slate); margin-bottom:7px;
+  }
+  .form-input, .form-textarea {
+    width:100%; background:var(--navy); border:1px solid var(--border);
+    color:var(--offwhite); font-family:var(--font-b); font-size:13px;
+    padding:10px 14px; border-radius:3px; outline:none;
+    transition:border-color .2s;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color:rgba(192,57,43,0.5);
+  }
+  .form-textarea { resize:vertical; min-height:110px; line-height:1.6; }
+  .form-input::placeholder, .form-textarea::placeholder { color:var(--slate); }
+
+  .btn-submit {
+    width:100%; background:var(--crimson); color:var(--white);
+    padding:12px 20px; font-size:13px; font-weight:600;
+    border:none; border-radius:3px; cursor:pointer;
+    transition:background .2s, transform .15s; font-family:var(--font-b);
+  }
+  .btn-submit:hover { background:var(--crimson-lt); transform:translateY(-1px); }
+  .btn-submit:active { transform:translateY(0); }
+
+  .form-status {
+    margin-top:12px; padding:10px 14px; border-radius:3px;
+    font-size:12px; font-family:var(--font-m); letter-spacing:.04em;
+    display:none;
+  }
+  .form-status.success {
+    display:block; background:rgba(22,163,74,0.12);
+    border:1px solid rgba(22,163,74,0.3); color:#6ec97a;
+  }
+  .form-status.error {
+    display:block; background:rgba(192,57,43,0.1);
+    border:1px solid var(--border-red); color:#e89a90;
+  }
+
+  /* ── QUICK CONTACT CARD ── */
+  .quick-contact { margin-bottom:20px; }
+  .qc-item {
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0; border-bottom:1px solid var(--border);
+  }
+  .qc-item:last-child { border-bottom:none; }
+  .qc-icon {
+    width:36px; height:36px; border-radius:6px; flex-shrink:0;
+    background:var(--crimson-glow); border:1px solid var(--border-red);
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px;
+  }
+  .qc-label { font-family:var(--font-m); font-size:10px; color:var(--slate); text-transform:uppercase; letter-spacing:.06em; }
+  .qc-val   { font-size:13px; color:var(--offwhite); }
+  .qc-val a { color:var(--crimson-lt); text-decoration:none; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding:36px 80px; border-top:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .footer-logo { font-family:var(--font-d); font-size:16px; font-weight:700; color:var(--white); text-decoration:none; }
+  .footer-logo span { color:var(--crimson); }
+  .footer-note { font-size:12px; color:var(--slate); max-width:360px; }
+  .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+  .footer-links a { font-size:12px; color:var(--slate); text-decoration:none; transition:color .2s; }
+  .footer-links a:hover { color:var(--white); }
+  @media (max-width:640px) { footer { padding:28px 24px; flex-direction:column; align-items:flex-start; } }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    height:1px;
+    background:linear-gradient(90deg, rgba(203,213,225,0.15), transparent);
+    margin:0 80px;
+  }
+  @media (max-width:860px) { .section-divider { margin:0 24px; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics"  data-i18n="nav_topics">Topics</a></li>
+      <li><a href="prevention.html"    data-i18n="nav_prev">Prevention</a></li>
+      <li><a href="sources.html"       data-i18n="nav_sources">Sources</a></li>
+      <li><a href="quiz/index.html" class="nav-cta" data-i18n="nav_cta">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="index.html#topics"  onclick="closeMenu()" data-i18n="nav_topics">Topics</a>
+  <a href="prevention.html"    onclick="closeMenu()" data-i18n="nav_prev">Prevention</a>
+  <a href="sources.html"       onclick="closeMenu()" data-i18n="nav_sources">Sources</a>
+  <a href="impressum.html"     onclick="closeMenu()" data-i18n="nav_legal">Legal Notice</a>
+  <a href="quiz/index.html" class="mobile-cta" onclick="closeMenu()" data-i18n="nav_cta">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label data-i18n="nav_lang">Language</label>
+    <select class="lang-sel-mob" id="langSelectMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('hamburger'), mob = document.getElementById('nav-mobile');
+  function closeMenu(){ btn.classList.remove('open'); mob.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  btn.addEventListener('click',()=>{ const o=mob.classList.toggle('open'); btn.classList.toggle('open'); btn.setAttribute('aria-expanded',o); document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('click',e=>{ if(!btn.contains(e.target)&&!mob.contains(e.target)) closeMenu(); });
+  window.addEventListener('resize',()=>{ if(window.innerWidth>860) closeMenu(); });
+</script>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html" data-i18n="bc_home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt);" data-i18n="bc_legal">Legal Notice</span>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-label">
+    <div class="page-label-dot"></div>
+    <span data-i18n="hero_label">Transparency &amp; Legal Information</span>
+  </div>
+  <h1><span data-i18n="hero_h1a">Legal</span> <em data-i18n="hero_h1b">Notice</em></h1>
+  <p class="hero-lead" data-i18n="hero_lead">
+    All information required by Italian and European digital media law, including contact details, responsible party, and the scope of this project.
+  </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="impressum-layout">
+
+  <!-- LEFT: LEGAL CONTENT -->
+  <main class="impressum-main">
+
+    <!-- RESPONSIBLE PARTY -->
+    <div class="imprint-block">
+      <span class="section-eyebrow" data-i18n="s1_eyebrow">Section 1</span>
+      <h2 class="section-h2" data-i18n="s1_h2">Responsible Party</h2>
+      <div class="info-grid">
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_name">Name</span>
+          <span class="info-val">Rifat Rahman</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_position">Position</span>
+          <span class="info-val" data-i18n="val_position">Student</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_class">Class</span>
+          <span class="info-val">3. FI</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_school">School</span>
+          <span class="info-val">Tschuggmall</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_topic">Topic</span>
+          <span class="info-val">Crime Online</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_address">Address</span>
+          <span class="info-val">Brixen, Italy</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_email">E-Mail</span>
+          <span class="info-val"><a href="mailto:rifl.11.rhm@gmail.com">rifl.11.rhm@gmail.com</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-key" data-i18n="key_phone">Phone</span>
+          <span class="info-val"><a href="tel:+393713344641">+39 371 334 4641</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT SCOPE -->
+    <div class="imprint-block">
+      <span class="section-eyebrow" data-i18n="s2_eyebrow">Section 2</span>
+      <h2 class="section-h2" data-i18n="s2_h2">Nature of This Website</h2>
+      <p class="prose" data-i18n="s2_p1">
+        This website is an <strong>educational project</strong> created as part of an academic submission at Tschuggmall school in Brixen, Italy, for the school year 2025/2026. It is a non-commercial, informational resource produced for educational purposes only.
+      </p>
+      <p class="prose" data-i18n="s2_p2">
+        The site does not pursue any commercial interests, does not display advertising, and does not collect or process personal data beyond what is strictly necessary for the contact form functionality described below.
+      </p>
+      <p class="prose" data-i18n="s2_p3">
+        Grades and assessments in the platform scorecard are <strong>evidence-based evaluations</strong> derived from published research, regulatory findings, and investigative journalism. They are not official ratings and do not represent the views of any regulatory body, institution, or third party.
+      </p>
+    </div>
+
+    <!-- LIABILITY -->
+    <div class="imprint-block">
+      <span class="section-eyebrow" data-i18n="s3_eyebrow">Section 3</span>
+      <h2 class="section-h2" data-i18n="s3_h2">Liability Disclaimer</h2>
+      <p class="prose" data-i18n="s3_p1">
+        Despite careful editorial review, the author accepts no liability for the accuracy, completeness, or timeliness of the information provided. All content is provided for informational and educational purposes only.
+      </p>
+      <p class="prose" data-i18n="s3_p2">
+        <strong data-i18n="s3_ext_links">External Links:</strong> <span data-i18n="s3_p2_text">This site may contain links to external websites. At the time of linking, these pages were checked for illegal content and none was found. The author has no ongoing control over the content of linked pages and cannot be held liable for changes made after linking. If illegal content is discovered, please report it and the link will be removed immediately.</span>
+      </p>
+      <p class="prose" data-i18n="s3_p3">
+        This website was created in accordance with Italian digital media law (D.Lgs. 70/2003) and applicable European Union regulations including the GDPR.
+      </p>
+    </div>
+
+    <!-- SOCIAL MEDIA -->
+    <div class="imprint-block">
+      <span class="section-eyebrow" data-i18n="s4_eyebrow">Section 4</span>
+      <h2 class="section-h2" data-i18n="s4_h2">Social Media Platforms</h2>
+      <p class="prose" data-i18n="s4_intro">
+        The following links lead to the general homepages of major social media platforms. These are not personal accounts — they are provided for reference only. The author is not affiliated with or endorsed by any of these platforms.
+      </p>
+      <div class="social-grid">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-ig">&#x1F4F7;</div>
+          <div>
+            <span class="social-name">Instagram</span>
+            <span class="social-url">instagram.com</span>
+          </div>
+        </a>
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-x">𝕏</div>
+          <div>
+            <span class="social-name">X (Twitter)</span>
+            <span class="social-url">x.com</span>
+          </div>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-yt">▶</div>
+          <div>
+            <span class="social-name">YouTube</span>
+            <span class="social-url">youtube.com</span>
+          </div>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-li">in</div>
+          <div>
+            <span class="social-name">LinkedIn</span>
+            <span class="social-url">linkedin.com</span>
+          </div>
+        </a>
+        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-tg">✈</div>
+          <div>
+            <span class="social-name">Telegram</span>
+            <span class="social-url">t.me</span>
+          </div>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="social-icon si-gh">⌥</div>
+          <div>
+            <span class="social-name">GitHub</span>
+            <span class="social-url">github.com</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="imprint-block">
+      <span class="section-eyebrow" data-i18n="s5_eyebrow">Section 5</span>
+      <h2 class="section-h2" data-i18n="s5_h2">Copyright</h2>
+      <p class="prose" data-i18n="s5_p1">
+        All content, design, and code produced for this website is the intellectual work of Rifat Rahman, created for the academic submission at Tschuggmall, 2026. Reproduction, distribution, or use of any part of this website without prior written consent is not permitted.
+      </p>
+      <p class="prose" data-i18n="s5_p2">
+        Statistical data, research findings, and factual information cited throughout the site are attributed to their original sources, which are listed in full on the <a href="sources.html" data-i18n="s5_sources_link">References</a> page.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: SIDEBAR -->
+  <aside class="impressum-sidebar">
+
+    <!-- Quick Contact -->
+    <div class="sidebar-card quick-contact">
+      <div class="sidebar-card-head">
+        <h3 data-i18n="qc_title">Quick Contact</h3>
+        <p data-i18n="qc_sub">Direct contact information</p>
+      </div>
+      <div class="sidebar-card-body">
+        <div class="qc-item">
+          <div class="qc-icon">✉</div>
+          <div>
+            <div class="qc-label" data-i18n="key_email">E-Mail</div>
+            <div class="qc-val"><a href="mailto:rifl.11.rhm@gmail.com">rifl.11.rhm@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="qc-item">
+          <div class="qc-icon">☎</div>
+          <div>
+            <div class="qc-label" data-i18n="key_phone">Phone</div>
+            <div class="qc-val"><a href="tel:+393713344641">+39 371 334 4641</a></div>
+          </div>
+        </div>
+        <div class="qc-item">
+          <div class="qc-icon">📍</div>
+          <div>
+            <div class="qc-label" data-i18n="key_location">Location</div>
+            <div class="qc-val">Brixen, Italy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-head">
+        <h3 data-i18n="form_title">Send a Message</h3>
+        <p data-i18n="form_sub">I'll get back to you by email</p>
+      </div>
+      <div class="sidebar-card-body">
+        <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+          <div class="form-field">
+            <label class="form-label" for="f-name" data-i18n="form_name_label">Your Name</label>
+            <input class="form-input" type="text" id="f-name" name="name" required
+                   data-i18n-placeholder="form_name_ph" placeholder="e.g. Anna Muster">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-email" data-i18n="form_email_label">Your E-Mail</label>
+            <input class="form-input" type="email" id="f-email" name="email" required
+                   data-i18n-placeholder="form_email_ph" placeholder="you@example.com">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-subject" data-i18n="form_subject_label">Subject</label>
+            <input class="form-input" type="text" id="f-subject" name="subject"
+                   data-i18n-placeholder="form_subject_ph" placeholder="Regarding…">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-msg" data-i18n="form_msg_label">Message</label>
+            <textarea class="form-textarea" id="f-msg" name="message" required
+                      data-i18n-placeholder="form_msg_ph" placeholder="Write your message here…"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" data-i18n="form_btn">Send Message</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" data-i18n="footer_note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="index.html#topics" data-i18n="foot_topics">All Topics</a>
+    <a href="sources.html"      data-i18n="foot_refs">References</a>
+    <a href="quiz/index.html"   data-i18n="foot_quiz">Quiz</a>
+    <a herf="imprint.html"      data-i18n="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     i18n + Contact Form JS
+══════════════════════════════════════════════════════════════════ -->
+<script>
+/* ── Translations ─────────────────────────────────────────────────── */
+const TRANSLATIONS = {
+  en: {
+    /* Nav */
+    nav_topics:"Topics", nav_prev:"Prevention", nav_sources:"Sources",
+    nav_cta:"Take the Quiz &#x2197;", nav_lang:"Language",
+    /* Breadcrumb */
+    bc_home:"Home", bc_legal:"Legal Notice",
+    /* Hero */
+    hero_label:"Transparency &amp; Legal Information",
+    hero_h1a:"Legal", hero_h1b:"Notice",
+    hero_lead:"All information required by Italian and European digital media law, including contact details, responsible party, and the scope of this project.",
+    /* Section 1 */
+    s1_eyebrow:"Section 1", s1_h2:"Responsible Party",
+    key_name:"Name", key_position:"Position", val_position:"Student",
+    key_class:"Class", key_school:"School", key_topic:"Topic",
+    key_address:"Address", key_email:"E-Mail", key_phone:"Phone",
+    /* Section 2 */
+    s2_eyebrow:"Section 2", s2_h2:"Nature of This Website",
+    s2_p1:"This website is an <strong>educational project</strong> created as part of an academic submission at Tschuggmall school in Brixen, Italy, for the school year 2025/2026. It is a non-commercial, informational resource produced for educational purposes only.",
+    s2_p2:"The site does not pursue any commercial interests, does not display advertising, and does not collect or process personal data beyond what is strictly necessary for the contact form functionality described below.",
+    s2_p3:"Grades and assessments in the platform scorecard are <strong>evidence-based evaluations</strong> derived from published research, regulatory findings, and investigative journalism. They are not official ratings and do not represent the views of any regulatory body, institution, or third party.",
+    /* Section 3 */
+    s3_eyebrow:"Section 3", s3_h2:"Liability Disclaimer",
+    s3_p1:"Despite careful editorial review, the author accepts no liability for the accuracy, completeness, or timeliness of the information provided. All content is provided for informational and educational purposes only.",
+    s3_ext_links:"External Links:",
+    s3_p2_text:"This site may contain links to external websites. At the time of linking, these pages were checked for illegal content and none was found. The author has no ongoing control over the content of linked pages and cannot be held liable for changes made after linking. If illegal content is discovered, please report it and the link will be removed immediately.",
+    s3_p3:"This website was created in accordance with Italian digital media law (D.Lgs. 70/2003) and applicable European Union regulations including the GDPR.",
+    /* Section 4 */
+    s4_eyebrow:"Section 4", s4_h2:"Social Media Platforms",
+    s4_intro:"The following links lead to the general homepages of major social media platforms. These are not personal accounts — they are provided for reference only. The author is not affiliated with or endorsed by any of these platforms.",
+    /* Section 5 */
+    s5_eyebrow:"Section 5", s5_h2:"Copyright",
+    s5_p1:"All content, design, and code produced for this website is the intellectual work of Rifat Rahman, created for the academic submission at Tschuggmall, 2026. Reproduction, distribution, or use of any part of this website without prior written consent is not permitted.",
+    s5_p2:"Statistical data, research findings, and factual information cited throughout the site are attributed to their original sources, which are listed in full on the",
+    s5_sources_link:"References",
+    /* Sidebar */
+    qc_title:"Quick Contact", qc_sub:"Direct contact information", key_location:"Location",
+    form_title:"Send a Message", form_sub:"I'll get back to you by email",
+    form_name_label:"Your Name", form_name_ph:"e.g. Anna Muster",
+    form_email_label:"Your E-Mail", form_email_ph:"you@example.com",
+    form_subject_label:"Subject", form_subject_ph:"Regarding…",
+    form_msg_label:"Message", form_msg_ph:"Write your message here…",
+    form_btn:"Send Message",
+    form_success:"✓ Message sent — I'll get back to you soon.",
+    form_error:"Please fill in all required fields.",
+    /* Footer */
+    footer_note:"Educational project — Academic submission 2026. Grades in the platform scorecard are evidence-based assessments, not official ratings.",
+    foot_topics:"All Topics", foot_refs:"References", foot_quiz:"Quiz", foot_imprint:"Imprint",
+  },
+
+  de: {
+    nav_topics:"Themen", nav_prev:"Prävention", nav_sources:"Quellen",
+    nav_cta:"Quiz starten &#x2197;", nav_lang:"Sprache",
+    bc_home:"Startseite", bc_legal:"Impressum",
+    hero_label:"Transparenz &amp; rechtliche Angaben",
+    hero_h1a:"Impressum", hero_h1b:"&amp; Kontakt",
+    hero_lead:"Alle nach italienischem und europäischem Telemedienrecht erforderlichen Angaben, einschließlich Kontaktdaten, verantwortliche Person und Projektumfang.",
+    s1_eyebrow:"Abschnitt 1", s1_h2:"Verantwortliche Person",
+    key_name:"Name", key_position:"Position", val_position:"Schüler",
+    key_class:"Klasse", key_school:"Schule", key_topic:"Thema",
+    key_address:"Adresse", key_email:"E-Mail", key_phone:"Telefon",
+    s2_eyebrow:"Abschnitt 2", s2_h2:"Art dieser Website",
+    s2_p1:"Diese Website ist ein <strong>Schulprojekt</strong>, das im Rahmen einer akademischen Einreichung an der Schule Tschuggmall in Brixen, Italien, für das Schuljahr 2025/2026 erstellt wurde. Es handelt sich um eine nicht-kommerzielle, informative Ressource, die ausschließlich zu Bildungszwecken erstellt wurde.",
+    s2_p2:"Die Website verfolgt keine kommerziellen Interessen, schaltet keine Werbung und erhebt oder verarbeitet keine personenbezogenen Daten, die über das für das Kontaktformular unbedingt Erforderliche hinausgehen.",
+    s2_p3:"Bewertungen und Einstufungen in der Plattform-Scorecard sind <strong>evidenzbasierte Einschätzungen</strong>, die auf veröffentlichten Forschungsergebnissen, regulatorischen Erkenntnissen und investigativem Journalismus beruhen. Sie stellen keine offiziellen Bewertungen dar.",
+    s3_eyebrow:"Abschnitt 3", s3_h2:"Haftungsausschluss",
+    s3_p1:"Trotz sorgfältiger inhaltlicher Kontrolle übernimmt der Autor keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen. Alle Inhalte dienen ausschließlich Informations- und Bildungszwecken.",
+    s3_ext_links:"Externe Links:",
+    s3_p2_text:"Diese Website kann Links zu externen Websites enthalten. Zum Zeitpunkt der Verlinkung wurden diese Seiten auf illegale Inhalte geprüft und keine festgestellt. Der Autor hat keinen laufenden Einfluss auf den Inhalt verlinkter Seiten. Falls illegale Inhalte entdeckt werden, bitten wir um Meldung — der Link wird umgehend entfernt.",
+    s3_p3:"Diese Website wurde in Übereinstimmung mit dem italienischen Telemedienrecht (D.Lgs. 70/2003) und den geltenden EU-Vorschriften einschließlich der DSGVO erstellt.",
+    s4_eyebrow:"Abschnitt 4", s4_h2:"Social-Media-Plattformen",
+    s4_intro:"Die folgenden Links führen zu den allgemeinen Startseiten wichtiger Social-Media-Plattformen. Es handelt sich nicht um persönliche Konten — sie dienen ausschließlich als Referenz. Der Autor ist nicht mit diesen Plattformen verbunden.",
+    s5_eyebrow:"Abschnitt 5", s5_h2:"Urheberrecht",
+    s5_p1:"Alle Inhalte, das Design und der Code dieser Website sind das geistige Eigentum von Rifat Rahman, erstellt für die akademische Einreichung an der Tschuggmall-Schule, 2026. Vervielfältigung, Verbreitung oder Nutzung ohne vorherige schriftliche Genehmigung ist nicht gestattet.",
+    s5_p2:"Statistische Daten, Forschungsergebnisse und auf der Website zitierte Fachinformationen werden ihren Originalquellen zugeschrieben, die vollständig auf der",
+    s5_sources_link:"Referenzen-Seite",
+    qc_title:"Schnellkontakt", qc_sub:"Direkte Kontaktdaten", key_location:"Standort",
+    form_title:"Nachricht senden", form_sub:"Ich melde mich per E-Mail",
+    form_name_label:"Ihr Name", form_name_ph:"z. B. Anna Muster",
+    form_email_label:"Ihre E-Mail", form_email_ph:"sie@beispiel.com",
+    form_subject_label:"Betreff", form_subject_ph:"Betreff…",
+    form_msg_label:"Nachricht", form_msg_ph:"Schreiben Sie Ihre Nachricht hier…",
+    form_btn:"Nachricht absenden",
+    form_success:"✓ Nachricht gesendet — ich melde mich bald.",
+    form_error:"Bitte füllen Sie alle Pflichtfelder aus.",
+    footer_note:"Bildungsprojekt — Akademische Einreichung 2026. Bewertungen in der Plattform-Scorecard sind evidenzbasierte Einschätzungen, keine offiziellen Einstufungen.",
+    foot_topics:"Alle Themen", foot_refs:"Referenzen", foot_quiz:"Quiz", foot_imprint:"Impressum",
+  },
+
+  it: {
+    nav_topics:"Argomenti", nav_prev:"Prevenzione", nav_sources:"Fonti",
+    nav_cta:"Fai il Quiz &#x2197;", nav_lang:"Lingua",
+    bc_home:"Home", bc_legal:"Note legali",
+    hero_label:"Trasparenza &amp; informazioni legali",
+    hero_h1a:"Note", hero_h1b:"Legali",
+    hero_lead:"Tutte le informazioni richieste dalla legge italiana ed europea sui media digitali, inclusi i dati di contatto, il responsabile e l'ambito di questo progetto.",
+    s1_eyebrow:"Sezione 1", s1_h2:"Responsabile del contenuto",
+    key_name:"Nome", key_position:"Posizione", val_position:"Studente",
+    key_class:"Classe", key_school:"Scuola", key_topic:"Argomento",
+    key_address:"Indirizzo", key_email:"E-Mail", key_phone:"Telefono",
+    s2_eyebrow:"Sezione 2", s2_h2:"Natura di questo sito",
+    s2_p1:"Questo sito è un <strong>progetto educativo</strong> creato nell'ambito di un elaborato accademico presso la scuola Tschuggmall di Bressanone, Italia, per l'anno scolastico 2025/2026. È una risorsa informativa non commerciale prodotta esclusivamente a scopo didattico.",
+    s2_p2:"Il sito non persegue alcun interesse commerciale, non mostra pubblicità e non raccoglie né tratta dati personali al di là di quanto strettamente necessario per la funzionalità del modulo di contatto.",
+    s2_p3:"I voti e le valutazioni nella scorecard delle piattaforme sono <strong>valutazioni basate su evidenze</strong> derivate da ricerche pubblicate, risultati normativi e giornalismo investigativo. Non sono classificazioni ufficiali.",
+    s3_eyebrow:"Sezione 3", s3_h2:"Esclusione di responsabilità",
+    s3_p1:"Nonostante un'attenta revisione editoriale, l'autore non si assume alcuna responsabilità per l'accuratezza, la completezza o l'attualità delle informazioni fornite. Tutti i contenuti sono forniti esclusivamente a scopo informativo ed educativo.",
+    s3_ext_links:"Link esterni:",
+    s3_p2_text:"Questo sito può contenere link a siti web esterni. Al momento della creazione del link, queste pagine sono state verificate per contenuti illegali senza riscontrare problemi. L'autore non ha alcun controllo continuo sul contenuto delle pagine collegate. In caso di contenuti illegali, si prega di segnalarlo — il link verrà rimosso immediatamente.",
+    s3_p3:"Questo sito è stato creato in conformità con la legge italiana sui media digitali (D.Lgs. 70/2003) e le normative dell'Unione Europea applicabili, incluso il GDPR.",
+    s4_eyebrow:"Sezione 4", s4_h2:"Piattaforme Social Media",
+    s4_intro:"I seguenti link conducono alle homepage generali delle principali piattaforme di social media. Non si tratta di account personali — sono forniti solo a scopo di riferimento. L'autore non è affiliato né sponsorizzato da queste piattaforme.",
+    s5_eyebrow:"Sezione 5", s5_h2:"Diritto d'autore",
+    s5_p1:"Tutti i contenuti, il design e il codice prodotti per questo sito sono proprietà intellettuale di Rifat Rahman, creati per l'elaborato accademico presso la scuola Tschuggmall, 2026. La riproduzione, distribuzione o utilizzo di qualsiasi parte di questo sito senza previo consenso scritto non è consentita.",
+    s5_p2:"Dati statistici, risultati di ricerca e informazioni fattuali citate nel sito sono attribuiti alle loro fonti originali, elencate per intero nella",
+    s5_sources_link:"pagina Riferimenti",
+    qc_title:"Contatto rapido", qc_sub:"Informazioni di contatto diretto", key_location:"Posizione",
+    form_title:"Invia un messaggio", form_sub:"Ti risponderò via email",
+    form_name_label:"Il tuo nome", form_name_ph:"es. Anna Rossi",
+    form_email_label:"La tua E-Mail", form_email_ph:"tu@esempio.com",
+    form_subject_label:"Oggetto", form_subject_ph:"Riguardo a…",
+    form_msg_label:"Messaggio", form_msg_ph:"Scrivi il tuo messaggio qui…",
+    form_btn:"Invia messaggio",
+    form_success:"✓ Messaggio inviato — ti risponderò presto.",
+    form_error:"Per favore compila tutti i campi obbligatori.",
+    footer_note:"Progetto educativo — Elaborato accademico 2026. I voti nella scorecard delle piattaforme sono valutazioni basate su evidenze, non classificazioni ufficiali.",
+    foot_topics:"Tutti gli Argomenti", foot_refs:"Riferimenti", foot_quiz:"Quiz", foot_imprint:"Note legali",
+  },
+};
+
+/* ── switchLanguage ─────────────────────────────────────────────────── */
+function switchLanguage(lang) {
+  if (!TRANSLATIONS[lang]) return;
+  const t = TRANSLATIONS[lang];
+  document.documentElement.lang = lang;
+
+  // Text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key && t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (key && t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+  });
+
+  // Sync both selects
+  document.querySelectorAll('#langSelect, #langSelectMob').forEach(s => s.value = lang);
+
+  // Store form strings for JS use
+  window._i18n = t;
+
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+
+/* ── Auto-restore ───────────────────────────────────────────────────── */
+(function(){
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e) {}
+  switchLanguage(saved);
+})();
+
+/* ── Contact Form ───────────────────────────────────────────────────── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const t     = window._i18n || TRANSLATIONS.en;
+  const status = document.getElementById('formStatus');
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const msg     = document.getElementById('f-msg').value.trim();
+
+  // Basic validation
+  if (!name || !email || !msg) {
+    status.className = 'form-status error';
+    status.textContent = t.form_error;
+    return;
+  }
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    status.className = 'form-status error';
+    status.textContent = t.form_error;
+    return;
+  }
+
+  // Build mailto link and open email client
+  const subject = document.getElementById('f-subject').value.trim() || 'Message from CrimeOnline';
+  const body    = `Name: ${name}\nEmail: ${email}\n\n${msg}`;
+  const mailto  = `mailto:rifl.11.rhm@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+
+  // Show success
+  status.className = 'form-status success';
+  status.textContent = t.form_success;
+  document.getElementById('contactForm').reset();
+}
+</script>
+
+</body>
+</html>

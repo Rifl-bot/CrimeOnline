@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Cyberstalking &amp; Doxxing | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.14);
+  --teal:#0d9488;--teal-lt:#14b8a6;--teal-vivid:#5eead4;
+  --teal-glow:rgba(13,148,136,0.13);--teal-border:rgba(13,148,136,0.35);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);--border-red:rgba(192,57,43,0.38);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--teal);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+
+/* HERO */
+.topic-hero{position:relative;overflow:hidden;min-height:72vh;display:flex;align-items:flex-end;padding:0 80px 72px}
+.hero-img-slot{position:absolute;inset:0;background:var(--navy-mid);display:flex;align-items:center;justify-content:center}
+.placeholder-label{font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.13);letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(255,255,255,0.09);padding:10px 20px;border-radius:3px;pointer-events:none;user-select:none}
+/* Crosshair motif */
+.hero-target{position:absolute;right:12%;top:50%;transform:translateY(-52%);width:380px;height:380px;pointer-events:none;z-index:1}
+.target-ring{position:absolute;border-radius:50%;border:1px solid rgba(13,148,136,0.18);top:50%;left:50%;transform:translate(-50%,-50%)}
+.tr1{width:380px;height:380px}
+.tr2{width:260px;height:260px;border-color:rgba(13,148,136,0.24)}
+.tr3{width:160px;height:160px;border-color:rgba(13,148,136,0.32)}
+.tr4{width:72px;height:72px;border-color:rgba(13,148,136,0.45);background:rgba(13,148,136,0.05)}
+.target-crosshair{position:absolute;inset:0}
+.target-crosshair::before,.target-crosshair::after{content:'';position:absolute;background:rgba(13,148,136,0.2)}
+.target-crosshair::before{width:1px;height:100%;left:50%;transform:translateX(-50%)}
+.target-crosshair::after{height:1px;width:100%;top:50%;transform:translateY(-50%)}
+.hero-overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,1) 0%,rgba(10,14,26,0.7) 40%,rgba(10,14,26,0.2) 100%);pointer-events:none}
+.hero-overlay-teal{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 75% 30%,rgba(13,148,136,0.08),transparent 65%);pointer-events:none}
+.topic-hero-content{position:relative;z-index:2;max-width:780px}
+.topic-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-vivid);margin-bottom:22px}
+.topic-num-badge{background:var(--teal);color:var(--white);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700}
+.topic-hero h1{font-family:var(--font-d);font-size:clamp(38px,5.5vw,70px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--white);margin-bottom:22px}
+.topic-hero h1 em{font-style:italic;color:var(--teal-vivid)}
+.hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:660px;margin-bottom:36px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.05em;padding-top:24px;border-top:1px solid var(--border)}
+.hero-meta strong{color:var(--slate-lt);font-weight:500}
+@media(max-width:860px){.topic-hero{padding:80px 24px 52px;min-height:55vh}.hero-target{display:none}}
+
+/* STAT STRIP */
+.stat-strip{background:var(--navy-surface);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:28px 32px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:900;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-num .t{color:var(--teal-vivid)}
+.stat-num .r{color:var(--crimson)}
+.stat-lbl{font-size:12px;color:var(--slate);line-height:1.4;max-width:150px}
+.stat-src{display:block;font-size:10px;font-family:var(--font-m);color:rgba(100,116,139,0.55);margin-top:8px;letter-spacing:.04em}
+@media(max-width:720px){.stat-strip{grid-template-columns:1fr 1fr}.stat-cell:nth-child(2){border-right:none}.stat-cell:nth-child(3){border-top:1px solid var(--border)}.stat-cell:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* CONTENT */
+.content-section{padding:80px}
+.bg-mid{background:var(--navy-mid)}
+.section-eyebrow{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:14px;display:block}
+.section-eyebrow.red{color:var(--crimson)}
+.section-h2{font-family:var(--font-d);font-size:clamp(26px,3vw,42px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.prose{font-size:15px;color:var(--slate-lt);line-height:1.85;max-width:800px;margin-bottom:20px}
+.prose strong{color:var(--white);font-weight:600}
+.section-divider{height:1px;background:linear-gradient(90deg,var(--teal),transparent);margin:0 80px;opacity:.22}
+@media(max-width:860px){.content-section{padding:52px 24px}.section-divider{margin:0 24px}}
+
+/* PULL QUOTE */
+.pull-quote{margin:36px 0;padding:28px 36px;border-left:3px solid var(--teal);background:var(--teal-glow);border-radius:0 4px 4px 0}
+.pull-quote p{font-family:var(--font-d);font-size:20px;font-style:italic;color:var(--white);line-height:1.55;margin-bottom:10px}
+.pull-quote cite{font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+
+/* CALLOUT */
+.callout{margin:28px 0;padding:20px 26px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.callout.teal{border:1px solid var(--teal-border);background:var(--teal-glow)}
+.callout.red{border:1px solid var(--border-red);background:rgba(192,57,43,0.06)}
+.callout-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+.callout-icon.teal{background:var(--teal)}
+.callout-icon.red{background:var(--crimson)}
+.callout-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.callout-text strong{font-weight:600}
+.callout.teal .callout-text strong{color:var(--teal-vivid)}
+.callout.red .callout-text strong{color:#e89a90}
+
+/* TYPE CARDS */
+.type-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.type-card{background:var(--navy-mid);padding:32px 28px;position:relative;overflow:hidden;transition:background .2s}
+.type-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.type-card:hover{background:var(--navy-surface)}.type-card:hover::before{transform:scaleX(1)}
+.type-tag{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px}
+.type-card h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.type-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.type-badge{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.tb-teal{background:rgba(13,148,136,0.15);color:var(--teal-vivid)}
+.tb-red{background:rgba(192,57,43,0.15);color:#e89a90}
+@media(max-width:720px){.type-cards{grid-template-columns:1fr}}
+
+/* TOOLS GRID — classified document aesthetic */
+.tools-section{background:var(--navy-mid);padding:80px}
+.tools-header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:24px;flex-wrap:wrap}
+.classified-stamp{font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);border:2px solid var(--teal-border);padding:8px 20px;border-radius:3px;opacity:.7;transform:rotate(-1.5deg);flex-shrink:0;margin-top:8px}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--teal-border);border-radius:5px;overflow:hidden;margin-top:48px}
+.tool-card{background:rgba(13,148,136,0.03);padding:32px 30px;display:flex;gap:20px;align-items:flex-start;transition:background .2s;position:relative}
+.tool-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--teal);transform:scaleY(0);transform-origin:top;transition:transform .22s}
+.tool-card:hover{background:rgba(13,148,136,0.07)}.tool-card:hover::before{transform:scaleY(1)}
+.tool-icon{font-size:24px;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(13,148,136,0.08);border:1px solid var(--teal-border);border-radius:4px}
+.tool-name{font-size:15px;font-weight:600;color:var(--white);margin-bottom:3px}
+.tool-category{font-family:var(--font-m);font-size:10px;color:var(--teal-lt);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px}
+.tool-body p{font-size:13px;color:var(--slate);line-height:1.65}
+.tool-threat{display:flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--font-m);font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.threat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tt-high .threat-dot{background:var(--crimson)}
+.tt-high{color:#e89a90}
+.tt-med .threat-dot{background:var(--teal)}
+.tt-med{color:var(--teal-vivid)}
+@media(max-width:720px){.tools-grid{grid-template-columns:1fr}.tools-section{padding:52px 24px}}
+
+/* ANATOMY / HOW SPLIT */
+.how-split{display:grid;grid-template-columns:1fr 380px;gap:72px;align-items:start;margin-top:52px}
+.step-list{display:flex;flex-direction:column;gap:0}
+.step-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.step-item:last-child{border-bottom:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--teal-glow);border:1px solid var(--teal-border);color:var(--teal-vivid);font-family:var(--font-m);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-item h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.step-item p{font-size:13px;color:var(--slate);line-height:1.65}
+.img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.11);border-radius:5px;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(13,148,136,0.05),transparent);pointer-events:none}
+.slot-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,0.02);position:relative;z-index:1}
+.slot-title-el{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
+.slot-desc-el{font-size:12px;color:rgba(100,116,139,0.45);line-height:1.6;max-width:220px;text-align:center;position:relative;z-index:1}
+.slot-tag-el{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(13,148,136,0.5);border:1px dashed rgba(13,148,136,0.3);padding:4px 12px;border-radius:2px;position:relative;z-index:1}
+@media(max-width:860px){.how-split{grid-template-columns:1fr}.img-slot{min-height:200px}}
+
+/* DOXXING SPLIT */
+.doxx-split{display:grid;grid-template-columns:1fr 420px;min-height:600px}
+.doxx-text{padding:88px 80px;background:var(--navy);display:flex;flex-direction:column;justify-content:center}
+.doxx-text .prose{max-width:100%}
+.doxx-visual{background:var(--navy-surface);border-left:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:52px}
+.doxx-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(13,148,136,0.06),transparent 65%);pointer-events:none}
+.doxx-inner-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);width:300px;height:300px;border-radius:50%;border:1px solid rgba(13,148,136,0.15);pointer-events:none}
+.doxx-inner-ring::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;border:1px solid rgba(13,148,136,0.22)}
+.doxx-inner-ring::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;border:1px solid rgba(13,148,136,0.3);background:rgba(13,148,136,0.04)}
+.doxx-slot-label{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(13,148,136,0.4);border:1px dashed rgba(13,148,136,0.25);padding:5px 14px;border-radius:2px;position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;z-index:2}
+.doxx-stats{position:relative;z-index:2;display:flex;flex-direction:column;gap:0;width:100%}
+.dstat{padding:22px 0;border-bottom:1px solid var(--border)}
+.dstat:last-child{border-bottom:none}
+.dstat-num{font-family:var(--font-d);font-size:40px;font-weight:900;color:var(--white);line-height:1;margin-bottom:6px}
+.dstat-num .r{color:var(--crimson)}
+.dstat-desc{font-size:13px;color:var(--slate);line-height:1.55}
+@media(max-width:860px){.doxx-split{grid-template-columns:1fr}.doxx-visual{border-left:none;border-top:1px solid var(--border);min-height:320px;padding:40px 24px}.doxx-text{padding:52px 24px}}
+
+/* IMPACT GRID */
+.impact-section{background:var(--navy-mid)}
+.wide-img-slot{width:100%;height:260px;background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:48px 0;position:relative;overflow:hidden}
+.wide-img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(13,148,136,0.04),transparent);pointer-events:none}
+.wide-img-slot::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(13,148,136,0.025) 0px,rgba(13,148,136,0.025) 1px,transparent 1px,transparent 28px);pointer-events:none}
+.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:0}
+.impact-card{background:var(--navy-mid);padding:30px 28px;display:flex;gap:18px;align-items:flex-start;transition:background .2s}
+.impact-card:hover{background:var(--navy-surface)}
+.impact-card-icon{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ici-teal{background:var(--teal-glow);border:1px solid var(--teal-border)}
+.ici-red{background:rgba(192,57,43,0.1);border:1px solid var(--border-red)}
+.impact-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.impact-card p{font-size:13px;color:var(--slate);line-height:1.65}
+@media(max-width:640px){.impact-grid{grid-template-columns:1fr}}
+
+/* LEGAL */
+.legal-section{background:var(--navy)}
+.legal-items{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.legal-item{display:grid;grid-template-columns:200px 1fr;gap:48px;padding:36px 0;border-bottom:1px solid var(--border);align-items:start}
+.legal-item:last-child{border-bottom:none}
+.legal-flag{font-size:24px;margin-bottom:4px}
+.legal-name{font-size:14px;font-weight:600;color:var(--white)}
+.legal-act{font-family:var(--font-m);font-size:10px;color:var(--teal-lt);letter-spacing:.07em;text-transform:uppercase;margin-top:4px;line-height:1.5}
+.legal-status{display:inline-block;margin-top:8px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.ls-strong{background:rgba(22,163,74,0.15);color:#6ec97a}
+.ls-partial{background:rgba(217,119,6,0.15);color:#f0c97a}
+.ls-limited{background:rgba(192,57,43,0.15);color:#e89a90}
+.ls-new{background:rgba(13,148,136,0.15);color:var(--teal-vivid)}
+.legal-item h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.legal-item>div:last-child p{font-size:14px;color:var(--slate-lt);line-height:1.75}
+@media(max-width:720px){.legal-item{grid-template-columns:1fr}}
+
+/* PROTECTION */
+.protection-section{background:var(--navy-mid)}
+.prot-split{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:48px}
+.prot-col h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.check-list{display:flex;flex-direction:column;gap:14px}
+.check-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--slate-lt);line-height:1.65}
+.check-dot{width:18px;height:18px;border-radius:50%;border:1px solid var(--teal);color:var(--teal-vivid);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:2px;font-weight:700}
+.resource-cards{display:flex;flex-direction:column;gap:12px}
+.resource-card{background:var(--navy-surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+.resource-card:hover{border-color:rgba(255,255,255,0.15)}
+.resource-card-icon{width:32px;height:32px;border-radius:3px;background:var(--teal-glow);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.rc-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.rc-url{font-family:var(--font-m);font-size:11px;color:var(--teal-lt);letter-spacing:.03em;text-decoration:none}
+.rc-url:hover{color:var(--teal-vivid)}
+.rc-desc{font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5}
+@media(max-width:720px){.prot-split{grid-template-columns:1fr}}
+
+/* REFS */
+.ref-list{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.ref-item{font-size:13px;color:var(--slate);line-height:1.6;padding:12px 16px;background:rgba(255,255,255,0.02);border-left:2px solid rgba(255,255,255,0.07);border-radius:0 3px 3px 0;font-family:var(--font-m);letter-spacing:.02em;transition:border-color .2s}
+.ref-item:hover{border-color:rgba(13,148,136,0.4);color:var(--slate-lt)}
+
+/* QUIZ STRIP */
+.quiz-strip{background:var(--crimson);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.quiz-strip p{font-size:15px;font-weight:500;color:rgba(255,255,255,0.92)}
+.quiz-strip p span{font-weight:300;opacity:.8;font-size:13px}
+.btn-quiz{background:rgba(255,255,255,0.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background .2s;white-space:nowrap}
+.btn-quiz:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:600px){.quiz-strip{padding:24px}}
+
+/* TOPIC NAV */
+.topic-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.topic-nav-card{background:var(--navy-mid);padding:36px 48px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.topic-nav-card:hover{background:var(--navy-surface)}
+.topic-nav-card.next{text-align:right}
+.tnav-dir{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.tnav-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);line-height:1.2}
+.tnav-sub{font-size:13px;color:var(--slate)}
+@media(max-width:640px){.topic-nav{grid-template-columns:1fr}.topic-nav-card{padding:28px 24px}.topic-nav-card.next{text-align:left}}
+
+/* FOOTER */
+footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:380px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="../prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="../sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="../quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="../index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="../prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="../sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="../quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="../index.html#topics" id="bc-topics">Topics</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Cyberstalking &amp; Doxxing</span>
+</div>
+
+<!-- HERO -->
+<section class="topic-hero">
+  <div class="hero-img-slot">
+    <span class="placeholder-label"></span>
+  </div>
+  <!-- Crosshair / target motif -->
+  <div class="hero-target">
+    <div class="target-ring tr1"></div>
+    <div class="target-ring tr2"></div>
+    <div class="target-ring tr3"></div>
+    <div class="target-ring tr4"></div>
+    <div class="target-crosshair"></div>
+  </div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-teal"></div>
+  <div class="topic-hero-content">
+    <div class="topic-label">
+      <span class="topic-num-badge">05</span>
+      <span id="hero-series-lbl">Internet Crime Series &nbsp;&middot;&nbsp; Full Report</span>
+    </div>
+    <h1 id="hero-h1">Cyberstalking<br>&amp; <em>Doxxing</em></h1>
+    <p class="hero-lead" id="hero-lead">Digital surveillance, coordinated harassment, and the deliberate exposure of private information to incite harm &mdash; how the internet enables one person to make another&rsquo;s life unbearable, and why it is so difficult to stop.</p>
+    <div class="hero-meta">
+      <span><strong id="meta1-lbl">Severity:</strong>&nbsp;<span id="meta1-val">High</span></span>
+      <span><strong id="meta2-lbl">Primary victims:</strong>&nbsp;<span id="meta2-val">Women, journalists, activists, minorities</span></span>
+      <span><strong id="meta3-lbl">Tools:</strong>&nbsp;<span id="meta3-val">Stalkerware &middot; OSINT &middot; Coordinated brigading</span></span>
+      <span><strong id="meta4-lbl">Legal status:</strong>&nbsp;<span id="meta4-val">Criminalised in most jurisdictions &mdash; enforcement weak</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">1 <span class="t">in 6</span></div><div class="stat-lbl" id="stat1-lbl">women have experienced stalking in their lifetime, a majority online</div><span class="stat-src">CDC, 2022</span></div>
+  <div class="stat-cell"><div class="stat-num">48<span class="t">%</span></div><div class="stat-lbl" id="stat2-lbl">of victims of cyberstalking knew the perpetrator personally</div><span class="stat-src">Cyber Civil Rights Initiative, 2021</span></div>
+  <div class="stat-cell"><div class="stat-num">30<span class="t">k</span>+</div><div class="stat-lbl" id="stat3-lbl">stalkerware applications active on devices globally, per Kaspersky research</div><span class="stat-src">Kaspersky, 2023</span></div>
+  <div class="stat-cell"><div class="stat-num">2<span class="r">x</span></div><div class="stat-lbl" id="stat4-lbl">more likely: domestic violence victims whose partner uses stalkerware face more severe physical abuse</div><span class="stat-src">NNEDV, 2022</span></div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s1-eye">Overview</span>
+  <div class="pull-quote">
+    <p id="pq-text">&ldquo;She couldn&rsquo;t prove he was watching. But she knew. Every time she moved, something changed. A delivery cancelled. A job offer withdrawn. A friend who suddenly stopped talking to her.&rdquo;</p>
+    <cite id="pq-cite">Composite account &mdash; Cyber Civil Rights Initiative case documentation</cite>
+  </div>
+  <p class="prose" id="s1p1">Cyberstalking and doxxing are among the most intimate forms of online crime &mdash; not intimate in the sense of closeness, but in the sense of <strong>targeted personal violation</strong>. Unlike fraud, piracy, or even NCII, these crimes are often about one person&rsquo;s sustained campaign against another specific individual. They are crimes of control, power, and often obsession.</p>
+  <p class="prose" id="s1p2"><strong>Cyberstalking</strong> describes the use of digital technology &mdash; social media monitoring, location tracking, spyware, impersonation, and harassment &mdash; to surveil, intimidate, or control another person. <strong>Doxxing</strong> (from &lsquo;documents&rsquo; &mdash; d0x) is the deliberate public exposure of a target&rsquo;s private identifying information &mdash; home address, workplace, phone number, family members &mdash; typically with the intent to enable or incite offline harassment or violence.</p>
+  <p class="prose" id="s1p3">These crimes are deeply gendered. Women are disproportionately targeted, particularly by current or former intimate partners. Journalists, activists, and members of minority communities face coordinated doxxing and harassment campaigns from organised online mobs. The internet has not created stalking &mdash; but it has given stalkers tools of surveillance and reach previously available only to intelligence services.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S2: THREE TYPES -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="s2-eye">Section 2</span>
+  <h2 class="section-h2" id="s2-h2">Three Distinct Forms of<br>Online Targeting</h2>
+  <p class="prose" id="s2-intro">Cyberstalking and doxxing present in three distinct patterns, each with different perpetrators, victims, and operational characteristics.</p>
+  <div class="type-cards">
+    <div class="type-card">
+      <div class="type-tag" id="tc1-tag">01 &mdash; Most Common</div>
+      <h3 id="tc1-h3">Intimate Partner Cyberstalking</h3>
+      <p id="tc1-p">Current or former romantic partners using digital tools to surveil, control, or intimidate &mdash; monitoring location via shared accounts or covertly installed tracking apps; logging calls and messages; using smart home devices as surveillance infrastructure; impersonating the victim online. This form is closely linked to domestic abuse patterns and frequently escalates to physical violence. Stalkerware &mdash; commercial spyware marketed for parental monitoring but widely used for intimate partner surveillance &mdash; is the primary technical tool.</p>
+      <span class="type-badge tb-teal" id="tc1-badge">Intimate partner context</span>
+    </div>
+    <div class="type-card">
+      <div class="type-tag" id="tc2-tag">02 &mdash; Growing Threat</div>
+      <h3 id="tc2-h3">Coordinated Mob Harassment</h3>
+      <p id="tc2-p">Organised online groups &mdash; often without any prior connection to the target &mdash; coordinating harassment campaigns against individuals, typically journalists, feminists, LGBTQ+ activists, or people who have said something controversial online. Campaigns involve mass-reporting accounts, flooding inboxes with threats, contacting employers, and in more extreme cases, swatting &mdash; calling in false armed threat reports to send police to a target&rsquo;s home. GamerGate (2014) was an early high-profile example; such campaigns continue at scale.</p>
+      <span class="type-badge tb-red" id="tc2-badge">Organised mob &mdash; coordinated online</span>
+    </div>
+    <div class="type-card">
+      <div class="type-tag" id="tc3-tag">03 &mdash; Most Dangerous</div>
+      <h3 id="tc3-h3">Doxxing with Intent to Harm</h3>
+      <p id="tc3-p">The deliberate publication of a target&rsquo;s private information &mdash; address, workplace, phone number, family details &mdash; with the explicit intention of enabling others to cause them harm. Doxxing is frequently a precursor to or component of both of the above patterns, but is also used independently by lone actors. When doxxing includes home addresses and is published to communities known for violence, the threat to physical safety is direct and immediate. Journalists, politicians, and activists have been murdered following doxxing.</p>
+      <span class="type-badge tb-red" id="tc3-badge">Highest physical danger risk</span>
+    </div>
+  </div>
+</section>
+
+<!-- S3: TOOLS OF THE TRADE -->
+<section class="tools-section">
+  <div class="tools-header-row">
+    <div>
+      <span class="section-eyebrow" id="s3-eye">Section 3 &mdash; Signature Feature</span>
+      <h2 class="section-h2" id="s3-h2">Tools of the Trade:<br>How Cyberstalkers Operate</h2>
+    </div>
+    <div class="classified-stamp" id="classified-stamp">Methods Documented</div>
+  </div>
+  <p class="prose" id="s3-intro">The technical methods available to cyberstalkers range from commercial off-the-shelf products to OSINT (open-source intelligence) techniques originally developed for professional investigation and journalism. Understanding them is essential for protection.</p>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F4F1;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn1">Stalkerware / Spyware</div>
+        <div class="tool-category" id="tc1-cat">Commercial surveillance software</div>
+        <p id="tp1">Applications marketed as &lsquo;parental monitoring&rsquo; or &lsquo;employee tracking&rsquo; tools that, when installed on a device, covertly transmit location data, call logs, SMS and messaging app content, and browser history to a remote account. Products like FlexiSpy, mSpy, and Hoverwatch are legal to purchase and designed to operate invisibly &mdash; no icon visible on the home screen. They are widely documented as tools of intimate partner surveillance and abuse. The Coalition Against Stalkerware reports consistent year-on-year increases in detections.</p>
+        <div class="tool-threat tt-high"><div class="threat-dot"></div><span id="tt1">High threat &mdash; primary intimate partner tool</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F4CD;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn2">Location Tracking</div>
+        <div class="tool-category" id="tc2-cat">Physical surveillance</div>
+        <p id="tp2">GPS tracking devices &mdash; small, battery-powered, and easily hidden in vehicles or bags &mdash; can transmit real-time location data. AirTags (Apple) and similar Bluetooth trackers have been widely documented in intimate partner stalking cases. Apple has implemented anti-stalking notifications that alert users if an unknown AirTag is detected moving with them &mdash; but the response time and reliability of these notifications has been criticised by victim advocates.</p>
+        <div class="tool-threat tt-high"><div class="threat-dot"></div><span id="tt2">High threat &mdash; physical location exposure</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F50D;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn3">OSINT (Open-Source Intelligence)</div>
+        <div class="tool-category" id="tc3-cat">Data aggregation from public sources</div>
+        <p id="tp3">OSINT techniques aggregate publicly available data &mdash; social media profiles, electoral rolls, company registrations, property records, forum posts, photo metadata &mdash; to build detailed profiles of targets. Tools like Maltego and various people-search aggregator sites can reveal home addresses, workplaces, family networks, and daily routines from entirely public information. A skilled OSINT researcher can build a comprehensive dossier on almost any private individual in hours.</p>
+        <div class="tool-threat tt-med"><div class="threat-dot"></div><span id="tt3">Medium&ndash;High &mdash; used in doxxing campaigns</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F4AC;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn4">Account Impersonation</div>
+        <div class="tool-category" id="tc4-cat">Identity-based harassment</div>
+        <p id="tp4">Creating fake social media accounts in the target&rsquo;s name &mdash; using their photographs and personal information &mdash; to post damaging content; contact their colleagues, employers, or family; or expose them to harassment from the impersonator&rsquo;s followers. Impersonation is frequently combined with doxxing in coordinated campaigns. Some perpetrators use fake accounts to catfish targets&rsquo; contacts or to report the legitimate account as fake, triggering platform removal.</p>
+        <div class="tool-threat tt-high"><div class="threat-dot"></div><span id="tt4">High threat &mdash; reputational and social harm</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F3E0;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn5">Swatting</div>
+        <div class="tool-category" id="tc5-cat">Emergency services abuse</div>
+        <p id="tp5">Swatting involves placing false emergency calls &mdash; typically armed hostage situations or bomb threats &mdash; to send heavily armed police to a target&rsquo;s home or workplace. It has resulted in deaths: in 2017, Andrew Finch was killed by police responding to a swatting call placed by a third party following an online gaming dispute. Swatting is a federal crime in the US carrying up to 20 years imprisonment, but perpetrators frequently use VoIP services and foreign infrastructure to obscure their identity.</p>
+        <div class="tool-threat tt-high"><div class="threat-dot"></div><span id="tt5">Critical &mdash; documented fatalities</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#x1F4CA;</div>
+      <div class="tool-body">
+        <div class="tool-name" id="tn6">Smart Home Exploitation</div>
+        <div class="tool-category" id="tc6-cat">IoT surveillance</div>
+        <p id="tp6">Smart home devices &mdash; connected cameras, speakers (Amazon Echo, Google Nest), thermostats, and doorbells &mdash; represent a growing surveillance vector in intimate partner abuse. Where devices are linked to shared accounts, an abusive partner who retains account access after a relationship ends can monitor the home remotely, listen through microphones, or control door locks and security systems. Cases are increasingly documented by domestic abuse organisations.</p>
+        <div class="tool-threat tt-med"><div class="threat-dot"></div><span id="tt6">Medium&ndash;High &mdash; rising in domestic abuse cases</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S4: ANATOMY OF A CAMPAIGN -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s4-eye">Section 4</span>
+  <h2 class="section-h2" id="s4-h2">The Anatomy of a Campaign</h2>
+  <p class="prose" id="s4-intro">Cyberstalking and coordinated harassment campaigns follow recognisable patterns &mdash; escalating in intensity, breadth, and platform spread as they develop.</p>
+  <div class="how-split">
+    <div class="step-list">
+      <div class="step-item"><div class="step-num">1</div><div><h4 id="si1-h4">Target Selection and Initial Surveillance</h4><p id="si1-p">The campaign begins with identifying and studying the target. In intimate partner cases this is already known; in mob harassment it typically follows a public triggering event. The perpetrator maps the target&rsquo;s social media presence, identifies personal information, and locates points of vulnerability &mdash; employer, family, home location, daily patterns.</p></div></div>
+      <div class="step-item"><div class="step-num">2</div><div><h4 id="si2-h4">Information Aggregation and Doxxing Preparation</h4><p id="si2-p">Using OSINT tools and people-search aggregators, the attacker compiles a dossier &mdash; address, phone number, family members&rsquo; details, workplace, financial information where accessible. Data brokers sell comprehensive profiles for as little as $1&ndash;5. Electoral roll data, company directorships, and property records are often public. This phase may take hours to days.</p></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><h4 id="si3-h4">Amplification and Mobilisation</h4><p id="si3-p">In coordinated campaigns, the dossier and a call to action are posted to platforms with communities known for harassment &mdash; 4chan boards, Telegram channels, specific subreddits, or Discord servers. The crowd does the work: hundreds or thousands of accounts contact the target simultaneously across every platform and channel.</p></div></div>
+      <div class="step-item"><div class="step-num">4</div><div><h4 id="si4-h4">Platform-Hopping and Persistence</h4><p id="si4-p">When content is removed or accounts banned on one platform, campaigns migrate to others. Perpetrators create new accounts or use anonymous email services. The asymmetry is severe: a victim must request removal on every platform individually while the attacker requires only one active post to continue generating harm.</p></div></div>
+      <div class="step-item"><div class="step-num">5</div><div><h4 id="si5-h4">Real-World Escalation</h4><p id="si5-p">The most severe cases escalate beyond the digital: physical surveillance of the target&rsquo;s home; contact with their employer designed to trigger dismissal; swatting calls; physical threats delivered to the address. The online campaign creates a fear environment that makes the victim&rsquo;s real-world movements feel unsafe even without confirmed physical surveillance.</p></div></div>
+    </div>
+    <div class="img-slot">
+      <img src="../media/img/bullied.png"/>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S5: DOXXING FEATURE SPLIT -->
+<section class="doxx-split">
+  <div class="doxx-text">
+    <span class="section-eyebrow red" id="s5-eye">Section 5 &mdash; Critical Feature</span>
+    <h2 class="section-h2" id="s5-h2">Doxxing: When Privacy<br>Becomes a Weapon</h2>
+    <p class="prose" id="s5p1">Doxxing is the act of researching and publicly publishing private or identifying information about an individual &mdash; typically a home address, phone number, employer, family members&rsquo; details, or financial information &mdash; with the intent that others will use that information to cause harm.</p>
+    <p class="prose" id="s5p2">The word derives from the hacker slang &lsquo;d0x&rsquo; (documents). What began as a tactic within hacker communities to expose rival hackers&rsquo; real identities has evolved into a mainstream weapon deployed against journalists, activists, politicians, marginalised communities, and increasingly ordinary private individuals who attract online controversy.</p>
+    <div class="callout red"><div class="callout-icon red">!</div><div class="callout-text" id="s5-callout"><strong>The physical danger is direct:</strong> When a home address is published alongside a call to action on a community known for violence, the threat is not abstract. Multiple journalists, activists, and public figures have been subjected to in-person violence, arson, and murder following doxxing. The 2017 murder of Heather Heyer at Charlottesville followed weeks of online targeting of participants by far-right groups.</div></div>
+    <p class="prose" id="s5p3">Doxxing&rsquo;s legal status is complicated because much of the information involved &mdash; addresses, employer details, family connections &mdash; is technically public. The aggregation of public information into a targeting profile that enables harassment is the harm, but many jurisdictions struggle to criminalise it without also criminalising journalism. Specialist anti-doxxing laws are still relatively rare, though the UK&rsquo;s Online Safety Act 2023 and several US state laws have begun to address this gap.</p>
+    <p class="prose" id="s5p4">Data brokers &mdash; companies that aggregate and sell personal information &mdash; are a critical infrastructure element of doxxing. Sites like Spokeo, Whitepages, and BeenVerified sell comprehensive personal profiles. Victims can submit opt-out requests to these services, but the process is time-consuming, often temporary, and must be repeated across dozens of individual services.</p>
+  </div>
+  <div class="doxx-visual">
+    <div class="doxx-stats">
+      <div class="dstat"><div class="dstat-num">$<span class="r">1&ndash;5</span></div><div class="dstat-desc" id="ds1-desc">cost of a comprehensive personal dossier from commercial data brokers &mdash; address, employer, family, financials</div></div>
+      <div class="dstat"><div class="dstat-num">46<span class="r">%</span></div><div class="dstat-desc" id="ds2-desc">of doxxing victims report receiving threats or experiencing in-person harassment as a direct result</div></div>
+      <div class="dstat"><div class="dstat-num">531<span class="r">+</span></div><div class="dstat-desc" id="ds3-desc">data broker opt-out requests needed to meaningfully reduce a personal data footprint &mdash; per Privacy Rights Clearinghouse</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: IMPACT -->
+<section class="content-section impact-section">
+  <span class="section-eyebrow" id="s6-eye">Section 6</span>
+  <h2 class="section-h2" id="s6-h2">Impact on Victims</h2>
+  <p class="prose" id="s6-intro">The harms of cyberstalking and doxxing span the psychological, professional, financial, and physical &mdash; and unlike many internet crimes, they rarely end cleanly.</p>
+  <div class="wide-img-slot">
+    <img src="../media/img/bullied2.png"/>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card"><div class="impact-card-icon ici-teal">&#x1F9E0;</div><div><h4 id="ic1-h4">PTSD and Hypervigilance</h4><p id="ic1-p">Victims report persistent hypervigilance, intrusive thoughts, and inability to feel safe in public &mdash; consistent with complex PTSD. The knowledge that someone is actively monitoring their movements creates a state of chronic threat response that does not resolve while the campaign continues, and often persists long after.</p></div></div>
+    <div class="impact-card"><div class="impact-card-icon ici-red">&#x1F3E0;</div><div><h4 id="ic2-h4">Forced Relocation</h4><p id="ic2-p">When a home address is doxxed and threats follow, many victims feel they have no choice but to move. Relocation is expensive, disruptive, and in high-profile cases may need to be repeated. Some journalists and activists have moved multiple times, or arranged for family members to relocate, following doxxing campaigns.</p></div></div>
+    <div class="impact-card"><div class="impact-card-icon ici-teal">&#x1F4BC;</div><div><h4 id="ic3-h4">Professional Destruction</h4><p id="ic3-p">Coordinated mass-reporting campaigns can result in platform bans that remove years of professional work and audience. Campaigns that contact employers or publish damaging information can result in job loss. Journalists and academics have had positions threatened or removed following targeted harassment campaigns.</p></div></div>
+    <div class="impact-card"><div class="impact-card-icon ici-red">&#x1F507;</div><div><h4 id="ic4-h4">Self-Censorship and Chilling Effects</h4><p id="ic4-p">Perhaps the broadest societal harm: the knowledge that speaking on certain topics will trigger targeted harassment causes individuals &mdash; particularly women, journalists, and minority voices &mdash; to self-censor or withdraw entirely from public discourse. Research by UNESCO found that 73% of female journalists surveyed had experienced online violence, and many had moderated their reporting as a result.</p></div></div>
+    <div class="impact-card"><div class="impact-card-icon ici-teal">&#x1F46A;</div><div><h4 id="ic5-h4">Harm to Family Members</h4><p id="ic5-p">Doxxing campaigns frequently target victims&rsquo; family members &mdash; parents, siblings, children &mdash; whose information appears in public records alongside the victim. Family members who have played no role in any controversy may receive threats or be listed in published dossiers, extending the harm beyond the individual.</p></div></div>
+    <div class="impact-card"><div class="impact-card-icon ici-red">&#x1F4C9;</div><div><h4 id="ic6-h4">Financial Harm</h4><p id="ic6-p">Beyond relocation costs, victims face expenses for security measures (VPNs, PO boxes, data broker opt-outs, legal assistance), loss of income from professional disruption, and the financial cost of pursuing legal action in jurisdictions with inadequate civil remedies. Some victims have spent tens of thousands pursuing harassment cases with limited outcomes.</p></div></div>
+  </div>
+</section>
+
+<!-- S7: LEGAL FRAMEWORKS -->
+<section class="content-section legal-section">
+  <span class="section-eyebrow" id="s7-eye">Section 7</span>
+  <h2 class="section-h2" id="s7-h2">Legal Frameworks and<br>the Enforcement Gap</h2>
+  <p class="prose" id="s7-intro">Cyberstalking is criminalised in most developed jurisdictions. The enforcement gap &mdash; between the existence of laws and their effective application &mdash; remains substantial.</p>
+  <div class="legal-items">
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1FA;&#x1F1F8;</div><div class="legal-name" id="ln1">United States</div><div class="legal-act" id="la1">Interstate Stalking Act + State Laws</div><span class="legal-status ls-partial" id="ls1">Federal + Patchy State Coverage</span></div>
+      <div><h3 id="lh1">Interstate Stalking Act and VAWA</h3><p id="lp1">Federal law criminalises cyberstalking that crosses state lines (18 U.S.C. &sect; 2261A), carrying up to five years imprisonment. The Violence Against Women Act (VAWA) has been updated multiple times to strengthen cyberstalking provisions. However, all 50 states have their own stalking and harassment laws with varying definitions and thresholds &mdash; creating significant inconsistency. Many law enforcement agencies lack specialist cybercrime units capable of investigating digital stalking cases, and victim reports of police dismissiveness are widespread in the research literature.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1EC;&#x1F1E7;</div><div class="legal-name" id="ln2">United Kingdom</div><div class="legal-act" id="la2">Protection from Harassment Act 1997 + Online Safety Act 2023</div><span class="legal-status ls-strong" id="ls2">Relatively Comprehensive</span></div>
+      <div><h3 id="lh2">Protection Orders and New Online Provisions</h3><p id="lp2">The UK&rsquo;s Protection from Harassment Act 1997, strengthened by the Protection of Freedoms Act 2012, criminalises stalking specifically &mdash; not just harassment &mdash; with penalties of up to 10 years for stalking involving fear of violence. The Online Safety Act 2023 added provisions on cyberflashing and harassment. Stalking Protection Orders can be issued by civil courts, offering a lower evidential threshold than criminal proceedings. Implementation quality varies significantly between police forces.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F1EA;&#x1F1FA;</div><div class="legal-name" id="ln3">European Union</div><div class="legal-act" id="la3">Directive on Combating Violence Against Women (2024)</div><span class="legal-status ls-new" id="ls3">New Harmonisation Framework</span></div>
+      <div><h3 id="lh3">EU Directive on Violence Against Women</h3><p id="lp3">The EU&rsquo;s 2024 Directive on Combating Violence Against Women for the first time establishes minimum standards across member states for criminalising cyber violence &mdash; including non-consensual sharing of intimate images, cyberstalking, and cyber harassment. Member states have until 2027 to transpose the directive into national law, creating a harmonised minimum baseline across the bloc.</p></div>
+    </div>
+
+    <div class="legal-item">
+      <div><div class="legal-flag">&#x1F310;</div><div class="legal-name" id="ln4">Key Challenges</div><div class="legal-act" id="la4">Cross-jurisdictional &middot; Evidence &middot; Resources</div><span class="legal-status ls-limited" id="ls4">Enforcement Remains Weak</span></div>
+      <div><h3 id="lh4">Why Laws Are Not Enough</h3><p id="lp4">Even in jurisdictions with strong cyberstalking laws, successful prosecutions are rare. Perpetrators use VPNs, anonymous email services, and offshore platforms to evade identification. Digital evidence &mdash; screenshots, IP logs, metadata &mdash; must be preserved rapidly before platforms delete it, but victims often do not know what they need or how to preserve it. Many police forces treat cyberstalking as low-priority. The combination of technical complexity, jurisdictional fragmentation, and under-resourced enforcement creates a substantial impunity gap.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S8: PROTECTION -->
+<section class="content-section protection-section">
+  <span class="section-eyebrow" id="s8-eye">Section 8</span>
+  <h2 class="section-h2" id="s8-h2">Protection and Support</h2>
+  <p class="prose" id="s8-intro">Primary responsibility for cyberstalking rests with perpetrators and with platforms that fail to enforce their own policies. These individual measures can reduce exposure and support recovery.</p>
+  <div class="prot-split">
+    <div class="prot-col">
+      <h3 id="prot-h3">Reducing Your Digital Footprint</h3>
+      <div class="check-list">
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci1">Submit opt-out requests to major data broker sites &mdash; Spokeo, Whitepages, BeenVerified, and others. Services like DeleteMe can automate this at scale. Repeat regularly as records re-appear.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci2">Use a PO box or mail forwarding service rather than your home address for any public registrations, company directorships, or electoral roll entries where possible.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci3">Audit your social media privacy settings &mdash; particularly location data attached to photographs, check-ins, and tagged posts. Review what is visible to non-followers or the public.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci4">Check devices for stalkerware: unexpected battery drain, unusual data usage, and overheating when idle can indicate monitoring software. Tools like Certo (iOS) and Malwarebytes (Android) can scan for known stalkerware.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci5">Audit shared digital accounts &mdash; streaming services, smart home apps, location-sharing features &mdash; after relationship changes. Revoke access to any account or device the other party may still have credentials for.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci6">If you believe you are being targeted, document everything with timestamps before reporting. Screenshots, URLs, and preserved page archives provide evidence that disappears when content is deleted.</span></div>
+      </div>
+    </div>
+    <div class="prot-col">
+      <h3 id="res-h3">Support Resources</h3>
+      <div class="resource-cards">
+        <div class="resource-card"><div class="resource-card-icon">&#x1F1EC;&#x1F1E7;</div><div><div class="rc-name">Suzy Lamplugh Trust (UK)</div><a href="https://www.suzylamplugh.org" class="rc-url" target="_blank">suzylamplugh.org</a><div class="rc-desc" id="rc1-desc">UK&rsquo;s leading personal safety charity. Runs the National Stalking Helpline and provides specialist advice for stalking victims.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F1FA;&#x1F1F8;</div><div><div class="rc-name">Cyber Civil Rights Initiative</div><a href="https://cybercivilrights.org" class="rc-url" target="_blank">cybercivilrights.org</a><div class="rc-desc" id="rc2-desc">24/7 crisis support, legal referrals, and guidance on evidence preservation for cyberstalking and harassment victims.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F310;</div><div><div class="rc-name">Coalition Against Stalkerware</div><a href="https://stopstalkerware.org" class="rc-url" target="_blank">stopstalkerware.org</a><div class="rc-desc" id="rc3-desc">Resources and guidance for victims who suspect stalkerware is installed on their device &mdash; including safe removal advice.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F4F0;</div><div><div class="rc-name">Reporters Without Borders</div><a href="https://rsf.org" class="rc-url" target="_blank">rsf.org</a><div class="rc-desc" id="rc4-desc">Digital security resources and emergency support specifically for journalists facing targeted online harassment and doxxing.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES — kept in English -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="ref-eye">References</span>
+  <h2 class="section-h2" id="ref-h2">Sources and Further Reading</h2>
+  <div class="ref-list">
+    <div class="ref-item">CDC. (2022). <em>National Intimate Partner and Sexual Violence Survey.</em> Centers for Disease Control and Prevention.</div>
+    <div class="ref-item">Coalition Against Stalkerware. (2023). <em>Annual Report on Stalkerware Detection.</em> stopstalkerware.org.</div>
+    <div class="ref-item">Cyber Civil Rights Initiative. (2021). <em>2021 CCRI Online Harassment Survey.</em> cybercivilrights.org.</div>
+    <div class="ref-item">Douglas, H., Harris, B. A., &amp; Dragiewicz, M. (2019). Technology-facilitated Domestic and Family Violence. <em>British Journal of Criminology, 59(3),</em> 551&ndash;570.</div>
+    <div class="ref-item">Kaspersky. (2023). <em>Stalkerware: Numbers and Trends.</em> kaspersky.com.</div>
+    <div class="ref-item">National Network to End Domestic Violence (NNEDV). (2022). <em>Safety Net: Technology Safety.</em> nnedv.org.</div>
+    <div class="ref-item">UNESCO. (2021). <em>The Chilling: Global Trends in Online Violence Against Women Journalists.</em> unesco.org.</div>
+    <div class="ref-item">Woodlock, D. (2017). The Abuse of Technology in Domestic Violence and Stalking. <em>Violence Against Women, 23(5),</em> 584&ndash;602.</div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p id="quiz-strip-p">Test your knowledge on cyberstalking and all other internet crime topics <span>&mdash; 10 randomised questions, no time limit.</span></p>
+  <a href="../quiz/index.html" class="btn-quiz" id="quiz-strip-btn">Take the Quiz &nbsp;&rarr;</a>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav">
+  <a href="hate-speech.html" class="topic-nav-card">
+    <span class="tnav-dir" id="tnav1-dir">&#x2190; Previous Topic</span>
+    <span class="tnav-title" id="tnav1-title">Hate Speech &amp; Radicalisation</span>
+    <span class="tnav-sub" id="tnav1-sub">04 &mdash; Algorithms, extremism, and real-world violence</span>
+  </a>
+  <a href="financial-crime.html" class="topic-nav-card next">
+    <span class="tnav-dir" id="tnav2-dir">Next Topic &nbsp;&rarr;</span>
+    <span class="tnav-title" id="tnav2-title">Financial Cybercrime</span>
+    <span class="tnav-sub" id="tnav2-sub">06 &mdash; Phishing, ransomware, and the billion-dollar scam industry</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="../index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="../sources.html"      id="footer-src">References</a>
+    <a href="../prevention.html"   id="footer-prev">Prevention</a>
+    <a href="../index.html#topics" id="footer-top">All Topics</a>
+    <a href="../quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="../imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+var T = {};
+
+T.en = {
+  page_title:'Cyberstalking & Doxxing | CrimeOnline',
+  nav_topics:'Topics', nav_prev:'Prevention', nav_sources:'Sources', nav_cta:'Take the Quiz \u2197',
+  mob_home:'Home', mob_lang:'Language',
+  bc_home:'Home', bc_topics:'Topics', bc_current:'Cyberstalking & Doxxing',
+  hero_series:'Internet Crime Series \u00b7 Full Report',
+  hero_h1:'Cyberstalking<br>&amp; <em>Doxxing</em>',
+  hero_lead:'Digital surveillance, coordinated harassment, and the deliberate exposure of private information to incite harm \u2014 how the internet enables one person to make another\u2019s life unbearable, and why it is so difficult to stop.',
+  meta1_lbl:'Severity:', meta1_val:'High',
+  meta2_lbl:'Primary victims:', meta2_val:'Women, journalists, activists, minorities',
+  meta3_lbl:'Tools:', meta3_val:'Stalkerware \u00b7 OSINT \u00b7 Coordinated brigading',
+  meta4_lbl:'Legal status:', meta4_val:'Criminalised in most jurisdictions \u2014 enforcement weak',
+  stat1_lbl:'women have experienced stalking in their lifetime, a majority online',
+  stat2_lbl:'of victims of cyberstalking knew the perpetrator personally',
+  stat3_lbl:'stalkerware applications active on devices globally, per Kaspersky research',
+  stat4_lbl:'more likely: domestic violence victims whose partner uses stalkerware face more severe physical abuse',
+  s1_eye:'Overview',
+  pq_text:'\u201cShe couldn\u2019t prove he was watching. But she knew. Every time she moved, something changed. A delivery cancelled. A job offer withdrawn. A friend who suddenly stopped talking to her.\u201d',
+  pq_cite:'Composite account \u2014 Cyber Civil Rights Initiative case documentation',
+  s1p1:'Cyberstalking and doxxing are among the most intimate forms of online crime \u2014 not intimate in the sense of closeness, but in the sense of <strong>targeted personal violation</strong>. Unlike fraud, piracy, or even NCII, these crimes are often about one person\u2019s sustained campaign against another specific individual. They are crimes of control, power, and often obsession.',
+  s1p2:'<strong>Cyberstalking</strong> describes the use of digital technology \u2014 social media monitoring, location tracking, spyware, impersonation, and harassment \u2014 to surveil, intimidate, or control another person. <strong>Doxxing</strong> (from \u2018documents\u2019 \u2014 d0x) is the deliberate public exposure of a target\u2019s private identifying information \u2014 home address, workplace, phone number, family members \u2014 typically with the intent to enable or incite offline harassment or violence.',
+  s1p3:'These crimes are deeply gendered. Women are disproportionately targeted, particularly by current or former intimate partners. Journalists, activists, and members of minority communities face coordinated doxxing and harassment campaigns from organised online mobs. The internet has not created stalking \u2014 but it has given stalkers tools of surveillance and reach previously available only to intelligence services.',
+  s2_eye:'Section 2', s2_h2:'Three Distinct Forms of<br>Online Targeting',
+  s2_intro:'Cyberstalking and doxxing present in three distinct patterns, each with different perpetrators, victims, and operational characteristics.',
+  tc1_tag:'01 \u2014 Most Common', tc1_h3:'Intimate Partner Cyberstalking',
+  tc1_p:'Current or former romantic partners using digital tools to surveil, control, or intimidate \u2014 monitoring location via shared accounts or covertly installed tracking apps; logging calls and messages; using smart home devices as surveillance infrastructure; impersonating the victim online. This form is closely linked to domestic abuse patterns and frequently escalates to physical violence. Stalkerware \u2014 commercial spyware marketed for parental monitoring but widely used for intimate partner surveillance \u2014 is the primary technical tool.',
+  tc1_badge:'Intimate partner context',
+  tc2_tag:'02 \u2014 Growing Threat', tc2_h3:'Coordinated Mob Harassment',
+  tc2_p:'Organised online groups \u2014 often without any prior connection to the target \u2014 coordinating harassment campaigns against individuals, typically journalists, feminists, LGBTQ+ activists, or people who have said something controversial online. Campaigns involve mass-reporting accounts, flooding inboxes with threats, contacting employers, and in more extreme cases, swatting \u2014 calling in false armed threat reports to send police to a target\u2019s home.',
+  tc2_badge:'Organised mob \u2014 coordinated online',
+  tc3_tag:'03 \u2014 Most Dangerous', tc3_h3:'Doxxing with Intent to Harm',
+  tc3_p:'The deliberate publication of a target\u2019s private information \u2014 address, workplace, phone number, family details \u2014 with the explicit intention of enabling others to cause them harm. When doxxing includes home addresses and is published to communities known for violence, the threat to physical safety is direct and immediate. Journalists, politicians, and activists have been murdered following doxxing.',
+  tc3_badge:'Highest physical danger risk',
+  s3_eye:'Section 3 \u2014 Signature Feature', s3_h2:'Tools of the Trade:<br>How Cyberstalkers Operate',
+  classified_stamp:'Methods Documented',
+  s3_intro:'The technical methods available to cyberstalkers range from commercial off-the-shelf products to OSINT (open-source intelligence) techniques originally developed for professional investigation. Understanding them is essential for protection.',
+  tn1:'Stalkerware / Spyware', tc1_cat:'Commercial surveillance software',
+  tp1:'Applications marketed as \u2018parental monitoring\u2019 or \u2018employee tracking\u2019 tools that, when installed on a device, covertly transmit location data, call logs, SMS and messaging app content, and browser history to a remote account. Products like FlexiSpy, mSpy, and Hoverwatch are designed to operate invisibly. The Coalition Against Stalkerware reports consistent year-on-year increases in detections.',
+  tt1:'High threat \u2014 primary intimate partner tool',
+  tn2:'Location Tracking', tc2_cat:'Physical surveillance',
+  tp2:'GPS tracking devices \u2014 small, battery-powered, and easily hidden in vehicles or bags \u2014 can transmit real-time location data. AirTags and similar Bluetooth trackers have been widely documented in intimate partner stalking cases. Apple has implemented anti-stalking notifications that alert users if an unknown AirTag is detected moving with them.',
+  tt2:'High threat \u2014 physical location exposure',
+  tn3:'OSINT (Open-Source Intelligence)', tc3_cat:'Data aggregation from public sources',
+  tp3:'OSINT techniques aggregate publicly available data \u2014 social media profiles, electoral rolls, company registrations, property records, photo metadata \u2014 to build detailed profiles of targets. Tools like Maltego and various people-search aggregator sites can reveal home addresses, workplaces, family networks, and daily routines from entirely public information.',
+  tt3:'Medium\u2013High \u2014 used in doxxing campaigns',
+  tn4:'Account Impersonation', tc4_cat:'Identity-based harassment',
+  tp4:'Creating fake social media accounts in the target\u2019s name \u2014 using their photographs and personal information \u2014 to post damaging content; contact their colleagues, employers, or family; or expose them to harassment. Some perpetrators use fake accounts to catfish targets\u2019 contacts or to report the legitimate account as fake, triggering platform removal.',
+  tt4:'High threat \u2014 reputational and social harm',
+  tn5:'Swatting', tc5_cat:'Emergency services abuse',
+  tp5:'Swatting involves placing false emergency calls \u2014 typically armed hostage situations or bomb threats \u2014 to send heavily armed police to a target\u2019s home or workplace. In 2017, Andrew Finch was killed by police responding to a swatting call. Swatting is a federal crime in the US carrying up to 20 years imprisonment, but perpetrators frequently use VoIP services to obscure their identity.',
+  tt5:'Critical \u2014 documented fatalities',
+  tn6:'Smart Home Exploitation', tc6_cat:'IoT surveillance',
+  tp6:'Smart home devices \u2014 connected cameras, speakers, thermostats, and doorbells \u2014 represent a growing surveillance vector in intimate partner abuse. Where devices are linked to shared accounts, an abusive partner who retains account access after a relationship ends can monitor the home remotely, listen through microphones, or control door locks and security systems.',
+  tt6:'Medium\u2013High \u2014 rising in domestic abuse cases',
+  s4_eye:'Section 4', s4_h2:'The Anatomy of a Campaign',
+  s4_intro:'Cyberstalking and coordinated harassment campaigns follow recognisable patterns \u2014 escalating in intensity, breadth, and platform spread as they develop.',
+  si1_h4:'Target Selection and Initial Surveillance', si1_p:'The campaign begins with identifying and studying the target. In intimate partner cases this is already known; in mob harassment it typically follows a public triggering event. The perpetrator maps the target\u2019s social media presence, identifies personal information, and locates points of vulnerability \u2014 employer, family, home location, daily patterns.',
+  si2_h4:'Information Aggregation and Doxxing Preparation', si2_p:'Using OSINT tools and people-search aggregators, the attacker compiles a dossier \u2014 address, phone number, family members\u2019 details, workplace. Data brokers sell comprehensive profiles for as little as $1\u20135. Electoral roll data, company directorships, and property records are often public.',
+  si3_h4:'Amplification and Mobilisation', si3_p:'In coordinated campaigns, the dossier and a call to action are posted to platforms with communities known for harassment \u2014 4chan boards, Telegram channels, specific subreddits, or Discord servers. Hundreds or thousands of accounts contact the target simultaneously across every platform.',
+  si4_h4:'Platform-Hopping and Persistence', si4_p:'When content is removed or accounts banned on one platform, campaigns migrate to others. Perpetrators create new accounts or use anonymous email services. A victim must request removal on every platform individually while the attacker requires only one active post to continue generating harm.',
+  si5_h4:'Real-World Escalation', si5_p:'The most severe cases escalate beyond the digital: physical surveillance of the target\u2019s home; contact with their employer designed to trigger dismissal; swatting calls; physical threats delivered to the address.',
+  slot2_title:'Image Slot 2', slot2_desc:'Your illustration of a harassment campaign escalation', slot2_tag:'Add your artwork here',
+  s5_eye:'Section 5 \u2014 Critical Feature', s5_h2:'Doxxing: When Privacy<br>Becomes a Weapon',
+  s5p1:'Doxxing is the act of researching and publicly publishing private or identifying information about an individual \u2014 typically a home address, phone number, employer, family members\u2019 details, or financial information \u2014 with the intent that others will use that information to cause harm.',
+  s5p2:'The word derives from the hacker slang \u2018d0x\u2019 (documents). What began as a tactic within hacker communities to expose rival hackers\u2019 real identities has evolved into a mainstream weapon deployed against journalists, activists, politicians, and marginalised communities.',
+  s5_callout:'<strong>The physical danger is direct:</strong> When a home address is published alongside a call to action on a community known for violence, the threat is not abstract. Multiple journalists, activists, and public figures have been subjected to in-person violence, arson, and murder following doxxing. The 2017 murder of Heather Heyer at Charlottesville followed weeks of online targeting by far-right groups.',
+  s5p3:'Doxxing\u2019s legal status is complicated because much of the information involved \u2014 addresses, employer details, family connections \u2014 is technically public. The aggregation of public information into a targeting profile that enables harassment is the harm, but many jurisdictions struggle to criminalise it without also criminalising journalism.',
+  s5p4:'Data brokers \u2014 companies that aggregate and sell personal information \u2014 are a critical infrastructure element of doxxing. Sites like Spokeo, Whitepages, and BeenVerified sell comprehensive personal profiles. Victims can submit opt-out requests, but the process is time-consuming and must be repeated across dozens of services.',
+  slot3_lbl:'Image slot 3 \u2014 add your illustration',
+  ds1_desc:'cost of a comprehensive personal dossier from commercial data brokers \u2014 address, employer, family, financials',
+  ds2_desc:'of doxxing victims report receiving threats or experiencing in-person harassment as a direct result',
+  ds3_desc:'data broker opt-out requests needed to meaningfully reduce a personal data footprint \u2014 per Privacy Rights Clearinghouse',
+  s6_eye:'Section 6', s6_h2:'Impact on Victims',
+  s6_intro:'The harms of cyberstalking and doxxing span the psychological, professional, financial, and physical \u2014 and unlike many internet crimes, they rarely end cleanly.',
+  slot4_title:'Image Slot 4', slot4_desc:'Illustration evoking surveillance, isolation, or the feeling of being watched', slot4_tag:'Add your artwork here',
+  ic1_h4:'PTSD and Hypervigilance', ic1_p:'Victims report persistent hypervigilance, intrusive thoughts, and inability to feel safe in public \u2014 consistent with complex PTSD. The knowledge that someone is actively monitoring their movements creates a state of chronic threat response that does not resolve while the campaign continues, and often persists long after.',
+  ic2_h4:'Forced Relocation', ic2_p:'When a home address is doxxed and threats follow, many victims feel they have no choice but to move. Relocation is expensive, disruptive, and in high-profile cases may need to be repeated. Some journalists and activists have moved multiple times following doxxing campaigns.',
+  ic3_h4:'Professional Destruction', ic3_p:'Coordinated mass-reporting campaigns can result in platform bans that remove years of professional work and audience. Campaigns that contact employers or publish damaging information can result in job loss. Journalists and academics have had positions threatened following targeted harassment campaigns.',
+  ic4_h4:'Self-Censorship and Chilling Effects', ic4_p:'Perhaps the broadest societal harm: the knowledge that speaking on certain topics will trigger targeted harassment causes individuals \u2014 particularly women, journalists, and minority voices \u2014 to self-censor or withdraw entirely from public discourse. Research by UNESCO found that 73% of female journalists surveyed had experienced online violence.',
+  ic5_h4:'Harm to Family Members', ic5_p:'Doxxing campaigns frequently target victims\u2019 family members \u2014 parents, siblings, children \u2014 whose information appears in public records alongside the victim. Family members who have played no role in any controversy may receive threats or be listed in published dossiers.',
+  ic6_h4:'Financial Harm', ic6_p:'Beyond relocation costs, victims face expenses for security measures (VPNs, PO boxes, data broker opt-outs, legal assistance), loss of income from professional disruption, and the financial cost of pursuing legal action in jurisdictions with inadequate civil remedies.',
+  s7_eye:'Section 7', s7_h2:'Legal Frameworks and<br>the Enforcement Gap',
+  s7_intro:'Cyberstalking is criminalised in most developed jurisdictions. The enforcement gap \u2014 between the existence of laws and their effective application \u2014 remains substantial.',
+  ln1:'United States', la1:'Interstate Stalking Act + State Laws', ls1:'Federal + Patchy State Coverage',
+  lh1:'Interstate Stalking Act and VAWA',
+  lp1:'Federal law criminalises cyberstalking that crosses state lines (18 U.S.C. \u00a7 2261A), carrying up to five years imprisonment. The Violence Against Women Act (VAWA) has been updated multiple times to strengthen cyberstalking provisions. However, all 50 states have their own stalking and harassment laws with varying definitions \u2014 creating significant inconsistency. Many law enforcement agencies lack specialist cybercrime units, and victim reports of police dismissiveness are widespread in the research literature.',
+  ln2:'United Kingdom', la2:'Protection from Harassment Act 1997 + Online Safety Act 2023', ls2:'Relatively Comprehensive',
+  lh2:'Protection Orders and New Online Provisions',
+  lp2:'The UK\u2019s Protection from Harassment Act 1997, strengthened by the Protection of Freedoms Act 2012, criminalises stalking specifically \u2014 not just harassment \u2014 with penalties of up to 10 years for stalking involving fear of violence. The Online Safety Act 2023 added provisions on cyberflashing and harassment. Stalking Protection Orders can be issued by civil courts, offering a lower evidential threshold than criminal proceedings.',
+  ln3:'European Union', la3:'Directive on Combating Violence Against Women (2024)', ls3:'New Harmonisation Framework',
+  lh3:'EU Directive on Violence Against Women',
+  lp3:'The EU\u2019s 2024 Directive on Combating Violence Against Women for the first time establishes minimum standards across member states for criminalising cyber violence \u2014 including non-consensual sharing of intimate images, cyberstalking, and cyber harassment. Member states have until 2027 to transpose the directive into national law.',
+  ln4:'Key Challenges', la4:'Cross-jurisdictional \u00b7 Evidence \u00b7 Resources', ls4:'Enforcement Remains Weak',
+  lh4:'Why Laws Are Not Enough',
+  lp4:'Even in jurisdictions with strong cyberstalking laws, successful prosecutions are rare. Perpetrators use VPNs, anonymous email services, and offshore platforms to evade identification. Digital evidence \u2014 screenshots, IP logs, metadata \u2014 must be preserved rapidly before platforms delete it. Many police forces treat cyberstalking as low-priority. The combination of technical complexity, jurisdictional fragmentation, and under-resourced enforcement creates a substantial impunity gap.',
+  s8_eye:'Section 8', s8_h2:'Protection and Support',
+  s8_intro:'Primary responsibility for cyberstalking rests with perpetrators and with platforms that fail to enforce their own policies. These individual measures can reduce exposure and support recovery.',
+  prot_h3:'Reducing Your Digital Footprint', res_h3:'Support Resources',
+  ci1:'Submit opt-out requests to major data broker sites \u2014 Spokeo, Whitepages, BeenVerified, and others. Services like DeleteMe can automate this at scale. Repeat regularly as records re-appear.',
+  ci2:'Use a PO box or mail forwarding service rather than your home address for any public registrations, company directorships, or electoral roll entries where possible.',
+  ci3:'Audit your social media privacy settings \u2014 particularly location data attached to photographs, check-ins, and tagged posts. Review what is visible to non-followers or the public.',
+  ci4:'Check devices for stalkerware: unexpected battery drain, unusual data usage, and overheating when idle can indicate monitoring software. Tools like Certo (iOS) and Malwarebytes (Android) can scan for known stalkerware.',
+  ci5:'Audit shared digital accounts \u2014 streaming services, smart home apps, location-sharing features \u2014 after relationship changes. Revoke access to any account or device the other party may still have credentials for.',
+  ci6:'If you believe you are being targeted, document everything with timestamps before reporting. Screenshots, URLs, and preserved page archives provide evidence that disappears when content is deleted.',
+  rc1_desc:'UK\u2019s leading personal safety charity. Runs the National Stalking Helpline and provides specialist advice for stalking victims.',
+  rc2_desc:'24/7 crisis support, legal referrals, and guidance on evidence preservation for cyberstalking and harassment victims.',
+  rc3_desc:'Resources and guidance for victims who suspect stalkerware is installed on their device \u2014 including safe removal advice.',
+  rc4_desc:'Digital security resources and emergency support specifically for journalists facing targeted online harassment and doxxing.',
+  ref_eye:'References', ref_h2:'Sources and Further Reading',
+  quiz_p:'Test your knowledge on cyberstalking and all other internet crime topics',
+  quiz_span:'\u2014 10 randomised questions, no time limit.',
+  quiz_btn:'Take the Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Previous Topic', tnav1_title:'Hate Speech & Radicalisation', tnav1_sub:'04 \u2014 Algorithms, extremism, and real-world violence',
+  tnav2_dir:'Next Topic \u00a0\u2192', tnav2_title:'Financial Cybercrime', tnav2_sub:'06 \u2014 Phishing, ransomware, and the billion-dollar scam industry',
+  footer_note:'Educational project \u2014 Academic submission 2026. All statistics sourced and cited above.',
+  footer_src:'References', footer_prev:'Prevention', footer_top:'All Topics', footer_quiz:'Quiz', foot_imprint:"Imprint",
+};
+
+/* ── GERMAN ───────────────────────────────────────────── */
+T.de = {
+  page_title:'Cyberstalking & Doxxing | CrimeOnline',
+  nav_topics:'Themen', nav_prev:'Pr\u00e4vention', nav_sources:'Quellen', nav_cta:'Quiz starten \u2197',
+  mob_home:'Startseite', mob_lang:'Sprache',
+  bc_home:'Startseite', bc_topics:'Themen', bc_current:'Cyberstalking & Doxxing',
+  hero_series:'Serie Internetkriminalit\u00e4t \u00b7 Vollst\u00e4ndiger Bericht',
+  hero_h1:'Cyberstalking<br>&amp; <em>Doxxing</em>',
+  hero_lead:'Digitale \u00dcberwachung, koordinierte Bel\u00e4stigung und die vors\u00e4tzliche Preisgabe privater Informationen, um Schaden anzurichten \u2014 wie das Internet es erm\u00f6glicht, dass eine Person das Leben einer anderen unertr\u00e4glich macht, und warum es so schwer zu stoppen ist.',
+  meta1_lbl:'Schwere:', meta1_val:'Hoch',
+  meta2_lbl:'Prim\u00e4re Opfer:', meta2_val:'Frauen, Journalisten, Aktivisten, Minderheiten',
+  meta3_lbl:'Werkzeuge:', meta3_val:'Stalkerware \u00b7 OSINT \u00b7 Koordinierte Bel\u00e4stigung',
+  meta4_lbl:'Rechtsstatus:', meta4_val:'In den meisten Rechtsordnungen kriminalisiert \u2014 Strafverfolgung schwach',
+  stat1_lbl:'Frauen haben in ihrem Leben Stalking erlebt, der Gro\u00dfteil davon online',
+  stat2_lbl:'der Opfer von Cyberstalking kannten den T\u00e4ter pers\u00f6nlich',
+  stat3_lbl:'auf Ger\u00e4ten weltweit aktive Stalkerware-Anwendungen laut Kaspersky-Forschung',
+  stat4_lbl:'h\u00f6here Wahrscheinlichkeit: Opfer h\u00e4uslicher Gewalt, deren Partner Stalkerware einsetzt, erleiden schwerere k\u00f6rperliche Misshandlung',
+  s1_eye:'\u00dcberblick',
+  pq_text:'\u201eSie konnte nicht beweisen, dass er zuschaut. Aber sie wusste es. Jedes Mal, wenn sie sich bewegte, \u00e4nderte sich etwas. Eine stornierte Lieferung. Ein zur\u00fcckgezogenes Jobangebot. Eine Freundin, die pl\u00f6tzlich aufh\u00f6rte, mit ihr zu reden.\u201c',
+  pq_cite:'Zusammengesetzter Bericht \u2014 Fallbeispiele der Cyber Civil Rights Initiative',
+  s1p1:'Cyberstalking und Doxxing geh\u00f6ren zu den intimsten Formen der Online-Kriminalit\u00e4t \u2014 nicht intim im Sinne von N\u00e4he, sondern im Sinne von <strong>gezielter pers\u00f6nlicher Verletzung</strong>. Im Gegensatz zu Betrug, Piraterie oder sogar NCII geht es bei diesen Verbrechen oft um die anhaltende Kampagne einer Person gegen eine andere spezifische Person.',
+  s1p2:'<strong>Cyberstalking</strong> beschreibt den Einsatz digitaler Technologie \u2014 Social-Media-\u00dcberwachung, Ortungsverfolgung, Spyware, Identit\u00e4tsdiebstahl und Bel\u00e4stigung \u2014 um eine andere Person zu \u00fcberwachen, einzusch\u00fcchtern oder zu kontrollieren. <strong>Doxxing</strong> (von Hacker-Slang \u2018d0x\u2019/Dokumente) ist die vors\u00e4tzliche \u00f6ffentliche Preisgabe der privaten Identifizierungsdaten eines Ziels.',
+  s1p3:'Diese Verbrechen sind stark geschlechtsspezifisch. Frauen sind unverh\u00e4ltnism\u00e4\u00dfig stark betroffen, insbesondere durch aktuelle oder ehemalige Intimpartner. Das Internet hat Stalking nicht erfunden \u2014 aber es hat T\u00e4tern \u00dcberwachungstools und Reichweite gegeben, die fr\u00fcher nur Geheimdiensten zur Verf\u00fcgung standen.',
+  s2_eye:'Abschnitt 2', s2_h2:'Drei verschiedene Formen<br>des Online-Targetings',
+  s2_intro:'Cyberstalking und Doxxing treten in drei unterschiedlichen Mustern auf, jedes mit verschiedenen T\u00e4tern, Opfern und operationellen Merkmalen.',
+  tc1_tag:'01 \u2014 Am h\u00e4ufigsten', tc1_h3:'Cyberstalking durch Intimpartner',
+  tc1_p:'Aktuelle oder ehemalige Romantikpartner nutzen digitale Werkzeuge, um zu \u00fcberwachen, zu kontrollieren oder einzusch\u00fcchtern \u2014 \u00dcberwachung des Standorts \u00fcber gemeinsame Konten oder heimlich installierte Tracking-Apps; Aufzeichnung von Anrufen und Nachrichten; Nutzung von Smart-Home-Ger\u00e4ten als \u00dcberwachungsinfrastruktur; Auftreten als das Opfer online. Diese Form ist eng mit dem Muster h\u00e4uslicher Gewalt verbunden und eskaliert h\u00e4ufig zu k\u00f6rperlicher Gewalt.',
+  tc1_badge:'Intimpartner-Kontext',
+  tc2_tag:'02 \u2014 Wachsende Bedrohung', tc2_h3:'Koordinierte Mob-Bel\u00e4stigung',
+  tc2_p:'Organisierte Online-Gruppen \u2014 oft ohne vorherigen Kontakt mit dem Ziel \u2014 koordinieren Bel\u00e4stigungskampagnen gegen Einzelpersonen, typischerweise Journalisten, Feministinnen, LGBTQ+-Aktivisten oder Menschen, die etwas Umstrittenes online gesagt haben. Kampagnen umfassen Massen-Berichterstattung von Konten, \u00dcberflutung von Posteing\u00e4ngen mit Drohungen, Kontaktaufnahme mit Arbeitgebern und in extremeren F\u00e4llen Swatting.',
+  tc2_badge:'Organisierter Mob \u2014 koordiniert online',
+  tc3_tag:'03 \u2014 Gef\u00e4hrlichste', tc3_h3:'Doxxing mit Schaden-Absicht',
+  tc3_p:'Die vors\u00e4tzliche Ver\u00f6ffentlichung privater Informationen eines Ziels \u2014 Adresse, Arbeitsplatz, Telefonnummer, Familiendetails \u2014 mit der ausdr\u00fccklichen Absicht, andere dazu zu bringen, ihnen Schaden zuzuf\u00fcgen. Wenn Doxxing Wohnadressen enth\u00e4lt und in Gemeinschaften ver\u00f6ffentlicht wird, die f\u00fcr Gewalt bekannt sind, ist die Bedrohung f\u00fcr die k\u00f6rperliche Sicherheit direkt und unmittelbar.',
+  tc3_badge:'H\u00f6chstes physisches Gef\u00e4hrdungsrisiko',
+  s3_eye:'Abschnitt 3 \u2014 Signaturelement', s3_h2:'Werkzeuge des Handwerks:<br>Wie Cyberstalker vorgehen',
+  classified_stamp:'Methoden Dokumentiert',
+  s3_intro:'Die technischen Methoden, die Cyberstalkern zur Verf\u00fcgung stehen, reichen von kommerziellen Off-the-Shelf-Produkten bis hin zu OSINT-Techniken (Open-Source-Intelligence). Das Verst\u00e4ndnis davon ist f\u00fcr den Schutz unabdingbar.',
+  tn1:'Stalkerware / Spyware', tc1_cat:'Kommerzielle \u00dcberwachungssoftware',
+  tp1:'Anwendungen, die als \u201eelterliche \u00dcberwachungs-\u201c oder \u201eMitarbeiter-Tracking-Tools\u201c vermarktet werden, die nach der Installation auf einem Ger\u00e4t verdeckt Standortdaten, Anrufprotokolle, SMS-Inhalt und Browserverlauf an ein Remote-Konto \u00fcbertragen. Sie sind daf\u00fcr konzipiert, unsichtbar zu funktionieren. Die Koalition gegen Stalkerware berichtet von einem konsistenten j\u00e4hrlichen Anstieg der Erkennungen.',
+  tt1:'Hohes Risiko \u2014 prim\u00e4res Werkzeug bei Intimpartnern',
+  tn2:'Standortverfolgung', tc2_cat:'Physische \u00dcberwachung',
+  tp2:'GPS-Tracking-Ger\u00e4te \u2014 klein, batteriebetrieben und leicht in Fahrzeugen oder Taschen zu verstecken \u2014 k\u00f6nnen Echtzeit-Standortdaten \u00fcbertragen. AirTags und \u00e4hnliche Bluetooth-Tracker wurden weit verbreitet in F\u00e4llen von Intimpartner-Stalking dokumentiert.',
+  tt2:'Hohes Risiko \u2014 physische Standortexposition',
+  tn3:'OSINT (Open-Source-Intelligence)', tc3_cat:'Datenaggregation aus \u00f6ffentlichen Quellen',
+  tp3:'OSINT-Techniken aggregieren \u00f6ffentlich verf\u00fcgbare Daten \u2014 Social-Media-Profile, W\u00e4hlerlisten, Unternehmensregistrierungen, Immobilienunterlagen, Forum-Posts, Foto-Metadaten \u2014 um detaillierte Profile von Zielen zu erstellen. Ein erfahrener OSINT-Forscher kann innerhalb von Stunden ein umfassendes Dossier \u00fcber fast jede Privatperson aus ausschlie\u00dflich \u00f6ffentlichen Informationen erstellen.',
+  tt3:'Mittel\u2013Hoch \u2014 bei Doxxing-Kampagnen eingesetzt',
+  tn4:'Account-Impersonation', tc4_cat:'Identit\u00e4tsbasierte Bel\u00e4stigung',
+  tp4:'Das Erstellen gef\u00e4lschter Social-Media-Konten im Namen des Ziels \u2014 mit dessen Fotos und pers\u00f6nlichen Informationen \u2014 um sch\u00e4dliche Inhalte zu posten; Kollegen, Arbeitgeber oder Familie zu kontaktieren; oder sie der Bel\u00e4stigung auszusetzen. Einige T\u00e4ter nutzen gef\u00e4lschte Konten, um das legitime Konto als gef\u00e4lscht zu melden, was zur Plattformentfernung f\u00fchrt.',
+  tt4:'Hohes Risiko \u2014 Reputations- und sozialer Schaden',
+  tn5:'Swatting', tc5_cat:'Missbrauch von Notfalldiensten',
+  tp5:'Swatting umfasst das Stellen falscher Notrufe \u2014 typischerweise bewaffnete Geiselnahmen oder Bombendrohungen \u2014 um schwer bewaffnete Polizei zum Heim oder Arbeitsplatz eines Ziels zu schicken. 2017 wurde Andrew Finch von der Polizei get\u00f6tet, die auf einen Swatting-Anruf reagierte. Swatting ist ein Bundesverbrechen in den USA mit bis zu 20 Jahren Gef\u00e4ngnis.',
+  tt5:'Kritisch \u2014 dokumentierte Todesf\u00e4lle',
+  tn6:'Smart-Home-Ausnutzung', tc6_cat:'IoT-\u00dcberwachung',
+  tp6:'Smart-Home-Ger\u00e4te \u2014 verbundene Kameras, Lautsprecher, Thermostate und T\u00fcrklingeln \u2014 stellen einen wachsenden \u00dcberwachungsvektor bei Intimpartner-Missbrauch dar. Wo Ger\u00e4te mit gemeinsamen Konten verbunden sind, kann ein missbrauchender Partner das Haus aus der Ferne \u00fcberwachen, durch Mikrofone h\u00f6ren oder T\u00fcrschl\u00f6sser und Sicherheitssysteme steuern.',
+  tt6:'Mittel\u2013Hoch \u2014 zunehmend bei h\u00e4uslicher Gewalt',
+  s4_eye:'Abschnitt 4', s4_h2:'Die Anatomie einer Kampagne',
+  s4_intro:'Cyberstalking und koordinierte Bel\u00e4stigungskampagnen folgen erkennbaren Mustern \u2014 eskalierend an Intensit\u00e4t, Breite und Plattformverbreitung.',
+  si1_h4:'Zielauswahl und anf\u00e4ngliche \u00dcberwachung', si1_p:'Die Kampagne beginnt damit, das Ziel zu identifizieren und zu studieren. In Intimpartner-F\u00e4llen ist es bereits bekannt; bei Mob-Bel\u00e4stigung folgt es typischerweise einem \u00f6ffentlichen Ausl\u00f6seereignis. Der T\u00e4ter kartiert die Social-Media-Pr\u00e4senz des Ziels, identifiziert pers\u00f6nliche Informationen und findet Schwachstellen.',
+  si2_h4:'Informationsaggregation und Doxxing-Vorbereitung', si2_p:'Mithilfe von OSINT-Tools und Personensuche-Aggregatoren stellt der Angreifer ein Dossier zusammen \u2014 Adresse, Telefonnummer, Familiendetails, Arbeitsplatz. Daten-Broker verkaufen umfassende Profile f\u00fcr nur 1\u20135 Dollar. W\u00e4hlerlisten, Unternehmensf\u00fchrerschaften und Grundst\u00fccksdaten sind oft \u00f6ffentlich.',
+  si3_h4:'Amplifikation und Mobilisierung', si3_p:'In koordinierten Kampagnen werden das Dossier und ein Aufruf zum Handeln auf Plattformen mit Gemeinschaften ver\u00f6ffentlicht, die f\u00fcr Bel\u00e4stigung bekannt sind \u2014 4chan-Boards, Telegram-Kan\u00e4le, bestimmte Subreddits oder Discord-Server. Hunderte oder Tausende von Konten kontaktieren das Ziel gleichzeitig.',
+  si4_h4:'Plattform-Wechsel und Persistenz', si4_p:'Wenn Inhalte auf einer Plattform entfernt oder Konten gesperrt werden, wandern Kampagnen auf andere \u00fcber. Ein Opfer muss auf jeder Plattform einzeln eine Entfernung beantragen, w\u00e4hrend der Angreifer nur einen aktiven Post ben\u00f6tigt.',
+  si5_h4:'Reale Eskalation', si5_p:'Die schwersten F\u00e4lle eskalieren \u00fcber das Digitale hinaus: physische \u00dcberwachung des Hauses; Kontaktaufnahme mit dem Arbeitgeber, um Entlassung auszul\u00f6sen; Swatting-Anrufe; physische Drohungen, die an die Adresse zugestellt werden.',
+  slot2_title:'Bildplatz 2', slot2_desc:'Ihre Illustration einer Bel\u00e4stigungskampagneskalation', slot2_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  s5_eye:'Abschnitt 5 \u2014 Kritisches Feature', s5_h2:'Doxxing: Wenn Privatsph\u00e4re<br>zur Waffe wird',
+  s5p1:'Doxxing ist der Akt der Recherche und \u00f6ffentlichen Ver\u00f6ffentlichung privater oder identifizierender Informationen \u00fcber eine Person \u2014 typischerweise eine Wohnadresse, Telefonnummer, Arbeitgeber, Familiendetails oder finanzielle Informationen \u2014 mit der Absicht, dass andere diese Informationen nutzen, um Schaden zu verursachen.',
+  s5p2:'Das Wort leitet sich vom Hacker-Slang \u2018d0x\u2019 (Dokumente) ab. Was als Taktik in Hacker-Gemeinschaften begann, hat sich zu einer Massenwaffe gegen Journalisten, Aktivisten, Politiker und marginalisierte Gemeinschaften entwickelt.',
+  s5_callout:'<strong>Die k\u00f6rperliche Gefahr ist direkt:</strong> Wenn eine Wohnadresse zusammen mit einem Aufruf zum Handeln in einer Gemeinschaft ver\u00f6ffentlicht wird, die f\u00fcr Gewalt bekannt ist, ist die Bedrohung nicht abstrakt. Mehrere Journalisten, Aktivisten und \u00f6ffentliche Figuren wurden nach Doxxing-Aktionen k\u00f6rperlich angegriffen, wurden Brandanschl\u00e4gen ausgesetzt oder ermordet.',
+  s5p3:'Der Rechtsstatus des Doxxings ist kompliziert, da viele der betreffenden Informationen \u2014 Adressen, Arbeitgeberdetails, Familienverbindungen \u2014 technisch gesehen \u00f6ffentlich sind. Spezialisierte Anti-Doxxing-Gesetze sind noch relativ selten.',
+  s5p4:'Datenbr\u00f6ker \u2014 Unternehmen, die pers\u00f6nliche Informationen aggregieren und verkaufen \u2014 sind ein kritisches Infrastrukturelement des Doxxings. Opfer k\u00f6nnen Opt-out-Anfragen einreichen, aber der Prozess ist zeitaufw\u00e4ndig und muss \u00fcber Dutzende von Diensten wiederholt werden.',
+  slot3_lbl:'Bildplatz 3 \u2014 f\u00fcgen Sie Ihre Illustration hinzu',
+  ds1_desc:'Kosten f\u00fcr ein umfassendes pers\u00f6nliches Dossier von kommerziellen Datenbr\u00f6kern \u2014 Adresse, Arbeitgeber, Familie, Finanzen',
+  ds2_desc:'der Doxxing-Opfer berichten, dass sie infolgedessen Drohungen oder pers\u00f6nliche Bel\u00e4stigungen erhalten haben',
+  ds3_desc:'Opt-out-Anfragen an Datenbr\u00f6ker erforderlich, um einen pers\u00f6nlichen Daten-Fu\u00dfabdruck wesentlich zu reduzieren',
+  s6_eye:'Abschnitt 6', s6_h2:'Auswirkungen auf Opfer',
+  s6_intro:'Die Sch\u00e4den durch Cyberstalking und Doxxing erstrecken sich \u00fcber das Psychologische, Berufliche, Finanzielle und K\u00f6rperliche \u2014 und enden im Gegensatz zu vielen Internetkriminalit\u00e4ten selten sauber.',
+  slot4_title:'Bildplatz 4', slot4_desc:'Illustration, die \u00dcberwachung, Isolation oder das Gef\u00fchl, beobachtet zu werden, hervorruft', slot4_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  ic1_h4:'PTBS und Hypervigilanz', ic1_p:'Opfer berichten von anhaltender Hypervigilanz, intrusiven Gedanken und der Unf\u00e4higkeit, sich in der \u00d6ffentlichkeit sicher zu f\u00fchlen \u2014 konsistent mit komplexer PTBS. Das Wissen, dass jemand ihre Bewegungen aktiv \u00fcberwacht, erzeugt einen chronischen Bedrohungszustand.',
+  ic2_h4:'Erzwungene Umsiedlung', ic2_p:'Wenn eine Wohnadresse ver\u00f6ffentlicht wird und Drohungen folgen, f\u00fchlen viele Opfer, dass sie keine andere Wahl haben, als umzuziehen. Umsiedlung ist teuer und aufsehenerregend, und in hochrangigen F\u00e4llen muss sie m\u00f6glicherweise wiederholt werden.',
+  ic3_h4:'Berufliche Zerst\u00f6rung', ic3_p:'Koordinierte Massen-Berichterstattungskampagnen k\u00f6nnen zu Plattformsperren f\u00fchren, die jahrelange professionelle Arbeit und Zuschauerschaft entfernen. Kampagnen, die Arbeitgeber kontaktieren, k\u00f6nnen zum Jobverlust f\u00fchren.',
+  ic4_h4:'Selbstzensur und Einsch\u00fcchterungseffekte', ic4_p:'Vielleicht der breiteste gesellschaftliche Schaden: Das Wissen, dass das Sprechen zu bestimmten Themen gezielte Bel\u00e4stigungskampagnen ausl\u00f6sen wird, veranlasst Einzelpersonen \u2014 insbesondere Frauen, Journalisten und Minderheitenstimmen \u2014 zur Selbstzensur.',
+  ic5_h4:'Schaden f\u00fcr Familienmitglieder', ic5_p:'Doxxing-Kampagnen zielen h\u00e4ufig auf Familienmitglieder der Opfer ab \u2014 Eltern, Geschwister, Kinder \u2014 deren Informationen in \u00f6ffentlichen Aufzeichnungen neben dem Opfer erscheinen.',
+  ic6_h4:'Finanzieller Schaden', ic6_p:'Neben Umzugskosten stehen die Opfer vor Ausgaben f\u00fcr Sicherheitsma\u00dfnahmen (VPNs, Postf\u00e4cher, Datenbr\u00f6ker-Opt-outs, Rechtsberatung) und finanzielle Kosten f\u00fcr die Verfolgung rechtlicher Schritte.',
+  s7_eye:'Abschnitt 7', s7_h2:'Rechtliche Rahmenbedingungen und<br>die Strafverfolgungsl\u00fccke',
+  s7_intro:'Cyberstalking ist in den meisten entwickelten Rechtsordnungen kriminalisiert. Die Strafverfolgungsl\u00fccke \u2014 zwischen der Existenz von Gesetzen und ihrer effektiven Anwendung \u2014 bleibt erheblich.',
+  ln1:'Vereinigte Staaten', la1:'Interstate Stalking Act + Staatsgesetze', ls1:'Bundesrecht + L\u00fcckenhaftes Staatsrecht',
+  lh1:'Interstate Stalking Act und VAWA',
+  lp1:'Bundesrecht kriminalisiert Cyberstalking, das Staatsgrenzen \u00fcberschreitet (18 U.S.C. \u00a7 2261A), mit bis zu f\u00fcnf Jahren Gef\u00e4ngnis. Das Violence Against Women Act (VAWA) wurde mehrfach aktualisiert. Alle 50 Bundesstaaten haben jedoch ihre eigenen Stalking-Gesetze mit unterschiedlichen Definitionen, was erhebliche Inkonsistenz erzeugt.',
+  ln2:'Vereinigtes K\u00f6nigreich', la2:'Protection from Harassment Act 1997 + Online Safety Act 2023', ls2:'Relativ umfassend',
+  lh2:'Schutzanordnungen und neue Online-Bestimmungen',
+  lp2:'Der britische Protection from Harassment Act 1997, gest\u00e4rkt durch den Protection of Freedoms Act 2012, kriminalisiert Stalking speziell \u2014 nicht nur Bel\u00e4stigung \u2014 mit Strafen von bis zu 10 Jahren. Der Online Safety Act 2023 f\u00fcgte Bestimmungen zu Cyberflashing und Bel\u00e4stigung hinzu.',
+  ln3:'Europ\u00e4ische Union', la3:'Richtlinie zur Bek\u00e4mpfung von Gewalt gegen Frauen (2024)', ls3:'Neuer Harmonisierungsrahmen',
+  lh3:'EU-Richtlinie zur Bek\u00e4mpfung von Gewalt gegen Frauen',
+  lp3:'Die EU-Richtlinie 2024 legt erstmals Mindeststandards in allen Mitgliedstaaten f\u00fcr die Kriminalisierung von Cybergewalt fest \u2014 einschlie\u00dflich nicht einvernehmlicher Verbreitung intimer Bilder, Cyberstalking und Cyber-Bel\u00e4stigung. Die Mitgliedstaaten haben bis 2027 Zeit, die Richtlinie umzusetzen.',
+  ln4:'Wichtige Herausforderungen', la4:'Grenz\u00fcbergreifend \u00b7 Beweise \u00b7 Ressourcen', ls4:'Strafverfolgung bleibt schwach',
+  lh4:'Warum Gesetze nicht ausreichen',
+  lp4:'Selbst in Rechtsordnungen mit starken Cyberstalking-Gesetzen sind erfolgreiche Strafverfolgungen selten. T\u00e4ter verwenden VPNs, anonyme E-Mail-Dienste und Offshore-Plattformen. Digitale Beweise m\u00fcssen schnell gesichert werden, bevor Plattformen sie l\u00f6schen. Viele Polizeibeh\u00f6rden behandeln Cyberstalking als niederpriori\u00e4r.',
+  s8_eye:'Abschnitt 8', s8_h2:'Schutz und Unterst\u00fctzung',
+  s8_intro:'Die prim\u00e4re Verantwortung f\u00fcr Cyberstalking liegt bei den T\u00e4tern und bei Plattformen, die ihre eigenen Richtlinien nicht durchsetzen. Diese individuellen Ma\u00dfnahmen k\u00f6nnen die Exposition verringern.',
+  prot_h3:'Reduzierung Ihres digitalen Fu\u00dfabdrucks', res_h3:'Unterst\u00fctzungsressourcen',
+  ci1:'Reichen Sie Opt-out-Anfragen bei gro\u00dfen Datenbr\u00f6ker-Sites ein \u2014 Spokeo, Whitepages, BeenVerified und andere. Dienste wie DeleteMe k\u00f6nnen dies in gro\u00dfem Ma\u00dfstab automatisieren. Wiederholen Sie dies regelm\u00e4\u00dfig, da Datens\u00e4tze wieder auftauchen.',
+  ci2:'Verwenden Sie nach M\u00f6glichkeit ein Postfach oder einen Mail-Weiterleitungsdienst anstelle Ihrer Wohnadresse f\u00fcr \u00f6ffentliche Registrierungen, Unternehmensdirektoren oder W\u00e4hlerlisten.',
+  ci3:'Pr\u00fcfen Sie Ihre Social-Media-Datenschutzeinstellungen \u2014 insbesondere an Fotos angeh\u00e4ngte Standortdaten, Check-ins und markierte Posts. \u00dcberpr\u00fcfen Sie, was f\u00fcr Nicht-Follower oder die \u00d6ffentlichkeit sichtbar ist.',
+  ci4:'\u00dcberpr\u00fcfen Sie Ger\u00e4te auf Stalkerware: unerwarteter Batterieabfall, ungew\u00f6hnlicher Datenverbrauch und \u00dcberhitzung im Leerlauf k\u00f6nnen auf \u00dcberwachungssoftware hinweisen. Tools wie Certo (iOS) und Malwarebytes (Android) k\u00f6nnen nach bekannter Stalkerware suchen.',
+  ci5:'\u00dcberpr\u00fcfen Sie geteilte digitale Konten \u2014 Streaming-Dienste, Smart-Home-Apps, Standortfreigabe-Funktionen \u2014 nach Beziehungsver\u00e4nderungen. Widerrufen Sie den Zugriff auf jedes Konto oder Ger\u00e4t, f\u00fcr das die andere Partei m\u00f6glicherweise noch Anmeldedaten hat.',
+  ci6:'Wenn Sie glauben, dass Sie gezielt angegriffen werden, dokumentieren Sie alles mit Zeitstempeln, bevor Sie es melden. Screenshots, URLs und archivierte Seiten liefern Beweise, die verschwinden, wenn Inhalte gel\u00f6scht werden.',
+  rc1_desc:'Britische f\u00fchrende Pers\u00f6nlichkeitssicherheits-Wohlt\u00e4tigkeitsorganisation. Betreibt die National Stalking Helpline und bietet Fachberatung f\u00fcr Stalking-Opfer.',
+  rc2_desc:'24/7-Krisenunterst\u00fctzung, Rechtsverweise und Leitfaden zur Beweissicherung f\u00fcr Cyberstalking- und Bel\u00e4stigungsopfer.',
+  rc3_desc:'Ressourcen und Leitfaden f\u00fcr Opfer, die Stalkerware auf ihrem Ger\u00e4t vermuten \u2014 einschlie\u00dflich Anleitung zur sicheren Entfernung.',
+  rc4_desc:'Digitale Sicherheitsressourcen und Notfallunterst\u00fctzung speziell f\u00fcr Journalisten, die online gezielt bel\u00e4stigt und gedo\u00e4xt werden.',
+  ref_eye:'Quellen', ref_h2:'Quellen und weiterf\u00fchrende Lekt\u00fcre',
+  quiz_p:'Testen Sie Ihr Wissen \u00fcber Cyberstalking und alle anderen Internetkriminalit\u00e4tsthemen',
+  quiz_span:'\u2014 10 zuf\u00e4llige Fragen, kein Zeitlimit.',
+  quiz_btn:'Quiz starten \u00a0\u2192',
+  tnav1_dir:'\u2190 Vorheriges Thema', tnav1_title:'Hassrede & Radikalisierung', tnav1_sub:'04 \u2014 Algorithmen, Extremismus und reale Gewalt',
+  tnav2_dir:'N\u00e4chstes Thema \u00a0\u2192', tnav2_title:'Finanzkriminalit\u00e4t im Internet', tnav2_sub:'06 \u2014 Phishing, Ransomware und die Milliarden-Betrugs-Industrie',
+  footer_note:'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind oben belegt.',
+  footer_src:'Quellen', footer_prev:'Pr\u00e4vention', footer_top:'Alle Themen', footer_quiz:'Quiz', foot_imprint:"Impressum",
+};
+
+/* ── ITALIAN ──────────────────────────────────────────── */
+T.it = {
+  page_title:'Cyberstalking e Doxxing | CrimeOnline',
+  nav_topics:'Argomenti', nav_prev:'Prevenzione', nav_sources:'Fonti', nav_cta:'Inizia il Quiz \u2197',
+  mob_home:'Inizio', mob_lang:'Lingua',
+  bc_home:'Inizio', bc_topics:'Argomenti', bc_current:'Cyberstalking e Doxxing',
+  hero_series:'Serie Criminalit\u00e0 Informatica \u00b7 Rapporto Completo',
+  hero_h1:'Cyberstalking<br>&amp; <em>Doxxing</em>',
+  hero_lead:'Sorveglianza digitale, molestie coordinate e la deliberata esposizione di informazioni private per causare danni \u2014 come internet consente a una persona di rendere insopportabile la vita di un\'altra, e perch\u00e9 \u00e8 cos\u00ec difficile fermarla.',
+  meta1_lbl:'Gravit\u00e0:', meta1_val:'Alta',
+  meta2_lbl:'Vittime principali:', meta2_val:'Donne, giornalisti, attivisti, minoranze',
+  meta3_lbl:'Strumenti:', meta3_val:'Stalkerware \u00b7 OSINT \u00b7 Brigading coordinato',
+  meta4_lbl:'Status legale:', meta4_val:'Criminalizzato nella maggior parte delle giurisdizioni \u2014 applicazione debole',
+  stat1_lbl:'donne hanno subito stalking nel corso della loro vita, la maggior parte online',
+  stat2_lbl:'delle vittime di cyberstalking conoscevano personalmente l\'autore',
+  stat3_lbl:'applicazioni stalkerware attive sui dispositivi a livello globale, secondo la ricerca Kaspersky',
+  stat4_lbl:'pi\u00f9 probabilit\u00e0: le vittime di violenza domestica il cui partner usa stalkerware subiscono abusi fisici pi\u00f9 gravi',
+  s1_eye:'Panoramica',
+  pq_text:'\u201cNon riusciva a provare che la stesse guardando. Ma lo sapeva. Ogni volta che si muoveva, qualcosa cambiava. Una consegna annullata. Un\'offerta di lavoro ritirata. Un\'amica che improvvisamente aveva smesso di parlarle.\u201d',
+  pq_cite:'Resoconto composito \u2014 documentazione casi della Cyber Civil Rights Initiative',
+  s1p1:'Il cyberstalking e il doxxing sono tra le forme pi\u00f9 intime di crimine online \u2014 non intime nel senso di vicinanza, ma nel senso di <strong>violazione personale mirata</strong>. A differenza di frode, pirateria o anche NCII, questi crimini riguardano spesso la campagna sostenuta di una persona contro un altro individuo specifico. Sono crimini di controllo, potere e spesso ossessione.',
+  s1p2:'Il <strong>cyberstalking</strong> descrive l\'uso della tecnologia digitale \u2014 monitoraggio dei social media, tracciamento della posizione, spyware, impersonificazione e molestie \u2014 per sorvegliare, intimidire o controllare un\'altra persona. Il <strong>doxxing</strong> (da \u2018d0x\u2019 hacker, documenti) \u00e8 la deliberata esposizione pubblica delle informazioni identificative private di un bersaglio.',
+  s1p3:'Questi crimini sono profondamente legati al genere. Le donne sono colpite in modo sproporzionato, in particolare da partner intimi attuali o precedenti. Giornalisti, attivisti e membri di comunit\u00e0 minoritarie affrontano campagne coordinate di doxxing e molestie da parte di mob online organizzati.',
+  s2_eye:'Sezione 2', s2_h2:'Tre Forme Distinte di<br>Targeting Online',
+  s2_intro:'Il cyberstalking e il doxxing si presentano in tre pattern distinti, ciascuno con diversi autori, vittime e caratteristiche operative.',
+  tc1_tag:'01 \u2014 Pi\u00f9 comune', tc1_h3:'Cyberstalking da Partner Intimo',
+  tc1_p:'Partner romantici attuali o ex che utilizzano strumenti digitali per sorvegliare, controllare o intimidire \u2014 monitorare la posizione tramite account condivisi o app di tracciamento installate di nascosto; registrare chiamate e messaggi; usare dispositivi smart home come infrastruttura di sorveglianza; impersonare la vittima online. Questa forma \u00e8 strettamente legata ai pattern di abuso domestico e spesso escalate in violenza fisica. Lo stalkerware \u2014 spyware commerciale commercializzato per il monitoraggio parentale ma ampiamente usato per la sorveglianza del partner intimo \u2014 \u00e8 lo strumento tecnico principale.',
+  tc1_badge:'Contesto partner intimo',
+  tc2_tag:'02 \u2014 Minaccia crescente', tc2_h3:'Molestia di Mob Coordinata',
+  tc2_p:'Gruppi online organizzati \u2014 spesso senza alcuna connessione precedente con il bersaglio \u2014 coordinano campagne di molestie contro individui, tipicamente giornalisti, femministe, attivisti LGBTQ+, o persone che hanno detto qualcosa di controverso online. Le campagne coinvolgono la segnalazione massiva degli account, l\'inondazione delle caselle di posta con minacce, la comunicazione con i datori di lavoro e, nei casi pi\u00f9 estremi, lo swatting.',
+  tc2_badge:'Mob organizzato \u2014 coordinato online',
+  tc3_tag:'03 \u2014 Pi\u00f9 pericoloso', tc3_h3:'Doxxing con Intento di Danno',
+  tc3_p:'La deliberata pubblicazione delle informazioni private di un bersaglio \u2014 indirizzo, luogo di lavoro, numero di telefono, dettagli familiari \u2014 con l\'esplicita intenzione di consentire ad altri di causare loro danno. Quando il doxxing include indirizzi di casa e viene pubblicato in comunit\u00e0 note per la violenza, la minaccia alla sicurezza fisica \u00e8 diretta e immediata.',
+  tc3_badge:'Massimo rischio di pericolo fisico',
+  s3_eye:'Sezione 3 \u2014 Elemento Distintivo', s3_h2:'Strumenti del Mestiere:<br>Come Operano i Cyberstalker',
+  classified_stamp:'Metodi Documentati',
+  s3_intro:'I metodi tecnici disponibili per i cyberstalker vanno da prodotti commerciali off-the-shelf alle tecniche OSINT (Open-Source Intelligence). Comprenderli \u00e8 essenziale per la protezione.',
+  tn1:'Stalkerware / Spyware', tc1_cat:'Software di sorveglianza commerciale',
+  tp1:'Applicazioni commercializzate come strumenti di \u2018monitoraggio parentale\u2019 o \u2018tracciamento dei dipendenti\u2019 che, una volta installate su un dispositivo, trasmettono di nascosto dati di posizione, registri delle chiamate, contenuto di SMS e app di messaggistica e cronologia del browser a un account remoto. Sono progettate per funzionare invisibilmente. La Coalition Against Stalkerware riporta aumenti annuali consistenti nei rilevamenti.',
+  tt1:'Alto rischio \u2014 principale strumento del partner intimo',
+  tn2:'Tracciamento della Posizione', tc2_cat:'Sorveglianza fisica',
+  tp2:'I dispositivi GPS di tracciamento \u2014 piccoli, alimentati a batteria e facili da nascondere nei veicoli o nelle borse \u2014 possono trasmettere dati di posizione in tempo reale. Gli AirTag e simili tracker Bluetooth sono stati ampiamente documentati nei casi di stalking del partner intimo.',
+  tt2:'Alto rischio \u2014 esposizione della posizione fisica',
+  tn3:'OSINT (Open-Source Intelligence)', tc3_cat:'Aggregazione dati da fonti pubbliche',
+  tp3:'Le tecniche OSINT aggregano dati disponibili al pubblico \u2014 profili di social media, liste elettorali, registrazioni societarie, documenti immobiliari, metadati fotografici \u2014 per costruire profili dettagliati dei bersagli. Un ricercatore OSINT esperto pu\u00f2 costruire un dossier completo su quasi qualsiasi individuo privato in ore.',
+  tt3:'Medio\u2013Alto \u2014 usato nelle campagne di doxxing',
+  tn4:'Impersonificazione di Account', tc4_cat:'Molestie basate sull\'identit\u00e0',
+  tp4:'Creare account falsi sui social media nel nome del bersaglio \u2014 usando le loro fotografie e informazioni personali \u2014 per postare contenuti dannosi; contattare i loro colleghi, datori di lavoro o famiglia; o esporli alle molestie. Alcuni autori usano account falsi per segnalare l\'account legittimo come falso, innescandone la rimozione dalla piattaforma.',
+  tt4:'Alto rischio \u2014 danno reputazionale e sociale',
+  tn5:'Swatting', tc5_cat:'Abuso dei servizi di emergenza',
+  tp5:'Lo swatting consiste nel piazzare false chiamate di emergenza \u2014 tipicamente situazioni di ostaggi armati o minacce di bomba \u2014 per inviare polizia pesantemente armata a casa o al posto di lavoro di un bersaglio. Nel 2017, Andrew Finch fu ucciso dalla polizia in risposta a una chiamata di swatting. Lo swatting \u00e8 un crimine federale negli USA con fino a 20 anni di reclusione.',
+  tt5:'Critico \u2014 decessi documentati',
+  tn6:'Sfruttamento della Smart Home', tc6_cat:'Sorveglianza IoT',
+  tp6:'I dispositivi smart home \u2014 telecamere connesse, altoparlanti, termostati e campanelli \u2014 rappresentano un vettore di sorveglianza crescente negli abusi del partner intimo. Dove i dispositivi sono collegati ad account condivisi, un partner abusivo che mantiene l\'accesso all\'account dopo la fine di una relazione pu\u00f2 monitorare la casa da remoto, ascoltare attraverso i microfoni o controllare serrature e sistemi di sicurezza.',
+  tt6:'Medio\u2013Alto \u2014 in aumento nei casi di violenza domestica',
+  s4_eye:'Sezione 4', s4_h2:'L\'Anatomia di una Campagna',
+  s4_intro:'Il cyberstalking e le campagne di molestie coordinate seguono pattern riconoscibili \u2014 escalando in intensit\u00e0, ampiezza e diffusione sulle piattaforme.',
+  si1_h4:'Selezione del Bersaglio e Sorveglianza Iniziale', si1_p:'La campagna inizia identificando e studiando il bersaglio. Nei casi di partner intimo \u00e8 gi\u00e0 noto; nelle molestie del mob tipicamente segue un evento scatenante pubblico. L\'autore mappa la presenza sui social media del bersaglio, identifica le informazioni personali e individua i punti di vulnerabilit\u00e0.',
+  si2_h4:'Aggregazione delle Informazioni e Preparazione del Doxxing', si2_p:'Usando strumenti OSINT e aggregatori di ricerca delle persone, l\'aggressore compila un dossier \u2014 indirizzo, numero di telefono, dettagli dei familiari, luogo di lavoro. I data broker vendono profili completi per soli $1\u20135. I dati elettorali, le cariche societarie e i registri immobiliari sono spesso pubblici.',
+  si3_h4:'Amplificazione e Mobilitazione', si3_p:'Nelle campagne coordinate, il dossier e un appello all\'azione vengono pubblicati su piattaforme con comunit\u00e0 note per le molestie \u2014 board di 4chan, canali Telegram, subreddit specifici o server Discord. Centinaia o migliaia di account contattano simultaneamente il bersaglio.',
+  si4_h4:'Cambio di Piattaforma e Persistenza', si4_p:'Quando i contenuti vengono rimossi o gli account bloccati su una piattaforma, le campagne migrano su altre. Una vittima deve richiedere la rimozione su ogni piattaforma individualmente mentre l\'aggressore necessita solo di un post attivo per continuare a causare danni.',
+  si5_h4:'Escalation nel Mondo Reale', si5_p:'I casi pi\u00f9 gravi escalano oltre il digitale: sorveglianza fisica della casa del bersaglio; contatto con il datore di lavoro progettato per innescare il licenziamento; chiamate di swatting; minacce fisiche consegnate all\'indirizzo.',
+  slot2_title:'Spazio Immagine 2', slot2_desc:'La tua illustrazione dell\'escalation di una campagna di molestie', slot2_tag:'Aggiungi la tua opera d\'arte qui',
+  s5_eye:'Sezione 5 \u2014 Feature Critica', s5_h2:'Doxxing: Quando la Privacy<br>Diventa un\'Arma',
+  s5p1:'Il doxxing \u00e8 l\'atto di ricercare e pubblicare pubblicamente informazioni private o identificative su un individuo \u2014 tipicamente un indirizzo di casa, numero di telefono, datore di lavoro, dettagli dei familiari, o informazioni finanziarie \u2014 con l\'intento che altri usino tali informazioni per causare danno.',
+  s5p2:'La parola deriva dallo slang hacker \u2018d0x\u2019 (documenti). Ci\u00f2 che \u00e8 iniziato come tattica nelle comunit\u00e0 hacker \u00e8 diventato un\'arma mainstream contro giornalisti, attivisti, politici e comunit\u00e0 emarginate.',
+  s5_callout:'<strong>Il pericolo fisico \u00e8 diretto:</strong> Quando un indirizzo di casa viene pubblicato insieme a un appello all\'azione in una comunit\u00e0 nota per la violenza, la minaccia non \u00e8 astratta. Molteplici giornalisti, attivisti e figure pubbliche sono stati soggetti a violenza di persona, incendio doloso e omicidio a seguito di doxxing.',
+  s5p3:'Lo status legale del doxxing \u00e8 complicato perch\u00e9 molte delle informazioni coinvolte \u2014 indirizzi, dettagli del datore di lavoro, connessioni familiari \u2014 sono tecnicamente pubbliche. Le leggi specializzate anti-doxxing sono ancora relativamente rare.',
+  s5p4:'I data broker \u2014 aziende che aggregano e vendono informazioni personali \u2014 sono un elemento critico dell\'infrastruttura del doxxing. Le vittime possono inviare richieste di opt-out, ma il processo richiede tempo e deve essere ripetuto su dozzine di servizi.',
+  slot3_lbl:'Spazio immagine 3 \u2014 aggiungi la tua illustrazione',
+  ds1_desc:'costo di un dossier personale completo dai data broker commerciali \u2014 indirizzo, datore di lavoro, famiglia, finanze',
+  ds2_desc:'delle vittime di doxxing riferiscono di aver ricevuto minacce o subito molestie di persona come diretta conseguenza',
+  ds3_desc:'richieste di opt-out ai data broker necessarie per ridurre significativamente un\'impronta di dati personali \u2014 per Privacy Rights Clearinghouse',
+  s6_eye:'Sezione 6', s6_h2:'Impatto sulle Vittime',
+  s6_intro:'I danni del cyberstalking e del doxxing si estendono allo psicologico, professionale, finanziario e fisico \u2014 e a differenza di molti crimini informatici, raramente finiscono in modo netto.',
+  slot4_title:'Spazio Immagine 4', slot4_desc:'Illustrazione che evoca sorveglianza, isolamento o la sensazione di essere osservati', slot4_tag:'Aggiungi la tua opera d\'arte qui',
+  ic1_h4:'PTSD e Ipervigilanza', ic1_p:'Le vittime riportano ipervigilanza persistente, pensieri intrusivi e incapacit\u00e0 di sentirsi al sicuro in pubblico \u2014 compatibile con PTSD complesso. La consapevolezza che qualcuno stia attivamente monitorando i propri movimenti crea uno stato di risposta cronica alla minaccia.',
+  ic2_h4:'Reinsediamento Forzato', ic2_p:'Quando un indirizzo di casa viene doxxato e seguono minacce, molte vittime sentono di non avere altra scelta che trasferirsi. Il reinsediamento \u00e8 costoso, dirompente e nei casi di alto profilo pu\u00f2 dover essere ripetuto.',
+  ic3_h4:'Distruzione Professionale', ic3_p:'Le campagne di segnalazione massiva coordinata possono risultare in ban dalla piattaforma che rimuovono anni di lavoro professionale e pubblico. Le campagne che contattano i datori di lavoro possono risultare nella perdita del lavoro.',
+  ic4_h4:'Auto-censura ed Effetti Inibitori', ic4_p:'Forse il danno sociale pi\u00f9 ampio: la consapevolezza che parlare di certi argomenti innesca campagne di molestie mirate porta gli individui \u2014 in particolare donne, giornalisti e voci minoritarie \u2014 ad auto-censurarsi o ritirarsi completamente dal discorso pubblico.',
+  ic5_h4:'Danno ai Familiari', ic5_p:'Le campagne di doxxing prendono frequentemente di mira i familiari delle vittime \u2014 genitori, fratelli, figli \u2014 le cui informazioni appaiono nei registri pubblici accanto alla vittima. I familiari che non hanno avuto alcun ruolo in nessuna controversia possono ricevere minacce.',
+  ic6_h4:'Danno Finanziario', ic6_p:'Oltre ai costi di reinsediamento, le vittime affrontano spese per misure di sicurezza (VPN, caselle postali, opt-out dai data broker, assistenza legale), perdita di reddito dalla disruzione professionale e i costi finanziari del perseguimento di azioni legali.',
+  s7_eye:'Sezione 7', s7_h2:'Quadri Giuridici e<br>il Divario nell\'Applicazione',
+  s7_intro:'Il cyberstalking \u00e8 criminalizzato nella maggior parte delle giurisdizioni sviluppate. Il divario nell\'applicazione \u2014 tra l\'esistenza delle leggi e la loro applicazione effettiva \u2014 rimane sostanziale.',
+  ln1:'Stati Uniti', la1:'Interstate Stalking Act + Leggi statali', ls1:'Legge federale + Copertura statale lacunosa',
+  lh1:'Interstate Stalking Act e VAWA',
+  lp1:'La legge federale criminalizza il cyberstalking che attraversa i confini statali (18 U.S.C. \u00a7 2261A), con una pena fino a cinque anni di reclusione. Il Violence Against Women Act (VAWA) \u00e8 stato aggiornato pi\u00f9 volte. Tuttavia, tutti i 50 stati hanno le proprie leggi sullo stalking con definizioni variabili, creando significativa incoerenza.',
+  ln2:'Regno Unito', la2:'Protection from Harassment Act 1997 + Online Safety Act 2023', ls2:'Relativamente completo',
+  lh2:'Ordinanze di protezione e nuove disposizioni online',
+  lp2:'Il Protection from Harassment Act 1997 del Regno Unito, rafforzato dal Protection of Freedoms Act 2012, criminalizza specificamente lo stalking \u2014 non solo le molestie \u2014 con pene fino a 10 anni per lo stalking che implica paura della violenza. L\'Online Safety Act 2023 ha aggiunto disposizioni sul cyberflashing e sulle molestie.',
+  ln3:'Unione Europea', la3:'Direttiva sulla lotta alla violenza contro le donne (2024)', ls3:'Nuovo quadro di armonizzazione',
+  lh3:'Direttiva UE sulla violenza contro le donne',
+  lp3:'La Direttiva UE del 2024 stabilisce per la prima volta standard minimi in tutti gli stati membri per la criminalizzazione della violenza informatica \u2014 inclusi la condivisione non consensuale di immagini intime, il cyberstalking e le molestie informatiche. Gli stati membri hanno tempo fino al 2027 per recepire la direttiva.',
+  ln4:'Sfide principali', la4:'Transnazionale \u00b7 Prove \u00b7 Risorse', ls4:'Applicazione rimane debole',
+  lh4:'Perch\u00e9 le Leggi non Bastano',
+  lp4:'Anche nelle giurisdizioni con leggi forti sul cyberstalking, le azioni penali di successo sono rare. Gli autori usano VPN, servizi di posta elettronica anonimi e piattaforme offshore. Le prove digitali devono essere preservate rapidamente prima che le piattaforme le eliminino. Molte forze di polizia trattano il cyberstalking come priorit\u00e0 bassa.',
+  s8_eye:'Sezione 8', s8_h2:'Protezione e Supporto',
+  s8_intro:'La responsabilit\u00e0 primaria per il cyberstalking ricade sugli autori e sulle piattaforme che non applicano le proprie politiche. Queste misure individuali possono ridurre l\'esposizione e supportare il recupero.',
+  prot_h3:'Ridurre la Tua Impronta Digitale', res_h3:'Risorse di Supporto',
+  ci1:'Invia richieste di opt-out ai principali siti di data broker \u2014 Spokeo, Whitepages, BeenVerified e altri. Servizi come DeleteMe possono automatizzare questo su larga scala. Ripeti regolarmente poich\u00e9 i record riappaiono.',
+  ci2:'Usa una casella postale o un servizio di inoltro della posta invece del tuo indirizzo di casa per qualsiasi registrazione pubblica, incarichi societari o iscrizioni alle liste elettorali ove possibile.',
+  ci3:'Verifica le impostazioni sulla privacy dei tuoi social media \u2014 in particolare i dati di posizione allegati alle fotografie, check-in e post taggati. Rivedi cosa \u00e8 visibile ai non-follower o al pubblico.',
+  ci4:'Controlla i dispositivi per lo stalkerware: scaricamento imprevisto della batteria, utilizzo insolito dei dati e surriscaldamento quando inattivo possono indicare software di monitoraggio. Strumenti come Certo (iOS) e Malwarebytes (Android) possono rilevare stalkerware noto.',
+  ci5:'Verifica gli account digitali condivisi \u2014 servizi di streaming, app smart home, funzionalit\u00e0 di condivisione della posizione \u2014 dopo cambiamenti nella relazione. Revoca l\'accesso a qualsiasi account o dispositivo per cui l\'altra parte potrebbe ancora avere credenziali.',
+  ci6:'Se credi di essere preso di mira, documenta tutto con timestamp prima di segnalare. Screenshot, URL e archivi di pagine preservate forniscono prove che scompaiono quando il contenuto viene eliminato.',
+  rc1_desc:'La principale associazione per la sicurezza personale nel UK. Gestisce la National Stalking Helpline e fornisce consulenza specializzata per le vittime di stalking.',
+  rc2_desc:'Supporto di crisi 24/7, referral legali e guida alla conservazione delle prove per vittime di cyberstalking e molestie.',
+  rc3_desc:'Risorse e guida per le vittime che sospettano che lo stalkerware sia installato sul loro dispositivo \u2014 inclusi consigli per la rimozione sicura.',
+  rc4_desc:'Risorse di sicurezza digitale e supporto di emergenza specificamente per giornalisti che affrontano molestie online mirate e doxxing.',
+  ref_eye:'Fonti', ref_h2:'Fonti e Ulteriori Letture',
+  quiz_p:'Metti alla prova le tue conoscenze sul cyberstalking e tutti gli altri argomenti di criminalit\u00e0 informatica',
+  quiz_span:'\u2014 10 domande casuali, nessun limite di tempo.',
+  quiz_btn:'Inizia il Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Argomento Precedente', tnav1_title:'Incitamento all\'Odio e Radicalizzazione', tnav1_sub:'04 \u2014 Algoritmi, estremismo e violenza reale',
+  tnav2_dir:'Argomento Successivo \u00a0\u2192', tnav2_title:'Criminalit\u00e0 Finanziaria Informatica', tnav2_sub:'06 \u2014 Phishing, ransomware e l\'industria delle truffe da miliardi di dollari',
+  footer_note:'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate sopra.',
+  footer_src:'Fonti', footer_prev:'Prevenzione', footer_top:'Tutti gli Argomenti', footer_quiz:'Quiz', foot_imprint:"Note legali",
+};
+
+/* =======================================================
+   RENDERER
+======================================================= */
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function applyLang(lang){
+  var c=T[lang]; if(!c)return;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect'); if(s1)s1.value=lang;
+  var s2=g('langSelMob'); if(s2)s2.value=lang;
+  document.title=c.page_title;
+  /* nav */
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  /* breadcrumb */
+  st('bc-home',c.bc_home);st('bc-topics',c.bc_topics);st('bc-current',c.bc_current);
+  /* hero */
+  st('hero-series-lbl',c.hero_series);si('hero-h1',c.hero_h1);st('hero-lead',c.hero_lead);
+  st('meta1-lbl',c.meta1_lbl);st('meta1-val',c.meta1_val);
+  st('meta2-lbl',c.meta2_lbl);st('meta2-val',c.meta2_val);
+  st('meta3-lbl',c.meta3_lbl);st('meta3-val',c.meta3_val);
+  st('meta4-lbl',c.meta4_lbl);st('meta4-val',c.meta4_val);
+  /* stats */
+  st('stat1-lbl',c.stat1_lbl);st('stat2-lbl',c.stat2_lbl);
+  st('stat3-lbl',c.stat3_lbl);st('stat4-lbl',c.stat4_lbl);
+  /* s1 */
+  st('s1-eye',c.s1_eye);si('pq-text',c.pq_text);st('pq-cite',c.pq_cite);
+  si('s1p1',c.s1p1);si('s1p2',c.s1p2);st('s1p3',c.s1p3);
+  /* s2 types */
+  st('s2-eye',c.s2_eye);si('s2-h2',c.s2_h2);st('s2-intro',c.s2_intro);
+  st('tc1-tag',c.tc1_tag);st('tc1-h3',c.tc1_h3);st('tc1-p',c.tc1_p);st('tc1-badge',c.tc1_badge);
+  st('tc2-tag',c.tc2_tag);st('tc2-h3',c.tc2_h3);st('tc2-p',c.tc2_p);st('tc2-badge',c.tc2_badge);
+  st('tc3-tag',c.tc3_tag);st('tc3-h3',c.tc3_h3);st('tc3-p',c.tc3_p);st('tc3-badge',c.tc3_badge);
+  /* s3 tools */
+  st('s3-eye',c.s3_eye);si('s3-h2',c.s3_h2);st('classified-stamp',c.classified_stamp);st('s3-intro',c.s3_intro);
+  st('tn1',c.tn1);st('tc1-cat',c.tc1_cat);st('tp1',c.tp1);st('tt1',c.tt1);
+  st('tn2',c.tn2);st('tc2-cat',c.tc2_cat);st('tp2',c.tp2);st('tt2',c.tt2);
+  st('tn3',c.tn3);st('tc3-cat',c.tc3_cat);st('tp3',c.tp3);st('tt3',c.tt3);
+  st('tn4',c.tn4);st('tc4-cat',c.tc4_cat);st('tp4',c.tp4);st('tt4',c.tt4);
+  st('tn5',c.tn5);st('tc5-cat',c.tc5_cat);st('tp5',c.tp5);st('tt5',c.tt5);
+  st('tn6',c.tn6);st('tc6-cat',c.tc6_cat);st('tp6',c.tp6);st('tt6',c.tt6);
+  /* s4 anatomy */
+  st('s4-eye',c.s4_eye);st('s4-h2',c.s4_h2);st('s4-intro',c.s4_intro);
+  st('si1-h4',c.si1_h4);st('si1-p',c.si1_p);
+  st('si2-h4',c.si2_h4);st('si2-p',c.si2_p);
+  st('si3-h4',c.si3_h4);st('si3-p',c.si3_p);
+  st('si4-h4',c.si4_h4);st('si4-p',c.si4_p);
+  st('si5-h4',c.si5_h4);st('si5-p',c.si5_p);
+  st('slot2-title',c.slot2_title);st('slot2-desc',c.slot2_desc);st('slot2-tag',c.slot2_tag);
+  /* s5 doxxing */
+  st('s5-eye',c.s5_eye);si('s5-h2',c.s5_h2);
+  st('s5p1',c.s5p1);st('s5p2',c.s5p2);si('s5-callout',c.s5_callout);st('s5p3',c.s5p3);st('s5p4',c.s5p4);
+  st('slot3-lbl',c.slot3_lbl);
+  st('ds1-desc',c.ds1_desc);st('ds2-desc',c.ds2_desc);st('ds3-desc',c.ds3_desc);
+  /* s6 impact */
+  st('s6-eye',c.s6_eye);st('s6-h2',c.s6_h2);st('s6-intro',c.s6_intro);
+  st('slot4-title',c.slot4_title);st('slot4-desc',c.slot4_desc);st('slot4-tag',c.slot4_tag);
+  st('ic1-h4',c.ic1_h4);st('ic1-p',c.ic1_p);
+  st('ic2-h4',c.ic2_h4);st('ic2-p',c.ic2_p);
+  st('ic3-h4',c.ic3_h4);st('ic3-p',c.ic3_p);
+  st('ic4-h4',c.ic4_h4);st('ic4-p',c.ic4_p);
+  st('ic5-h4',c.ic5_h4);st('ic5-p',c.ic5_p);
+  st('ic6-h4',c.ic6_h4);st('ic6-p',c.ic6_p);
+  /* s7 legal */
+  st('s7-eye',c.s7_eye);si('s7-h2',c.s7_h2);st('s7-intro',c.s7_intro);
+  st('ln1',c.ln1);st('la1',c.la1);st('ls1',c.ls1);st('lh1',c.lh1);st('lp1',c.lp1);
+  st('ln2',c.ln2);st('la2',c.la2);st('ls2',c.ls2);st('lh2',c.lh2);st('lp2',c.lp2);
+  st('ln3',c.ln3);st('la3',c.la3);st('ls3',c.ls3);st('lh3',c.lh3);st('lp3',c.lp3);
+  st('ln4',c.ln4);st('la4',c.la4);st('ls4',c.ls4);st('lh4',c.lh4);st('lp4',c.lp4);
+  /* s8 protection */
+  st('s8-eye',c.s8_eye);st('s8-h2',c.s8_h2);st('s8-intro',c.s8_intro);
+  st('prot-h3',c.prot_h3);st('res-h3',c.res_h3);
+  st('ci1',c.ci1);st('ci2',c.ci2);st('ci3',c.ci3);
+  st('ci4',c.ci4);st('ci5',c.ci5);st('ci6',c.ci6);
+  st('rc1-desc',c.rc1_desc);st('rc2-desc',c.rc2_desc);
+  st('rc3-desc',c.rc3_desc);st('rc4-desc',c.rc4_desc);
+  /* refs */
+  st('ref-eye',c.ref_eye);st('ref-h2',c.ref_h2);
+  /* quiz strip */
+  var qp=g('quiz-strip-p');
+  if(qp)qp.innerHTML=c.quiz_p+' <span>'+c.quiz_span+'</span>';
+  st('quiz-strip-btn',c.quiz_btn);
+  /* topic nav */
+  st('tnav1-dir',c.tnav1_dir);st('tnav1-title',c.tnav1_title);st('tnav1-sub',c.tnav1_sub);
+  st('tnav2-dir',c.tnav2_dir);st('tnav2-title',c.tnav2_title);st('tnav2-sub',c.tnav2_sub);
+  /* footer */
+  st('footer-note',c.footer_note);st('footer-src',c.footer_src);
+  st('footer-prev',c.footer_prev);st('footer-top',c.footer_top);st('footer-quiz',c.footer_quiz);
+}
+
+function switchLanguage(lang){applyLang(lang)}
+
+/* HAMBURGER */
+var hb=document.getElementById('hamburger');
+var nm=document.getElementById('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+/* INIT */
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>

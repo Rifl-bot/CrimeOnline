@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Financial Cybercrime | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.14);
+  --green:#16a34a;--green-lt:#22c55e;--green-vivid:#4ade80;
+  --green-glow:rgba(22,163,74,0.13);--green-border:rgba(22,163,74,0.35);
+  --amber:#d97706;--amber-glow:rgba(217,119,6,0.15);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);--border-red:rgba(192,57,43,0.38);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--green);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+
+/* HERO */
+.topic-hero{position:relative;overflow:hidden;min-height:72vh;display:flex;align-items:flex-end;padding:0 80px 72px}
+.hero-img-slot{position:absolute;inset:0;background:var(--navy-mid);display:flex;align-items:center;justify-content:center}
+.placeholder-label{font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.13);letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(255,255,255,0.09);padding:10px 20px;border-radius:3px;pointer-events:none;user-select:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(22,163,74,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(22,163,74,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.hero-overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,1) 0%,rgba(10,14,26,0.7) 40%,rgba(10,14,26,0.2) 100%);pointer-events:none}
+.hero-overlay-green{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 75% 30%,rgba(22,163,74,0.08),transparent 65%);pointer-events:none}
+.topic-hero-content{position:relative;z-index:2;max-width:800px}
+.topic-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--green-vivid);margin-bottom:22px}
+.topic-num-badge{background:var(--green);color:var(--white);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700}
+.topic-hero h1{font-family:var(--font-d);font-size:clamp(38px,5.5vw,70px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--white);margin-bottom:22px}
+.topic-hero h1 em{font-style:italic;color:var(--green-vivid)}
+.hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:660px;margin-bottom:36px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.05em;padding-top:24px;border-top:1px solid var(--border)}
+.hero-meta strong{color:var(--slate-lt);font-weight:500}
+@media(max-width:860px){.topic-hero{padding:80px 24px 52px;min-height:55vh}}
+
+/* STAT STRIP */
+.stat-strip{background:var(--navy-surface);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:28px 32px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:900;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-num .g{color:var(--green-vivid)}
+.stat-num .r{color:var(--crimson)}
+.stat-lbl{font-size:12px;color:var(--slate);line-height:1.4;max-width:150px}
+.stat-src{display:block;font-size:10px;font-family:var(--font-m);color:rgba(100,116,139,0.55);margin-top:8px;letter-spacing:.04em}
+@media(max-width:720px){.stat-strip{grid-template-columns:1fr 1fr}.stat-cell:nth-child(2){border-right:none}.stat-cell:nth-child(3){border-top:1px solid var(--border)}.stat-cell:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* CONTENT */
+.content-section{padding:80px}
+.bg-mid{background:var(--navy-mid)}
+.section-eyebrow{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:14px;display:block}
+.section-eyebrow.red{color:var(--crimson)}
+.section-h2{font-family:var(--font-d);font-size:clamp(26px,3vw,42px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.prose{font-size:15px;color:var(--slate-lt);line-height:1.85;max-width:800px;margin-bottom:20px}
+.prose strong{color:var(--white);font-weight:600}
+.prose em{font-style:italic}
+.section-divider{height:1px;background:linear-gradient(90deg,var(--green),transparent);margin:0 80px;opacity:.22}
+@media(max-width:860px){.content-section{padding:52px 24px}.section-divider{margin:0 24px}}
+
+/* PULL QUOTE */
+.pull-quote{margin:36px 0;padding:28px 36px;border-left:3px solid var(--green);background:var(--green-glow);border-radius:0 4px 4px 0}
+.pull-quote p{font-family:var(--font-d);font-size:20px;font-style:italic;color:var(--white);line-height:1.55;margin-bottom:10px}
+.pull-quote cite{font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+
+/* CALLOUT */
+.callout{margin:28px 0;padding:20px 26px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.callout.green{border:1px solid var(--green-border);background:var(--green-glow)}
+.callout.red{border:1px solid var(--border-red);background:rgba(192,57,43,0.06)}
+.callout-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;margin-top:2px}
+.callout-icon.green{background:var(--green)}
+.callout-icon.red{background:var(--crimson)}
+.callout-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.callout-text strong{font-weight:600}
+.callout.green .callout-text strong{color:var(--green-vivid)}
+.callout.red .callout-text strong{color:#e89a90}
+
+/* CRIME GRID — 6 cards */
+.crime-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.crime-card{background:var(--navy-mid);padding:30px 26px;position:relative;overflow:hidden;transition:background .2s}
+.crime-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.crime-card:hover{background:var(--navy-surface)}.crime-card:hover::before{transform:scaleX(1)}
+.crime-tag{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px}
+.crime-card h3{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.2}
+.crime-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.crime-badge{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.cb-red{background:rgba(192,57,43,0.18);color:#e89a90}
+.cb-amber{background:rgba(217,119,6,0.18);color:#f0c97a}
+.cb-green{background:rgba(22,163,74,0.18);color:var(--green-vivid)}
+.cb-slate{background:rgba(100,116,139,0.18);color:var(--slate-lt)}
+@media(max-width:720px){.crime-grid{grid-template-columns:1fr}}
+
+/* PIG BUTCHERING FLOW */
+.pig-section{background:var(--navy-mid)}
+.pig-label{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;text-align:center;margin:40px 0 32px}
+.pig-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--green-border);border-radius:5px;overflow:hidden}
+.pig-step{background:rgba(22,163,74,0.03);padding:30px 26px;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.pig-step:hover{background:rgba(22,163,74,0.07)}
+.pig-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:12px;font-weight:700;color:var(--white);flex-shrink:0}
+.pd-1{background:#16a34a}.pd-2{background:#15803d}.pd-3{background:#166534}
+.pd-4{background:var(--amber)}.pd-5{background:var(--crimson)}.pd-6{background:#7c3aed}
+.pig-step-title{font-size:14px;font-weight:600;color:var(--white);line-height:1.2}
+.pig-step-desc{font-size:12px;color:var(--slate);line-height:1.65;flex:1}
+.pig-step-tag{display:inline-block;font-family:var(--font-m);font-size:10px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em;margin-top:4px}
+.pt-green{background:rgba(22,163,74,0.15);color:var(--green-vivid)}
+.pt-amber{background:rgba(217,119,6,0.15);color:#f0c97a}
+.pt-red{background:rgba(192,57,43,0.15);color:#e89a90}
+.pt-purple{background:rgba(124,58,237,0.15);color:#a78bfa}
+@media(max-width:720px){.pig-flow{grid-template-columns:1fr}}
+
+/* RANSOMWARE SPLIT */
+.ransom-split{display:grid;grid-template-columns:1fr 400px;min-height:580px}
+.ransom-text{padding:88px 80px;background:var(--navy);display:flex;flex-direction:column;justify-content:center}
+.ransom-text .prose{max-width:100%}
+.ransom-visual{background:var(--navy-surface);border-left:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:0}
+.ransom-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(192,57,43,0.07),transparent 65%);pointer-events:none}
+.ransom-slot-label{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(192,57,43,0.4);border:1px dashed rgba(192,57,43,0.25);padding:5px 14px;border-radius:2px;position:absolute;top:20px;left:50%;transform:translateX(-50%);white-space:nowrap;z-index:2}
+.ransom-terminal{background:rgba(10,14,26,0.92);border:1px solid rgba(192,57,43,0.3);border-radius:5px;overflow:hidden;width:100%;position:relative;z-index:2}
+.terminal-bar{background:rgba(255,255,255,0.05);padding:10px 16px;display:flex;align-items:center;gap:6px}
+.t-dot{width:11px;height:11px;border-radius:50%}
+.t-dot-r{background:#ff5f56}.t-dot-a{background:#ffbd2e}.t-dot-g{background:#27c93f}
+.t-title{font-family:var(--font-m);font-size:11px;color:var(--slate);margin-left:auto;margin-right:auto;letter-spacing:.06em}
+.terminal-body{padding:22px 20px;text-align:left}
+.t-line{font-family:var(--font-m);font-size:12px;line-height:1.85;display:block;letter-spacing:.02em}
+.t-red{color:#e89a90}.t-green{color:var(--green-vivid)}.t-white{color:var(--white)}
+.t-slate{color:var(--slate-lt)}.t-amber{color:#f0c97a}
+.t-blink{color:var(--white);animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.ransom-stat{position:relative;z-index:2;margin-top:20px;display:flex;flex-direction:column;gap:0;width:100%}
+.rs{padding:14px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline}
+.rs:last-child{border-bottom:none}
+.rs-label{font-size:12px;color:var(--slate)}
+.rs-val{font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--white)}
+.rs-val .r{color:var(--crimson)}
+@media(max-width:860px){.ransom-split{grid-template-columns:1fr}.ransom-text{padding:52px 24px}.ransom-visual{border-left:none;border-top:1px solid var(--border);min-height:0;padding:40px 24px}}
+
+/* PHISHING SECTION */
+.phish-split{display:grid;grid-template-columns:380px 1fr;gap:72px;align-items:start;margin-top:52px}
+.img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.11);border-radius:5px;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(22,163,74,0.05),transparent);pointer-events:none}
+.slot-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,0.02);position:relative;z-index:1}
+.slot-title-el{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
+.slot-desc-el{font-size:12px;color:rgba(100,116,139,0.45);line-height:1.6;max-width:220px;text-align:center;position:relative;z-index:1}
+.slot-tag-el{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(22,163,74,0.5);border:1px dashed rgba(22,163,74,0.3);padding:4px 12px;border-radius:2px;position:relative;z-index:1}
+.phish-steps{display:flex;flex-direction:column;gap:0}
+.phish-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.phish-step:last-child{border-bottom:none}
+.phish-num{width:30px;height:30px;border-radius:50%;flex-shrink:0;margin-top:2px;background:var(--green-glow);border:1px solid var(--green-border);color:var(--green-vivid);font-family:var(--font-m);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center}
+.phish-step h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.phish-step p{font-size:13px;color:var(--slate);line-height:1.65}
+@media(max-width:860px){.phish-split{grid-template-columns:1fr}.img-slot{min-height:200px}}
+
+/* CRYPTO GRID */
+.crypto-section{background:var(--navy-mid)}
+.crypto-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.crypto-card{background:var(--navy-mid);padding:30px 26px;display:flex;gap:16px;align-items:flex-start;transition:background .2s;position:relative;overflow:hidden}
+.crypto-card:hover{background:var(--navy-surface)}
+.crypto-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.crypto-card:hover::after{transform:scaleX(1)}
+.crypto-icon{width:36px;height:36px;border-radius:4px;flex-shrink:0;background:var(--green-glow);border:1px solid var(--green-border);display:flex;align-items:center;justify-content:center;font-size:16px}
+.crypto-icon.danger{background:var(--crimson-glow);border-color:var(--border-red)}
+.crypto-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px}
+.crypto-card p{font-size:13px;color:var(--slate);line-height:1.65}
+@media(max-width:640px){.crypto-grid{grid-template-columns:1fr}}
+
+/* IMPACT / SCALE */
+.impact-section{}
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:48px;align-items:start}
+.wide-img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;padding:40px}
+.wide-img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(22,163,74,0.04),transparent);pointer-events:none}
+.wide-img-slot::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(22,163,74,0.025) 0px,rgba(22,163,74,0.025) 1px,transparent 1px,transparent 22px);pointer-events:none}
+.impact-data{}
+.impact-num-row{padding:22px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.impact-num-row:last-child{border-bottom:none}
+.impact-num-label{font-size:13px;color:var(--slate-lt);max-width:260px;line-height:1.4}
+.impact-num-src{font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.04em;display:block;margin-top:3px}
+.impact-num-val{font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--white);line-height:1;white-space:nowrap}
+.impact-num-val .g{color:var(--green-lt)}
+.impact-num-val .r{color:var(--crimson)}
+@media(max-width:720px){.impact-split{grid-template-columns:1fr}.wide-img-slot{min-height:200px}}
+
+/* DATA BARS */
+.dbar{margin-bottom:20px}
+.dbar-label{display:flex;justify-content:space-between;font-size:13px;color:var(--slate-lt);margin-bottom:7px}
+.dbar-label span:last-child{font-family:var(--font-m);color:var(--white);font-size:12px}
+.dbar-track{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.dbar-fill{height:100%;border-radius:2px;transform-origin:left;animation:bar-in 1s ease both}
+@keyframes bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fill-green{background:var(--green)}
+.fill-red{background:var(--crimson)}
+.fill-slate{background:var(--slate)}
+
+/* PROTECTION */
+.protection-section{background:var(--navy-mid)}
+.prot-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px}
+.prot-col h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.check-list{display:flex;flex-direction:column;gap:14px}
+.check-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--slate-lt);line-height:1.65}
+.check-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:2px;border:1px solid var(--green);color:var(--green-vivid);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.resource-cards{display:flex;flex-direction:column;gap:12px}
+.resource-card{background:var(--navy-surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+.resource-card:hover{border-color:var(--green-border)}
+.rc-icon{width:32px;height:32px;border-radius:3px;flex-shrink:0;background:var(--green-glow);border:1px solid var(--green-border);display:flex;align-items:center;justify-content:center;font-size:14px}
+.rc-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.rc-url{font-family:var(--font-m);font-size:11px;color:var(--green-lt);letter-spacing:.03em;text-decoration:none}
+.rc-url:hover{color:var(--green-vivid)}
+.rc-desc{font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5}
+@media(max-width:720px){.prot-split{grid-template-columns:1fr;gap:40px}}
+
+/* REFS */
+.ref-list{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.ref-item{font-size:13px;color:var(--slate);line-height:1.6;padding:12px 16px;background:rgba(255,255,255,0.02);border-left:2px solid rgba(255,255,255,0.07);border-radius:0 3px 3px 0;font-family:var(--font-m);letter-spacing:.02em;transition:border-color .2s}
+.ref-item:hover{border-color:rgba(22,163,74,0.4);color:var(--slate-lt)}
+
+/* QUIZ STRIP */
+.quiz-strip{background:var(--crimson);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.quiz-strip p{font-size:15px;font-weight:500;color:rgba(255,255,255,0.92)}
+.quiz-strip p span{font-weight:300;opacity:.8;font-size:13px}
+.btn-quiz{background:rgba(255,255,255,0.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background .2s;white-space:nowrap}
+.btn-quiz:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:600px){.quiz-strip{padding:24px}}
+
+/* TOPIC NAV */
+.topic-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.topic-nav-card{background:var(--navy-mid);padding:36px 48px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.topic-nav-card:hover{background:var(--navy-surface)}
+.topic-nav-card.next{text-align:right}
+.tnav-dir{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.tnav-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);line-height:1.2}
+.tnav-sub{font-size:13px;color:var(--slate)}
+@media(max-width:640px){.topic-nav{grid-template-columns:1fr}.topic-nav-card{padding:28px 24px}.topic-nav-card.next{text-align:left}}
+
+/* FOOTER */
+footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:380px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="../prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="../sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="../quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="../index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="../prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="../sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="../quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="../index.html#topics" id="bc-topics">Topics</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Financial Cybercrime</span>
+</div>
+
+<!-- HERO -->
+<section class="topic-hero">
+  <div class="hero-img-slot">
+    <span class="placeholder-label"><img src="../media/img/money.png"/></span>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-green"></div>
+  <div class="topic-hero-content">
+    <div class="topic-label">
+      <span class="topic-num-badge">06</span>
+      <span id="hero-series-lbl">Internet Crime Series &nbsp;&middot;&nbsp; Full Report</span>
+    </div>
+    <h1 id="hero-h1">Financial<br><em>Cybercrime</em></h1>
+    <p class="hero-lead" id="hero-lead">Phishing, ransomware, romance scams, and the billion-dollar &lsquo;pig butchering&rsquo; operations targeting ordinary people worldwide &mdash; how the internet became the world&rsquo;s most profitable crime scene.</p>
+    <div class="hero-meta">
+      <span><strong id="meta1-lbl">Severity:</strong>&nbsp;<span id="meta1-val">High</span></span>
+      <span><strong id="meta2-lbl">US losses (2023):</strong>&nbsp;<span id="meta2-val">$12.5 billion</span></span>
+      <span><strong id="meta3-lbl">Key methods:</strong>&nbsp;<span id="meta3-val">Phishing &middot; Ransomware &middot; BEC &middot; Pig butchering</span></span>
+      <span><strong id="meta4-lbl">Infrastructure:</strong>&nbsp;<span id="meta4-val">Organised criminal networks &middot; Southeast Asia</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-num">$<span class="g">12.5</span>B</div><div class="stat-lbl" id="stat1-lbl">total US cybercrime losses reported to FBI IC3 in 2023</div><span class="stat-src">FBI IC3, 2024</span></div>
+  <div class="stat-cell"><div class="stat-num">$<span class="g">4.4</span>B</div><div class="stat-lbl" id="stat2-lbl">lost to investment fraud (including pig butchering) &mdash; the single largest category</div><span class="stat-src">FBI IC3, 2024</span></div>
+  <div class="stat-cell"><div class="stat-num">3.4<span class="r">B</span></div><div class="stat-lbl" id="stat3-lbl">phishing emails sent every single day globally</div><span class="stat-src">Proofpoint, 2023</span></div>
+  <div class="stat-cell"><div class="stat-num">91<span class="r">%</span></div><div class="stat-lbl" id="stat4-lbl">of all cyberattacks begin with a phishing email</div><span class="stat-src">Deloitte, 2023</span></div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s1-eye">Overview</span>
+  <div class="pull-quote">
+    <p id="pq-text">&ldquo;She sent him everything. Her savings. Her pension. Her children&rsquo;s inheritance. He was never real. The compound in Myanmar was.&rdquo;</p>
+    <cite id="pq-cite">Composite account &mdash; Global Anti-Scam Organisation case documentation, 2023</cite>
+  </div>
+  <p class="prose" id="s1p1">Financial cybercrime is the broadest, most financially damaging, and in many ways most underreported category of internet crime. Its victims span every demographic, every country, and every income level. Its perpetrators range from lone amateur phishers to <strong>multinational organised criminal enterprises</strong> operating with the scale, structure, and professionalism of legitimate corporations.</p>
+  <p class="prose" id="s1p2">The FBI&rsquo;s Internet Crime Complaint Center (IC3) recorded $12.5 billion in losses from cybercrime in the United States alone in 2023 &mdash; a figure that represents only reported losses from victims who filed complaints. Actual losses are estimated to be several times higher. Globally, cybercrime costs are projected to reach $10.5 trillion annually by 2025 &mdash; a figure that would make it the world&rsquo;s third-largest economy.</p>
+  <p class="prose" id="s1p3">This report covers the major categories of financial cybercrime: phishing and its variants; ransomware; Business Email Compromise (BEC); romance scams and the &lsquo;pig butchering&rsquo; operations that have industrialised them; and cryptocurrency fraud. It examines how each works, who is being targeted, and what can be done to reduce exposure.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S2: CRIME TYPES -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="s2-eye">Section 2</span>
+  <h2 class="section-h2" id="s2-h2">Six Categories of<br>Financial Cybercrime</h2>
+  <p class="prose" id="s2-intro">Financial cybercrime is not a single activity but a spectrum of distinct operations, each with its own mechanics, target profile, and criminal infrastructure.</p>
+  <div class="crime-grid">
+    <div class="crime-card"><div class="crime-tag" id="ct1-tag">01 &mdash; Most Prevalent</div><h3 id="ct1-h3">Phishing &amp; Spear Phishing</h3><p id="ct1-p">Fraudulent emails, SMS messages (smishing), or voice calls (vishing) designed to steal credentials, financial information, or install malware. Generic phishing casts a wide net; spear phishing is targeted, using personal information to appear legitimate. Business email compromise (BEC) &mdash; impersonating executives to redirect wire transfers &mdash; caused $2.9 billion in losses in the US in 2023 alone.</p><span class="crime-badge cb-red" id="ct1-badge">91% of attacks start here</span></div>
+    <div class="crime-card"><div class="crime-tag" id="ct2-tag">02 &mdash; Highest Individual Losses</div><h3 id="ct2-h3">Pig Butchering / Investment Fraud</h3><p id="ct2-p">Long-duration romance and investment scams in which victims are cultivated for weeks or months before being led into fake cryptocurrency investment platforms. The single fastest-growing and most financially devastating category &mdash; $4.4 billion in US losses in 2023. Operated by organised criminal networks, often using trafficked workers in Southeast Asian compounds.</p><span class="crime-badge cb-red" id="ct2-badge">Fastest growing &mdash; organised crime</span></div>
+    <div class="crime-card"><div class="crime-tag" id="ct3-tag">03 &mdash; Critical Infrastructure Threat</div><h3 id="ct3-h3">Ransomware</h3><p id="ct3-p">Malware that encrypts a victim&rsquo;s files or entire systems and demands cryptocurrency payment for the decryption key. Targets have expanded from individuals to hospitals, schools, municipalities, and critical national infrastructure. Average ransom demand exceeded $1.5 million in 2023. Some groups operate Ransomware-as-a-Service (RaaS) models, selling ransomware kits to affiliates for a revenue share.</p><span class="crime-badge cb-red" id="ct3-badge">Attacks on hospitals &mdash; life threatening</span></div>
+    <div class="crime-card"><div class="crime-tag" id="ct4-tag">04 &mdash; Workplace Threat</div><h3 id="ct4-h3">Business Email Compromise (BEC)</h3><p id="ct4-p">An attacker compromises or impersonates a business email account &mdash; typically an executive or finance officer &mdash; to authorise fraudulent wire transfers, redirect payroll, or steal sensitive data. BEC requires no malware and is difficult to detect because the fraud occurs through legitimate communication channels. It is the highest-loss category in absolute dollar terms in FBI reporting.</p><span class="crime-badge cb-amber" id="ct4-badge">$2.9B US losses &mdash; BEC alone</span></div>
+    <div class="crime-card"><div class="crime-tag" id="ct5-tag">05 &mdash; Mass Market</div><h3 id="ct5-h3">Identity Theft and Account Takeover</h3><p id="ct5-p">Credentials stolen via phishing or purchased from dark web markets are used to access bank accounts, credit card platforms, and government benefit systems. Account takeover fraud &mdash; using stolen credentials to take control of existing accounts &mdash; has grown substantially as credential stuffing (trying large lists of stolen username/password combinations) becomes increasingly automated.</p><span class="crime-badge cb-slate" id="ct5-badge">Mass-market &mdash; millions of victims</span></div>
+    <div class="crime-card"><div class="crime-tag" id="ct6-tag">06 &mdash; Emerging</div><h3 id="ct6-h3">Cryptocurrency Fraud</h3><p id="ct6-p">Rug pulls (launching and abandoning cryptocurrency projects after raising funds), pump-and-dump schemes, fake exchanges, and NFT fraud. Cryptocurrency&rsquo;s pseudonymity and irreversibility make it ideal for fraud and extremely difficult for victims to recover funds. The FTC estimated $1 billion was lost to cryptocurrency scams in 2023 in the US alone.</p><span class="crime-badge cb-green" id="ct6-badge">Blockchain-enabled &mdash; hard to reverse</span></div>
+  </div>
+</section>
+
+<!-- S3: PIG BUTCHERING -->
+<section class="content-section pig-section">
+  <span class="section-eyebrow" id="s3-eye">Section 3 &mdash; Feature Deep-Dive</span>
+  <h2 class="section-h2" id="s3-h2">&lsquo;Pig Butchering&rsquo;: How Industrial-Scale<br>Romance Fraud Works</h2>
+  <p class="prose" id="s3p1">&lsquo;Pig butchering&rsquo; &mdash; from the Chinese <em>sh&#257; zh&#363; p&#225;n</em>, &lsquo;fattening a pig before slaughter&rsquo; &mdash; is the most financially devastating form of online fraud targeting individuals. It combines the slow-burn psychological manipulation of romance fraud with sophisticated fake cryptocurrency investment platforms to extract victims&rsquo; life savings over weeks or months.</p>
+  <p class="prose" id="s3p2">What makes pig butchering uniquely alarming is its <strong>industrial scale</strong>. These are not individual scammers &mdash; they are large operations, often run from fortified compounds in Myanmar, Cambodia, Laos, and the Philippines, staffed by hundreds or thousands of workers, many of whom have been trafficked and forced to work under threat of violence. The operations have org charts, quotas, training manuals, and shift systems.</p>
+  <div class="pig-label" id="pig-lbl">The pig butchering timeline &mdash; from first contact to financial devastation</div>
+  <div class="pig-flow">
+    <div class="pig-step"><div class="pig-dot pd-1">1</div><div class="pig-step-title" id="ps1-title">Initial Contact</div><div class="pig-step-desc" id="ps1-desc">A &lsquo;wrong number&rsquo; text, LinkedIn message, or dating app match. Friendly, non-threatening. The scammer is patient &mdash; no financial discussion for weeks.</div><span class="pig-step-tag pt-green" id="ps1-tag">Weeks 1&ndash;2</span></div>
+    <div class="pig-step"><div class="pig-dot pd-2">2</div><div class="pig-step-title" id="ps2-title">Relationship Building</div><div class="pig-step-desc" id="ps2-desc">Daily contact. Shared interests discovered. Emotional intimacy established. The &lsquo;contact&rsquo; appears wealthy, successful, and genuinely interested. Video calls avoided or scripted.</div><span class="pig-step-tag pt-green" id="ps2-tag">Weeks 2&ndash;6</span></div>
+    <div class="pig-step"><div class="pig-dot pd-3">3</div><div class="pig-step-title" id="ps3-title">Investment Introduction</div><div class="pig-step-desc" id="ps3-desc">Casual mention of a profitable crypto investment. Shows &lsquo;personal returns&rsquo;. Encourages victim to start small. Recommends a specific platform &mdash; which is fraudulent.</div><span class="pig-step-tag pt-green" id="ps3-tag">Weeks 4&ndash;8</span></div>
+    <div class="pig-step"><div class="pig-dot pd-4">4</div><div class="pig-step-title" id="ps4-title">Fattening the Pig</div><div class="pig-step-desc" id="ps4-desc">Early &lsquo;profits&rsquo; are shown on the fake platform. Small withdrawals are permitted to build trust. Victim is encouraged to invest more &mdash; savings, loans, retirement funds.</div><span class="pig-step-tag pt-amber" id="ps4-tag">Months 2&ndash;5</span></div>
+    <div class="pig-step"><div class="pig-dot pd-5">5</div><div class="pig-step-title" id="ps5-title">The Slaughter</div><div class="pig-step-desc" id="ps5-desc">When the victim tries to withdraw large funds, &lsquo;taxes&rsquo; or &lsquo;fees&rsquo; are demanded. If paid, more are demanded. Eventually contact ceases. Platform disappears. All funds gone.</div><span class="pig-step-tag pt-red" id="ps5-tag">Total loss</span></div>
+    <div class="pig-step"><div class="pig-dot pd-6">6</div><div class="pig-step-title" id="ps6-title">Recovery Scam</div><div class="pig-step-desc" id="ps6-desc">A secondary scammer contacts the victim offering to recover lost funds &mdash; for an upfront fee. This is another fraud targeting the same victim in their most vulnerable state.</div><span class="pig-step-tag pt-purple" id="ps6-tag">Second victimisation</span></div>
+  </div>
+  <div class="callout red" style="margin-top:48px"><div class="callout-icon red">!</div><div class="callout-text" id="s3-callout"><strong>Human trafficking dimension:</strong> The US State Department, UN Office on Drugs and Crime, and multiple investigative journalists have documented that many pig butchering operations are staffed by victims of human trafficking &mdash; people lured to Southeast Asia with false promises of legitimate work and then forced to conduct fraud under threat of violence and debt bondage. Dismantling these operations is as much a human rights issue as a cybercrime enforcement one.</div></div>
+</section>
+
+<!-- S4: RANSOMWARE -->
+<section class="ransom-split">
+  <div class="ransom-text">
+    <span class="section-eyebrow red" id="s4-eye">Section 4 &mdash; Critical Threat</span>
+    <h2 class="section-h2" id="s4-h2">Ransomware: When Crime<br>Becomes Life-Threatening</h2>
+    <p class="prose" id="s4p1">Ransomware encrypts a victim&rsquo;s files or entire systems and demands cryptocurrency payment &mdash; typically Monero or Bitcoin &mdash; in exchange for a decryption key. What began as an attack on individuals has evolved into a highly organised industry targeting hospitals, schools, governments, and critical infrastructure.</p>
+    <p class="prose" id="s4p2">The Ransomware-as-a-Service (RaaS) model has industrialised the attack: criminal groups develop and maintain the ransomware and payment infrastructure, then license it to &lsquo;affiliates&rsquo; who conduct the actual attacks in exchange for a revenue share. This lowered the technical barrier to entry dramatically, increasing the volume of attacks.</p>
+    <div class="callout red"><div class="callout-icon red">!</div><div class="callout-text" id="s4-callout"><strong>Hospitals as targets:</strong> Multiple ransomware attacks on hospitals have been directly linked to patient deaths &mdash; either through delayed care during system outages or through ambulance diversions. A 2021 University of Florida study found measurable increases in patient mortality at hospitals that had suffered ransomware attacks. FBI Director Christopher Wray has described targeting healthcare infrastructure as equivalent to a terrorist act.</div></div>
+    <p class="prose" id="s4p3">Major ransomware groups include LockBit (responsible for over 2,000 attacks before its 2024 disruption by Europol and the FBI), ALPHV/BlackCat, and Clop &mdash; each operating with professional support structures and victim negotiation teams. Following the 2021 Colonial Pipeline attack that shut down fuel supply to the US East Coast for six days, ransomware became a national security priority in the United States.</p>
+  </div>
+  <div class="ransom-visual">
+    <div class="ransom-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot t-dot-r"></div><div class="t-dot t-dot-a"></div><div class="t-dot t-dot-g"></div>
+        <div class="t-title">RANSOM_NOTE.txt</div>
+      </div>
+      <div class="terminal-body">
+        <span class="t-line t-red">!!! YOUR FILES HAVE BEEN ENCRYPTED !!!</span>
+        <span class="t-line t-slate">&nbsp;</span>
+        <span class="t-line t-white">All your files, documents, photos,</span>
+        <span class="t-line t-white">databases, and other important data</span>
+        <span class="t-line t-white">have been encrypted.</span>
+        <span class="t-line t-slate">&nbsp;</span>
+        <span class="t-line t-amber" id="term-decrypt">To decrypt your files:</span>
+        <span class="t-line t-green" id="term-send">&#x2192; Send 2.5 BTC to:</span>
+        <span class="t-line t-slate">bc1q...x7f2k [truncated]</span>
+        <span class="t-line t-slate">&nbsp;</span>
+        <span class="t-line t-red" id="term-deadline">&#x23F1; Deadline: 72 hours</span>
+        <span class="t-line t-red" id="term-double">After deadline: price doubles.</span>
+        <span class="t-line t-slate">&nbsp;</span>
+        <span class="t-blink t-line">_</span>
+      </div>
+    </div>
+    <div class="ransom-stat">
+      <div class="rs"><span class="rs-label" id="rs1-lbl">Avg ransom demand (2023)</span><span class="rs-val">$1.<span class="r">5M</span></span></div>
+      <div class="rs"><span class="rs-label" id="rs2-lbl">Attacks on healthcare (2023)</span><span class="rs-val">386<span class="r">+</span></span></div>
+      <div class="rs"><span class="rs-label" id="rs3-lbl">LockBit victims before takedown</span><span class="rs-val">2,<span class="r">000+</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: PHISHING -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s5-eye">Section 5</span>
+  <h2 class="section-h2" id="s5-h2">Phishing: The Attack<br>That Starts Everything</h2>
+  <p class="prose" id="s5-intro">Phishing is the entry point for 91% of all cyberattacks. Understanding how it works is the foundation of financial cybercrime literacy &mdash; because even sophisticated ransomware deployments and BEC frauds typically begin with a phishing email.</p>
+  <div class="phish-split">
+    <div class="img-slot">
+      <img src="../media/img/phishing.jpg"/>
+    </div>
+    <div class="phish-steps">
+      <div class="phish-step"><div class="phish-num">1</div><div><h4 id="ph1-h4">Credential Phishing</h4><p id="ph1-p">An email impersonating a trusted institution (bank, Microsoft, Amazon, HMRC/IRS) directs the recipient to a convincing fake login page. Credentials entered are captured in real time and used immediately or sold on dark web markets. Modern phishing kits include reverse-proxy technology that allows attackers to bypass two-factor authentication in real time.</p></div></div>
+      <div class="phish-step"><div class="phish-num">2</div><div><h4 id="ph2-h4">Spear Phishing &mdash; Targeted Attacks</h4><p id="ph2-p">Unlike generic phishing, spear phishing uses researched personal information to appear highly credible. An email that references the recipient&rsquo;s name, employer, a recent transaction, or a known contact is dramatically more effective. Executives are specifically targeted in &lsquo;whaling&rsquo; attacks designed to authorise large fraudulent transfers.</p></div></div>
+      <div class="phish-step"><div class="phish-num">3</div><div><h4 id="ph3-h4">Smishing and Vishing</h4><p id="ph3-p">Phishing via SMS (smishing) has grown significantly &mdash; text messages claiming a package cannot be delivered, or that a bank account has been frozen, drive victims to fake sites or fraudulent phone numbers. Vishing involves actual phone calls from convincing impersonators &mdash; increasingly powered by AI voice cloning technology that can replicate a known contact&rsquo;s voice using publicly available audio samples.</p></div></div>
+      <div class="phish-step"><div class="phish-num">4</div><div><h4 id="ph4-h4">Business Email Compromise (BEC)</h4><p id="ph4-p">The highest-loss variant: an attacker compromises an executive email account or creates a convincing spoofed address and instructs the finance department to wire funds to a new account &lsquo;for an urgent acquisition&rsquo; or &lsquo;supplier payment&rsquo;. BEC requires no malware and is highly effective because it exploits existing trust relationships within organisations. FBI IC3 recorded $2.9 billion in BEC losses in 2023.</p></div></div>
+      <div class="phish-step"><div class="phish-num">5</div><div><h4 id="ph5-h4">AI-Powered Phishing</h4><p id="ph5-p">Large language models have dramatically lowered the technical barrier to producing convincing phishing content &mdash; error-free, contextually aware, and personalised at scale. AI-generated phishing emails show significantly higher click rates than manually crafted equivalents. Voice-cloning AI has been used in real fraud cases to impersonate executives and family members in live calls to authorise wire transfers.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S6: CRYPTO FRAUD -->
+<section class="content-section crypto-section">
+  <span class="section-eyebrow" id="s6-eye">Section 6</span>
+  <h2 class="section-h2" id="s6-h2">Cryptocurrency Fraud:<br>Irreversible by Design</h2>
+  <p class="prose" id="s6-intro">Cryptocurrency&rsquo;s properties &mdash; pseudonymity, speed, and irreversibility &mdash; make it the preferred payment method for cybercriminals and a uniquely damaging instrument of fraud. Once funds are transferred to a scammer&rsquo;s wallet, recovery without law enforcement intervention is essentially impossible.</p>
+  <div class="crypto-grid">
+    <div class="crypto-card"><div class="crypto-icon">&#x1FA84;</div><div><h4 id="cc1-h4">Rug Pulls</h4><p id="cc1-p">Developers launch a cryptocurrency or NFT project with a convincing whitepaper, social media presence, and celebrity endorsements. Once sufficient investment accumulates, they drain the liquidity pool and abandon the project. The token or NFT becomes worthless. Rug pulls generated over $2.8 billion in losses in 2022 according to Chainalysis.</p></div></div>
+    <div class="crypto-card"><div class="crypto-icon danger">&#x1F4C8;</div><div><h4 id="cc2-h4">Pump and Dump</h4><p id="cc2-p">A coordinated group accumulates a low-value token, then uses Telegram channels, Twitter/X, and influencer promotion to hype it. Retail investors buy in; the coordinators sell at peak price; the token collapses. The SEC has prosecuted several high-profile pump-and-dump cases involving celebrities paid to promote tokens without disclosing their financial interest.</p></div></div>
+    <div class="crypto-card"><div class="crypto-icon">&#x1F3E6;</div><div><h4 id="cc3-h4">Fake Exchanges and Wallets</h4><p id="cc3-p">Fraudulent cryptocurrency exchange apps &mdash; indistinguishable in appearance from legitimate services &mdash; are promoted on social media or app stores. Users deposit funds which are then inaccessible. Some fake exchanges allow small withdrawals to build trust before a &lsquo;platform upgrade&rsquo; freezes all funds permanently. Google and Apple have repeatedly had to remove fraudulent crypto apps from their stores.</p></div></div>
+    <div class="crypto-card"><div class="crypto-icon danger">&#x1F381;</div><div><h4 id="cc4-h4">Giveaway Scams</h4><p id="cc4-p">Impersonating prominent figures on social media to promote fake cryptocurrency giveaways: &lsquo;Send 0.1 BTC and receive 0.5 BTC back.&rsquo; These scams generated over $80 million following a coordinated Twitter account hijacking of major accounts (Barack Obama, Joe Biden, Apple, Uber) in a 2020 attack. The simplicity and scale of returns make them persistently effective.</p></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:52px;align-items:start">
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g1-lbl">Cryptocurrency fraud losses by type &mdash; US (2023)</p>
+      <div class="dbar"><div class="dbar-label"><span id="bar1-lbl">Investment fraud / pig butchering</span><span>$4.4B</span></div><div class="dbar-track"><div class="dbar-fill fill-red" style="width:88%;animation-delay:.1s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar2-lbl">Romance scams (crypto-enabled)</span><span>$652M</span></div><div class="dbar-track"><div class="dbar-fill fill-red" style="width:13%;animation-delay:.2s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar3-lbl">Crypto exchange fraud</span><span>$492M</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:10%;animation-delay:.3s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar4-lbl">NFT / rug pull fraud</span><span>$271M</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:6%;animation-delay:.4s"></div></div></div>
+    </div>
+    <div>
+      <p style="font-family:var(--font-m);font-size:10px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px" id="bar-g2-lbl">Most targeted victim demographics</p>
+      <div class="dbar"><div class="dbar-label"><span id="bar5-lbl">Adults aged 30&ndash;49</span><span>~38%</span></div><div class="dbar-track"><div class="dbar-fill fill-green" style="width:38%;animation-delay:.1s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar6-lbl">Adults aged 50&ndash;69</span><span>~31%</span></div><div class="dbar-track"><div class="dbar-fill fill-green" style="width:31%;animation-delay:.2s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar7-lbl">Adults aged 70+</span><span>~19%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:19%;animation-delay:.3s"></div></div></div>
+      <div class="dbar"><div class="dbar-label"><span id="bar8-lbl">Adults aged 18&ndash;29</span><span>~12%</span></div><div class="dbar-track"><div class="dbar-fill fill-slate" style="width:12%;animation-delay:.4s"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: SCALE -->
+<section class="content-section impact-section">
+  <span class="section-eyebrow" id="s7-eye">Section 7</span>
+  <h2 class="section-h2" id="s7-h2">The True Scale of Financial Cybercrime</h2>
+  <p class="prose" id="s7-intro">FBI IC3 data represents only a fraction of actual losses &mdash; most victims never report, either from shame, lack of awareness of reporting channels, or hopelessness about recovery. Independent research suggests reported losses represent as little as 15&ndash;20% of actual cybercrime losses globally.</p>
+  <div class="impact-split">
+    <div class="wide-img-slot">
+      <img src="../media/img/stock.png"/>
+    </div>
+    <div class="impact-data">
+      <div class="impact-num-row"><div><div class="impact-num-label" id="in1-lbl">Total US cybercrime losses (reported)</div><div class="impact-num-src">FBI IC3 2024</div></div><div class="impact-num-val">$12.<span class="g">5B</span></div></div>
+      <div class="impact-num-row"><div><div class="impact-num-label" id="in2-lbl">Projected global cybercrime cost by 2025</div><div class="impact-num-src">Cybersecurity Ventures</div></div><div class="impact-num-val">$10.<span class="g">5T</span></div></div>
+      <div class="impact-num-row"><div><div class="impact-num-label" id="in3-lbl">Average business email compromise loss per incident</div><div class="impact-num-src">FBI IC3 2024</div></div><div class="impact-num-val">$137<span class="r">k</span></div></div>
+      <div class="impact-num-row"><div><div class="impact-num-label" id="in4-lbl">Percentage of ransomware victims who pay the ransom</div><div class="impact-num-src">Coveware Q4 2023</div></div><div class="impact-num-val">29<span class="r">%</span></div></div>
+      <div class="impact-num-row"><div><div class="impact-num-label" id="in5-lbl">Cryptocurrency funds successfully recovered by law enforcement (est.)</div><div class="impact-num-src">Chainalysis 2023</div></div><div class="impact-num-val">&lt; 1<span class="r">%</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- S8: PROTECTION -->
+<section class="content-section protection-section">
+  <span class="section-eyebrow" id="s8-eye">Section 8</span>
+  <h2 class="section-h2" id="s8-h2">Protection and Reporting</h2>
+  <p class="prose" id="s8-intro">Financial cybercrime is largely preventable with appropriate security hygiene. The single highest-impact measures are consistent across virtually all attack types.</p>
+  <div class="prot-split">
+    <div class="prot-col">
+      <h3 id="prot-h3">Critical Security Measures</h3>
+      <div class="check-list">
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci1">Enable multi-factor authentication (MFA) on every financial account, email address, and important service. Even SMS-based MFA substantially raises the cost of account takeover &mdash; hardware security keys (YubiKey) are the strongest option.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci2">Verify before trusting. Any unexpected communication requesting money, credentials, or urgent action &mdash; regardless of who it appears to be from &mdash; should be verified through a separate trusted channel before any response. Call the sender on a known number, not one provided in the message.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci3">Be deeply sceptical of unsolicited investment opportunities, especially those involving cryptocurrency, high guaranteed returns, or urgency. The presence of any of these elements is a near-certain indicator of fraud.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci4">Use unique, strong passwords for every account. A password manager (Bitwarden, 1Password) makes this practical. Password reuse allows credential stuffing attacks to compromise multiple accounts from a single data breach.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci5">Set up banking transaction alerts for any transfer above a threshold you control. Early detection of unauthorised transactions is the key to successful recovery &mdash; most banks can reverse transactions if reported within a short window.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci6">Check email sender domains carefully &mdash; not just display names. BEC attacks use spoofed addresses like &lsquo;ceo@comp4ny.com&rsquo; instead of &lsquo;ceo@company.com&rsquo;. Hover over sender names before acting on any financial request.</span></div>
+      </div>
+    </div>
+    <div class="prot-col">
+      <h3 id="res-h3">Reporting and Recovery Resources</h3>
+      <div class="resource-cards">
+        <div class="resource-card"><div class="rc-icon">&#x1F1FA;&#x1F1F8;</div><div><div class="rc-name">FBI Internet Crime Complaint Center (IC3)</div><a href="https://ic3.gov" class="rc-url" target="_blank">ic3.gov</a><div class="rc-desc" id="rc1-desc">Official US federal reporting portal for internet crime. Reports feed law enforcement databases and enable financial recovery attempts.</div></div></div>
+        <div class="resource-card"><div class="rc-icon">&#x1F1EC;&#x1F1E7;</div><div><div class="rc-name">Action Fraud (UK)</div><a href="https://actionfraud.police.uk" class="rc-url" target="_blank">actionfraud.police.uk</a><div class="rc-desc" id="rc2-desc">UK national reporting centre for fraud and cybercrime. Reports are assessed for investigation by the National Fraud Intelligence Bureau.</div></div></div>
+        <div class="resource-card"><div class="rc-icon">&#x1F310;</div><div><div class="rc-name">Global Anti-Scam Organisation</div><a href="https://www.globalantiscam.org" class="rc-url" target="_blank">globalantiscam.org</a><div class="rc-desc" id="rc3-desc">Specialist support for pig butchering and romance scam victims. Database of known scam operations and recovery guidance.</div></div></div>
+        <div class="resource-card"><div class="rc-icon">&#x1F1EA;&#x1F1FA;</div><div><div class="rc-name">Europol Cybercrime Reporting</div><a href="https://europol.europa.eu" class="rc-url" target="_blank">europol.europa.eu</a><div class="rc-desc" id="rc4-desc">Europol coordinates cross-border cybercrime investigations across EU member states. National portals link to Europol for international cases.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES — kept in English -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="ref-eye">References</span>
+  <h2 class="section-h2" id="ref-h2">Sources and Further Reading</h2>
+  <div class="ref-list">
+    <div class="ref-item">Chainalysis. (2024). <em>The Chainalysis 2024 Crypto Crime Report.</em> chainalysis.com.</div>
+    <div class="ref-item">Coveware. (2024). <em>Q4 2023 Ransomware Marketplace Report.</em> coveware.com.</div>
+    <div class="ref-item">Cybersecurity Ventures. (2023). <em>Cybercrime Magazine: Cybercrime To Cost The World $10.5 Trillion Annually By 2025.</em> cybersecurityventures.com.</div>
+    <div class="ref-item">Deloitte. (2023). <em>Phishing Attacks: The Gateway to Cybercrime.</em> deloitte.com.</div>
+    <div class="ref-item">FBI IC3. (2024). <em>Internet Crime Report 2023.</em> ic3.gov.</div>
+    <div class="ref-item">FTC. (2024). <em>Consumer Sentinel Network Data Book 2023.</em> ftc.gov.</div>
+    <div class="ref-item">Global Anti-Scam Organisation. (2023). <em>Pig Butchering Scam &mdash; How It Works.</em> globalantiscam.org.</div>
+    <div class="ref-item">Krebs, B. (2023). <em>Pig Butchering Scams: A Deep Dive.</em> krebsonsecurity.com.</div>
+    <div class="ref-item">Proofpoint. (2024). <em>State of the Phish 2024.</em> proofpoint.com.</div>
+    <div class="ref-item">UNODC. (2023). <em>Transnational Organised Crime and the Convergence of Cyber-Enabled Fraud.</em> unodc.org.</div>
+    <div class="ref-item">US State Department. (2023). <em>Southeast Asia Trafficking and Forced Labor in Online Scam Operations.</em> state.gov.</div>
+    <div class="ref-item">Verizon. (2024). <em>2024 Data Breach Investigations Report.</em> verizon.com.</div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p id="quiz-strip-p">Test your knowledge on financial cybercrime and all other topics <span>&mdash; 10 randomised questions, no time limit.</span></p>
+  <a href="../quiz/index.html" class="btn-quiz" id="quiz-strip-btn">Take the Quiz &nbsp;&rarr;</a>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav">
+  <a href="cyberstalking.html" class="topic-nav-card">
+    <span class="tnav-dir" id="tnav1-dir">&#x2190; Previous Topic</span>
+    <span class="tnav-title" id="tnav1-title">Cyberstalking &amp; Doxxing</span>
+    <span class="tnav-sub" id="tnav1-sub">05 &mdash; Digital surveillance and coordinated harassment</span>
+  </a>
+  <a href="../index.html#topics" class="topic-nav-card next">
+    <span class="tnav-dir" id="tnav2-dir">All Topics &#x2191;</span>
+    <span class="tnav-title" id="tnav2-title">Back to Overview</span>
+    <span class="tnav-sub" id="tnav2-sub">Review all six crime categories</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="../index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="../sources.html"      id="footer-src">References</a>
+    <a href="../prevention.html"   id="footer-prev">Prevention</a>
+    <a href="../index.html#topics" id="footer-top">All Topics</a>
+    <a href="../quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="../imprint.html"      id="foot_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+var T={};
+
+T.en={
+  page_title:'Financial Cybercrime | CrimeOnline',
+  nav_topics:'Topics',nav_prev:'Prevention',nav_sources:'Sources',nav_cta:'Take the Quiz \u2197',
+  mob_home:'Home',mob_lang:'Language',
+  bc_home:'Home',bc_topics:'Topics',bc_current:'Financial Cybercrime',
+  hero_series:'Internet Crime Series \u00b7 Full Report',
+  hero_h1:'Financial<br><em>Cybercrime</em>',
+  hero_lead:'Phishing, ransomware, romance scams, and the billion-dollar \u2018pig butchering\u2019 operations targeting ordinary people worldwide \u2014 how the internet became the world\u2019s most profitable crime scene.',
+  meta1_lbl:'Severity:',meta1_val:'High',
+  meta2_lbl:'US losses (2023):',meta2_val:'$12.5 billion',
+  meta3_lbl:'Key methods:',meta3_val:'Phishing \u00b7 Ransomware \u00b7 BEC \u00b7 Pig butchering',
+  meta4_lbl:'Infrastructure:',meta4_val:'Organised criminal networks \u00b7 Southeast Asia',
+  stat1_lbl:'total US cybercrime losses reported to FBI IC3 in 2023',
+  stat2_lbl:'lost to investment fraud (including pig butchering) \u2014 the single largest category',
+  stat3_lbl:'phishing emails sent every single day globally',
+  stat4_lbl:'of all cyberattacks begin with a phishing email',
+  s1_eye:'Overview',
+  pq_text:'\u201cShe sent him everything. Her savings. Her pension. Her children\u2019s inheritance. He was never real. The compound in Myanmar was.\u201d',
+  pq_cite:'Composite account \u2014 Global Anti-Scam Organisation case documentation, 2023',
+  s1p1:'Financial cybercrime is the broadest, most financially damaging, and in many ways most underreported category of internet crime. Its victims span every demographic, every country, and every income level. Its perpetrators range from lone amateur phishers to <strong>multinational organised criminal enterprises</strong> operating with the scale, structure, and professionalism of legitimate corporations.',
+  s1p2:'The FBI\u2019s Internet Crime Complaint Center (IC3) recorded $12.5 billion in losses from cybercrime in the United States alone in 2023 \u2014 a figure that represents only reported losses from victims who filed complaints. Actual losses are estimated to be several times higher. Globally, cybercrime costs are projected to reach $10.5 trillion annually by 2025.',
+  s1p3:'This report covers the major categories of financial cybercrime: phishing and its variants; ransomware; Business Email Compromise (BEC); romance scams and the \u2018pig butchering\u2019 operations that have industrialised them; and cryptocurrency fraud.',
+  s2_eye:'Section 2',s2_h2:'Six Categories of<br>Financial Cybercrime',
+  s2_intro:'Financial cybercrime is not a single activity but a spectrum of distinct operations, each with its own mechanics, target profile, and criminal infrastructure.',
+  ct1_tag:'01 \u2014 Most Prevalent',ct1_h3:'Phishing & Spear Phishing',
+  ct1_p:'Fraudulent emails, SMS messages (smishing), or voice calls (vishing) designed to steal credentials, financial information, or install malware. Generic phishing casts a wide net; spear phishing is targeted, using personal information to appear legitimate. BEC \u2014 impersonating executives to redirect wire transfers \u2014 caused $2.9 billion in losses in the US in 2023.',
+  ct1_badge:'91% of attacks start here',
+  ct2_tag:'02 \u2014 Highest Individual Losses',ct2_h3:'Pig Butchering / Investment Fraud',
+  ct2_p:'Long-duration romance and investment scams in which victims are cultivated for weeks or months before being led into fake cryptocurrency investment platforms. The single fastest-growing and most financially devastating category \u2014 $4.4 billion in US losses in 2023. Operated by organised criminal networks, often using trafficked workers in Southeast Asian compounds.',
+  ct2_badge:'Fastest growing \u2014 organised crime',
+  ct3_tag:'03 \u2014 Critical Infrastructure Threat',ct3_h3:'Ransomware',
+  ct3_p:'Malware that encrypts a victim\u2019s files or entire systems and demands cryptocurrency payment for the decryption key. Targets have expanded from individuals to hospitals, schools, municipalities, and critical national infrastructure. Average ransom demand exceeded $1.5 million in 2023. Some groups operate Ransomware-as-a-Service (RaaS) models, selling kits to affiliates for a revenue share.',
+  ct3_badge:'Attacks on hospitals \u2014 life threatening',
+  ct4_tag:'04 \u2014 Workplace Threat',ct4_h3:'Business Email Compromise (BEC)',
+  ct4_p:'An attacker compromises or impersonates a business email account \u2014 typically an executive or finance officer \u2014 to authorise fraudulent wire transfers, redirect payroll, or steal sensitive data. BEC requires no malware and is difficult to detect because the fraud occurs through legitimate communication channels.',
+  ct4_badge:'$2.9B US losses \u2014 BEC alone',
+  ct5_tag:'05 \u2014 Mass Market',ct5_h3:'Identity Theft and Account Takeover',
+  ct5_p:'Credentials stolen via phishing or purchased from dark web markets are used to access bank accounts, credit card platforms, and government benefit systems. Account takeover fraud has grown substantially as credential stuffing becomes increasingly automated.',
+  ct5_badge:'Mass-market \u2014 millions of victims',
+  ct6_tag:'06 \u2014 Emerging',ct6_h3:'Cryptocurrency Fraud',
+  ct6_p:'Rug pulls (launching and abandoning cryptocurrency projects after raising funds), pump-and-dump schemes, fake exchanges, and NFT fraud. Cryptocurrency\u2019s pseudonymity and irreversibility make it ideal for fraud. The FTC estimated $1 billion was lost to cryptocurrency scams in 2023 in the US alone.',
+  ct6_badge:'Blockchain-enabled \u2014 hard to reverse',
+  s3_eye:'Section 3 \u2014 Feature Deep-Dive',
+  s3_h2:'\u2018Pig Butchering\u2019: How Industrial-Scale<br>Romance Fraud Works',
+  s3p1:'\u2018Pig butchering\u2019 \u2014 from the Chinese <em>sh\u0101 zh\u016b p\u00e1n</em>, \u2018fattening a pig before slaughter\u2019 \u2014 is the most financially devastating form of online fraud targeting individuals. It combines the slow-burn psychological manipulation of romance fraud with sophisticated fake cryptocurrency investment platforms to extract victims\u2019 life savings over weeks or months.',
+  s3p2:'What makes pig butchering uniquely alarming is its <strong>industrial scale</strong>. These are not individual scammers \u2014 they are large operations, often run from fortified compounds in Myanmar, Cambodia, Laos, and the Philippines, staffed by hundreds or thousands of workers, many of whom have been trafficked and forced to work under threat of violence.',
+  pig_lbl:'The pig butchering timeline \u2014 from first contact to financial devastation',
+  ps1_title:'Initial Contact',ps1_desc:'A \u2018wrong number\u2019 text, LinkedIn message, or dating app match. Friendly, non-threatening. The scammer is patient \u2014 no financial discussion for weeks.',ps1_tag:'Weeks 1\u20132',
+  ps2_title:'Relationship Building',ps2_desc:'Daily contact. Shared interests discovered. Emotional intimacy established. The \u2018contact\u2019 appears wealthy, successful, and genuinely interested. Video calls avoided or scripted.',ps2_tag:'Weeks 2\u20136',
+  ps3_title:'Investment Introduction',ps3_desc:'Casual mention of a profitable crypto investment. Shows \u2018personal returns\u2019. Encourages victim to start small. Recommends a specific platform \u2014 which is fraudulent.',ps3_tag:'Weeks 4\u20138',
+  ps4_title:'Fattening the Pig',ps4_desc:'Early \u2018profits\u2019 are shown on the fake platform. Small withdrawals are permitted to build trust. Victim is encouraged to invest more \u2014 savings, loans, retirement funds.',ps4_tag:'Months 2\u20135',
+  ps5_title:'The Slaughter',ps5_desc:'When the victim tries to withdraw large funds, \u2018taxes\u2019 or \u2018fees\u2019 are demanded. If paid, more are demanded. Eventually contact ceases. Platform disappears. All funds gone.',ps5_tag:'Total loss',
+  ps6_title:'Recovery Scam',ps6_desc:'A secondary scammer contacts the victim offering to recover lost funds \u2014 for an upfront fee. This is another fraud targeting the same victim in their most vulnerable state.',ps6_tag:'Second victimisation',
+  s3_callout:'<strong>Human trafficking dimension:</strong> The US State Department, UN Office on Drugs and Crime, and multiple investigative journalists have documented that many pig butchering operations are staffed by victims of human trafficking \u2014 people lured to Southeast Asia with false promises of legitimate work and then forced to conduct fraud under threat of violence and debt bondage.',
+  s4_eye:'Section 4 \u2014 Critical Threat',s4_h2:'Ransomware: When Crime<br>Becomes Life-Threatening',
+  s4p1:'Ransomware encrypts a victim\u2019s files or entire systems and demands cryptocurrency payment in exchange for a decryption key. What began as an attack on individuals has evolved into a highly organised industry targeting hospitals, schools, governments, and critical infrastructure.',
+  s4p2:'The Ransomware-as-a-Service (RaaS) model has industrialised the attack: criminal groups develop and maintain the ransomware and payment infrastructure, then license it to \u2018affiliates\u2019 who conduct the actual attacks in exchange for a revenue share. This lowered the technical barrier to entry dramatically.',
+  s4_callout:'<strong>Hospitals as targets:</strong> Multiple ransomware attacks on hospitals have been directly linked to patient deaths \u2014 either through delayed care during system outages or through ambulance diversions. A 2021 University of Florida study found measurable increases in patient mortality at hospitals that had suffered ransomware attacks.',
+  s4p3:'Major ransomware groups include LockBit (responsible for over 2,000 attacks before its 2024 disruption by Europol and the FBI), ALPHV/BlackCat, and Clop. Following the 2021 Colonial Pipeline attack that shut down fuel supply to the US East Coast for six days, ransomware became a national security priority in the United States.',
+  slot3_lbl:'Image slot 3 \u2014 add your illustration',
+  term_decrypt:'To decrypt your files:',term_send:'\u2192 Send 2.5 BTC to:',
+  term_deadline:'\u23F1 Deadline: 72 hours',term_double:'After deadline: price doubles.',
+  rs1_lbl:'Avg ransom demand (2023)',rs2_lbl:'Attacks on healthcare (2023)',rs3_lbl:'LockBit victims before takedown',
+  s5_eye:'Section 5',s5_h2:'Phishing: The Attack<br>That Starts Everything',
+  s5_intro:'Phishing is the entry point for 91% of all cyberattacks. Understanding how it works is the foundation of financial cybercrime literacy \u2014 because even sophisticated ransomware deployments and BEC frauds typically begin with a phishing email.',
+  slot2_title:'Image Slot 2',slot2_desc:'Phishing attack chain diagram \u2014 from fraudulent email to credential theft to financial fraud',slot2_tag:'Add your artwork here',
+  ph1_h4:'Credential Phishing',ph1_p:'An email impersonating a trusted institution directs the recipient to a convincing fake login page. Credentials entered are captured in real time and used immediately or sold on dark web markets. Modern phishing kits include reverse-proxy technology that allows attackers to bypass two-factor authentication in real time.',
+  ph2_h4:'Spear Phishing \u2014 Targeted Attacks',ph2_p:'Unlike generic phishing, spear phishing uses researched personal information to appear highly credible. An email that references the recipient\u2019s name, employer, a recent transaction, or a known contact is dramatically more effective. Executives are specifically targeted in \u2018whaling\u2019 attacks.',
+  ph3_h4:'Smishing and Vishing',ph3_p:'Phishing via SMS (smishing) has grown significantly \u2014 text messages claiming a package cannot be delivered, or that a bank account has been frozen, drive victims to fake sites. Vishing involves actual phone calls from convincing impersonators \u2014 increasingly powered by AI voice cloning technology.',
+  ph4_h4:'Business Email Compromise (BEC)',ph4_p:'The highest-loss variant: an attacker compromises an executive email account or creates a convincing spoofed address and instructs the finance department to wire funds. BEC requires no malware and is highly effective because it exploits existing trust relationships within organisations. FBI IC3 recorded $2.9 billion in BEC losses in 2023.',
+  ph5_h4:'AI-Powered Phishing',ph5_p:'Large language models have dramatically lowered the technical barrier to producing convincing phishing content \u2014 error-free, contextually aware, and personalised at scale. Voice-cloning AI has been used in real fraud cases to impersonate executives and family members in live calls to authorise wire transfers.',
+  s6_eye:'Section 6',s6_h2:'Cryptocurrency Fraud:<br>Irreversible by Design',
+  s6_intro:'Cryptocurrency\u2019s properties \u2014 pseudonymity, speed, and irreversibility \u2014 make it the preferred payment method for cybercriminals. Once funds are transferred to a scammer\u2019s wallet, recovery without law enforcement intervention is essentially impossible.',
+  cc1_h4:'Rug Pulls',cc1_p:'Developers launch a cryptocurrency or NFT project with a convincing whitepaper, social media presence, and celebrity endorsements. Once sufficient investment accumulates, they drain the liquidity pool and abandon the project. Rug pulls generated over $2.8 billion in losses in 2022.',
+  cc2_h4:'Pump and Dump',cc2_p:'A coordinated group accumulates a low-value token, then uses Telegram channels, Twitter/X, and influencer promotion to hype it. Retail investors buy in; the coordinators sell at peak price; the token collapses. The SEC has prosecuted several high-profile pump-and-dump cases involving celebrities.',
+  cc3_h4:'Fake Exchanges and Wallets',cc3_p:'Fraudulent cryptocurrency exchange apps \u2014 indistinguishable from legitimate services \u2014 are promoted on social media or app stores. Users deposit funds which are then inaccessible. Some fake exchanges allow small withdrawals to build trust before a \u2018platform upgrade\u2019 freezes all funds permanently.',
+  cc4_h4:'Giveaway Scams',cc4_p:'Impersonating prominent figures on social media to promote fake cryptocurrency giveaways: \u2018Send 0.1 BTC and receive 0.5 BTC back.\u2019 These scams generated over $80 million following a coordinated Twitter account hijacking of major accounts (Barack Obama, Joe Biden, Apple, Uber) in a 2020 attack.',
+  bar_g1:'Cryptocurrency fraud losses by type \u2014 US (2023)',bar_g2:'Most targeted victim demographics',
+  bar1:'Investment fraud / pig butchering',bar2:'Romance scams (crypto-enabled)',
+  bar3:'Crypto exchange fraud',bar4:'NFT / rug pull fraud',
+  bar5:'Adults aged 30\u201349',bar6:'Adults aged 50\u201369',bar7:'Adults aged 70+',bar8:'Adults aged 18\u201329',
+  s7_eye:'Section 7',s7_h2:'The True Scale of Financial Cybercrime',
+  s7_intro:'FBI IC3 data represents only a fraction of actual losses \u2014 most victims never report, either from shame, lack of awareness of reporting channels, or hopelessness about recovery. Independent research suggests reported losses represent as little as 15\u201320% of actual cybercrime losses globally.',
+  slot4_title:'Image Slot 4',slot4_desc:'Illustration of financial cybercrime scale \u2014 money flowing from victims to criminal networks',slot4_tag:'Add your artwork here',
+  in1_lbl:'Total US cybercrime losses (reported)',in2_lbl:'Projected global cybercrime cost by 2025',
+  in3_lbl:'Average business email compromise loss per incident',
+  in4_lbl:'Percentage of ransomware victims who pay the ransom',
+  in5_lbl:'Cryptocurrency funds successfully recovered by law enforcement (est.)',
+  s8_eye:'Section 8',s8_h2:'Protection and Reporting',
+  s8_intro:'Financial cybercrime is largely preventable with appropriate security hygiene. The single highest-impact measures are consistent across virtually all attack types.',
+  prot_h3:'Critical Security Measures',res_h3:'Reporting and Recovery Resources',
+  ci1:'Enable multi-factor authentication (MFA) on every financial account, email address, and important service. Even SMS-based MFA substantially raises the cost of account takeover \u2014 hardware security keys (YubiKey) are the strongest option.',
+  ci2:'Verify before trusting. Any unexpected communication requesting money, credentials, or urgent action \u2014 regardless of who it appears to be from \u2014 should be verified through a separate trusted channel before any response.',
+  ci3:'Be deeply sceptical of unsolicited investment opportunities, especially those involving cryptocurrency, high guaranteed returns, or urgency. The presence of any of these elements is a near-certain indicator of fraud.',
+  ci4:'Use unique, strong passwords for every account. A password manager (Bitwarden, 1Password) makes this practical. Password reuse allows credential stuffing attacks to compromise multiple accounts from a single data breach.',
+  ci5:'Set up banking transaction alerts for any transfer above a threshold you control. Early detection of unauthorised transactions is the key to successful recovery \u2014 most banks can reverse transactions if reported within a short window.',
+  ci6:'Check email sender domains carefully \u2014 not just display names. BEC attacks use spoofed addresses like \u2018ceo@comp4ny.com\u2019 instead of \u2018ceo@company.com\u2019. Hover over sender names before acting on any financial request.',
+  rc1_desc:'Official US federal reporting portal for internet crime. Reports feed law enforcement databases and enable financial recovery attempts.',
+  rc2_desc:'UK national reporting centre for fraud and cybercrime. Reports are assessed for investigation by the National Fraud Intelligence Bureau.',
+  rc3_desc:'Specialist support for pig butchering and romance scam victims. Database of known scam operations and recovery guidance.',
+  rc4_desc:'Europol coordinates cross-border cybercrime investigations across EU member states. National portals link to Europol for international cases.',
+  ref_eye:'References',ref_h2:'Sources and Further Reading',
+  quiz_p:'Test your knowledge on financial cybercrime and all other topics',
+  quiz_span:'\u2014 10 randomised questions, no time limit.',
+  quiz_btn:'Take the Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Previous Topic',tnav1_title:'Cyberstalking & Doxxing',tnav1_sub:'05 \u2014 Digital surveillance and coordinated harassment',
+  tnav2_dir:'All Topics \u2191',tnav2_title:'Back to Overview',tnav2_sub:'Review all six crime categories',
+  footer_note:'Educational project \u2014 Academic submission 2026. All statistics sourced and cited above.',
+  footer_src:'References',footer_prev:'Prevention',footer_top:'All Topics',footer_quiz:'Quiz', foot_imprint:"Imprint"
+};
+
+T.de={
+  page_title:'Finanzielle Internetkriminalit\u00e4t | CrimeOnline',
+  nav_topics:'Themen',nav_prev:'Pr\u00e4vention',nav_sources:'Quellen',nav_cta:'Quiz starten \u2197',
+  mob_home:'Startseite',mob_lang:'Sprache',
+  bc_home:'Startseite',bc_topics:'Themen',bc_current:'Finanzielle Internetkriminalit\u00e4t',
+  hero_series:'Serie Internetkriminalit\u00e4t \u00b7 Vollst\u00e4ndiger Bericht',
+  hero_h1:'Finanzielle<br><em>Internetkriminalit\u00e4t</em>',
+  hero_lead:'Phishing, Ransomware, Liebesbetrug und die milliardenschweren \u201eSchweineschlacht\u201c-Operationen, die gew\u00f6hnliche Menschen weltweit ins Visier nehmen \u2014 wie das Internet zur profitabelsten Verbrechensst\u00e4tte der Welt wurde.',
+  meta1_lbl:'Schwere:',meta1_val:'Hoch',
+  meta2_lbl:'US-Verluste (2023):',meta2_val:'$12,5 Milliarden',
+  meta3_lbl:'Wichtige Methoden:',meta3_val:'Phishing \u00b7 Ransomware \u00b7 BEC \u00b7 Schweineschlacht',
+  meta4_lbl:'Infrastruktur:',meta4_val:'Organisierte Kriminelle \u00b7 S\u00fcdostasien',
+  stat1_lbl:'Gesamte US-Cyberkriminalit\u00e4tsverluste beim FBI IC3 im Jahr 2023 gemeldet',
+  stat2_lbl:'durch Anlagebetrug (einschlie\u00dflich Schweineschlacht) verloren \u2014 die gr\u00f6\u00dfte Einzelkategorie',
+  stat3_lbl:'Phishing-E-Mails werden t\u00e4glich weltweit versendet',
+  stat4_lbl:'aller Cyberangriffe beginnen mit einer Phishing-E-Mail',
+  s1_eye:'\u00dcberblick',
+  pq_text:'\u201eSie schickte ihm alles. Ihre Ersparnisse. Ihre Rente. Das Erbe ihrer Kinder. Er war nie real. Das Compound in Myanmar war es.\u201c',
+  pq_cite:'Zusammengesetzter Bericht \u2014 Global Anti-Scam Organisation, Falldokumentation 2023',
+  s1p1:'Finanzielle Internetkriminalit\u00e4t ist die breiteste, finanziell sch\u00e4dlichste und in vieler Hinsicht am meisten untergemeldete Kategorie der Internetkriminalit\u00e4t. Ihre Opfer umfassen jede demographische Gruppe, jedes Land und jeden Einkommensstand. Ihre T\u00e4ter reichen von einsamen Amateuren bis zu <strong>multinationalen organisierten Verbrecherunternehmen</strong>.',
+  s1p2:'Das FBI Internet Crime Complaint Center (IC3) verzeichnete 2023 allein in den USA Verluste von 12,5 Milliarden Dollar durch Cyberkriminalit\u00e4t. Tats\u00e4chliche Verluste werden auf das Mehrfache gesch\u00e4tzt. Weltweit werden die Kosten der Cyberkriminalit\u00e4t bis 2025 auf j\u00e4hrlich 10,5 Billionen Dollar projiziert.',
+  s1p3:'Dieser Bericht behandelt die wichtigsten Kategorien der finanziellen Internetkriminalit\u00e4t: Phishing und seine Varianten; Ransomware; Business Email Compromise (BEC); Liebesbetrug und die \u201eSchweineschlacht\u201c-Operationen, die sie industrialisiert haben; und Kryptow\u00e4hrungsbetrug.',
+  s2_eye:'Abschnitt 2',s2_h2:'Sechs Kategorien der<br>Finanziellen Internetkriminalit\u00e4t',
+  s2_intro:'Finanzielle Internetkriminalit\u00e4t ist keine einzelne Aktivit\u00e4t, sondern ein Spektrum unterschiedlicher Operationen, jede mit eigener Mechanik, Zielprofil und krimineller Infrastruktur.',
+  ct1_tag:'01 \u2014 Am verbreitetsten',ct1_h3:'Phishing & Spear-Phishing',
+  ct1_p:'Betr\u00fcgerische E-Mails, SMS-Nachrichten (Smishing) oder Sprachanrufe (Vishing), die darauf ausgelegt sind, Anmeldedaten, Finanzinformationen zu stehlen oder Malware zu installieren. Business Email Compromise (BEC) \u2014 die Vort\u00e4uschung von F\u00fchrungskr\u00e4ften, um \u00dcbertragungen umzuleiten \u2014 verursachte 2023 allein in den USA Verluste von 2,9 Milliarden Dollar.',
+  ct1_badge:'91 % der Angriffe beginnen hier',
+  ct2_tag:'02 \u2014 H\u00f6chste individuelle Verluste',ct2_h3:'Schweineschlacht / Anlagebetrug',
+  ct2_p:'Langdauernde Liebes- und Anlagebetrug, bei denen Opfer wochenlang oder monatelang aufgebaut werden, bevor sie zu gef\u00e4lschten Kryptow\u00e4hrungsplattformen gef\u00fchrt werden. Die am schnellsten wachsende und finanziell verheerendste Kategorie \u2014 4,4 Milliarden Dollar US-Verluste im Jahr 2023.',
+  ct2_badge:'Am schnellsten wachsend \u2014 organisiertes Verbrechen',
+  ct3_tag:'03 \u2014 Kritische Infrastrukturbedrohung',ct3_h3:'Ransomware',
+  ct3_p:'Malware, die Dateien oder ganze Systeme eines Opfers verschl\u00fcsselt und Kryptow\u00e4hrungszahlung f\u00fcr den Entschl\u00fcsselungsschl\u00fcssel verlangt. Die Ziele haben sich von Einzelpersonen auf Krankenh\u00e4user, Schulen, Gemeinden und kritische nationale Infrastruktur ausgeweitet.',
+  ct3_badge:'Angriffe auf Krankenh\u00e4user \u2014 lebensbedrohlich',
+  ct4_tag:'04 \u2014 Bedrohung am Arbeitsplatz',ct4_h3:'Business Email Compromise (BEC)',
+  ct4_p:'Ein Angreifer kompromittiert oder gibt sich als Gesch\u00e4ftse-Mail-Konto aus \u2014 typischerweise eine F\u00fchrungskraft oder Finanzbeauftragter \u2014 um betr\u00fcgerische \u00dcberweisungen zu autorisieren, Geh\u00e4lter umzuleiten oder sensible Daten zu stehlen. BEC erfordert keine Malware.',
+  ct4_badge:'$2,9 Mrd. US-Verluste \u2014 BEC allein',
+  ct5_tag:'05 \u2014 Massenmarkt',ct5_h3:'Identit\u00e4tsdiebstahl und Konto\u00fcbernahme',
+  ct5_p:'Zugangsdaten, die durch Phishing gestohlen oder auf Dark-Web-M\u00e4rkten gekauft werden, werden f\u00fcr den Zugriff auf Bankkonten, Kreditkartenplattformen und staatliche Leistungssysteme verwendet. Account-Takeover-Betrug hat erheblich zugenommen.',
+  ct5_badge:'Massenmarkt \u2014 Millionen Opfer',
+  ct6_tag:'06 \u2014 Aufkommend',ct6_h3:'Kryptow\u00e4hrungsbetrug',
+  ct6_p:'Rug Pulls (Starten und Aufgeben von Kryptow\u00e4hrungsprojekten nach der Fundraising), Pump-and-Dump-Schemata, gef\u00e4lschte B\u00f6rsen und NFT-Betrug. Die Pseudonymit\u00e4t und Unumkehrbarkeit der Kryptow\u00e4hrung macht sie ideal f\u00fcr Betrug.',
+  ct6_badge:'Blockchain-aktiviert \u2014 schwer r\u00fcckzug\u00e4ngig',
+  s3_eye:'Abschnitt 3 \u2014 Vertiefung',
+  s3_h2:'\u201eSchweineschlacht\u201c: Wie Liebesbetrug<br>im Industriema\u00dfstab funktioniert',
+  s3p1:'\u201eSchweineschlacht\u201c \u2014 vom Chinesischen <em>sh\u0101 zh\u016b p\u00e1n</em>, \u201eein Schwein m\u00e4sten vor dem Schlachten\u201c \u2014 ist die finanziell verheerendste Form des Online-Betrugs gegen\u00fcber Einzelpersonen. Sie kombiniert die langsame psychologische Manipulation des Liebesbetrugs mit ausgekl\u00fcgelten gef\u00e4lschten Kryptow\u00e4hrungs-Investitionsplattformen.',
+  s3p2:'Was den Schweineschlacht-Betrug besonders beunruhigend macht, ist sein <strong>industrieller Ma\u00dfstab</strong>. Es handelt sich nicht um einzelne Betr\u00fcger \u2014 es sind gro\u00dfe Operationen, die oft aus befestigten Compounds in Myanmar, Kambodscha, Laos und den Philippinen betrieben werden und mit Hunderten oder Tausenden von Arbeitern besetzt sind, von denen viele Opfer von Menschenhandel sind.',
+  pig_lbl:'Die Schweineschlacht-Timeline \u2014 vom ersten Kontakt zur finanziellen Verwertung',
+  ps1_title:'Erstkontakt',ps1_desc:'Eine \u201efalsehe Nummer\u201c-SMS, eine LinkedIn-Nachricht oder ein Dating-App-Match. Freundlich, nicht bedrohlich. Der Betr\u00fcger ist geduldig \u2014 keine Finanzgespr\u00e4che f\u00fcr Wochen.',ps1_tag:'Wochen 1\u20132',
+  ps2_title:'Beziehungsaufbau',ps2_desc:'T\u00e4glicher Kontakt. Gemeinsame Interessen entdeckt. Emotionale Intimsein etabliert. Der \u201eKontakt\u201c erscheint reich, erfolgreich und aufrichtig interessiert. Videogespr\u00e4che werden vermieden oder geschrieben.',ps2_tag:'Wochen 2\u20136',
+  ps3_title:'Investitionseinf\u00fchrung',ps3_desc:'Beii\u00e4ufige Erw\u00e4hnung einer profitablen Kryptoinvestition. Zeigt \u201epersona Renditen\u201c. Ermutigt das Opfer, klein anzufangen. Empfiehlt eine bestimmte Plattform \u2014 die betr\u00fcgerisch ist.',ps3_tag:'Wochen 4\u20138',
+  ps4_title:'Das Schwein m\u00e4sten',ps4_desc:'Fr\u00fche \u201eGewinne\u201c werden auf der gef\u00e4lschten Plattform angezeigt. Kleine Abhebungen sind gestattet, um Vertrauen aufzubauen. Das Opfer wird ermutigt, mehr zu investieren \u2014 Ersparnisse, Darlehen, Rentenfonds.',ps4_tag:'Monate 2\u20135',
+  ps5_title:'Das Schlachten',ps5_desc:'Wenn das Opfer versucht, gro\u00dfe Mittel abzuheben, werden \u201eSteuern\u201c oder \u201eGeb\u00fchren\u201c verlangt. Wenn bezahlt, werden mehr verlangt. Schlie\u00dflich h\u00f6rt der Kontakt auf. Die Plattform verschwindet. Alle Mittel sind weg.',ps5_tag:'Totalverlust',
+  ps6_title:'Wiederherstellungsbetrug',ps6_desc:'Ein sekund\u00e4rer Betr\u00fcger kontaktiert das Opfer und bietet an, verlorene Mittel zur\u00fcckzugewinnen \u2014 gegen eine Vorabgeb\u00fchr. Dies ist ein weiterer Betrug, der dasselbe Opfer in seinem verwundbarsten Zustand trifft.',ps6_tag:'Zweite Opferwerdung',
+  s3_callout:'<strong>Menschenhandel-Dimension:</strong> Das US-Au\u00dfenministerium, das UN-B\u00fcro f\u00fcr Drogen- und Verbrechensf\u00e4lle und mehrere investigative Journalisten haben dokumentiert, dass viele Schweineschlacht-Operationen von Opfern des Menschenhandels besetzt sind \u2014 Menschen, die unter falschen Versprechungen legitimer Arbeit nach S\u00fcdostasien gelockt werden und dann gezwungen werden, unter Androhung von Gewalt und Schuldknechtschaft zu bet\u00fcgen.',
+  s4_eye:'Abschnitt 4 \u2014 Kritische Bedrohung',s4_h2:'Ransomware: Wenn Verbrechen<br>Lebensbedrohlich wird',
+  s4p1:'Ransomware verschl\u00fcsselt Dateien oder ganze Systeme eines Opfers und verlangt Kryptow\u00e4hrungszahlung \u2014 typischerweise Monero oder Bitcoin \u2014 im Austausch f\u00fcr einen Entschl\u00fcsselungsschl\u00fcssel. Was als Angriff auf Einzelpersonen begann, hat sich zu einer hochorganisierten Industrie entwickelt, die Krankenh\u00e4user, Schulen, Regierungen und kritische Infrastruktur angreift.',
+  s4p2:'Das Ransomware-as-a-Service (RaaS)-Modell hat den Angriff industrialisiert: Verbrechergruppen entwickeln und pflegen die Ransomware und die Zahlungsinfrastruktur, lizenzieren sie dann an \u201eAffiliate\u201c, die die eigentlichen Angriffe gegen einen Umsatzanteil durchf\u00fchren.',
+  s4_callout:'<strong>Krankenh\u00e4user als Ziele:</strong> Mehrere Ransomware-Angriffe auf Krankenh\u00e4user wurden direkt mit Patientensterben in Verbindung gebracht \u2014 entweder durch verz\u00f6gerte Behandlung w\u00e4hrend Systemausf\u00e4llen oder durch Krankenwagen-Umleitungen. Eine Studie der Universit\u00e4t Florida von 2021 fand messbare Zun\u00e4hme der Patientensterblichkeit in betroffenen Krankenh\u00e4usern.',
+  s4p3:'Gro\u00dfe Ransomware-Gruppen umfassen LockBit (verantwortlich f\u00fcr \u00fcber 2.000 Angriffe vor seiner St\u00f6rung 2024 durch Europol und das FBI), ALPHV/BlackCat und Clop. Nach dem Angriff auf die Colonial Pipeline 2021 wurde Ransomware zur nationalen Sicherheitspriorit\u00e4t in den USA.',
+  slot3_lbl:'Bildplatz 3 \u2014 f\u00fcgen Sie Ihre Illustration hinzu',
+  term_decrypt:'Um Ihre Dateien zu entschl\u00fcsseln:',term_send:'\u2192 Senden Sie 2,5 BTC an:',
+  term_deadline:'\u23F1 Frist: 72 Stunden',term_double:'Nach der Frist: Preis verdoppelt sich.',
+  rs1_lbl:'Durchschn. Erpressungsforderung (2023)',rs2_lbl:'Angriffe auf das Gesundheitswesen (2023)',rs3_lbl:'LockBit-Opfer vor der Abschaltung',
+  s5_eye:'Abschnitt 5',s5_h2:'Phishing: Der Angriff,<br>der Alles Startet',
+  s5_intro:'Phishing ist der Ausgangspunkt f\u00fcr 91 % aller Cyberangriffe. Das Verst\u00e4ndnis der Funktionsweise ist die Grundlage der finanziellen Cyberkriminalit\u00e4tskenntnisse.',
+  slot2_title:'Bildplatz 2',slot2_desc:'Phishing-Angriffsketten-Diagramm \u2014 von der betr\u00fcgerischen E-Mail bis zum Anmeldedatendiebstahl bis zum Finanzbetrug',slot2_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  ph1_h4:'Zugangsdaten-Phishing',ph1_p:'Eine E-Mail, die eine vertrauensw\u00fcrdige Institution imitiert, leitet den Empf\u00e4nger zu einer \u00fcberzeugenden gef\u00e4lschten Anmeldeseite weiter. Eingegebene Zugangsdaten werden in Echtzeit erfasst. Moderne Phishing-Kits umfassen Reverse-Proxy-Technologie, die es Angreifern erm\u00f6glicht, die Zwei-Faktor-Authentifizierung in Echtzeit zu umgehen.',
+  ph2_h4:'Spear-Phishing \u2014 Gezielte Angriffe',ph2_p:'Im Gegensatz zu generischem Phishing verwendet Spear-Phishing recherchierte pers\u00f6nliche Informationen, um sehr glaubw\u00fcrdig zu erscheinen. Eine E-Mail, die den Namen des Empf\u00e4ngers, den Arbeitgeber oder eine bekannte Kontaktperson referenziert, ist dramatisch effektiver.',
+  ph3_h4:'Smishing und Vishing',ph3_p:'Phishing per SMS (Smishing) hat erheblich zugenommen. Vishing umfasst tats\u00e4chliche Telefonanrufe von \u00fcberzeugenden Imitatoren \u2014 zunehmend durch KI-Stimmklontechnologie angetrieben, die die Stimme eines bekannten Kontakts replizieren kann.',
+  ph4_h4:'Business Email Compromise (BEC)',ph4_p:'Die Variante mit dem h\u00f6chsten Verlust: Ein Angreifer kompromittiert ein F\u00fchrungskr\u00e4fte-E-Mail-Konto oder erstellt eine \u00fcberzeugende gef\u00e4lschte Adresse und weist die Finanzabteilung an, Mittel zu \u00fcberweisen. BEC erfordert keine Malware und ist sehr effektiv. FBI IC3 verzeichnete 2023 BEC-Verluste von 2,9 Milliarden Dollar.',
+  ph5_h4:'KI-gest\u00fctztes Phishing',ph5_p:'Gro\u00dfe Sprachmodelle haben die technische H\u00fcrde f\u00fcr die Erstellung \u00fcberzeugender Phishing-Inhalte drastisch gesenkt \u2014 fehlerfrei, kontextuell bewusst und personaliserbar in gro\u00dfem Ma\u00dfstab.',
+  s6_eye:'Abschnitt 6',s6_h2:'Kryptow\u00e4hrungsbetrug:<br>Unumkehrbar per Design',
+  s6_intro:'Die Eigenschaften der Kryptow\u00e4hrung \u2014 Pseudonymit\u00e4t, Geschwindigkeit und Unumkehrbarkeit \u2014 machen sie zur bevorzugten Zahlungsmethode f\u00fcr Cyberkriminelle. Sobald Mittel auf die Wallet eines Betr\u00fcgers \u00fcbertragen wurden, ist eine Wiederherstellung ohne Strafverfolgungseingriff im Wesentlichen unm\u00f6glich.',
+  cc1_h4:'Rug Pulls',cc1_p:'Entwickler starten ein Kryptow\u00e4hrungs- oder NFT-Projekt mit einem \u00fcberzeugenden Whitepaper, Social-Media-Pr\u00e4senz und Promi-Empfehlungen. Sobald gen\u00fcgend Investitionen angesammelt sind, leeren sie den Liquidit\u00e4tspool und geben das Projekt auf.',
+  cc2_h4:'Pump und Dump',cc2_p:'Eine koordinierte Gruppe akkumuliert einen Token mit niedrigem Wert, nutzt dann Telegram-Kan\u00e4le, Twitter/X und Influencer-Werbung, um daf\u00fcr zu begeistern. Privatanleger kaufen ein; die Koordinatoren verkaufen zum H\u00f6chstpreis; der Token kollabiert.',
+  cc3_h4:'Gef\u00e4lschte B\u00f6rsen und Wallets',cc3_p:'Betr\u00fcgerische Kryptow\u00e4hrungsb\u00f6rsenanwendungen \u2014 ununterscheidbar von legitimen Diensten \u2014 werden in sozialen Medien oder App Stores beworben. Nutzer hinterlegen Gelder, die dann unzug\u00e4nglich sind.',
+  cc4_h4:'Verschenkungs-Betrug',cc4_p:'Imitieren prominenter Figuren in sozialen Medien, um gef\u00e4lschte Kryptow\u00e4hrungsgeschenke zu bewerben: \u201eSenden Sie 0,1 BTC und erhalten Sie 0,5 BTC zur\u00fcck.\u201c Diese Betrug\u00e4lle generierten \u00fcber 80 Millionen Dollar nach einem koordinierten Twitter-Konto-Hacking 2020.',
+  bar_g1:'Kryptow\u00e4hrungsbetrug-Verluste nach Typ \u2014 USA (2023)',bar_g2:'Am meisten gezielte Opferdemografien',
+  bar1:'Anlagebetrug / Schweineschlacht',bar2:'Liebesbetrug (Krypto-gest\u00fctzt)',
+  bar3:'Kryptob\u00f6rsenbetrug',bar4:'NFT / Rug-Pull-Betrug',
+  bar5:'Erwachsene 30\u201349 Jahre',bar6:'Erwachsene 50\u201369 Jahre',bar7:'Erwachsene 70+ Jahre',bar8:'Erwachsene 18\u201329 Jahre',
+  s7_eye:'Abschnitt 7',s7_h2:'Das wahre Ausma\u00df der finanziellen Internetkriminalit\u00e4t',
+  s7_intro:'FBI IC3-Daten repr\u00e4sentieren nur einen Bruchteil der tats\u00e4chlichen Verluste \u2014 die meisten Opfer erstatten nie Anzeige, entweder aus Scham, Unkenntnis der Meldewege oder Hoffnungslosigkeit bez\u00fcglich der Wiederherstellung.',
+  slot4_title:'Bildplatz 4',slot4_desc:'Illustration des Ausma\u00dfes der finanziellen Internetkriminalit\u00e4t \u2014 Geldflu\u00df von Opfern zu kriminellen Netzwerken',slot4_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  in1_lbl:'Gesamte US-Cyberkriminalit\u00e4tsverluste (gemeldet)',in2_lbl:'Projizierte globale Cyberkriminalit\u00e4tskosten bis 2025',
+  in3_lbl:'Durchschnittlicher Verlust pro Business Email Compromise-Vorfall',
+  in4_lbl:'Anteil der Ransomware-Opfer, die das L\u00f6segeld zahlen',
+  in5_lbl:'Von Strafverfolgern erfolgreich wiederbeschaffte Kryptow\u00e4hrungsgelder (gesch.)',
+  s8_eye:'Abschnitt 8',s8_h2:'Schutz und Meldung',
+  s8_intro:'Finanzielle Internetkriminalit\u00e4t ist mit angemessener Sicherheitshygiene gr\u00f6\u00dftenteils vermeidbar. Die Einzelma\u00dfnahme mit dem h\u00f6chsten Auswirkungsgrad ist bei praktisch allen Angriffstypen konsistent.',
+  prot_h3:'Kritische Sicherheitsma\u00dfnahmen',res_h3:'Melde- und Wiederherstellungsressourcen',
+  ci1:'Aktivieren Sie die Multi-Faktor-Authentifizierung (MFA) bei jedem Finanzkonto, jeder E-Mail-Adresse und jedem wichtigen Dienst. Selbst SMS-basierter MFA erh\u00f6ht die Kosten f\u00fcr eine Konto\u00fcbernahme erheblich \u2014 Hardware-Sicherheitsschl\u00fcssel (YubiKey) sind die st\u00e4rkste Option.',
+  ci2:'Verifizieren Sie, bevor Sie vertrauen. Jede unerwartete Kommunikation, die Geld, Zugangsdaten oder dringendes Handeln verlangt \u2014 unabh\u00e4ngig davon, von wem sie zu stammen scheint \u2014 sollte \u00fcber einen separaten, vertrauensw\u00fcrdigen Kanal verifiziert werden.',
+  ci3:'Seien Sie tief skeptisch gegen\u00fcber unaufgeforderten Investitionsm\u00f6glichkeiten, insbesondere solchen, die Kryptow\u00e4hrung, hohe garantierte Renditen oder Dringlichkeit beinhalten. Das Vorhandensein eines dieser Elemente ist ein fast sicherer Betrugsindiktor.',
+  ci4:'Verwenden Sie einzigartige, starke Passw\u00f6rter f\u00fcr jedes Konto. Ein Passwort-Manager (Bitwarden, 1Password) macht dies praktisch. Wiederverwendung von Passw\u00f6rtern erm\u00f6glicht Credential-Stuffing-Angriffe.',
+  ci5:'Richten Sie Bankbenachrichtigungen f\u00fcr jede \u00dcbertragung \u00fcber einem von Ihnen kontrollierten Schwellenwert ein. Fr\u00fchzeitige Erkennung nicht autorisierter Transaktionen ist der Schl\u00fcssel zur erfolgreichen Wiederherstellung.',
+  ci6:'Pr\u00fcfen Sie E-Mail-Absenderdom\u00e4nen sorgf\u00e4ltig \u2014 nicht nur Anzeigenamen. BEC-Angriffe verwenden gef\u00e4lschte Adressen. Fahren Sie mit der Maus \u00fcber Absendernamen, bevor Sie bei finanziellen Anfragen handeln.',
+  rc1_desc:'Offizielles US-Bundesmeldeportal f\u00fcr Internetkriminalit\u00e4t. Meldungen speisen Strafverfolgungsdatenbanken und erm\u00f6glichen Versuche der finanziellen Wiederherstellung.',
+  rc2_desc:'Britisches nationales Meldezentrum f\u00fcr Betrug und Cyberkriminalit\u00e4t. Meldungen werden vom National Fraud Intelligence Bureau auf Ermittlungen gepr\u00fcft.',
+  rc3_desc:'Spezialisierte Unterst\u00fctzung f\u00fcr Schweineschlacht- und Liebesbetrugsopfer. Datenbank bekannter Betrugoperationen und Wiederherstellungshinweise.',
+  rc4_desc:'Europol koordiniert grenz\u00fcberschreitende Cyberkriminalit\u00e4tsuntersuchungen in den EU-Mitgliedstaaten. Nationale Portale verkn\u00fcpfen sich f\u00fcr internationale F\u00e4lle mit Europol.',
+  ref_eye:'Quellen',ref_h2:'Quellen und weiterf\u00fchrende Lekt\u00fcre',
+  quiz_p:'Testen Sie Ihr Wissen \u00fcber finanzielle Internetkriminalit\u00e4t und alle anderen Themen',
+  quiz_span:'\u2014 10 zuf\u00e4llige Fragen, kein Zeitlimit.',
+  quiz_btn:'Quiz starten \u00a0\u2192',
+  tnav1_dir:'\u2190 Vorheriges Thema',tnav1_title:'Cyberstalking & Doxxing',tnav1_sub:'05 \u2014 Digitale \u00dcberwachung und koordinierte Bel\u00e4stigung',
+  tnav2_dir:'Alle Themen \u2191',tnav2_title:'Zur\u00fcck zur \u00dcbersicht',tnav2_sub:'Alle sechs Verbrechenskategorien \u00fcberblicken',
+  footer_note:'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind oben belegt.',
+  footer_src:'Quellen',footer_prev:'Pr\u00e4vention',footer_top:'Alle Themen',footer_quiz:'Quiz', foot_imprint:"Impressum",
+};
+
+T.it={
+  page_title:'Criminalit\u00e0 Finanziaria Informatica | CrimeOnline',
+  nav_topics:'Argomenti',nav_prev:'Prevenzione',nav_sources:'Fonti',nav_cta:'Inizia il Quiz \u2197',
+  mob_home:'Inizio',mob_lang:'Lingua',
+  bc_home:'Inizio',bc_topics:'Argomenti',bc_current:'Criminalit\u00e0 Finanziaria Informatica',
+  hero_series:'Serie Criminalit\u00e0 Informatica \u00b7 Rapporto Completo',
+  hero_h1:'Criminalit\u00e0 Finanziaria<br><em>Informatica</em>',
+  hero_lead:'Phishing, ransomware, truffe romantiche e le operazioni da miliardi di dollari di \u201cmacellazione del maiale\u201d che prendono di mira persone comuni in tutto il mondo \u2014 come internet \u00e8 diventata la scena del crimine pi\u00f9 redditizia del mondo.',
+  meta1_lbl:'Gravit\u00e0:',meta1_val:'Alta',
+  meta2_lbl:'Perdite USA (2023):',meta2_val:'$12,5 miliardi',
+  meta3_lbl:'Metodi chiave:',meta3_val:'Phishing \u00b7 Ransomware \u00b7 BEC \u00b7 Macellazione del maiale',
+  meta4_lbl:'Infrastruttura:',meta4_val:'Reti criminali organizzate \u00b7 Sud-est asiatico',
+  stat1_lbl:'perdite totali USA dalla criminalit\u00e0 informatica riportate all\'FBI IC3 nel 2023',
+  stat2_lbl:'perse a causa di frodi sugli investimenti (inclusa la macellazione del maiale) \u2014 la singola categoria pi\u00f9 grande',
+  stat3_lbl:'email di phishing inviate ogni giorno a livello globale',
+  stat4_lbl:'di tutti gli attacchi informatici inizia con un\'email di phishing',
+  s1_eye:'Panoramica',
+  pq_text:'\u201cGli ha mandato tutto. I suoi risparmi. La sua pensione. L\'eredit\u00e0 dei suoi figli. Lui non era mai stato reale. Il compound in Myanmar lo era.\u201d',
+  pq_cite:'Resoconto composito \u2014 Documentazione casi Global Anti-Scam Organisation, 2023',
+  s1p1:'La criminalit\u00e0 finanziaria informatica \u00e8 la categoria pi\u00f9 ampia, pi\u00f9 dannosa finanziariamente e per molti versi pi\u00f9 sottosegnalata della criminalit\u00e0 informatica. Le sue vittime coprono ogni fascia demografica, ogni paese e ogni livello di reddito. I suoi autori spaziano da truffatori amatoriali solitari a <strong>imprese criminali organizzate multinazionali</strong>.',
+  s1p2:'L\'Internet Crime Complaint Center (IC3) dell\'FBI ha registrato 12,5 miliardi di dollari di perdite dalla criminalit\u00e0 informatica nei soli Stati Uniti nel 2023. Le perdite effettive sono stimate essere diverse volte superiori. A livello globale, i costi della criminalit\u00e0 informatica sono proiettati a raggiungere 10,5 trilioni di dollari all\'anno entro il 2025.',
+  s1p3:'Questo rapporto copre le principali categorie di criminalit\u00e0 finanziaria informatica: phishing e le sue varianti; ransomware; Business Email Compromise (BEC); truffe romantiche e le operazioni di \u201cmacellazione del maiale\u201d che le hanno industrializzate; e frodi sulle criptovalute.',
+  s2_eye:'Sezione 2',s2_h2:'Sei Categorie di<br>Criminalit\u00e0 Finanziaria Informatica',
+  s2_intro:'La criminalit\u00e0 finanziaria informatica non \u00e8 una singola attivit\u00e0 ma uno spettro di operazioni distinte, ognuna con la propria meccanica, profilo di target e infrastruttura criminale.',
+  ct1_tag:'01 \u2014 Pi\u00f9 diffuso',ct1_h3:'Phishing e Spear Phishing',
+  ct1_p:'Email fraudolente, messaggi SMS (smishing) o chiamate vocali (vishing) progettate per rubare credenziali, informazioni finanziarie o installare malware. Il Business Email Compromise (BEC) \u2014 impersonare dirigenti per reindirizzare bonifici \u2014 ha causato perdite di 2,9 miliardi di dollari negli USA nel 2023.',
+  ct1_badge:'91% degli attacchi inizia qui',
+  ct2_tag:'02 \u2014 Perdite individuali pi\u00f9 alte',ct2_h3:'Macellazione del Maiale / Frode sugli Investimenti',
+  ct2_p:'Truffe romantiche e sugli investimenti di lunga durata in cui le vittime vengono coltivate per settimane o mesi prima di essere condotte a piattaforme di investimento in criptovalute false. La categoria con la crescita pi\u00f9 rapida e finanziariamente devastante \u2014 4,4 miliardi di dollari di perdite negli USA nel 2023.',
+  ct2_badge:'La pi\u00f9 in crescita \u2014 crimine organizzato',
+  ct3_tag:'03 \u2014 Minaccia infrastruttura critica',ct3_h3:'Ransomware',
+  ct3_p:'Malware che cifra i file o interi sistemi di una vittima e richiede pagamento in criptovaluta per la chiave di decrittazione. Gli obiettivi si sono espansi da singoli individui a ospedali, scuole, comuni e infrastrutture nazionali critiche. La richiesta di riscatto media ha superato 1,5 milioni di dollari nel 2023.',
+  ct3_badge:'Attacchi agli ospedali \u2014 pericolosi per la vita',
+  ct4_tag:'04 \u2014 Minaccia sul posto di lavoro',ct4_h3:'Business Email Compromise (BEC)',
+  ct4_p:'Un aggressore compromette o impersona un account email aziendale \u2014 tipicamente un dirigente o funzionario finanziario \u2014 per autorizzare bonifici fraudolenti, reindirizzare le buste paga o rubare dati sensibili. Il BEC non richiede malware ed \u00e8 difficile da rilevare.',
+  ct4_badge:'$2,9 miliardi perdite USA \u2014 solo BEC',
+  ct5_tag:'05 \u2014 Mercato di massa',ct5_h3:'Furto di Identit\u00e0 e Presa di Controllo degli Account',
+  ct5_p:'Le credenziali rubate tramite phishing o acquistate dai mercati del dark web vengono utilizzate per accedere a conti bancari, piattaforme di carte di credito e sistemi di benefici governativi. La frode di takeover degli account \u00e8 cresciuta sostanzialmente.',
+  ct5_badge:'Mercato di massa \u2014 milioni di vittime',
+  ct6_tag:'06 \u2014 Emergente',ct6_h3:'Frode sulle Criptovalute',
+  ct6_p:'Rug pull (lanciare e abbandonare progetti di criptovaluta dopo aver raccolto fondi), schemi pump-and-dump, exchange falsi e frode NFT. La pseudonimit\u00e0 e l\'irreversibilit\u00e0 delle criptovalute le rendono ideali per la frode.',
+  ct6_badge:'Abilitato da blockchain \u2014 difficile da invertire',
+  s3_eye:'Sezione 3 \u2014 Approfondimento',
+  s3_h2:'\u201cMacellazione del Maiale\u201d: Come Funziona<br>la Frode Romantica su Scala Industriale',
+  s3p1:'La \u201cmacellazione del maiale\u201d \u2014 dal cinese <em>sh\u0101 zh\u016b p\u00e1n</em>, \u201cingrassare un maiale prima di macellarlo\u201d \u2014 \u00e8 la forma di frode online pi\u00f9 finanziariamente devastante che prende di mira gli individui. Combina la manipolazione psicologica a lungo termine della truffa romantica con sofisticate piattaforme di investimento in criptovalute false.',
+  s3p2:'Ci\u00f2 che rende la macellazione del maiale particolarmente allarmante \u00e8 la sua <strong>scala industriale</strong>. Non si tratta di singoli truffatori \u2014 sono grandi operazioni, spesso gestite da compound fortificati in Myanmar, Cambogia, Laos e Filippine, con centinaia o migliaia di lavoratori, molti dei quali sono stati vittime di tratta.',
+  pig_lbl:'La timeline della macellazione del maiale \u2014 dal primo contatto alla devastazione finanziaria',
+  ps1_title:'Contatto Iniziale',ps1_desc:'Un messaggio di \u201cnumero sbagliato\u201d, un messaggio LinkedIn o un match su app di incontri. Amichevole, non minaccioso. Il truffatore \u00e8 paziente \u2014 nessuna discussione finanziaria per settimane.',ps1_tag:'Settimane 1\u20132',
+  ps2_title:'Costruzione della Relazione',ps2_desc:'Contatto quotidiano. Interessi condivisi scoperti. Intimit\u00e0 emotiva stabilita. Il \u201ccontatto\u201d appare ricco, di successo e genuinamente interessato. Le videochiamate vengono evitate o messe in scena.',ps2_tag:'Settimane 2\u20136',
+  ps3_title:'Introduzione agli Investimenti',ps3_desc:'Menzione casuale di un investimento crypto redditizio. Mostra \u201crendimenti personali\u201d. Incoraggia la vittima a iniziare in piccolo. Raccomanda una piattaforma specifica \u2014 che \u00e8 fraudolenta.',ps3_tag:'Settimane 4\u20138',
+  ps4_title:'Ingrassare il Maiale',ps4_desc:'I primi \u201cprofitti\u201d vengono mostrati sulla piattaforma falsa. Piccoli prelievi sono consentiti per costruire fiducia. La vittima \u00e8 incoraggiata a investire di pi\u00f9 \u2014 risparmi, prestiti, fondi pensione.',ps4_tag:'Mesi 2\u20135',
+  ps5_title:'La Macellazione',ps5_desc:'Quando la vittima cerca di prelevare grandi fondi, vengono richieste \u201ctasse\u201d o \u201ccommissioni\u201d. Se pagate, ne vengono richieste altre. Alla fine il contatto cessa. La piattaforma scompare. Tutti i fondi sono andati.',ps5_tag:'Perdita totale',
+  ps6_title:'Truffa di Recupero',ps6_desc:'Un truffatore secondario contatta la vittima offrendo di recuperare i fondi perduti \u2014 per una tariffa anticipata. Questa \u00e8 un\'altra frode che prende di mira la stessa vittima nel suo stato pi\u00f9 vulnerabile.',ps6_tag:'Seconda vittimizzazione',
+  s3_callout:'<strong>Dimensione della tratta di esseri umani:</strong> Il Dipartimento di Stato americano, l\'Ufficio delle Nazioni Unite per le Droghe e la Criminalit\u00e0 e molteplici giornalisti investigativi hanno documentato che molte operazioni di macellazione del maiale sono staffate da vittime della tratta di esseri umani \u2014 persone attirate nel Sud-est asiatico con false promesse di lavoro legittimo e poi costrette a commettere frodi sotto minaccia di violenza e schiavit\u00f9 da debito.',
+  s4_eye:'Sezione 4 \u2014 Minaccia Critica',s4_h2:'Ransomware: Quando il Crimine<br>Diventa Pericoloso per la Vita',
+  s4p1:'Il ransomware cifra i file o interi sistemi di una vittima e richiede pagamento in criptovaluta in cambio di una chiave di decrittazione. Ci\u00f2 che \u00e8 iniziato come attacco agli individui si \u00e8 evoluto in un\u2019industria altamente organizzata che prende di mira ospedali, scuole, governi e infrastrutture critiche.',
+  s4p2:'Il modello Ransomware-as-a-Service (RaaS) ha industrializzato l\'attacco: i gruppi criminali sviluppano e mantengono il ransomware e l\'infrastruttura di pagamento, poi lo concedono in licenza agli \u201caffiliate\u201d che conducono gli attacchi effettivi in cambio di una quota delle entrate.',
+  s4_callout:'<strong>Gli ospedali come obiettivi:</strong> Molteplici attacchi ransomware agli ospedali sono stati direttamente collegati a decessi di pazienti \u2014 sia attraverso cure ritardate durante i blocchi dei sistemi che attraverso deviazioni delle ambulanze. Uno studio 2021 dell\'Universit\u00e0 della Florida ha trovato aumenti misurabili della mortalit\u00e0 dei pazienti negli ospedali colpiti.',
+  s4p3:'I principali gruppi ransomware includono LockBit (responsabile di oltre 2.000 attacchi prima della sua interruzione nel 2024 da parte di Europol e FBI), ALPHV/BlackCat e Clop. Dopo l\'attacco alla Colonial Pipeline nel 2021, il ransomware \u00e8 diventato una priorit\u00e0 di sicurezza nazionale negli USA.',
+  slot3_lbl:'Spazio immagine 3 \u2014 aggiungi la tua illustrazione',
+  term_decrypt:'Per decrittare i tuoi file:',term_send:'\u2192 Invia 2,5 BTC a:',
+  term_deadline:'\u23F1 Scadenza: 72 ore',term_double:'Dopo la scadenza: il prezzo raddoppia.',
+  rs1_lbl:'Richiesta media di riscatto (2023)',rs2_lbl:'Attacchi alla sanit\u00e0 (2023)',rs3_lbl:'Vittime LockBit prima della disattivazione',
+  s5_eye:'Sezione 5',s5_h2:'Phishing: L\'Attacco<br>che D\u00e0 Inizio a Tutto',
+  s5_intro:'Il phishing \u00e8 il punto di ingresso per il 91% di tutti gli attacchi informatici. Capire come funziona \u00e8 il fondamento della conoscenza della criminalit\u00e0 finanziaria informatica.',
+  slot2_title:'Spazio Immagine 2',slot2_desc:'Diagramma della catena di attacco phishing \u2014 dall\'email fraudolenta al furto di credenziali alla frode finanziaria',slot2_tag:'Aggiungi la tua opera d\'arte qui',
+  ph1_h4:'Phishing delle Credenziali',ph1_p:'Un\'email che impersona un\'istituzione affidabile indirizza il destinatario a una convincente pagina di accesso falsa. Le credenziali inserite vengono acquisite in tempo reale. I moderni kit di phishing includono tecnologia reverse-proxy che consente agli aggressori di bypassare l\'autenticazione a due fattori in tempo reale.',
+  ph2_h4:'Spear Phishing \u2014 Attacchi Mirati',ph2_p:'A differenza del phishing generico, lo spear phishing utilizza informazioni personali ricercate per sembrare altamente credibile. Un\'email che fa riferimento al nome del destinatario, al datore di lavoro o a un contatto noto \u00e8 dramaticamente pi\u00f9 efficace.',
+  ph3_h4:'Smishing e Vishing',ph3_p:'Il phishing tramite SMS (smishing) \u00e8 cresciuto significativamente. Il vishing coinvolge chiamate telefoniche reali da convincenti impostori \u2014 sempre pi\u00f9 alimentato da tecnologia di clonazione vocale AI che pu\u00f2 replicare la voce di un contatto noto.',
+  ph4_h4:'Business Email Compromise (BEC)',ph4_p:'La variante con le perdite pi\u00f9 alte: un aggressore compromette un account email di dirigente o crea un indirizzo falsificato convincente e istruisce il dipartimento finanziario a trasferire fondi. Il BEC non richiede malware. L\'FBI IC3 ha registrato perdite BEC di 2,9 miliardi di dollari nel 2023.',
+  ph5_h4:'Phishing Alimentato dall\'AI',ph5_p:'I grandi modelli linguistici hanno abbassato drasticamente la barriera tecnica per produrre contenuti di phishing convincenti \u2014 privi di errori, consapevoli del contesto e personalizzabili su scala. L\'AI di clonazione vocale \u00e8 stata utilizzata in casi di frode reali per impersonare dirigenti e familiari.',
+  s6_eye:'Sezione 6',s6_h2:'Frode sulle Criptovalute:<br>Irreversibile per Progetto',
+  s6_intro:'Le propriet\u00e0 delle criptovalute \u2014 pseudonimit\u00e0, velocit\u00e0 e irreversibilit\u00e0 \u2014 le rendono il metodo di pagamento preferito dai criminali informatici. Una volta trasferiti i fondi al portafoglio di un truffatore, il recupero senza l\'intervento delle forze dell\'ordine \u00e8 essenzialmente impossibile.',
+  cc1_h4:'Rug Pull',cc1_p:'Gli sviluppatori lanciano un progetto di criptovaluta o NFT con un convincente whitepaper, presenza sui social media e approvazioni di celebrit\u00e0. Una volta accumulati sufficienti investimenti, svuotano il pool di liquidit\u00e0 e abbandonano il progetto. I rug pull hanno generato perdite per oltre 2,8 miliardi di dollari nel 2022.',
+  cc2_h4:'Pump and Dump',cc2_p:'Un gruppo coordinato accumula un token di basso valore, poi usa canali Telegram, Twitter/X e promozione di influencer per pubblicizzarlo. Gli investitori al dettaglio comprano; i coordinatori vendono al prezzo massimo; il token crolla. La SEC ha perseguito diversi casi prominenti.',
+  cc3_h4:'Exchange e Wallet Falsi',cc3_p:'App di exchange di criptovalute fraudolente \u2014 indistinguibili dai servizi legittimi \u2014 vengono promosse sui social media o negli app store. Gli utenti depositano fondi che sono poi inaccessibili. Alcuni exchange falsi consentono piccoli prelievi per costruire fiducia.',
+  cc4_h4:'Truffe di Omaggi',cc4_p:'Impersonare figure di spicco sui social media per promuovere finti omaggi di criptovalute: \u201cInvia 0,1 BTC e ricevi 0,5 BTC in cambio.\u201d Queste truffe hanno generato oltre 80 milioni di dollari in seguito a un attacco coordinato di hijacking di account Twitter nel 2020.',
+  bar_g1:'Perdite per frode sulle criptovalute per tipo \u2014 USA (2023)',bar_g2:'Demografici di vittime pi\u00f9 colpiti',
+  bar1:'Frode sugli investimenti / macellazione del maiale',bar2:'Truffe romantiche (abilitate da criptovalute)',
+  bar3:'Frode sugli exchange di criptovalute',bar4:'Frode NFT / rug pull',
+  bar5:'Adulti dai 30 ai 49 anni',bar6:'Adulti dai 50 ai 69 anni',bar7:'Adulti di 70+ anni',bar8:'Adulti dai 18 ai 29 anni',
+  s7_eye:'Sezione 7',s7_h2:'La Vera Scala della Criminalit\u00e0 Finanziaria Informatica',
+  s7_intro:'I dati dell\'FBI IC3 rappresentano solo una frazione delle perdite effettive \u2014 la maggior parte delle vittime non denuncia mai, a causa di vergogna, mancanza di conoscenza dei canali di segnalazione o disperazione riguardo al recupero.',
+  slot4_title:'Spazio Immagine 4',slot4_desc:'Illustrazione della scala della criminalit\u00e0 finanziaria informatica \u2014 denaro che fluisce dalle vittime alle reti criminali',slot4_tag:'Aggiungi la tua opera d\'arte qui',
+  in1_lbl:'Perdite totali USA dalla criminalit\u00e0 informatica (riportate)',in2_lbl:'Costo globale proiettato della criminalit\u00e0 informatica entro il 2025',
+  in3_lbl:'Perdita media per incidente di Business Email Compromise',
+  in4_lbl:'Percentuale di vittime di ransomware che pagano il riscatto',
+  in5_lbl:'Fondi in criptovaluta recuperati con successo dalle forze dell\'ordine (stima)',
+  s8_eye:'Sezione 8',s8_h2:'Protezione e Segnalazione',
+  s8_intro:'La criminalit\u00e0 finanziaria informatica \u00e8 in gran parte prevenibile con un\'igiene di sicurezza appropriata. Le misure con il pi\u00f9 alto impatto sono consistenti praticamente per tutti i tipi di attacco.',
+  prot_h3:'Misure di Sicurezza Critiche',res_h3:'Risorse di Segnalazione e Recupero',
+  ci1:'Abilita l\'autenticazione a pi\u00f9 fattori (MFA) su ogni conto finanziario, indirizzo email e servizio importante. Anche l\'MFA basata su SMS aumenta sostanzialmente il costo del takeover degli account \u2014 le chiavi hardware di sicurezza (YubiKey) sono l\'opzione pi\u00f9 forte.',
+  ci2:'Verifica prima di fidarti. Qualsiasi comunicazione inaspettata che richiede denaro, credenziali o azione urgente \u2014 indipendentemente da chi sembra provenire \u2014 dovrebbe essere verificata tramite un canale separato e affidabile.',
+  ci3:'Sii profondamente scettico riguardo alle opportunit\u00e0 di investimento non sollecitate, specialmente quelle che coinvolgono criptovalute, rendimenti garantiti elevati o urgenza. La presenza di uno qualsiasi di questi elementi \u00e8 un indicatore quasi certo di frode.',
+  ci4:'Usa password uniche e forti per ogni account. Un gestore di password (Bitwarden, 1Password) rende ci\u00f2 pratico. Il riutilizzo delle password consente attacchi di credential stuffing.',
+  ci5:'Imposta avvisi per transazioni bancarie per qualsiasi trasferimento al di sopra di una soglia che controlli. Il rilevamento precoce di transazioni non autorizzate \u00e8 la chiave per il recupero di successo.',
+  ci6:'Controlla attentamente i domini dei mittenti di email \u2014 non solo i nomi visualizzati. Gli attacchi BEC usano indirizzi falsificati. Passa il cursore sui nomi dei mittenti prima di agire su qualsiasi richiesta finanziaria.',
+  rc1_desc:'Portale di segnalazione federale ufficiale degli USA per la criminalit\u00e0 informatica. Le segnalazioni alimentano i database delle forze dell\'ordine e consentono tentativi di recupero finanziario.',
+  rc2_desc:'Centro di segnalazione nazionale britannico per frodi e criminalit\u00e0 informatica. Le segnalazioni vengono valutate per l\'indagine dal National Fraud Intelligence Bureau.',
+  rc3_desc:'Supporto specializzato per le vittime di macellazione del maiale e truffe romantiche. Database di operazioni truffaldine note e guida al recupero.',
+  rc4_desc:'Europol coordina le indagini sulla criminalit\u00e0 informatica transfrontaliera negli stati membri dell\'UE. I portali nazionali si collegano a Europol per i casi internazionali.',
+  ref_eye:'Fonti',ref_h2:'Fonti e Ulteriori Letture',
+  quiz_p:'Metti alla prova le tue conoscenze sulla criminalit\u00e0 finanziaria informatica e tutti gli altri argomenti',
+  quiz_span:'\u2014 10 domande casuali, nessun limite di tempo.',
+  quiz_btn:'Inizia il Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Argomento Precedente',tnav1_title:'Cyberstalking e Doxxing',tnav1_sub:'05 \u2014 Sorveglianza digitale e molestie coordinate',
+  tnav2_dir:'Tutti gli Argomenti \u2191',tnav2_title:'Torna alla Panoramica',tnav2_sub:'Rivedere tutte e sei le categorie di crimine',
+  footer_note:'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate sopra.',
+  footer_src:'Fonti',footer_prev:'Prevenzione',footer_top:'Tutti gli Argomenti',footer_quiz:'Quiz', foot_imprint:"Note legali"
+};
+
+/* =======================================================
+   RENDERER
+======================================================= */
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function applyLang(lang){
+  var c=T[lang];if(!c)return;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect');if(s1)s1.value=lang;
+  var s2=g('langSelMob');if(s2)s2.value=lang;
+  document.title=c.page_title;
+  /* nav */
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  /* breadcrumb */
+  st('bc-home',c.bc_home);st('bc-topics',c.bc_topics);st('bc-current',c.bc_current);
+  /* hero */
+  st('hero-series-lbl',c.hero_series);si('hero-h1',c.hero_h1);st('hero-lead',c.hero_lead);
+  st('meta1-lbl',c.meta1_lbl);st('meta1-val',c.meta1_val);
+  st('meta2-lbl',c.meta2_lbl);st('meta2-val',c.meta2_val);
+  st('meta3-lbl',c.meta3_lbl);st('meta3-val',c.meta3_val);
+  st('meta4-lbl',c.meta4_lbl);st('meta4-val',c.meta4_val);
+  /* stats */
+  st('stat1-lbl',c.stat1_lbl);st('stat2-lbl',c.stat2_lbl);
+  st('stat3-lbl',c.stat3_lbl);st('stat4-lbl',c.stat4_lbl);
+  /* s1 */
+  st('s1-eye',c.s1_eye);si('pq-text',c.pq_text);st('pq-cite',c.pq_cite);
+  si('s1p1',c.s1p1);st('s1p2',c.s1p2);st('s1p3',c.s1p3);
+  /* s2 crime grid */
+  st('s2-eye',c.s2_eye);si('s2-h2',c.s2_h2);st('s2-intro',c.s2_intro);
+  st('ct1-tag',c.ct1_tag);st('ct1-h3',c.ct1_h3);st('ct1-p',c.ct1_p);st('ct1-badge',c.ct1_badge);
+  st('ct2-tag',c.ct2_tag);st('ct2-h3',c.ct2_h3);st('ct2-p',c.ct2_p);st('ct2-badge',c.ct2_badge);
+  st('ct3-tag',c.ct3_tag);st('ct3-h3',c.ct3_h3);st('ct3-p',c.ct3_p);st('ct3-badge',c.ct3_badge);
+  st('ct4-tag',c.ct4_tag);st('ct4-h3',c.ct4_h3);st('ct4-p',c.ct4_p);st('ct4-badge',c.ct4_badge);
+  st('ct5-tag',c.ct5_tag);st('ct5-h3',c.ct5_h3);st('ct5-p',c.ct5_p);st('ct5-badge',c.ct5_badge);
+  st('ct6-tag',c.ct6_tag);st('ct6-h3',c.ct6_h3);st('ct6-p',c.ct6_p);st('ct6-badge',c.ct6_badge);
+  /* s3 pig butchering */
+  st('s3-eye',c.s3_eye);si('s3-h2',c.s3_h2);si('s3p1',c.s3p1);si('s3p2',c.s3p2);
+  st('pig-lbl',c.pig_lbl);
+  st('ps1-title',c.ps1_title);st('ps1-desc',c.ps1_desc);st('ps1-tag',c.ps1_tag);
+  st('ps2-title',c.ps2_title);st('ps2-desc',c.ps2_desc);st('ps2-tag',c.ps2_tag);
+  st('ps3-title',c.ps3_title);st('ps3-desc',c.ps3_desc);st('ps3-tag',c.ps3_tag);
+  st('ps4-title',c.ps4_title);st('ps4-desc',c.ps4_desc);st('ps4-tag',c.ps4_tag);
+  st('ps5-title',c.ps5_title);st('ps5-desc',c.ps5_desc);st('ps5-tag',c.ps5_tag);
+  st('ps6-title',c.ps6_title);st('ps6-desc',c.ps6_desc);st('ps6-tag',c.ps6_tag);
+  si('s3-callout',c.s3_callout);
+  /* s4 ransomware */
+  st('s4-eye',c.s4_eye);si('s4-h2',c.s4_h2);st('s4p1',c.s4p1);st('s4p2',c.s4p2);
+  si('s4-callout',c.s4_callout);st('s4p3',c.s4p3);
+  st('slot3-lbl',c.slot3_lbl);
+  st('term-decrypt',c.term_decrypt);st('term-send',c.term_send);
+  st('term-deadline',c.term_deadline);st('term-double',c.term_double);
+  st('rs1-lbl',c.rs1_lbl);st('rs2-lbl',c.rs2_lbl);st('rs3-lbl',c.rs3_lbl);
+  /* s5 phishing */
+  st('s5-eye',c.s5_eye);si('s5-h2',c.s5_h2);st('s5-intro',c.s5_intro);
+  st('slot2-title',c.slot2_title);st('slot2-desc',c.slot2_desc);st('slot2-tag',c.slot2_tag);
+  st('ph1-h4',c.ph1_h4);st('ph1-p',c.ph1_p);
+  st('ph2-h4',c.ph2_h4);st('ph2-p',c.ph2_p);
+  st('ph3-h4',c.ph3_h4);st('ph3-p',c.ph3_p);
+  st('ph4-h4',c.ph4_h4);st('ph4-p',c.ph4_p);
+  st('ph5-h4',c.ph5_h4);st('ph5-p',c.ph5_p);
+  /* s6 crypto */
+  st('s6-eye',c.s6_eye);si('s6-h2',c.s6_h2);st('s6-intro',c.s6_intro);
+  st('cc1-h4',c.cc1_h4);st('cc1-p',c.cc1_p);
+  st('cc2-h4',c.cc2_h4);st('cc2-p',c.cc2_p);
+  st('cc3-h4',c.cc3_h4);st('cc3-p',c.cc3_p);
+  st('cc4-h4',c.cc4_h4);st('cc4-p',c.cc4_p);
+  st('bar-g1-lbl',c.bar_g1);st('bar-g2-lbl',c.bar_g2);
+  st('bar1-lbl',c.bar1);st('bar2-lbl',c.bar2);st('bar3-lbl',c.bar3);st('bar4-lbl',c.bar4);
+  st('bar5-lbl',c.bar5);st('bar6-lbl',c.bar6);st('bar7-lbl',c.bar7);st('bar8-lbl',c.bar8);
+  /* s7 scale */
+  st('s7-eye',c.s7_eye);st('s7-h2',c.s7_h2);st('s7-intro',c.s7_intro);
+  st('slot4-title',c.slot4_title);st('slot4-desc',c.slot4_desc);st('slot4-tag',c.slot4_tag);
+  st('in1-lbl',c.in1_lbl);st('in2-lbl',c.in2_lbl);st('in3-lbl',c.in3_lbl);
+  st('in4-lbl',c.in4_lbl);st('in5-lbl',c.in5_lbl);
+  /* s8 protection */
+  st('s8-eye',c.s8_eye);st('s8-h2',c.s8_h2);st('s8-intro',c.s8_intro);
+  st('prot-h3',c.prot_h3);st('res-h3',c.res_h3);
+  st('ci1',c.ci1);st('ci2',c.ci2);st('ci3',c.ci3);
+  st('ci4',c.ci4);st('ci5',c.ci5);st('ci6',c.ci6);
+  st('rc1-desc',c.rc1_desc);st('rc2-desc',c.rc2_desc);
+  st('rc3-desc',c.rc3_desc);st('rc4-desc',c.rc4_desc);
+  /* refs */
+  st('ref-eye',c.ref_eye);st('ref-h2',c.ref_h2);
+  /* quiz strip */
+  var qp=g('quiz-strip-p');
+  if(qp)qp.innerHTML=c.quiz_p+' <span>'+c.quiz_span+'</span>';
+  st('quiz-strip-btn',c.quiz_btn);
+  /* topic nav */
+  st('tnav1-dir',c.tnav1_dir);st('tnav1-title',c.tnav1_title);st('tnav1-sub',c.tnav1_sub);
+  st('tnav2-dir',c.tnav2_dir);st('tnav2-title',c.tnav2_title);st('tnav2-sub',c.tnav2_sub);
+  /* footer */
+  st('footer-note',c.footer_note);st('footer-src',c.footer_src);
+  st('footer-prev',c.footer_prev);st('footer-top',c.footer_top);st('footer-quiz',c.footer_quiz);
+}
+
+function switchLanguage(lang){applyLang(lang)}
+
+/* HAMBURGER */
+var hb=document.getElementById('hamburger');
+var nm=document.getElementById('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+/* INIT */
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>

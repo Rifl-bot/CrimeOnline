@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">NCII &mdash; Non-Consensual Intimate Image Sharing | CrimeOnline</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../media/img/logo_transparenz.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--navy-mid:#111827;--navy-surface:#1a2233;
+  --crimson:#c0392b;--crimson-lt:#e74c3c;--crimson-glow:rgba(192,57,43,0.14);
+  --slate:#64748b;--slate-lt:#94a3b8;--offwhite:#f0efe8;--white:#ffffff;
+  --border:rgba(255,255,255,0.07);--border-red:rgba(192,57,43,0.38);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--offwhite);font-family:var(--font-b);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,14,26,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--crimson)}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{color:var(--slate-lt);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-cta{background:var(--crimson)!important;color:var(--white)!important;padding:7px 18px!important;border-radius:3px;margin-left:10px}
+.nav-cta:hover{background:var(--crimson-lt)!important}
+.nav-lang-wrap{display:flex;align-items:center;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)}
+.lang-select{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--slate-lt);font-family:var(--font-m);font-size:11px;padding:4px 22px 4px 8px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-select option{background:#0a0e1a;color:var(--offwhite)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--slate-lt);border-radius:2px;transition:transform .25s,opacity .2s,background .2s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--white)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:62px;left:0;right:0;background:#0a0e1a;border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:199;padding:8px 0 20px;flex-direction:column;animation:slideDown .22s ease}
+.nav-mobile.open{display:flex}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-mobile a{color:var(--slate-lt);text-decoration:none;font-size:15px;font-weight:500;padding:15px 32px;transition:color .18s,background .18s;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-mobile a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-mobile a.mobile-cta{margin:14px 32px 0;padding:13px 20px;background:var(--crimson);color:var(--white)!important;border-radius:3px;text-align:center;border:none;font-size:14px;font-weight:600}
+.nav-mobile-lang{padding:14px 32px 0;display:flex;align-items:center;gap:10px}
+.nav-mobile-lang label{font-family:var(--font-m);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.lang-sel-mob{background:var(--navy-surface);border:1px solid var(--border);color:var(--offwhite);font-family:var(--font-m);font-size:12px;padding:6px 24px 6px 10px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.lang-sel-mob option{background:#0a0e1a}
+@media(max-width:860px){nav{padding:0 24px}.nav-links{display:none}.nav-lang-wrap{display:none}.nav-hamburger{display:flex}}
+@media(max-width:480px){nav{padding:0 20px}}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 80px;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.03em;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb a{color:var(--slate);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--slate-lt)}
+.breadcrumb-sep{color:var(--crimson);opacity:.5}
+@media(max-width:600px){.breadcrumb{padding:12px 24px}}
+
+/* HERO */
+.topic-hero{position:relative;overflow:hidden;min-height:70vh;display:flex;align-items:flex-end;padding:0 80px 70px}
+.hero-img-slot{position:absolute;inset:0;background:var(--navy-mid);display:flex;align-items:center;justify-content:center}
+.hero-img-placeholder-label{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.15);letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(255,255,255,0.1);padding:10px 20px;border-radius:3px;pointer-events:none;user-select:none}
+.hero-overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,1) 0%,rgba(10,14,26,0.72) 40%,rgba(10,14,26,0.32) 100%);pointer-events:none}
+.hero-overlay-red{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(192,57,43,0.09),transparent 65%);pointer-events:none}
+.topic-hero-content{position:relative;z-index:2;max-width:780px}
+.topic-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e89a90;margin-bottom:22px}
+.topic-num-badge{background:var(--crimson);color:var(--white);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700}
+.topic-hero h1{font-family:var(--font-d);font-size:clamp(36px,5.5vw,68px);font-weight:900;line-height:1.06;letter-spacing:-1.5px;color:var(--white);margin-bottom:20px}
+.topic-hero h1 em{font-style:italic;color:var(--crimson)}
+.topic-hero-lead{font-size:17px;font-weight:300;color:var(--slate-lt);line-height:1.8;max-width:640px;margin-bottom:36px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.05em;padding-top:24px;border-top:1px solid var(--border)}
+.hero-meta span strong{color:var(--slate-lt);font-weight:500}
+@media(max-width:860px){.topic-hero{padding:80px 24px 52px;min-height:55vh}}
+
+/* STAT STRIP */
+.stat-strip{background:var(--navy-surface);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:28px 32px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-cell-num{font-family:var(--font-d);font-size:34px;font-weight:900;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-cell-num .r{color:var(--crimson)}
+.stat-cell-lbl{font-size:12px;color:var(--slate);line-height:1.4;max-width:140px}
+.stat-cell-src{display:block;font-size:10px;font-family:var(--font-m);color:rgba(100,116,139,0.6);margin-top:8px;letter-spacing:.04em}
+@media(max-width:720px){.stat-strip{grid-template-columns:1fr 1fr}.stat-cell:nth-child(2){border-right:none}.stat-cell:nth-child(3){border-top:1px solid var(--border)}.stat-cell:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* CONTENT */
+.content-section{padding:80px}
+.bg-mid{background:var(--navy-mid)}
+.section-eyebrow{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:14px;display:block}
+.section-h2{font-family:var(--font-d);font-size:clamp(26px,3vw,40px);font-weight:700;color:var(--white);line-height:1.12;letter-spacing:-.5px;margin-bottom:20px}
+.section-h3{font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:12px;margin-top:40px}
+.prose{font-size:15px;color:var(--slate-lt);line-height:1.85;max-width:760px;margin-bottom:20px}
+.prose strong{color:var(--white);font-weight:600}
+.section-divider{height:1px;background:linear-gradient(90deg,var(--crimson),transparent);margin:0 80px;opacity:.3}
+@media(max-width:860px){.content-section{padding:52px 24px}.section-divider{margin:0 24px}}
+
+/* PULL QUOTE */
+.pull-quote{margin:40px 0;padding:28px 36px;border-left:3px solid var(--crimson);background:var(--crimson-glow);border-radius:0 4px 4px 0}
+.pull-quote p{font-family:var(--font-d);font-size:20px;font-style:italic;color:var(--white);line-height:1.55;margin-bottom:10px}
+.pull-quote cite{font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-style:normal}
+
+/* CALLOUT */
+.callout{margin:32px 0;padding:22px 28px;border:1px solid var(--border-red);background:rgba(192,57,43,0.06);border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+.callout-icon{width:28px;height:28px;border-radius:50%;background:var(--crimson);color:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.callout-text{font-size:14px;color:var(--slate-lt);line-height:1.7}
+.callout-text strong{color:#e89a90;font-weight:600}
+
+/* FORMS GRID */
+.forms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.form-card{background:var(--navy-mid);padding:36px 32px;position:relative;overflow:hidden;transition:background .2s}
+.form-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.form-card:hover{background:var(--navy-surface)}.form-card:hover::before{transform:scaleX(1)}
+.form-card-tag{font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:14px;display:block}
+.form-card h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.25}
+.form-card p{font-size:13px;color:var(--slate);line-height:1.7}
+.form-card-badge{display:inline-block;margin-top:16px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.badge-high{background:rgba(192,57,43,0.18);color:#e89a90}
+.badge-new{background:rgba(109,40,217,0.18);color:#c4b5fd}
+.badge-fin{background:rgba(186,117,23,0.18);color:#d4a857}
+.badge-tech{background:rgba(29,78,216,0.18);color:#93c5fd}
+@media(max-width:640px){.forms-grid{grid-template-columns:1fr}}
+
+/* SCALE */
+.scale-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.data-bar-group{margin-top:36px}
+.data-bar-item{margin-bottom:24px}
+.data-bar-label{display:flex;justify-content:space-between;font-size:13px;color:var(--slate-lt);margin-bottom:7px}
+.data-bar-label span:last-child{font-family:var(--font-m);color:var(--white);font-size:12px}
+.data-bar-track{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.data-bar-fill{height:100%;background:var(--crimson);border-radius:2px;transform-origin:left;animation:bar-in 1s ease both}
+@keyframes bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:720px){.scale-split{grid-template-columns:1fr}}
+
+/* HOW */
+.how-section{background:var(--navy-mid)}
+.how-layout{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+.how-img-slot{background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.12);border-radius:5px;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.how-img-slot::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(192,57,43,0.05),transparent);pointer-events:none}
+.slot-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.03)}
+.slot-title-el{font-family:var(--font-m);font-size:11px;font-weight:500;color:rgba(255,255,255,0.25);letter-spacing:.1em;text-transform:uppercase}
+.slot-desc-el{font-size:12px;color:rgba(100,116,139,0.5);line-height:1.6;max-width:220px}
+.slot-tag-el{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(192,57,43,0.5);border:1px dashed rgba(192,57,43,0.3);padding:4px 12px;border-radius:2px}
+.how-steps{margin-top:36px}
+.how-step{display:flex;gap:20px;margin-bottom:28px;align-items:flex-start}
+.how-step-num{width:28px;height:28px;border-radius:50%;background:var(--crimson-glow);border:1px solid var(--border-red);color:var(--crimson);font-family:var(--font-m);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.how-step-body h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.how-step-body p{font-size:13px;color:var(--slate);line-height:1.65}
+@media(max-width:860px){.how-layout{grid-template-columns:1fr}.how-img-slot{min-height:200px}}
+
+/* DEEPFAKE */
+.deepfake-section{padding:0}
+.deepfake-inner{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
+.deepfake-text{padding:90px 80px;background:var(--navy);display:flex;flex-direction:column;justify-content:center}
+.deepfake-text .prose{max-width:100%}
+.deepfake-visual{background:var(--navy-surface);border-left:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:60px}
+.deepfake-circles{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.dc{position:absolute;border-radius:50%;border:1px solid rgba(192,57,43,0.12)}
+.dc1{width:340px;height:340px}.dc2{width:230px;height:230px;border-color:rgba(192,57,43,0.2)}.dc3{width:130px;height:130px;border-color:rgba(192,57,43,0.3);background:rgba(192,57,43,0.04)}
+.deepfake-stats{position:relative;z-index:2;display:flex;flex-direction:column;gap:0}
+.df-stat{padding:24px 0;border-bottom:1px solid var(--border)}
+.df-stat:last-child{border-bottom:none}
+.df-stat-num{font-family:var(--font-d);font-size:44px;font-weight:900;color:var(--white);line-height:1;margin-bottom:6px}
+.df-stat-num .r{color:var(--crimson)}
+.df-stat-desc{font-size:13px;color:var(--slate);line-height:1.55}
+.deepfake-slot-label{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(192,57,43,0.35);border:1px dashed rgba(192,57,43,0.25);padding:5px 14px;border-radius:2px;position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;z-index:3}
+@media(max-width:860px){.deepfake-inner{grid-template-columns:1fr}.deepfake-text{padding:52px 24px}.deepfake-visual{border-left:none;border-top:1px solid var(--border);padding:40px 24px}}
+
+/* IMPACT */
+.impact-section{background:var(--navy-mid)}
+.impact-layout{display:grid;grid-template-columns:1fr 300px;gap:72px;align-items:start;margin-top:48px}
+.impact-items{display:flex;flex-direction:column;gap:0}
+.impact-item{padding:24px 0;border-bottom:1px solid var(--border);display:flex;gap:20px;align-items:flex-start}
+.impact-item:last-child{border-bottom:none}
+.impact-icon-wrap{width:36px;height:36px;border-radius:4px;background:var(--crimson-glow);border:1px solid var(--border-red);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.impact-item h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px}
+.impact-item p{font-size:13px;color:var(--slate);line-height:1.65}
+.impact-img-slot{position:sticky;top:90px;background:var(--navy-surface);border:1px dashed rgba(255,255,255,0.1);border-radius:5px;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:30px;text-align:center;overflow:hidden}
+.impact-slot-caption{font-size:11px;color:rgba(100,116,139,0.5);font-family:var(--font-m);letter-spacing:.06em;text-transform:uppercase;line-height:1.5}
+@media(max-width:860px){.impact-layout{grid-template-columns:1fr}.impact-img-slot{min-height:200px;position:static}}
+
+/* LEGAL */
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-top:48px}
+.legal-card{background:var(--navy-mid);padding:32px 28px;transition:background .2s}
+.legal-card:hover{background:var(--navy-surface)}
+.legal-country{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.country-flag{font-size:18px}
+.country-name{font-family:var(--font-m);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-lt)}
+.legal-card h3{font-family:var(--font-d);font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.25}
+.legal-card p{font-size:13px;color:var(--slate);line-height:1.65}
+.legal-status{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.status-strong{background:rgba(22,163,74,0.15);color:#6ec97a}
+.status-partial{background:rgba(186,117,23,0.15);color:#d4a857}
+@media(max-width:640px){.legal-grid{grid-template-columns:1fr}}
+
+/* PLATFORMS */
+.platform-section{background:var(--navy-mid)}
+.platform-items{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.platform-item{display:grid;grid-template-columns:220px 1fr;gap:40px;padding:32px 0;border-bottom:1px solid var(--border);align-items:start}
+.platform-item:last-child{border-bottom:none}
+.platform-label{display:flex;flex-direction:column;gap:6px}
+.platform-name{font-size:15px;font-weight:600;color:var(--white)}
+.platform-tag{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.platform-item p{font-size:14px;color:var(--slate-lt);line-height:1.75}
+.platform-item p strong{color:var(--white);font-weight:600}
+@media(max-width:720px){.platform-item{grid-template-columns:1fr}}
+
+/* PREVENTION */
+.prevention-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+.prevention-col h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.check-list{display:flex;flex-direction:column;gap:14px}
+.check-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--slate-lt);line-height:1.65}
+.check-dot{width:18px;height:18px;border-radius:50%;border:1px solid var(--crimson);color:var(--crimson);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:2px;font-weight:700}
+.resource-cards{display:flex;flex-direction:column;gap:12px}
+.resource-card{background:var(--navy-surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+.resource-card:hover{border-color:rgba(255,255,255,0.15)}
+.resource-card-icon{width:32px;height:32px;border-radius:3px;background:var(--crimson-glow);border:1px solid var(--border-red);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.resource-card-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.resource-card-url{font-family:var(--font-m);font-size:11px;color:var(--crimson);letter-spacing:.03em;text-decoration:none}
+.resource-card-url:hover{color:var(--crimson-lt)}
+.resource-card-desc{font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5}
+@media(max-width:720px){.prevention-grid{grid-template-columns:1fr}}
+
+/* REFS */
+.references-section{background:var(--navy-mid)}
+.ref-list{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.ref-item{font-size:13px;color:var(--slate);line-height:1.6;padding:12px 16px;background:rgba(255,255,255,0.02);border-left:2px solid rgba(255,255,255,0.07);border-radius:0 3px 3px 0;font-family:var(--font-m);letter-spacing:.02em;transition:border-color .2s}
+.ref-item:hover{border-color:rgba(192,57,43,0.4);color:var(--slate-lt)}
+
+/* QUIZ STRIP */
+.quiz-strip{background:var(--crimson);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.quiz-strip p{font-size:15px;font-weight:500;color:rgba(255,255,255,0.92)}
+.quiz-strip p span{font-weight:300;opacity:.8;font-size:13px}
+.btn-quiz{background:rgba(255,255,255,0.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background .2s;white-space:nowrap}
+.btn-quiz:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:600px){.quiz-strip{padding:24px}}
+
+/* TOPIC NAV */
+.topic-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.topic-nav-card{background:var(--navy-mid);padding:36px 40px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.topic-nav-card:hover{background:var(--navy-surface)}
+.topic-nav-card.next{text-align:right}
+.topic-nav-dir{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.topic-nav-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);line-height:1.25}
+.topic-nav-sub{font-size:13px;color:var(--slate)}
+@media(max-width:640px){.topic-nav{grid-template-columns:1fr}.topic-nav-card{padding:28px 24px}.topic-nav-card.next{text-align:left}}
+
+/* FOOTER */
+footer{padding:36px 80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-logo{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--crimson)}
+.footer-note{font-size:12px;color:var(--slate);max-width:380px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--slate);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Crime<span>Online</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics"  id="nav-topics-lbl">Topics</a></li>
+      <li><a href="../prevention.html"    id="nav-prev-lbl">Prevention</a></li>
+      <li><a href="../sources.html"       id="nav-sources-lbl">Sources</a></li>
+      <li><a href="../quiz/index.html" class="nav-cta" id="nav-cta-lbl">Take the Quiz &#x2197;</a></li>
+    </ul>
+    <div class="nav-lang-wrap">
+      <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="it">IT</option>
+      </select>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="../index.html"            onclick="closeMenu()" id="mob-home-lbl">Home</a>
+  <a href="../index.html#topics"     onclick="closeMenu()" id="mob-topics-lbl">Topics</a>
+  <a href="../prevention.html"       onclick="closeMenu()" id="mob-prev-lbl">Prevention</a>
+  <a href="../sources.html"          onclick="closeMenu()" id="mob-sources-lbl">Sources</a>
+  <a href="../quiz/index.html" class="mobile-cta" onclick="closeMenu()" id="mob-cta-lbl">Take the Quiz &#x2197;</a>
+  <div class="nav-mobile-lang">
+    <label id="mob-lang-lbl">Language</label>
+    <select class="lang-sel-mob" id="langSelMob" onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html" id="bc-home">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="../index.html#topics" id="bc-topics">Topics</a>
+  <span class="breadcrumb-sep">/</span>
+  <span style="color:var(--slate-lt)" id="bc-current">Non-Consensual Intimate Image Sharing</span>
+</div>
+
+<!-- HERO -->
+<section class="topic-hero">
+  <div class="hero-img-slot">
+    <span class="hero-img-placeholder-label"><img src="../media/img/connected_transparenz.png" alt="abstract Image(connection)"></span>
+  </div>
+  <div class="hero-overlay-grad"></div>
+  <div class="hero-overlay-red"></div>
+  <div class="topic-hero-content">
+    <div class="topic-label">
+      <span class="topic-num-badge">01</span>
+      <span id="hero-series-lbl">Internet Crime Series &nbsp;&middot;&nbsp; Full Report</span>
+    </div>
+    <h1 id="hero-h1">Non-Consensual<br><em>Intimate Image</em><br>Sharing</h1>
+    <p class="topic-hero-lead" id="hero-lead">How digital technology has created a new form of sexual violence &mdash; one with no crime scene, no border, and no end date. A comprehensive examination of NCII from first principles to legal frontier.</p>
+    <div class="hero-meta">
+      <span><strong id="meta1-lbl">Severity:</strong>&nbsp;<span id="meta1-val">High</span></span>
+      <span><strong id="meta2-lbl">Victims (est.):</strong>&nbsp;<span id="meta2-val">Millions globally</span></span>
+      <span><strong id="meta3-lbl">Legislation:</strong>&nbsp;<span id="meta3-val">48 US states &middot; UK &middot; EU &middot; Australia</span></span>
+      <span><strong id="meta4-lbl">AI threat:</strong>&nbsp;<span id="meta4-val">Deepfake NCII &mdash; rapidly escalating</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-cell"><div class="stat-cell-num">1 <span class="r">in 8</span></div><div class="stat-cell-lbl" id="stat1-lbl">social media users targeted by NCII threats or distribution</div><span class="stat-cell-src">CCRI, 2020</span></div>
+  <div class="stat-cell"><div class="stat-cell-num">18<span class="r">k+</span></div><div class="stat-cell-lbl" id="stat2-lbl">cases handled by the UK Revenge Porn Helpline in 2022 alone</div><span class="stat-cell-src">RPH Annual Report, 2023</span></div>
+  <div class="stat-cell"><div class="stat-cell-num">80<span class="r">%</span></div><div class="stat-cell-lbl" id="stat3-lbl">of NCII victims are female across US, UK, and Australian studies</div><span class="stat-cell-src">Multiple studies</span></div>
+  <div class="stat-cell"><div class="stat-cell-num">96<span class="r">%</span></div><div class="stat-cell-lbl" id="stat4-lbl">of all deepfake videos online are non-consensual sexual imagery</div><span class="stat-cell-src">Sensity AI, 2023</span></div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s1-eye">Overview</span>
+  <div class="pull-quote">
+    <p id="pq-text">&ldquo;The internet doesn&rsquo;t forget. A private moment shared in trust becomes a permanent, uncontrollable public record. The image is gone &mdash; but it never really leaves.&rdquo;</p>
+    <cite id="pq-cite">Cyber Civil Rights Initiative</cite>
+  </div>
+  <p class="prose" id="s1p1">Non-Consensual Intimate Image Sharing (NCII) &mdash; commonly referred to as <strong>&lsquo;revenge porn&rsquo;</strong>, though that term is widely rejected as inaccurate and victim-blaming &mdash; describes the distribution of sexually explicit or intimate images and videos of a person without their consent. It is one of the most rapidly expanding categories of internet crime, enabled by the same digital infrastructure that connects the modern world.</p>
+  <p class="prose" id="s1p2">The term &lsquo;revenge porn&rsquo; is misleading on two counts: &lsquo;revenge&rsquo; implies the victim provoked the act, and &lsquo;porn&rsquo; implies the content is consensual adult material. Neither is true. The preferred terminology reflects what this crime actually is: <strong>a violation of privacy, consent, and bodily autonomy</strong>, perpetrated through technology.</p>
+  <p class="prose" id="s1p3">This report examines NCII in full depth: how it is defined, how it is committed, how it is experienced by victims, how different countries have legislated against it, and how the emergence of AI-generated deepfake imagery has fundamentally changed the threat landscape.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- S2: DEFINITION -->
+<section class="content-section bg-mid">
+  <span class="section-eyebrow" id="s2-eye">Section 2</span>
+  <h2 class="section-h2" id="s2-h2">Defining NCII: What It Is,<br>and What It Is Not</h2>
+  <p class="prose" id="s2p1">NCII encompasses any act of sharing, publishing, threatening to share, or possessing with intent to distribute intimate or sexually explicit images or videos of another person without their <strong>informed and ongoing consent</strong>.</p>
+  <div class="callout"><div class="callout-icon">&#x2192;</div><div class="callout-text" id="s2-callout"><strong>Crucially:</strong> consent to create an image does not equal consent to distribute it. A photograph taken privately within a consensual relationship remains private. Its later distribution by either party without renewed consent constitutes NCII &mdash; regardless of who took the photograph.</div></div>
+  <div class="forms-grid">
+    <div class="form-card"><span class="form-card-tag" id="fc1-tag">01 &mdash; Most Common</span><h3 id="fc1-h3">Intimate Partner Distribution</h3><p id="fc1-p">The historically most prevalent form: a current or former romantic partner distributes images originally shared in the context of trust and intimacy. Often used as a tool of coercive control &mdash; the threat of distribution wielded even before any image is actually shared. Breakups are a primary trigger, but so are financial disputes, jealousy, and power dynamics.</p><span class="form-card-badge badge-high" id="fc1-badge">High Prevalence</span></div>
+    <div class="form-card"><span class="form-card-tag" id="fc2-tag">02 &mdash; Growing Threat</span><h3 id="fc2-h3">Hacking &amp; Non-Consensual Recording</h3><p id="fc2-p">Images obtained entirely without the victim&rsquo;s knowledge: through phishing and iCloud/Google Photos hacking, installation of hidden cameras, or recording during assaults. The 2014 &lsquo;Celebgate&rsquo; hack &mdash; 100+ celebrities targeted via iCloud phishing &mdash; brought this variant to global attention.</p><span class="form-card-badge badge-tech" id="fc2-badge">Technical Intrusion</span></div>
+    <div class="form-card"><span class="form-card-tag" id="fc3-tag">03 &mdash; Financially Motivated</span><h3 id="fc3-h3">Sextortion</h3><p id="fc3-p">An offender possesses (or claims to possess) intimate material and uses it to extort money, further images, or sexual compliance. Organised criminal networks specifically target teenagers and young adults across international borders. The FBI reports it has become one of the fastest-growing online crimes targeting minors.</p><span class="form-card-badge badge-fin" id="fc3-badge">Criminal Enterprise</span></div>
+    <div class="form-card"><span class="form-card-tag" id="fc4-tag">04 &mdash; Fastest Growing</span><h3 id="fc4-h3">AI-Generated Deepfake NCII</h3><p id="fc4-p">Synthetic but realistic intimate imagery created using a real person&rsquo;s face or likeness &mdash; without any genuine intimate material ever existing. Requires only social media photographs and freely available software. Any person with a public digital footprint is now a potential target. Examined fully in Section 5.</p><span class="form-card-badge badge-new" id="fc4-badge">Emerging Threat</span></div>
+  </div>
+</section>
+
+<!-- S3: SCALE -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s3-eye">Section 3</span>
+  <h2 class="section-h2" id="s3-h2">Scale and Prevalence</h2>
+  <div class="scale-split">
+    <div>
+      <p class="prose" id="s3p1">Reliable data on NCII is difficult to obtain due to significant underreporting &mdash; many victims choose not to report out of shame, fear of further exposure, or lack of confidence that authorities will take meaningful action. Nevertheless, the research that exists is striking.</p>
+      <p class="prose" id="s3p2">Between <strong>4% and 10%</strong> of internet-using adults across Australia, Canada, and the EU report having been victims of NCII. Rates are substantially higher among women aged 18&ndash;34 and LGBTQ+ individuals, who face the additional threat of &lsquo;outing&rsquo; being weaponised alongside image distribution.</p>
+      <p class="prose" id="s3p3">Young people are especially vulnerable. The Thorn organisation found that <strong>1 in 5</strong> young adults aged 18&ndash;24 in the US had had intimate images shared without consent. For those under 18, such material simultaneously constitutes NCII and child sexual abuse material (CSAM).</p>
+      <div class="callout"><div class="callout-icon">!</div><div class="callout-text" id="s3-callout"><strong>UK Data:</strong> The Revenge Porn Helpline handled over 18,000 cases in 2022 &mdash; a fivefold increase from its first year of operation in 2015. This growth reflects both rising incidence and rising awareness.</div></div>
+    </div>
+    <div>
+      <div class="data-bar-group">
+        <p style="font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px" id="bar-g1-lbl">Victims by demographic (%)</p>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar1-lbl">Women aged 18&ndash;34</span><span>~10%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:10%;animation-delay:.1s"></div></div></div>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar2-lbl">LGBTQ+ individuals</span><span>~12%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:12%;animation-delay:.2s"></div></div></div>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar3-lbl">Young adults (18&ndash;24)</span><span>~20%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:20%;animation-delay:.3s"></div></div></div>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar4-lbl">General population</span><span>~6%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:6%;animation-delay:.4s"></div></div></div>
+        <p style="font-size:12px;font-family:var(--font-m);color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;margin-top:40px" id="bar-g2-lbl">NCII victim gender breakdown</p>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar5-lbl">Female victims</span><span>70&ndash;80%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:75%;animation-delay:.5s"></div></div></div>
+        <div class="data-bar-item"><div class="data-bar-label"><span id="bar6-lbl">Male victims</span><span>20&ndash;30%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:25%;animation-delay:.6s;background:var(--slate)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: HOW PERPETRATED -->
+<section class="content-section how-section">
+  <span class="section-eyebrow" id="s4-eye">Section 4</span>
+  <h2 class="section-h2" id="s4-h2">How NCII Is Perpetrated</h2>
+  <p class="prose" id="s4p1">Understanding how perpetrators acquire and distribute intimate material is essential to understanding prevention and enforcement.</p>
+  <div class="how-layout">
+    <div>
+      <div class="how-steps">
+        <div class="how-step"><div class="how-step-num">1</div><div class="how-step-body"><h4 id="hs1-h4">Consensual Creation Within Relationships</h4><p id="hs1-p">Most NCII material was originally created consensually &mdash; shared between partners in a relationship of trust. The act becomes criminal only when one party later distributes it without renewed consent.</p></div></div>
+        <div class="how-step"><div class="how-step-num">2</div><div class="how-step-body"><h4 id="hs2-h4">Hacking and Credential Theft</h4><p id="hs2-p">Personal devices, cloud accounts (iCloud, Google Photos, Dropbox), and email are targeted via phishing, spyware, and social engineering. Entire collections can be exfiltrated in minutes once access is obtained.</p></div></div>
+        <div class="how-step"><div class="how-step-num">3</div><div class="how-step-body"><h4 id="hs3-h4">Hidden Recording</h4><p id="hs3-p">Concealed cameras planted in private spaces &mdash; changing rooms, bathrooms, bedrooms. South Korea&rsquo;s &lsquo;molka&rsquo; epidemic recorded 5,500+ police cases in a single year, with researchers estimating the true figure far higher.</p></div></div>
+        <div class="how-step"><div class="how-step-num">4</div><div class="how-step-body"><h4 id="hs4-h4">AI Synthetic Generation</h4><p id="hs4-p">Facial photographs from social media are fed into generative AI tools to create fabricated intimate content. No genuine material required. Covered fully in Section 5.</p></div></div>
+        <div class="how-step"><div class="how-step-num">5</div><div class="how-step-body"><h4 id="hs5-h4">Distribution Channels</h4><p id="hs5-p">Material is sent directly to victims&rsquo; employers, families, or communities; posted publicly on dedicated NCII sites or image boards; spread via Telegram channels; or sold on dark web marketplaces.</p></div></div>
+      </div>
+    </div>
+    <div class="how-img-slot">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;position:relative;z-index:1">
+        <img src="../media/img/hidden_cammera.png"></img>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: DEEPFAKES -->
+<section class="deepfake-section" id="deepfakes">
+  <div class="deepfake-inner">
+    <div class="deepfake-text">
+      <span class="section-eyebrow" id="s5-eye">Section 5 &mdash; Feature Deep-Dive</span>
+      <h2 class="section-h2" id="s5-h2">The AI Deepfake Crisis</h2>
+      <p class="prose" id="s5p1">Deepfakes are synthetic media &mdash; images, videos, or audio &mdash; where a person&rsquo;s likeness is digitally placed onto content they never created or participated in. The term combines &lsquo;deep learning&rsquo; (the AI technology) and &lsquo;fake&rsquo;. While the technology has legitimate creative applications, it has been weaponised as a tool of sexual harassment at a genuinely alarming scale.</p>
+      <p class="prose" id="s5p2">The creation of deepfake intimate imagery <strong>requires no technical expertise</strong> with modern consumer tools. Free applications can generate convincing synthetic explicit images using only a handful of source photographs &mdash; the kind available on any public social media profile &mdash; in under five minutes.</p>
+      <p class="prose" id="s5p3">Deepfake NCII differs from conventional NCII in one especially troubling way: <strong>there is no original intimate material to take down.</strong> The image never existed &mdash; it was created. This makes both detection and legal redress dramatically more complicated.</p>
+      <div class="callout"><div class="callout-icon">!</div><div class="callout-text" id="s5-callout"><strong>2023&ndash;2024:</strong> Multiple documented cases emerged of AI-generated intimate images targeting teenage girls at schools across the United States and Europe. Generated using school social media photographs. These cases triggered emergency legislative responses in several US states.</div></div>
+      <p class="prose" id="s5p4">Detection is technically complex. AI-detection tools identify inconsistencies in lighting, skin texture, and pixel patterns &mdash; but their accuracy erodes as generative AI improves. Detection technology is widely considered to lag behind generation technology by a significant margin.</p>
+    </div>
+    <div class="deepfake-visual">
+      <div class="deepfake-circles"><div class="dc dc1"></div><div class="dc dc2"></div><div class="dc dc3"></div></div>
+      <div class="deepfake-stats">
+        <div class="df-stat"><div class="df-stat-num">96<span class="r">%</span></div><div class="df-stat-desc" id="df1-desc">of all deepfake videos online are non-consensual sexual imagery &mdash; overwhelmingly targeting women</div></div>
+        <div class="df-stat"><div class="df-stat-num"><span class="r">+</span>100s<span class="r">%</span></div><div class="df-stat-desc" id="df2-desc">year-on-year growth in deepfake NCII volume every year since 2019</div></div>
+        <div class="df-stat"><div class="df-stat-num" style="font-size:32px" id="df3-num">Zero</div><div class="df-stat-desc" id="df3-desc">genuine intimate material required &mdash; only publicly available social media photos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: IMPACT -->
+<section class="content-section impact-section">
+  <span class="section-eyebrow" id="s6-eye">Section 6</span>
+  <h2 class="section-h2" id="s6-h2">Impact on Victims</h2>
+  <p class="prose" id="s6p1">The psychological impact of NCII is profound, well-documented, and often severely underestimated by those who have not experienced it.</p>
+  <div class="impact-layout">
+    <div class="impact-items">
+      <div class="impact-item"><div class="impact-icon-wrap">&#x1F9E0;</div><div><h4 id="ii1-h4">Post-Traumatic Stress Disorder (PTSD)</h4><p id="ii1-p">Victims frequently describe intrusive thoughts, hypervigilance, emotional numbing, and dissociation &mdash; all consistent with PTSD. The loss of control over one&rsquo;s own body and image is experienced as a distinct, acute trauma. Unlike a physical assault, NCII does not end.</p></div></div>
+      <div class="impact-item"><div class="impact-icon-wrap">&#x1F494;</div><div><h4 id="ii2-h4">Depression and Severe Anxiety</h4><p id="ii2-p">High rates of clinical depression, generalised anxiety disorder, and panic attacks are documented among NCII victims &mdash; often persisting for years. The unpredictability of when and where the material might resurface means recovery is constantly interrupted.</p></div></div>
+      <div class="impact-item"><div class="impact-icon-wrap">&#x26A0;&#xFE0F;</div><div><h4 id="ii3-h4">Suicidal Ideation and Self-Harm</h4><p id="ii3-p">Multiple independent studies find that a significant proportion of NCII victims experience suicidal thoughts. A number of documented cases have ended in suicide, particularly among younger victims. This is not an edge case &mdash; it is a recognised and recurring outcome.</p></div></div>
+      <div class="impact-item"><div class="impact-icon-wrap">&#x1F3E2;</div><div><h4 id="ii4-h4">Reputational and Professional Harm</h4><p id="ii4-p">Victims report job losses following employer discovery of material, expulsion from educational institutions, and ostracism from communities. Women face significantly harsher social judgement than male victims, with blame frequently directed at them for having created the images.</p></div></div>
+      <div class="impact-item"><div class="impact-icon-wrap">&#x1F4B0;</div><div><h4 id="ii5-h4">Economic Consequences</h4><p id="ii5-p">Beyond lost income, victims face financial costs from legal action, content removal services, specialist technical assistance, and psychological care &mdash; costs that many cannot absorb, particularly without adequate civil legal remedies.</p></div></div>
+      <div class="impact-item"><div class="impact-icon-wrap">&#x267E;&#xFE0F;</div><div><h4 id="ii6-h4">The Permanent Nature of Digital Distribution</h4><p id="ii6-p">Unlike a physical violation, NCII can surface and resurface indefinitely &mdash; discovered by new people, on new platforms, years after the original distribution. Victims describe living with perpetual, unresolvable vulnerability. There is rarely a clean ending.</p></div></div>
+    </div>
+    <div class="impact-img-slot">
+      <img src="../media/img/depression.jpg"><img>
+    </div>
+  </div>
+</section>
+
+<!-- S7: LEGAL -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s7-eye">Section 7</span>
+  <h2 class="section-h2" id="s7-h2">Legal Frameworks Around the World</h2>
+  <p class="prose" id="s7p1">The criminalisation of NCII has accelerated significantly since 2015, driven by sustained advocacy from victim support organisations and academics. The legal landscape remains highly uneven globally.</p>
+  <div class="legal-grid">
+    <div class="legal-card"><div class="legal-country"><div class="country-flag">&#x1F1EC;&#x1F1E7;</div><span class="country-name" id="lc1-name">United Kingdom</span></div><h3 id="lc1-h3">Online Safety Act 2023</h3><p id="lc1-p">Sharing intimate images without consent is now a specific criminal offence in England and Wales, carrying a potential custodial sentence. Deepfake intimate image creation &mdash; not just distribution &mdash; is also criminalised, one of the first laws to do so. Earlier groundwork was laid by the Voyeurism (Offences) Act 2019.</p><span class="legal-status status-strong" id="lc1-status">Comprehensive Coverage</span></div>
+    <div class="legal-card"><div class="legal-country"><div class="country-flag">&#x1F1FA;&#x1F1F8;</div><span class="country-name" id="lc2-name">United States</span></div><h3 id="lc2-h3">State-by-State Framework</h3><p id="lc2-p">The US has no federal NCII criminal statute. The SHIELD Act has stalled in Congress multiple times due to First Amendment concerns. As of 2024, 48 states have enacted their own NCII laws &mdash; varying substantially in scope, definitions, and penalties. Cross-jurisdictional cases face significant enforcement gaps.</p><span class="legal-status status-partial" id="lc2-status">Partial &mdash; No Federal Law</span></div>
+    <div class="legal-card"><div class="legal-country"><div class="country-flag">&#x1F1EA;&#x1F1FA;</div><span class="country-name" id="lc3-name">European Union</span></div><h3 id="lc3-h3">Digital Services Act 2024</h3><p id="lc3-p">The DSA, in full force from 2024, imposes substantial obligations on large online platforms to proactively detect and remove illegal content &mdash; including NCII. Member states are also implementing the EU Victims&rsquo; Rights Directive. National criminal laws still vary widely across member states.</p><span class="legal-status status-partial" id="lc3-status">Platform Obligations &mdash; Patchy Criminal Law</span></div>
+    <div class="legal-card"><div class="legal-country"><div class="country-flag">&#x1F1E6;&#x1F1FA;</div><span class="country-name" id="lc4-name">Australia</span></div><h3 id="lc4-h3">Online Safety Act 2021</h3><p id="lc4-p">Australia&rsquo;s framework is among the most comprehensive globally. The eSafety Commissioner &mdash; an independent government authority &mdash; has powers to compel platforms to remove NCII content within 24 hours of a valid complaint. Criminal penalties are established at state and territory level.</p><span class="legal-status status-strong" id="lc4-status">One of the World&rsquo;s Strongest Frameworks</span></div>
+  </div>
+  <div style="margin-top:36px">
+    <h3 class="section-h3" id="s7-h3">Why Prosecutions Remain Difficult</h3>
+    <p class="prose" id="s7p2">Even in jurisdictions with strong laws, securing convictions is hard. Perpetrators use pseudonyms and anonymising technology; cases cross multiple jurisdictions with unclear authority; digital evidence is volatile and quickly deleted; specialist cybercrime police units are under-resourced; and many victims withdraw due to psychological toll or fear of further exposure during trial.</p>
+  </div>
+</section>
+
+<!-- S8: PLATFORMS -->
+<section class="content-section platform-section">
+  <span class="section-eyebrow" id="s8-eye">Section 8</span>
+  <h2 class="section-h2" id="s8-h2">Platform Responses</h2>
+  <p class="prose" id="s8p1">Technology platforms have progressively strengthened NCII policies under regulatory pressure &mdash; but the gap between policy and enforcement remains substantial.</p>
+  <div class="platform-items">
+    <div class="platform-item"><div class="platform-label"><span class="platform-name" id="pl1-name">Hash-Matching Technology</span><span class="platform-tag" id="pl1-tag">Technical solution</span></div><p id="pl1-p">A &lsquo;hash&rsquo; is a unique digital fingerprint generated from an image file. If a hash is generated from an original NCII image, any subsequent upload of that identical image can be automatically detected and blocked before it reaches anyone. <strong>StopNCII.org</strong> allows victims to generate hashes without uploading the images themselves. Used by tens of thousands of victims globally as of 2024.</p></div>
+    <div class="platform-item"><div class="platform-label"><span class="platform-name" id="pl2-name">Major Platform Policies</span><span class="platform-tag" id="pl2-tag">Policy enforcement</span></div><p id="pl2-p">Meta, Google, Microsoft, Snapchat, and others now explicitly prohibit NCII in community standards and have implemented victim reporting mechanisms. However, <strong>enforcement is largely reactive</strong> &mdash; relying on victims to first discover the material and then report it, often at significant personal cost.</p></div>
+    <div class="platform-item"><div class="platform-label"><span class="platform-name" id="pl3-name">The Telegram Problem</span><span class="platform-tag" id="pl3-tag">Persistent gap</span></div><p id="pl3-p">Telegram applies minimal content moderation and permits large public channels with no oversight. Research by the Internet Watch Foundation and Stanford Internet Observatory has documented channels with tens of thousands of subscribers openly hosting non-consensual content. The <strong>2024 arrest of Telegram founder Pavel Durov</strong> in France on charges related to platform facilitation of criminal activity represents a significant escalation of regulatory pressure.</p></div>
+  </div>
+</section>
+
+<!-- S9: PREVENTION -->
+<section class="content-section">
+  <span class="section-eyebrow" id="s9-eye">Section 9</span>
+  <h2 class="section-h2" id="s9-h2">Prevention and Support</h2>
+  <p class="prose" id="s9p1">Primary responsibility for NCII rests entirely with perpetrators. The following practices can reduce individual vulnerability and help victims access appropriate support.</p>
+  <div class="prevention-grid">
+    <div class="prevention-col">
+      <h3 id="prev-h3">For Personal Protection</h3>
+      <div class="check-list">
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci1">Use strong, unique passwords for all accounts containing personal data. Enable multi-factor authentication wherever available &mdash; especially on cloud photo services.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci2">Review smartphone backup settings periodically. Many devices automatically sync all photos to cloud services &mdash; check that this is intentional and the account is properly secured.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci3">Exercise caution sharing intimate images even with trusted partners. Once shared, an image cannot be unshared. Open conversation about expectations &mdash; including what happens if a relationship ends &mdash; is a protective factor.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci4">Recognise sextortion tactics: unsolicited contact from strangers online that rapidly escalates to intimacy is a documented pattern used by criminal networks. Claims of possessing webcam footage are frequently false but are standard sextortion leverage.</span></div>
+        <div class="check-item"><div class="check-dot">&#x2713;</div><span id="ci5">Be aware that AI deepfakes require only facial photographs &mdash; restricting who can see your photos on social media reduces (though does not eliminate) exposure to synthetic NCII.</span></div>
+      </div>
+    </div>
+    <div class="prevention-col">
+      <h3 id="res-h3">Support Resources for Victims</h3>
+      <div class="resource-cards">
+        <div class="resource-card"><div class="resource-card-icon">&#x1F1EC;&#x1F1E7;</div><div><div class="resource-card-name">Revenge Porn Helpline</div><a href="https://revengepornhelpline.org.uk" class="resource-card-url" target="_blank">revengepornhelpline.org.uk</a><div class="resource-card-desc" id="rc1-desc">Free specialist UK service. Advice on content removal, legal options, and emotional support.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F1FA;&#x1F1F8;</div><div><div class="resource-card-name">Cyber Civil Rights Initiative</div><a href="https://cybercivilrights.org" class="resource-card-url" target="_blank">cybercivilrights.org</a><div class="resource-card-desc" id="rc2-desc">24/7 crisis helpline, legal referrals, and content removal assistance.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F310;</div><div><div class="resource-card-name">StopNCII.org</div><a href="https://stopncii.org" class="resource-card-url" target="_blank">stopncii.org</a><div class="resource-card-desc" id="rc3-desc">Free image-hash tool to prevent distribution across participating platforms. Available globally.</div></div></div>
+        <div class="resource-card"><div class="resource-card-icon">&#x1F1E6;&#x1F1FA;</div><div><div class="resource-card-name">eSafety Commissioner</div><a href="https://esafety.gov.au" class="resource-card-url" target="_blank">esafety.gov.au</a><div class="resource-card-desc" id="rc4-desc">Formal complaint and 24-hour takedown process. Australia only.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES — kept in English as academic citations -->
+<section class="content-section references-section">
+  <span class="section-eyebrow" id="ref-eye">References</span>
+  <h2 class="section-h2" id="ref-h2">Sources and Further Reading</h2>
+  <div class="ref-list">
+    <div class="ref-item">Citron, D. K. (2014). <em>Hate Crimes in Cyberspace.</em> Harvard University Press.</div>
+    <div class="ref-item">Cyber Civil Rights Initiative. (2020). <em>2020 CCRI Survey Results.</em> cybercivilrights.org.</div>
+    <div class="ref-item">eSafety Commissioner. (2023). <em>eSafety Annual Report 2022&ndash;23.</em> Australian Government.</div>
+    <div class="ref-item">Internet Watch Foundation. (2023). <em>Annual Report 2022.</em> iwf.org.uk.</div>
+    <div class="ref-item">McGlynn, C., Rackley, E., &amp; Houghton, R. (2017). Beyond &lsquo;Revenge Porn&rsquo;: The Continuum of Image-Based Sexual Abuse. <em>Feminist Legal Studies, 25(1),</em> 25&ndash;46.</div>
+    <div class="ref-item">Revenge Porn Helpline. (2023). <em>Annual Report 2022.</em> revengepornhelpline.org.uk.</div>
+    <div class="ref-item">Sensity AI. (2023). <em>The State of Deepfakes: Landscape, Threats, and Impact.</em> Sensity.</div>
+    <div class="ref-item">Stanford Internet Observatory. (2023). <em>Telegram and the Distribution of Non-Consensual Intimate Images.</em> Stanford University.</div>
+    <div class="ref-item">Thorn. (2021). <em>Sextortion: Summary of Findings.</em> thorn.org.</div>
+    <div class="ref-item">UK Government. (2023). <em>Online Safety Act 2023.</em> legislation.gov.uk.</div>
+    <div class="ref-item">United Nations. (2023). <em>Online Violence Against Women and Girls.</em> UN Women.</div>
+    <div class="ref-item">Waldman, A. E. (2019). <em>Privacy as Trust: Information Privacy for an Information Age.</em> Cambridge University Press.</div>
+  </div>
+</section>
+
+<!-- QUIZ STRIP -->
+<div class="quiz-strip">
+  <p id="quiz-strip-p">Test your knowledge on NCII and all other internet crime topics <span>&mdash; 10 randomised questions, no time limit.</span></p>
+  <a href="../quiz/index.html" class="btn-quiz" id="quiz-strip-btn">Take the Quiz &nbsp;&rarr;</a>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav">
+  <a href="../index.html#topics" class="topic-nav-card">
+    <span class="topic-nav-dir" id="tnav1-dir">&#x2190; Back to</span>
+    <span class="topic-nav-title" id="tnav1-title">All Topics</span>
+    <span class="topic-nav-sub" id="tnav1-sub">Overview of all crime categories</span>
+  </a>
+  <a href="drug-trade.html" class="topic-nav-card next">
+    <span class="topic-nav-dir" id="tnav2-dir">Next Topic &nbsp;&rarr;</span>
+    <span class="topic-nav-title" id="tnav2-title">Online Drug Trade</span>
+    <span class="topic-nav-sub" id="tnav2-sub">02 &mdash; Dark web markets, Telegram storefronts, and the fentanyl crisis</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="../index.html" class="footer-logo">Crime<span>Online</span></a>
+  <p class="footer-note" id="footer-note">Educational project &mdash; Academic submission 2026. All statistics sourced and cited above.</p>
+  <div class="footer-links">
+    <a href="../sources.html"      id="footer-src">References</a>
+    <a href="../prevention.html"   id="footer-prev">Prevention</a>
+    <a href="../index.html#topics" id="footer-top">All Topics</a>
+    <a href="../quiz/index.html"   id="footer-quiz">Quiz</a>
+    <a href="../imprint.html"      id="footer_imprint">Imprint</a>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+var T = {};
+
+/* ── ENGLISH ───────────────────────────────────────────── */
+T.en = {
+  page_title:'NCII \u2014 Non-Consensual Intimate Image Sharing | CrimeOnline',
+  nav_topics:'Topics', nav_prev:'Prevention', nav_sources:'Sources', nav_cta:'Take the Quiz \u2197',
+  mob_home:'Home', mob_lang:'Language',
+  bc_home:'Home', bc_topics:'Topics', bc_current:'Non-Consensual Intimate Image Sharing',
+  hero_series:'Internet Crime Series \u00b7 Full Report',
+  hero_h1:'Non-Consensual<br><em>Intimate Image</em><br>Sharing',
+  hero_lead:'How digital technology has created a new form of sexual violence \u2014 one with no crime scene, no border, and no end date. A comprehensive examination of NCII from first principles to legal frontier.',
+  meta1_lbl:'Severity:', meta1_val:'High',
+  meta2_lbl:'Victims (est.):', meta2_val:'Millions globally',
+  meta3_lbl:'Legislation:', meta3_val:'48 US states \u00b7 UK \u00b7 EU \u00b7 Australia',
+  meta4_lbl:'AI threat:', meta4_val:'Deepfake NCII \u2014 rapidly escalating',
+  stat1_lbl:'social media users targeted by NCII threats or distribution',
+  stat2_lbl:'cases handled by the UK Revenge Porn Helpline in 2022 alone',
+  stat3_lbl:'of NCII victims are female across US, UK, and Australian studies',
+  stat4_lbl:'of all deepfake videos online are non-consensual sexual imagery',
+  s1_eye:'Overview',
+  pq_text:'\u201cThe internet doesn\u2019t forget. A private moment shared in trust becomes a permanent, uncontrollable public record. The image is gone \u2014 but it never really leaves.\u201d',
+  pq_cite:'Cyber Civil Rights Initiative',
+  s1p1:'Non-Consensual Intimate Image Sharing (NCII) \u2014 commonly referred to as <strong>\u2018revenge porn\u2019</strong>, though that term is widely rejected as inaccurate and victim-blaming \u2014 describes the distribution of sexually explicit or intimate images and videos of a person without their consent. It is one of the most rapidly expanding categories of internet crime.',
+  s1p2:'The term \u2018revenge porn\u2019 is misleading on two counts: \u2018revenge\u2019 implies the victim provoked the act, and \u2018porn\u2019 implies consensual adult material. Neither is true. The preferred terminology reflects what this crime actually is: <strong>a violation of privacy, consent, and bodily autonomy</strong>, perpetrated through technology.',
+  s1p3:'This report examines NCII in full depth: how it is defined, how it is committed, how it is experienced by victims, how different countries have legislated against it, and how the emergence of AI-generated deepfake imagery has fundamentally changed the threat landscape.',
+  s2_eye:'Section 2',
+  s2_h2:'Defining NCII: What It Is,<br>and What It Is Not',
+  s2p1:'NCII encompasses any act of sharing, publishing, threatening to share, or possessing with intent to distribute intimate or sexually explicit images or videos of another person without their <strong>informed and ongoing consent</strong>.',
+  s2_callout:'<strong>Crucially:</strong> consent to create an image does not equal consent to distribute it. A photograph taken privately within a consensual relationship remains private. Its later distribution by either party without renewed consent constitutes NCII \u2014 regardless of who took the photograph.',
+  fc1_tag:'01 \u2014 Most Common', fc1_h3:'Intimate Partner Distribution',
+  fc1_p:'The historically most prevalent form: a current or former romantic partner distributes images originally shared in the context of trust and intimacy. Often used as a tool of coercive control \u2014 the threat of distribution wielded even before any image is actually shared.',
+  fc1_badge:'High Prevalence',
+  fc2_tag:'02 \u2014 Growing Threat', fc2_h3:'Hacking & Non-Consensual Recording',
+  fc2_p:'Images obtained entirely without the victim\u2019s knowledge: through phishing and iCloud/Google Photos hacking, hidden cameras, or recording during assaults. The 2014 \u2018Celebgate\u2019 hack brought this variant to global attention.',
+  fc2_badge:'Technical Intrusion',
+  fc3_tag:'03 \u2014 Financially Motivated', fc3_h3:'Sextortion',
+  fc3_p:'An offender possesses (or claims to possess) intimate material and uses it to extort money, further images, or sexual compliance. Organised criminal networks specifically target teenagers and young adults across international borders.',
+  fc3_badge:'Criminal Enterprise',
+  fc4_tag:'04 \u2014 Fastest Growing', fc4_h3:'AI-Generated Deepfake NCII',
+  fc4_p:'Synthetic but realistic intimate imagery created using a real person\u2019s face or likeness \u2014 without any genuine intimate material ever existing. Requires only social media photographs and freely available software.',
+  fc4_badge:'Emerging Threat',
+  s3_eye:'Section 3', s3_h2:'Scale and Prevalence',
+  s3p1:'Reliable data on NCII is difficult to obtain due to significant underreporting \u2014 many victims choose not to report out of shame, fear of further exposure, or lack of confidence that authorities will take meaningful action.',
+  s3p2:'Between <strong>4% and 10%</strong> of internet-using adults across Australia, Canada, and the EU report having been victims of NCII. Rates are substantially higher among women aged 18\u201334 and LGBTQ+ individuals.',
+  s3p3:'Young people are especially vulnerable. The Thorn organisation found that <strong>1 in 5</strong> young adults aged 18\u201324 in the US had had intimate images shared without consent.',
+  s3_callout:'<strong>UK Data:</strong> The Revenge Porn Helpline handled over 18,000 cases in 2022 \u2014 a fivefold increase from its first year of operation in 2015.',
+  bar_g1:'Victims by demographic (%)', bar_g2:'NCII victim gender breakdown',
+  bar1:'Women aged 18\u201334', bar2:'LGBTQ+ individuals',
+  bar3:'Young adults (18\u201324)', bar4:'General population',
+  bar5:'Female victims', bar6:'Male victims',
+  s4_eye:'Section 4', s4_h2:'How NCII Is Perpetrated',
+  s4p1:'Understanding how perpetrators acquire and distribute intimate material is essential to understanding prevention and enforcement.',
+  hs1_h4:'Consensual Creation Within Relationships', hs1_p:'Most NCII material was originally created consensually \u2014 shared between partners in a relationship of trust. The act becomes criminal only when one party later distributes it without renewed consent.',
+  hs2_h4:'Hacking and Credential Theft', hs2_p:'Personal devices, cloud accounts (iCloud, Google Photos, Dropbox), and email are targeted via phishing, spyware, and social engineering. Entire collections can be exfiltrated in minutes.',
+  hs3_h4:'Hidden Recording', hs3_p:'Concealed cameras planted in private spaces \u2014 changing rooms, bathrooms, bedrooms. South Korea\u2019s \u2018molka\u2019 epidemic recorded 5,500+ police cases in a single year.',
+  hs4_h4:'AI Synthetic Generation', hs4_p:'Facial photographs from social media are fed into generative AI tools to create fabricated intimate content. No genuine material required. Covered fully in Section 5.',
+  hs5_h4:'Distribution Channels', hs5_p:'Material is sent directly to victims\u2019 employers, families, or communities; posted on dedicated NCII sites or image boards; spread via Telegram channels; or sold on dark web marketplaces.',
+  slot2_title:'Image Slot 2', slot2_desc:'Your illustration showing how NCII spreads from acquisition to distribution', slot2_tag:'Add your artwork here',
+  s5_eye:'Section 5 \u2014 Feature Deep-Dive', s5_h2:'The AI Deepfake Crisis',
+  s5p1:'Deepfakes are synthetic media \u2014 images, videos, or audio \u2014 where a person\u2019s likeness is digitally placed onto content they never created or participated in. While the technology has legitimate creative applications, it has been weaponised as a tool of sexual harassment at a genuinely alarming scale.',
+  s5p2:'The creation of deepfake intimate imagery <strong>requires no technical expertise</strong> with modern consumer tools. Free applications can generate convincing synthetic explicit images using only a handful of source photographs in under five minutes.',
+  s5p3:'Deepfake NCII differs from conventional NCII in one especially troubling way: <strong>there is no original intimate material to take down.</strong> The image never existed \u2014 it was created. This makes both detection and legal redress dramatically more complicated.',
+  s5_callout:'<strong>2023\u20132024:</strong> Multiple documented cases emerged of AI-generated intimate images targeting teenage girls at schools across the US and Europe. Generated using school social media photographs. These cases triggered emergency legislative responses in several US states.',
+  s5p4:'Detection is technically complex. AI-detection tools identify inconsistencies in lighting, skin texture, and pixel patterns \u2014 but their accuracy erodes as generative AI improves. Detection technology is widely considered to lag behind generation technology.',
+  slot3_lbl:'Image slot 3 \u2014 add your illustration',
+  df1_desc:'of all deepfake videos online are non-consensual sexual imagery \u2014 overwhelmingly targeting women',
+  df2_desc:'year-on-year growth in deepfake NCII volume every year since 2019',
+  df3_num:'Zero', df3_desc:'genuine intimate material required \u2014 only publicly available social media photos',
+  s6_eye:'Section 6', s6_h2:'Impact on Victims',
+  s6p1:'The psychological impact of NCII is profound, well-documented, and often severely underestimated by those who have not experienced it.',
+  ii1_h4:'Post-Traumatic Stress Disorder (PTSD)', ii1_p:'Victims frequently describe intrusive thoughts, hypervigilance, emotional numbing, and dissociation \u2014 all consistent with PTSD. The loss of control over one\u2019s own body and image is experienced as a distinct, acute trauma. Unlike a physical assault, NCII does not end.',
+  ii2_h4:'Depression and Severe Anxiety', ii2_p:'High rates of clinical depression, generalised anxiety disorder, and panic attacks are documented among NCII victims \u2014 often persisting for years. The unpredictability of when and where the material might resurface means recovery is constantly interrupted.',
+  ii3_h4:'Suicidal Ideation and Self-Harm', ii3_p:'Multiple independent studies find that a significant proportion of NCII victims experience suicidal thoughts. A number of documented cases have ended in suicide, particularly among younger victims.',
+  ii4_h4:'Reputational and Professional Harm', ii4_p:'Victims report job losses, expulsion from educational institutions, and ostracism from communities. Women face significantly harsher social judgement than male victims, with blame frequently directed at them.',
+  ii5_h4:'Economic Consequences', ii5_p:'Beyond lost income, victims face financial costs from legal action, content removal services, specialist technical assistance, and psychological care.',
+  ii6_h4:'The Permanent Nature of Digital Distribution', ii6_p:'Unlike a physical violation, NCII can surface and resurface indefinitely \u2014 discovered by new people, on new platforms, years after the original distribution. There is rarely a clean ending.',
+  slot4_title:'Image Slot 4', slot4_caption:'Your photo or artwork \u2014 portrait orientation recommended', slot4_tag:'Add your image here',
+  s7_eye:'Section 7', s7_h2:'Legal Frameworks Around the World',
+  s7p1:'The criminalisation of NCII has accelerated significantly since 2015, driven by sustained advocacy from victim support organisations and academics. The legal landscape remains highly uneven globally.',
+  lc1_name:'United Kingdom', lc1_h3:'Online Safety Act 2023',
+  lc1_p:'Sharing intimate images without consent is now a specific criminal offence in England and Wales, carrying a potential custodial sentence. Deepfake intimate image creation \u2014 not just distribution \u2014 is also criminalised, one of the first laws to do so.',
+  lc1_status:'Comprehensive Coverage',
+  lc2_name:'United States', lc2_h3:'State-by-State Framework',
+  lc2_p:'The US has no federal NCII criminal statute. The SHIELD Act has stalled in Congress multiple times. As of 2024, 48 states have enacted their own NCII laws. Cross-jurisdictional cases face significant enforcement gaps without federal legislation.',
+  lc2_status:'Partial \u2014 No Federal Law',
+  lc3_name:'European Union', lc3_h3:'Digital Services Act 2024',
+  lc3_p:'The DSA, in full force from 2024, imposes substantial obligations on large online platforms to proactively detect and remove illegal content including NCII. National criminal laws still vary widely across member states.',
+  lc3_status:'Platform Obligations \u2014 Patchy Criminal Law',
+  lc4_name:'Australia', lc4_h3:'Online Safety Act 2021',
+  lc4_p:'Australia\u2019s framework is among the most comprehensive globally. The eSafety Commissioner has powers to compel platforms to remove NCII content within 24 hours of a valid complaint.',
+  lc4_status:'One of the World\u2019s Strongest Frameworks',
+  s7_h3:'Why Prosecutions Remain Difficult',
+  s7p2:'Even in jurisdictions with strong laws, securing convictions is hard. Perpetrators use pseudonyms and anonymising technology; cases cross multiple jurisdictions; digital evidence is volatile and quickly deleted; specialist cybercrime units are under-resourced.',
+  s8_eye:'Section 8', s8_h2:'Platform Responses',
+  s8p1:'Technology platforms have progressively strengthened NCII policies under regulatory pressure \u2014 but the gap between policy and enforcement remains substantial.',
+  pl1_name:'Hash-Matching Technology', pl1_tag:'Technical solution',
+  pl1_p:'A \u2018hash\u2019 is a unique digital fingerprint generated from an image file. If a hash is generated from an original NCII image, any subsequent upload can be automatically detected and blocked. <strong>StopNCII.org</strong> allows victims to generate hashes without uploading the images themselves.',
+  pl2_name:'Major Platform Policies', pl2_tag:'Policy enforcement',
+  pl2_p:'Meta, Google, Microsoft, Snapchat, and others now explicitly prohibit NCII in community standards. However, <strong>enforcement is largely reactive</strong> \u2014 relying on victims to first discover the material and then report it.',
+  pl3_name:'The Telegram Problem', pl3_tag:'Persistent gap',
+  pl3_p:'Telegram applies minimal content moderation and permits large public channels with no oversight. The <strong>2024 arrest of Telegram founder Pavel Durov</strong> in France on charges related to platform facilitation of criminal activity represents a significant escalation of regulatory pressure.',
+  s9_eye:'Section 9', s9_h2:'Prevention and Support',
+  s9p1:'Primary responsibility for NCII rests entirely with perpetrators. The following practices can reduce individual vulnerability and help victims access appropriate support.',
+  prev_h3:'For Personal Protection', res_h3:'Support Resources for Victims',
+  ci1:'Use strong, unique passwords for all accounts containing personal data. Enable multi-factor authentication wherever available \u2014 especially on cloud photo services.',
+  ci2:'Review smartphone backup settings periodically. Many devices automatically sync all photos to cloud services \u2014 check that this is intentional and the account is properly secured.',
+  ci3:'Exercise caution sharing intimate images even with trusted partners. Once shared, an image cannot be unshared. Open conversation about expectations is a protective factor.',
+  ci4:'Recognise sextortion tactics: unsolicited contact from strangers online that rapidly escalates to intimacy is a documented pattern used by criminal networks.',
+  ci5:'Be aware that AI deepfakes require only facial photographs \u2014 restricting who can see your photos on social media reduces (though does not eliminate) exposure to synthetic NCII.',
+  rc1_desc:'Free specialist UK service. Advice on content removal, legal options, and emotional support.',
+  rc2_desc:'24/7 crisis helpline, legal referrals, and content removal assistance.',
+  rc3_desc:'Free image-hash tool to prevent distribution across participating platforms. Available globally.',
+  rc4_desc:'Formal complaint and 24-hour takedown process. Australia only.',
+  ref_eye:'References', ref_h2:'Sources and Further Reading',
+  quiz_p:'Test your knowledge on NCII and all other internet crime topics',
+  quiz_span:'\u2014 10 randomised questions, no time limit.',
+  quiz_btn:'Take the Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Back to', tnav1_title:'All Topics', tnav1_sub:'Overview of all crime categories',
+  tnav2_dir:'Next Topic \u00a0\u2192', tnav2_title:'Online Drug Trade', tnav2_sub:'02 \u2014 Dark web markets, Telegram storefronts, and the fentanyl crisis',
+  footer_note:'Educational project \u2014 Academic submission 2026. All statistics sourced and cited above.',
+  footer_src:'References', footer_prev:'Prevention', footer_top:'All Topics', footer_quiz:'Quiz', footer_imprint:"Imprint"
+};
+
+/* ── GERMAN ───────────────────────────────────────────── */
+T.de = {
+  page_title:'NCII \u2014 Nicht-Einvernehmliche Weitergabe Intimer Bilder | CrimeOnline',
+  nav_topics:'Themen', nav_prev:'Pr\u00e4vention', nav_sources:'Quellen', nav_cta:'Quiz starten \u2197',
+  mob_home:'Startseite', mob_lang:'Sprache',
+  bc_home:'Startseite', bc_topics:'Themen', bc_current:'Nicht-Einvernehmliche Weitergabe Intimer Bilder',
+  hero_series:'Serie Internetkriminalit\u00e4t \u00b7 Vollst\u00e4ndiger Bericht',
+  hero_h1:'Nicht-Einvernehmliche<br><em>Weitergabe Intimer</em><br>Bilder (NCII)',
+  hero_lead:'Wie digitale Technologie eine neue Form sexueller Gewalt geschaffen hat \u2014 ohne Tatort, ohne Grenzen und ohne Enddatum. Eine umfassende Untersuchung von NCII von den Grundlagen bis zur rechtlichen Frontier.',
+  meta1_lbl:'Schwere:', meta1_val:'Hoch',
+  meta2_lbl:'Opfer (gesch\u00e4tzt):', meta2_val:'Millionen weltweit',
+  meta3_lbl:'Gesetzgebung:', meta3_val:'48 US-Bundesstaaten \u00b7 UK \u00b7 EU \u00b7 Australien',
+  meta4_lbl:'KI-Bedrohung:', meta4_val:'Deepfake-NCII \u2014 rapide eskalierend',
+  stat1_lbl:'Social-Media-Nutzer von NCII-Drohungen oder -Verbreitung betroffen',
+  stat2_lbl:'F\u00e4lle, die 2022 allein vom UK Revenge Porn Helpline bearbeitet wurden',
+  stat3_lbl:'der NCII-Opfer sind weiblich laut US-, UK- und australischen Studien',
+  stat4_lbl:'aller Deepfake-Videos im Internet sind nicht-einvernehmliche sexuelle Bilder',
+  s1_eye:'\u00dcberblick',
+  pq_text:'\u201eDas Internet vergisst nicht. Ein privater Moment, der in Vertrauen geteilt wurde, wird zu einer permanenten, unkontrollierbaren \u00f6ffentlichen Aufzeichnung. Das Bild ist weg \u2014 aber es verschwindet nie wirklich.\u201c',
+  pq_cite:'Cyber Civil Rights Initiative',
+  s1p1:'Non-Consensual Intimate Image Sharing (NCII) \u2014 oft als <strong>\u201eRachepornografie\u201c</strong> bezeichnet, obwohl dieser Begriff als ungenau und opferbeschuldigend weitgehend abgelehnt wird \u2014 beschreibt die Verbreitung sexuell expliziter oder intimer Bilder und Videos einer Person ohne deren Einwilligung.',
+  s1p2:'Der Begriff \u201eRachepornografie\u201c ist irref\u00fchrend: \u201eRache\u201c impliziert, dass das Opfer den Akt provoziert hat, und \u201ePornografie\u201c impliziert einvernehmliches Erwachsenenmaterial. Beides ist falsch. NCII ist: <strong>eine Verletzung der Privatsph\u00e4re, der Einwilligung und der k\u00f6rperlichen Autonomie</strong>.',
+  s1p3:'Dieser Bericht untersucht NCII in voller Tiefe: wie es definiert wird, wie es begangen wird, wie Opfer es erleben, wie verschiedene L\u00e4nder dagegen Gesetze erlassen haben, und wie das Aufkommen von KI-generierten Deepfakes die Bedrohungslandschaft ver\u00e4ndert hat.',
+  s2_eye:'Abschnitt 2',
+  s2_h2:'NCII definieren: Was es ist,<br>und was es nicht ist',
+  s2p1:'NCII umfasst jeden Akt des Teilens, Ver\u00f6ffentlichens, der Androhung des Teilens oder des Besitzens mit der Absicht zur Verbreitung intimer oder sexuell expliziter Bilder ohne <strong>informierte und fortlaufende Einwilligung</strong>.',
+  s2_callout:'<strong>Entscheidend:</strong> Die Einwilligung zur Erstellung eines Bildes ist nicht gleichzusetzen mit der Einwilligung zu dessen Verbreitung. Ein privat aufgenommenes Foto innerhalb einer einvernehmlichen Beziehung bleibt privat. Sp\u00e4tere Verbreitung ohne erneute Einwilligung stellt NCII dar.',
+  fc1_tag:'01 \u2014 Am h\u00e4ufigsten', fc1_h3:'Verbreitung durch Intimpartner',
+  fc1_p:'Die historisch h\u00e4ufigste Form: Ein aktueller oder fr\u00fcherer Partner verbreitet Bilder, die im Kontext von Vertrauen und Intimit\u00e4t geteilt wurden. Oft als Zwangskontrolle eingesetzt \u2014 die Androhung wird selbst vor dem Teilen eingesetzt.',
+  fc1_badge:'Hohe Verbreitung',
+  fc2_tag:'02 \u2014 Wachsende Bedrohung', fc2_h3:'Hacking & Nicht-Einvernehmliche Aufzeichnung',
+  fc2_p:'Bilder vollst\u00e4ndig ohne Wissen des Opfers erlangt: durch Phishing und Cloud-Hacking, versteckte Kameras oder Aufzeichnung w\u00e4hrend \u00dcbergriffen. Der Celebgate-Hack 2014 brachte diese Variante in die globale \u00d6ffentlichkeit.',
+  fc2_badge:'Technischer Eingriff',
+  fc3_tag:'03 \u2014 Finanziell motiviert', fc3_h3:'Sextortion',
+  fc3_p:'Ein T\u00e4ter besitzt (oder behauptet zu besitzen) intimes Material und nutzt es, um Geld, weitere Bilder oder sexuelle Gef\u00fcgigkeit zu erpressen. Kriminelle Netzwerke nehmen gezielt Teenager \u00fcber Landesgrenzen hinweg ins Visier.',
+  fc3_badge:'Kriminelles Unternehmen',
+  fc4_tag:'04 \u2014 Am schnellsten wachsend', fc4_h3:'KI-generiertes Deepfake-NCII',
+  fc4_p:'Synthetische, aber realistische Intimbilder, die mit dem Gesicht einer echten Person erstellt wurden \u2014 ohne dass echtes Material jemals existiert hat. Erfordert nur Social-Media-Fotos und frei verf\u00fcgbare Software.',
+  fc4_badge:'Aufkommende Bedrohung',
+  s3_eye:'Abschnitt 3', s3_h2:'Ausma\u00df und Verbreitung',
+  s3p1:'Zuverl\u00e4ssige Daten \u00fcber NCII sind schwer zu erhalten, da erhebliche Untererfassung vorliegt \u2014 viele Opfer entscheiden sich aus Scham, Angst vor weiterer Exposition oder mangelndem Vertrauen in Beh\u00f6rden, keine Anzeige zu erstatten.',
+  s3p2:'Zwischen <strong>4 % und 10 %</strong> der Internetnutzer in Australien, Kanada und der EU berichten, Opfer von NCII geworden zu sein. Die Raten sind bei Frauen im Alter 18\u201334 und LGBTQ+-Personen deutlich h\u00f6her.',
+  s3p3:'Junge Menschen sind besonders gef\u00e4hrdet. Die Organisation Thorn stellte fest, dass <strong>1 von 5</strong> jungen Erwachsenen im Alter 18\u201324 in den USA ohne Einwilligung intime Bilder geteilt bekamen.',
+  s3_callout:'<strong>UK-Daten:</strong> Das Revenge Porn Helpline bearbeitete 2022 \u00fcber 18.000 F\u00e4lle \u2014 eine f\u00fcnffache Zunahme gegen\u00fcber dem ersten Betriebsjahr 2015.',
+  bar_g1:'Opfer nach demographischer Gruppe (%)', bar_g2:'Geschlechterverteilung NCII-Opfer',
+  bar1:'Frauen im Alter 18\u201334', bar2:'LGBTQ+-Personen',
+  bar3:'Junge Erwachsene (18\u201324)', bar4:'Allgemeine Bev\u00f6lkerung',
+  bar5:'Weibliche Opfer', bar6:'M\u00e4nnliche Opfer',
+  s4_eye:'Abschnitt 4', s4_h2:'Wie NCII Begangen Wird',
+  s4p1:'Das Verst\u00e4ndnis, wie T\u00e4ter intimes Material erlangen und verbreiten, ist f\u00fcr Pr\u00e4vention und Strafverfolgung unabdingbar.',
+  hs1_h4:'Einvernehmliche Erstellung in Beziehungen', hs1_p:'Das meiste NCII-Material wurde urspr\u00fcnglich einvernehmlich erstellt. Der Akt wird erst dann kriminell, wenn eine Partei es sp\u00e4ter ohne erneute Einwilligung verbreitet.',
+  hs2_h4:'Hacking und Zugangsdatendiebstahl', hs2_p:'Pers\u00f6nliche Ger\u00e4te, Cloud-Konten und E-Mails werden per Phishing, Spyware und Social Engineering angegriffen. Ganze Sammlungen k\u00f6nnen in Minuten exfiltriert werden.',
+  hs3_h4:'Versteckte Aufzeichnung', hs3_p:'Versteckte Kameras in Privatr\u00e4umen. S\u00fcdkoreas \u201eMolka\u201c-Epidemie verzeichnete in einem einzigen Jahr \u00fcber 5.500 Polizeif\u00e4lle.',
+  hs4_h4:'KI-synthetische Generierung', hs4_p:'Gesichtsfotos aus sozialen Medien werden in generative KI-Tools eingespeist. Kein echtes Material erforderlich. Vollst\u00e4ndig in Abschnitt 5 behandelt.',
+  hs5_h4:'Verbreitungskan\u00e4le', hs5_p:'Material wird an Arbeitgeber, Familien oder Gemeinschaften der Opfer gesendet; auf NCII-Sites gepostet; \u00fcber Telegram-Kan\u00e4le verbreitet oder auf Darknet-Marktpl\u00e4tzen verkauft.',
+  slot2_title:'Bildplatz 2', slot2_desc:'Ihre Illustration, die zeigt, wie NCII von der Erfassung bis zur Verbreitung vorgeht', slot2_tag:'F\u00fcgen Sie Ihr Kunstwerk hier ein',
+  s5_eye:'Abschnitt 5 \u2014 Vertieftes Feature', s5_h2:'Die KI-Deepfake-Krise',
+  s5p1:'Deepfakes sind synthetische Medien, bei denen das Aussehen einer Person digital auf Inhalte \u00fcbertragen wird, die sie nie erstellt hat. Die Technologie wurde als Werkzeug f\u00fcr sexuelle Bel\u00e4stigung in einem erschreckenden Ausma\u00df missbraucht.',
+  s5p2:'Die Erstellung von Deepfake-Intimbildern <strong>erfordert kein technisches Fachwissen</strong>. Kostenlose Anwendungen k\u00f6nnen \u00fcberzeugende explizite Bilder mit nur einer Handvoll Quellfotos in unter f\u00fcnf Minuten generieren.',
+  s5p3:'Deepfake-NCII unterscheidet sich auf eine besonders beunruhigende Weise: <strong>Es gibt kein originales Intimalmaterial zum L\u00f6schen.</strong> Das Bild hat nie existiert \u2014 es wurde erstellt. Dies macht Erkennung und Rechtsbehelfe dramatisch komplizierter.',
+  s5_callout:'<strong>2023\u20132024:</strong> Mehrere dokumentierte F\u00e4lle von KI-generierten Intimbildern, die Teenager-M\u00e4dchen an Schulen in den USA und Europa angriffen. Diese F\u00e4lle l\u00f6sten in mehreren US-Bundesstaaten Notgesetzgebungsreaktionen aus.',
+  s5p4:'Die Erkennung ist technisch komplex. KI-Erkennungstools identifizieren Inkonsistenzen \u2014 aber ihre Genauigkeit erodiert, w\u00e4hrend sich generative KI verbessert.',
+  slot3_lbl:'Bildplatz 3 \u2014 f\u00fcgen Sie Ihre Illustration hinzu',
+  df1_desc:'aller Deepfake-Videos online sind nicht-einvernehmliche sexuelle Bilder \u2014 \u00fcberwiegend Frauen als Ziel',
+  df2_desc:'j\u00e4hrliches Wachstum des Deepfake-NCII-Volumens seit 2019',
+  df3_num:'Null', df3_desc:'echtes Intimalmaterial n\u00f6tig \u2014 nur \u00f6ffentlich verf\u00fcgbare Social-Media-Fotos gen\u00fcgen',
+  s6_eye:'Abschnitt 6', s6_h2:'Auswirkungen auf Opfer',
+  s6p1:'Die psychologischen Auswirkungen von NCII sind tiefgreifend, gut dokumentiert und werden h\u00e4ufig stark untersch\u00e4tzt.',
+  ii1_h4:'Posttraumatische Belastungsst\u00f6rung (PTBS)', ii1_p:'Opfer beschreiben h\u00e4ufig intrusive Gedanken, Hypervigilanz, emotionale Taubheit und Dissoziation. Der Kontrollverlust \u00fcber den eigenen K\u00f6rper wird als eigenst\u00e4ndiges, akutes Trauma erlebt.',
+  ii2_h4:'Depression und schwere Angst', ii2_p:'Hohe Raten klinischer Depression, generalisierter Angstst\u00f6rung und Panikattacken sind bei NCII-Opfern dokumentiert \u2014 oft \u00fcber Jahre anhaltend.',
+  ii3_h4:'Suizidgedanken und Selbstverletzung', ii3_p:'Mehrere unabh\u00e4ngige Studien stellen fest, dass ein bedeutender Anteil der NCII-Opfer Suizidgedanken erlebt. Eine Reihe dokumentierter F\u00e4lle hat mit Suizid geendet.',
+  ii4_h4:'Rufsch\u00e4digung und berufliche Beeintr\u00e4chtigung', ii4_p:'Opfer berichten von Arbeitsverlust nach Entdeckung durch Arbeitgeber, Ausschluss aus Bildungseinrichtungen und Ausgrenzung. Frauen treffen deutlich h\u00e4rtere soziale Urteile.',
+  ii5_h4:'Wirtschaftliche Folgen', ii5_p:'Neben Einkommensverlusten stehen die Opfer vor finanziellen Kosten f\u00fcr rechtliche Ma\u00dfnahmen, Dienste zur Inhaltsentfernung und psychologische Betreuung.',
+  ii6_h4:'Die dauerhafte Natur digitaler Verbreitung', ii6_p:'Im Gegensatz zu einer physischen Verletzung kann NCII unbegrenzt wieder auftauchen \u2014 von neuen Personen, auf neuen Plattformen, Jahre nach der urspr\u00fcnglichen Verbreitung entdeckt werden.',
+  slot4_title:'Bildplatz 4', slot4_caption:'Ihr Foto oder Kunstwerk \u2014 Hochformat empfohlen', slot4_tag:'F\u00fcgen Sie Ihr Bild hier ein',
+  s7_eye:'Abschnitt 7', s7_h2:'Rechtliche Rahmenbedingungen weltweit',
+  s7p1:'Die Kriminalisierung von NCII hat sich seit 2015 erheblich beschleunigt. Die Rechtslage bleibt weltweit sehr uneinheitlich.',
+  lc1_name:'Vereinigtes K\u00f6nigreich', lc1_h3:'Online Safety Act 2023',
+  lc1_p:'Die Weitergabe intimer Bilder ohne Einwilligung ist nun eine spezifische Straftat in England und Wales. Die Erstellung von Deepfake-Intimbildern ist ebenfalls kriminalisiert.',
+  lc1_status:'Umfassende Abdeckung',
+  lc2_name:'Vereinigte Staaten', lc2_h3:'Recht der einzelnen Bundesstaaten',
+  lc2_p:'Die USA haben kein Bundes-NCII-Strafrecht. Der SHIELD Act ist mehrfach gescheitert. Stand 2024 haben 48 Bundesstaaten eigene Gesetze erlassen, die erheblich variieren.',
+  lc2_status:'Unvollst\u00e4ndig \u2014 Kein Bundesgesetz',
+  lc3_name:'Europ\u00e4ische Union', lc3_h3:'Digital Services Act 2024',
+  lc3_p:'Der DSA verpflichtet gro\u00dfe Online-Plattformen zur proaktiven Erkennung und Entfernung illegaler Inhalte. Die nationalen Strafgesetze variieren nach wie vor stark.',
+  lc3_status:'Plattformverpflichtungen \u2014 L\u00fcckenhaftes Strafrecht',
+  lc4_name:'Australien', lc4_h3:'Online Safety Act 2021',
+  lc4_p:'Der eSafety Commissioner hat die Befugnis, Plattformen zur Entfernung von NCII-Inhalten innerhalb von 24 Stunden zu zwingen.',
+  lc4_status:'Eines der st\u00e4rksten Rahmenwerke der Welt',
+  s7_h3:'Warum Strafverfolgung schwierig bleibt',
+  s7p2:'Selbst in Rechtsordnungen mit starken Gesetzen ist die Erlangung von Verurteilungen schwierig. T\u00e4ter verwenden Anonymisierungstechnologie; F\u00e4lle \u00fcberschreiten Zust\u00e4ndigkeitsgrenzen; digitale Beweise sind fl\u00fcchtig.',
+  s8_eye:'Abschnitt 8', s8_h2:'Plattform-Reaktionen',
+  s8p1:'Technologieplattformen haben ihre NCII-Richtlinien unter regulatorischem Druck verst\u00e4rkt \u2014 aber die L\u00fccke zwischen Richtlinien und Durchsetzung bleibt erheblich.',
+  pl1_name:'Hash-Matching-Technologie', pl1_tag:'Technische L\u00f6sung',
+  pl1_p:'Ein \u201eHash\u201c ist ein eindeutiger digitaler Fingerabdruck. Wenn ein Hash aus einem NCII-Bild generiert wird, kann jeder sp\u00e4tere Upload automatisch erkannt und gesperrt werden. <strong>StopNCII.org</strong> erm\u00f6glicht es Opfern, Hashes zu generieren, ohne die Bilder hochzuladen.',
+  pl2_name:'Richtlinien gro\u00dfer Plattformen', pl2_tag:'Richtliniendurchsetzung',
+  pl2_p:'Meta, Google, Microsoft und andere verbieten NCII nun ausdr\u00fccklich. Jedoch ist <strong>die Durchsetzung weitgehend reaktiv</strong> \u2014 sie beruht darauf, dass Opfer das Material zuerst entdecken und melden.',
+  pl3_name:'Das Telegram-Problem', pl3_tag:'Persistente L\u00fccke',
+  pl3_p:'Telegram wendet minimale Inhaltsmoderation an. Die <strong>Verhaftung von Telegram-Gr\u00fcnder Pavel Durov 2024</strong> in Frankreich stellt eine erhebliche Eskalation des Regulierungsdrucks dar.',
+  s9_eye:'Abschnitt 9', s9_h2:'Pr\u00e4vention und Unterst\u00fctzung',
+  s9p1:'Die prim\u00e4re Verantwortung f\u00fcr NCII liegt vollst\u00e4ndig bei den T\u00e4tern. Die folgenden Praktiken k\u00f6nnen die individuelle Anf\u00e4lligkeit verringern.',
+  prev_h3:'F\u00fcr pers\u00f6nlichen Schutz', res_h3:'Unterst\u00fctzungsressourcen f\u00fcr Opfer',
+  ci1:'Verwenden Sie starke, eindeutige Passw\u00f6rter f\u00fcr alle Konten mit pers\u00f6nlichen Daten. Aktivieren Sie die Multi-Faktor-Authentifizierung \u2014 besonders bei Cloud-Fotodiensten.',
+  ci2:'\u00dcberpr\u00fcfen Sie regelm\u00e4\u00dfig die Backup-Einstellungen Ihres Smartphones. Viele Ger\u00e4te synchronisieren automatisch alle Fotos mit Cloud-Diensten.',
+  ci3:'\u00dcben Sie Vorsicht beim Teilen intimer Bilder, auch mit vertrauensw\u00fcrdigen Partnern. Einmal geteilt, kann ein Bild nicht unge-teilt werden.',
+  ci4:'Erkennen Sie Sextortion-Taktiken: unerw\u00fcnschter Kontakt von Fremden online, der sich schnell zu Intimsein steigert, ist ein dokumentiertes Muster krimineller Netzwerke.',
+  ci5:'Beachten Sie, dass KI-Deepfakes nur Gesichtsfotos ben\u00f6tigen \u2014 die Einschr\u00e4nkung, wer Ihre Fotos sehen kann, verringert die Exposition gegen\u00fcber synthetischem NCII.',
+  rc1_desc:'Kostenloser spezialisierter UK-Dienst. Beratung zu Inhaltsentfernung, rechtlichen Optionen und emotionaler Unterst\u00fctzung.',
+  rc2_desc:'24/7-Krisenhotline, Rechtsverweise und Hilfe zur Inhaltsentfernung.',
+  rc3_desc:'Kostenloses Image-Hash-Tool zur Verhinderung der Verbreitung. Weltweit verf\u00fcgbar.',
+  rc4_desc:'Formelles Beschwerde- und 24-Stunden-Entfernungsverfahren. Nur Australien.',
+  ref_eye:'Quellen', ref_h2:'Quellen und weiterf\u00fchrende Lekt\u00fcre',
+  quiz_p:'Testen Sie Ihr Wissen \u00fcber NCII und alle anderen Internetkriminalit\u00e4tsthemen',
+  quiz_span:'\u2014 10 zuf\u00e4llige Fragen, kein Zeitlimit.',
+  quiz_btn:'Quiz starten \u00a0\u2192',
+  tnav1_dir:'\u2190 Zur\u00fcck zu', tnav1_title:'Alle Themen', tnav1_sub:'\u00dcberblick \u00fcber alle Verbrechenskategorien',
+  tnav2_dir:'N\u00e4chstes Thema \u00a0\u2192', tnav2_title:'Online-Drogenhandel', tnav2_sub:'02 \u2014 Darknet-M\u00e4rkte, Telegram-Schaufenster und die Fentanyl-Krise',
+  footer_note:'Bildungsprojekt \u2014 Akademische Einreichung 2026. Alle Statistiken sind oben belegt.',
+  footer_src:'Quellen', footer_prev:'Pr\u00e4vention', footer_top:'Alle Themen', footer_quiz:'Quiz', footer_imprint:"Impressum"
+};
+
+/* ── ITALIAN ──────────────────────────────────────────── */
+T.it = {
+  page_title:'NCII \u2014 Condivisione Non Consensuale di Immagini Intime | CrimeOnline',
+  nav_topics:'Argomenti', nav_prev:'Prevenzione', nav_sources:'Fonti', nav_cta:'Inizia il Quiz \u2197',
+  mob_home:'Inizio', mob_lang:'Lingua',
+  bc_home:'Inizio', bc_topics:'Argomenti', bc_current:'Condivisione Non Consensuale di Immagini Intime',
+  hero_series:'Serie Criminalit\u00e0 Informatica \u00b7 Rapporto Completo',
+  hero_h1:'Condivisione Non<br><em>Consensuale di Immagini</em><br>Intime (NCII)',
+  hero_lead:'Come la tecnologia digitale ha creato una nuova forma di violenza sessuale \u2014 senza scena del crimine, senza confini e senza data di fine. Un esame approfondito di NCII dai principi fondamentali alla frontiera giuridica.',
+  meta1_lbl:'Gravit\u00e0:', meta1_val:'Alta',
+  meta2_lbl:'Vittime (stima):', meta2_val:'Milioni in tutto il mondo',
+  meta3_lbl:'Legislazione:', meta3_val:'48 stati USA \u00b7 UK \u00b7 UE \u00b7 Australia',
+  meta4_lbl:'Minaccia AI:', meta4_val:'Deepfake NCII \u2014 in rapida escalation',
+  stat1_lbl:'utenti dei social media presi di mira da minacce o distribuzione NCII',
+  stat2_lbl:'casi gestiti dalla Revenge Porn Helpline del UK nel solo 2022',
+  stat3_lbl:'delle vittime NCII sono donne secondo studi in USA, UK e Australia',
+  stat4_lbl:'di tutti i video deepfake online sono immagini sessuali non consensuali',
+  s1_eye:'Panoramica',
+  pq_text:'\u201cInternet non dimentica. Un momento privato condiviso con fiducia diventa un registro pubblico permanente e incontrollabile. L\u2019immagine \u00e8 scomparsa \u2014 ma non va mai davvero via.\u201d',
+  pq_cite:'Cyber Civil Rights Initiative',
+  s1p1:'La Condivisione Non Consensuale di Immagini Intime (NCII) \u2014 comunemente chiamata <strong>\u2018revenge porn\u2019</strong>, termine ampiamente rifiutato come impreciso e colpevolizzante \u2014 descrive la distribuzione di immagini e video sessualmente espliciti o intimi di una persona senza il suo consenso.',
+  s1p2:'Il termine \u2018revenge porn\u2019 \u00e8 fuorviante: \u2018vendetta\u2019 implica che la vittima abbia provocato l\u2019atto, e \u2018porn\u2019 implica materiale per adulti consensuale. Nessuno dei due \u00e8 vero. Il NCII \u00e8: <strong>una violazione della privacy, del consenso e dell\u2019autonomia corporea</strong>.',
+  s1p3:'Questo rapporto esamina il NCII in profondit\u00e0: come viene definito, come viene commesso, come viene vissuto dalle vittime, come diversi paesi hanno legiferato contro di esso, e come l\u2019emergere dei deepfake AI ha cambiato il panorama delle minacce.',
+  s2_eye:'Sezione 2',
+  s2_h2:'Definire il NCII: Cos\u2019\u00e8<br>e Cos\u2019non \u00e8',
+  s2p1:'Il NCII comprende qualsiasi atto di condivisione, pubblicazione, minaccia di condivisione o possesso con intento di distribuire immagini intime o sessualmente esplicite senza <strong>consenso informato e continuativo</strong>.',
+  s2_callout:'<strong>Fondamentale:</strong> il consenso a creare un\u2019immagine non equivale al consenso a distribuirla. Una fotografia scattata privatamente all\u2019interno di una relazione consensuale rimane privata. La successiva distribuzione senza consenso rinnovato costituisce NCII.',
+  fc1_tag:'01 \u2014 Pi\u00f9 comune', fc1_h3:'Distribuzione da Partner Intimo',
+  fc1_p:'La forma storicamente pi\u00f9 prevalente: un partner attuale o ex distribuisce immagini condivise nel contesto di fiducia e intimit\u00e0. Spesso usata come strumento di controllo coercitivo.',
+  fc1_badge:'Alta Prevalenza',
+  fc2_tag:'02 \u2014 Minaccia crescente', fc2_h3:'Hacking e Registrazione Non Consensuale',
+  fc2_p:'Immagini ottenute all\u2019insaputa della vittima: tramite phishing e hacking cloud, telecamere nascoste o registrazione durante aggressioni. L\u2019hack Celebgate del 2014 ha portato questa variante all\u2019attenzione globale.',
+  fc2_badge:'Intrusione Tecnica',
+  fc3_tag:'03 \u2014 Motivazione finanziaria', fc3_h3:'Sextortion',
+  fc3_p:'Un autore possiede (o afferma di possedere) materiale intimo e lo usa per estorcere denaro, ulteriori immagini o obbedienza sessuale. Reti criminali prendono di mira specificamente adolescenti attraverso i confini internazionali.',
+  fc3_badge:'Impresa Criminale',
+  fc4_tag:'04 \u2014 Crescita pi\u00f9 rapida', fc4_h3:'NCII Deepfake Generato dall\u2019AI',
+  fc4_p:'Immagini intime sintetiche ma realistiche create usando il volto di una persona reale \u2014 senza che esista alcun materiale intimo genuino. Richiede solo fotografie dei social media e software liberamente disponibile.',
+  fc4_badge:'Minaccia Emergente',
+  s3_eye:'Sezione 3', s3_h2:'Scala e Prevalenza',
+  s3p1:'I dati affidabili sul NCII sono difficili da ottenere a causa di una significativa sottosegnalazione \u2014 molte vittime scelgono di non denunciare per vergogna o paura di ulteriore esposizione.',
+  s3p2:'Tra il <strong>4% e il 10%</strong> degli adulti in Australia, Canada e UE riportano di essere stati vittime di NCII. I tassi sono sostanzialmente pi\u00f9 alti tra le donne di et\u00e0 18\u201334 e gli individui LGBTQ+.',
+  s3p3:'I giovani sono particolarmente vulnerabili. L\u2019organizzazione Thorn ha rilevato che <strong>1 su 5</strong> giovani adulti di et\u00e0 18\u201324 negli USA aveva avuto immagini intime condivise senza consenso.',
+  s3_callout:'<strong>Dati UK:</strong> La Revenge Porn Helpline ha gestito oltre 18.000 casi nel 2022 \u2014 un aumento quintuplo rispetto al primo anno di attivit\u00e0 nel 2015.',
+  bar_g1:'Vittime per gruppo demografico (%)', bar_g2:'Distribuzione di genere vittime NCII',
+  bar1:'Donne di et\u00e0 18\u201334', bar2:'Individui LGBTQ+',
+  bar3:'Giovani adulti (18\u201324)', bar4:'Popolazione generale',
+  bar5:'Vittime femminili', bar6:'Vittime maschili',
+  s4_eye:'Sezione 4', s4_h2:'Come viene Perpetrato il NCII',
+  s4p1:'Capire come gli autori acquisiscono e distribuiscono materiale intimo \u00e8 essenziale per la prevenzione e l\u2019applicazione della legge.',
+  hs1_h4:'Creazione Consensuale nelle Relazioni', hs1_p:'La maggior parte del materiale NCII \u00e8 stata originariamente creata consensualmente. L\u2019atto diventa criminale solo quando una parte lo distribuisce successivamente senza consenso rinnovato.',
+  hs2_h4:'Hacking e Furto di Credenziali', hs2_p:'Dispositivi personali, account cloud ed email vengono presi di mira tramite phishing, spyware e ingegneria sociale. Intere raccolte possono essere esfiltrate in minuti.',
+  hs3_h4:'Registrazione Nascosta', hs3_p:'Telecamere nascoste in spazi privati. L\u2019epidemia \u2018molka\u2019 della Corea del Sud ha registrato oltre 5.500 casi di polizia in un singolo anno.',
+  hs4_h4:'Generazione Sintetica AI', hs4_p:'Le fotografie del volto dai social media vengono inserite in strumenti AI generativi per creare contenuti intimi fabbricati. Nessun materiale genuino necessario.',
+  hs5_h4:'Canali di Distribuzione', hs5_p:'Il materiale viene inviato ai datori di lavoro, alle famiglie o alle comunit\u00e0 delle vittime; postato su siti NCII; diffuso tramite canali Telegram; o venduto nei mercati del dark web.',
+  slot2_title:'Spazio Immagine 2', slot2_desc:'La tua illustrazione che mostra come il NCII si diffonde dall\u2019acquisizione alla distribuzione', slot2_tag:'Aggiungi la tua opera d\'arte qui',
+  s5_eye:'Sezione 5 \u2014 Approfondimento', s5_h2:'La Crisi dei Deepfake AI',
+  s5p1:'I deepfake sono media sintetici in cui le sembianze di una persona vengono digitalmente sovrapposte a contenuti che non ha mai creato. La tecnologia \u00e8 stata usata come strumento di molestie sessuali su scala allarmante.',
+  s5p2:'La creazione di immagini intime deepfake <strong>non richiede competenze tecniche</strong>. Le applicazioni gratuite possono generare immagini esplicite convincenti usando solo poche fotografie in meno di cinque minuti.',
+  s5p3:'Il NCII deepfake differisce in un modo particolarmente preoccupante: <strong>non c\u2019\u00e8 materiale intimo originale da rimuovere.</strong> L\u2019immagine non \u00e8 mai esistita \u2014 \u00e8 stata creata. Questo rende il rilevamento e il ricorso legale molto pi\u00f9 complicati.',
+  s5_callout:'<strong>2023\u20132024:</strong> Pi\u00f9 casi documentati di immagini AI che prendevano di mira ragazze adolescenti nelle scuole negli USA e in Europa. Questi casi hanno scatenato risposte legislative di emergenza in diversi stati USA.',
+  s5p4:'Il rilevamento \u00e8 tecnicamente complesso. Gli strumenti di rilevamento AI identificano incoerenze \u2014 ma la loro accuratezza si erode man mano che l\u2019AI generativa migliora.',
+  slot3_lbl:'Spazio immagine 3 \u2014 aggiungi la tua illustrazione',
+  df1_desc:'di tutti i video deepfake online sono immagini sessuali non consensuali \u2014 che prendono di mira prevalentemente le donne',
+  df2_desc:'crescita anno su anno del volume NCII deepfake ogni anno dal 2019',
+  df3_num:'Zero', df3_desc:'materiale intimo genuino necessario \u2014 solo foto dei social media disponibili pubblicamente',
+  s6_eye:'Sezione 6', s6_h2:'Impatto sulle Vittime',
+  s6p1:'L\u2019impatto psicologico del NCII \u00e8 profondo, ben documentato e spesso gravemente sottostimato.',
+  ii1_h4:'Disturbo Post-Traumatico da Stress (PTSD)', ii1_p:'Le vittime descrivono frequentemente pensieri intrusivi, ipervigilitanza, intorpidimento emotivo e dissociazione. La perdita di controllo sul proprio corpo viene vissuta come un trauma acuto distinto.',
+  ii2_h4:'Depressione e Ansia Grave', ii2_p:'Alti tassi di depressione clinica, disturbo d\u2019ansia generalizzato e attacchi di panico sono documentati tra le vittime di NCII \u2014 spesso persistendo per anni.',
+  ii3_h4:'Ideazione Suicidaria e Autolesionismo', ii3_p:'Pi\u00f9 studi indipendenti rilevano che una quota significativa delle vittime sperimenta pensieri suicidari. Un certo numero di casi documentati \u00e8 terminato con il suicidio.',
+  ii4_h4:'Danno Reputazionale e Professionale', ii4_p:'Le vittime riportano perdita di lavoro, espulsione da istituzioni educative e ostracismo. Le donne affrontano giudizi sociali significativamente pi\u00f9 duri dei maschi.',
+  ii5_h4:'Conseguenze Economiche', ii5_p:'Oltre alla perdita di reddito, le vittime affrontano costi finanziari per azioni legali, servizi di rimozione dei contenuti e cure psicologiche.',
+  ii6_h4:'La Natura Permanente della Distribuzione Digitale', ii6_p:'A differenza di una violazione fisica, il NCII pu\u00f2 emergere e riemergere indefinitamente \u2014 scoperto da nuove persone, su nuove piattaforme, anni dopo la distribuzione originale.',
+  slot4_title:'Spazio Immagine 4', slot4_caption:'La tua foto o opera d\'arte \u2014 orientamento verticale consigliato', slot4_tag:'Aggiungi la tua immagine qui',
+  s7_eye:'Sezione 7', s7_h2:'Quadri Giuridici nel Mondo',
+  s7p1:'La criminalizzazione del NCII \u00e8 accelerata significativamente dal 2015. Il panorama giuridico rimane molto disomogeneo a livello globale.',
+  lc1_name:'Regno Unito', lc1_h3:'Online Safety Act 2023',
+  lc1_p:'La condivisione di immagini intime senza consenso \u00e8 ora un reato penale specifico in Inghilterra e Galles. Anche la creazione di immagini intime deepfake \u00e8 criminalizzata.',
+  lc1_status:'Copertura Completa',
+  lc2_name:'Stati Uniti', lc2_h3:'Quadro Stato per Stato',
+  lc2_p:'Gli USA non hanno uno statuto penale federale sul NCII. Lo SHIELD Act \u00e8 rimasto bloccato al Congresso. Al 2024, 48 stati hanno emanato le proprie leggi NCII.',
+  lc2_status:'Parziale \u2014 Nessuna Legge Federale',
+  lc3_name:'Unione Europea', lc3_h3:'Digital Services Act 2024',
+  lc3_p:'Il DSA impone obblighi sostanziali alle grandi piattaforme online per rilevare e rimuovere contenuti illegali incluso il NCII. Le leggi penali nazionali variano ancora ampiamente.',
+  lc3_status:'Obblighi Piattaforme \u2014 Diritto Penale Lacunoso',
+  lc4_name:'Australia', lc4_h3:'Online Safety Act 2021',
+  lc4_p:'L\u2019eSafety Commissioner ha il potere di costringere le piattaforme a rimuovere i contenuti NCII entro 24 ore da un reclamo valido.',
+  lc4_status:'Uno dei Quadri Pi\u00f9 Solidi al Mondo',
+  s7_h3:'Perch\u00e9 i Procedimenti Penali Rimangono Difficili',
+  s7p2:'Anche nelle giurisdizioni con leggi forti, ottenere condanne \u00e8 difficile. Gli autori usano pseudonimi e tecnologie di anonimizzazione; i casi attraversano pi\u00f9 giurisdizioni; le prove digitali sono volatili.',
+  s8_eye:'Sezione 8', s8_h2:'Risposte delle Piattaforme',
+  s8p1:'Le piattaforme tecnologiche hanno progressivamente rafforzato le politiche NCII \u2014 ma il divario tra politica e applicazione rimane sostanziale.',
+  pl1_name:'Tecnologia Hash-Matching', pl1_tag:'Soluzione tecnica',
+  pl1_p:'Un \u2018hash\u2019 \u00e8 un\u2019impronta digitale unica generata da un file immagine. Se generato da un\u2019immagine NCII originale, qualsiasi successivo caricamento pu\u00f2 essere automaticamente rilevato e bloccato. <strong>StopNCII.org</strong> consente alle vittime di generare hash senza caricare le immagini stesse.',
+  pl2_name:'Politiche delle Principali Piattaforme', pl2_tag:'Applicazione delle politiche',
+  pl2_p:'Meta, Google, Microsoft, Snapchat e altri vietano ora esplicitamente il NCII negli standard della comunit\u00e0. Tuttavia, <strong>l\u2019applicazione \u00e8 in gran parte reattiva</strong> \u2014 basandosi sul fatto che le vittime scoprano prima il materiale.',
+  pl3_name:'Il Problema Telegram', pl3_tag:'Divario persistente',
+  pl3_p:'Telegram applica una moderazione dei contenuti minima. L\u2019<strong>arresto del fondatore di Telegram Pavel Durov nel 2024</strong> in Francia rappresenta un\u2019escalation significativa della pressione normativa.',
+  s9_eye:'Sezione 9', s9_h2:'Prevenzione e Supporto',
+  s9p1:'La responsabilit\u00e0 primaria per il NCII ricade interamente sugli autori. Le seguenti pratiche possono ridurre la vulnerabilit\u00e0 individuale.',
+  prev_h3:'Per la Protezione Personale', res_h3:'Risorse di Supporto per le Vittime',
+  ci1:'Usa password forti e uniche per tutti gli account contenenti dati personali. Abilita l\u2019autenticazione a pi\u00f9 fattori \u2014 specialmente sui servizi di foto cloud.',
+  ci2:'Controlla periodicamente le impostazioni di backup dello smartphone. Molti dispositivi sincronizzano automaticamente tutte le foto con i servizi cloud.',
+  ci3:'Esercita cautela nel condividere immagini intime anche con partner di fiducia. Una volta condivisa, un\u2019immagine non pu\u00f2 essere non-condivisa.',
+  ci4:'Riconosci le tattiche di sextortion: il contatto non richiesto da estranei che si intensifica rapidamente verso l\u2019intimit\u00e0 \u00e8 un pattern documentato usato dalle reti criminali.',
+  ci5:'Tieni presente che i deepfake AI richiedono solo fotografie del volto \u2014 limitare chi pu\u00f2 vedere le tue foto sui social media riduce l\u2019esposizione al NCII sintetico.',
+  rc1_desc:'Servizio specializzato gratuito nel UK. Consulenza sulla rimozione dei contenuti, opzioni legali e supporto emotivo.',
+  rc2_desc:'Helpline di crisi 24/7, referral legali e assistenza per la rimozione dei contenuti.',
+  rc3_desc:'Strumento gratuito di hash delle immagini per prevenire la distribuzione. Disponibile globalmente.',
+  rc4_desc:'Procedura di reclamo formale e rimozione entro 24 ore. Solo Australia.',
+  ref_eye:'Fonti', ref_h2:'Fonti e Ulteriori Letture',
+  quiz_p:'Metti alla prova le tue conoscenze su NCII e tutti gli altri argomenti di criminalit\u00e0 informatica',
+  quiz_span:'\u2014 10 domande casuali, nessun limite di tempo.',
+  quiz_btn:'Inizia il Quiz \u00a0\u2192',
+  tnav1_dir:'\u2190 Torna a', tnav1_title:'Tutti gli Argomenti', tnav1_sub:'Panoramica di tutte le categorie di crimine',
+  tnav2_dir:'Argomento Successivo \u00a0\u2192', tnav2_title:'Traffico di Droga Online', tnav2_sub:'02 \u2014 Mercati dark web, vetrine Telegram e la crisi del fentanil',
+  footer_note:'Progetto educativo \u2014 Presentazione accademica 2026. Tutte le statistiche sono citate sopra.',
+  footer_src:'Fonti', footer_prev:'Prevenzione', footer_top:'Tutti gli Argomenti', footer_quiz:'Quiz', footer_imprint:"Note legali"
+};
+
+/* =======================================================
+   RENDERER
+======================================================= */
+function g(id){return document.getElementById(id)}
+function st(id,v){var e=g(id);if(e&&v!==undefined)e.textContent=v}
+function si(id,v){var e=g(id);if(e&&v!==undefined)e.innerHTML=v}
+
+function applyLang(lang){
+  var c=T[lang]; if(!c)return;
+  try{localStorage.setItem('co_lang',lang)}catch(e){}
+  var s1=g('langSelect'); if(s1)s1.value=lang;
+  var s2=g('langSelMob'); if(s2)s2.value=lang;
+  document.title=c.page_title;
+  /* nav */
+  st('nav-topics-lbl',c.nav_topics);st('nav-prev-lbl',c.nav_prev);
+  st('nav-sources-lbl',c.nav_sources);st('nav-cta-lbl',c.nav_cta);
+  st('mob-home-lbl',c.mob_home);st('mob-topics-lbl',c.nav_topics);
+  st('mob-prev-lbl',c.nav_prev);st('mob-sources-lbl',c.nav_sources);
+  st('mob-cta-lbl',c.nav_cta);st('mob-lang-lbl',c.mob_lang);
+  /* breadcrumb */
+  st('bc-home',c.bc_home);st('bc-topics',c.bc_topics);st('bc-current',c.bc_current);
+  /* hero */
+  st('hero-series-lbl',c.hero_series);si('hero-h1',c.hero_h1);st('hero-lead',c.hero_lead);
+  st('meta1-lbl',c.meta1_lbl);st('meta1-val',c.meta1_val);
+  st('meta2-lbl',c.meta2_lbl);st('meta2-val',c.meta2_val);
+  st('meta3-lbl',c.meta3_lbl);st('meta3-val',c.meta3_val);
+  st('meta4-lbl',c.meta4_lbl);st('meta4-val',c.meta4_val);
+  /* stats */
+  st('stat1-lbl',c.stat1_lbl);st('stat2-lbl',c.stat2_lbl);
+  st('stat3-lbl',c.stat3_lbl);st('stat4-lbl',c.stat4_lbl);
+  /* s1 */
+  st('s1-eye',c.s1_eye);si('pq-text',c.pq_text);st('pq-cite',c.pq_cite);
+  si('s1p1',c.s1p1);si('s1p2',c.s1p2);st('s1p3',c.s1p3);
+  /* s2 */
+  st('s2-eye',c.s2_eye);si('s2-h2',c.s2_h2);si('s2p1',c.s2p1);
+  si('s2-callout',c.s2_callout);
+  st('fc1-tag',c.fc1_tag);st('fc1-h3',c.fc1_h3);st('fc1-p',c.fc1_p);st('fc1-badge',c.fc1_badge);
+  st('fc2-tag',c.fc2_tag);st('fc2-h3',c.fc2_h3);st('fc2-p',c.fc2_p);st('fc2-badge',c.fc2_badge);
+  st('fc3-tag',c.fc3_tag);st('fc3-h3',c.fc3_h3);st('fc3-p',c.fc3_p);st('fc3-badge',c.fc3_badge);
+  st('fc4-tag',c.fc4_tag);st('fc4-h3',c.fc4_h3);st('fc4-p',c.fc4_p);st('fc4-badge',c.fc4_badge);
+  /* s3 */
+  st('s3-eye',c.s3_eye);st('s3-h2',c.s3_h2);
+  si('s3p1',c.s3p1);si('s3p2',c.s3p2);si('s3p3',c.s3p3);si('s3-callout',c.s3_callout);
+  st('bar-g1-lbl',c.bar_g1);st('bar-g2-lbl',c.bar_g2);
+  st('bar1-lbl',c.bar1);st('bar2-lbl',c.bar2);st('bar3-lbl',c.bar3);
+  st('bar4-lbl',c.bar4);st('bar5-lbl',c.bar5);st('bar6-lbl',c.bar6);
+  /* s4 */
+  st('s4-eye',c.s4_eye);st('s4-h2',c.s4_h2);st('s4p1',c.s4p1);
+  st('hs1-h4',c.hs1_h4);st('hs1-p',c.hs1_p);
+  st('hs2-h4',c.hs2_h4);st('hs2-p',c.hs2_p);
+  st('hs3-h4',c.hs3_h4);st('hs3-p',c.hs3_p);
+  st('hs4-h4',c.hs4_h4);st('hs4-p',c.hs4_p);
+  st('hs5-h4',c.hs5_h4);st('hs5-p',c.hs5_p);
+  st('slot2-title',c.slot2_title);st('slot2-desc',c.slot2_desc);st('slot2-tag',c.slot2_tag);
+  /* s5 */
+  st('s5-eye',c.s5_eye);st('s5-h2',c.s5_h2);
+  si('s5p1',c.s5p1);si('s5p2',c.s5p2);si('s5p3',c.s5p3);
+  si('s5-callout',c.s5_callout);si('s5p4',c.s5p4);
+  st('slot3-lbl',c.slot3_lbl);
+  st('df1-desc',c.df1_desc);st('df2-desc',c.df2_desc);
+  st('df3-num',c.df3_num);st('df3-desc',c.df3_desc);
+  /* s6 */
+  st('s6-eye',c.s6_eye);st('s6-h2',c.s6_h2);st('s6p1',c.s6p1);
+  st('ii1-h4',c.ii1_h4);st('ii1-p',c.ii1_p);
+  st('ii2-h4',c.ii2_h4);st('ii2-p',c.ii2_p);
+  st('ii3-h4',c.ii3_h4);st('ii3-p',c.ii3_p);
+  st('ii4-h4',c.ii4_h4);st('ii4-p',c.ii4_p);
+  st('ii5-h4',c.ii5_h4);st('ii5-p',c.ii5_p);
+  st('ii6-h4',c.ii6_h4);st('ii6-p',c.ii6_p);
+  st('slot4-title',c.slot4_title);st('slot4-caption',c.slot4_caption);st('slot4-tag',c.slot4_tag);
+  /* s7 */
+  st('s7-eye',c.s7_eye);st('s7-h2',c.s7_h2);st('s7p1',c.s7p1);
+  st('lc1-name',c.lc1_name);st('lc1-h3',c.lc1_h3);st('lc1-p',c.lc1_p);st('lc1-status',c.lc1_status);
+  st('lc2-name',c.lc2_name);st('lc2-h3',c.lc2_h3);st('lc2-p',c.lc2_p);st('lc2-status',c.lc2_status);
+  st('lc3-name',c.lc3_name);st('lc3-h3',c.lc3_h3);st('lc3-p',c.lc3_p);st('lc3-status',c.lc3_status);
+  st('lc4-name',c.lc4_name);st('lc4-h3',c.lc4_h3);st('lc4-p',c.lc4_p);st('lc4-status',c.lc4_status);
+  st('s7-h3',c.s7_h3);st('s7p2',c.s7p2);
+  /* s8 */
+  st('s8-eye',c.s8_eye);st('s8-h2',c.s8_h2);st('s8p1',c.s8p1);
+  st('pl1-name',c.pl1_name);st('pl1-tag',c.pl1_tag);si('pl1-p',c.pl1_p);
+  st('pl2-name',c.pl2_name);st('pl2-tag',c.pl2_tag);si('pl2-p',c.pl2_p);
+  st('pl3-name',c.pl3_name);st('pl3-tag',c.pl3_tag);si('pl3-p',c.pl3_p);
+  /* s9 */
+  st('s9-eye',c.s9_eye);st('s9-h2',c.s9_h2);st('s9p1',c.s9p1);
+  st('prev-h3',c.prev_h3);st('res-h3',c.res_h3);
+  st('ci1',c.ci1);st('ci2',c.ci2);st('ci3',c.ci3);st('ci4',c.ci4);st('ci5',c.ci5);
+  st('rc1-desc',c.rc1_desc);st('rc2-desc',c.rc2_desc);
+  st('rc3-desc',c.rc3_desc);st('rc4-desc',c.rc4_desc);
+  /* refs */
+  st('ref-eye',c.ref_eye);st('ref-h2',c.ref_h2);
+  /* quiz strip */
+  var qp=g('quiz-strip-p');
+  if(qp)qp.innerHTML=c.quiz_p+' <span>'+c.quiz_span+'</span>';
+  st('quiz-strip-btn',c.quiz_btn);
+  /* topic nav */
+  st('tnav1-dir',c.tnav1_dir);st('tnav1-title',c.tnav1_title);st('tnav1-sub',c.tnav1_sub);
+  st('tnav2-dir',c.tnav2_dir);st('tnav2-title',c.tnav2_title);st('tnav2-sub',c.tnav2_sub);
+  /* footer */
+  st('footer-note',c.footer_note);st('footer-src',c.footer_src);
+  st('footer-prev',c.footer_prev);st('footer-top',c.footer_top);st('footer-quiz',c.footer_quiz);
+}
+
+function switchLanguage(lang){applyLang(lang)}
+
+/* HAMBURGER */
+var hb=document.getElementById('hamburger');
+var nm=document.getElementById('nav-mobile');
+function closeMenu(){hb.classList.remove('open');nm.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hb.addEventListener('click',function(){var o=nm.classList.toggle('open');hb.classList.toggle('open');hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+document.addEventListener('click',function(e){if(!hb.contains(e.target)&&!nm.contains(e.target))closeMenu()});
+window.addEventListener('resize',function(){if(window.innerWidth>860)closeMenu()});
+
+/* INIT */
+(function(){
+  var saved='en';
+  try{saved=localStorage.getItem('co_lang')||'en'}catch(e){}
+  if(!T[saved])saved='en';
+  applyLang(saved);
+})();
+</script>
+</body>
+</html>
